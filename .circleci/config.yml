@@ -12,11 +12,11 @@ vars:
         ignore:
           - /^prod\//
           - master
-          - /^base\//
           - ts-base
           - dev-react
           - storybook
           - gatsby
+          - dev-pptr
 
   storybook__prod: &storybook__prod
     filters:
