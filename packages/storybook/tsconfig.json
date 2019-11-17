@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitUseStrict": true,
+    "alwaysStrict": false,
+
+    "target": "es6",
+    "lib": [
+      "dom",
+      "esnext",
+    ],
+
+    // for babel
+    "allowJs": true,
+    "isolatedModules": true,
+    "jsx": "react",
+
+    "skipLibCheck": true,
+
+    // import json
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+
+    "outDir": "out",
+    "module": "commonjs",
+    "newLine": "lf",
+
+    "removeComments": true,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+  }
+}

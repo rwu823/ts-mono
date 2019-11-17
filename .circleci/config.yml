@@ -1,0 +1,371 @@
+version: 2.1
+
+vars:
+  branch_master: &branch_master
+    filters:
+      branches:
+        only: master
+
+  branch_testing: &branch_testing
+    filters:
+      branches:
+        ignore:
+          - /^prod\//
+          - master
+          - /^base\//
+          - ts-base
+          - dev-react
+          - storybook
+          - gatsby
+
+  storybook__prod: &storybook__prod
+    filters:
+      branches:
+        only: prod/storybook
+
+  gatsby__prod: &gatsby__prod
+    filters:
+      branches:
+        only: prod/gatsby
+
+  ts-base__prod: &ts-base__prod
+    filters:
+      branches:
+        only: prod/ts-base
+
+  ts-check-cli__prod: &ts-check-cli__prod
+    filters:
+      branches:
+        only: prod/ts-check-cli
+
+  dev-react__prod: &dev-react__prod
+    filters:
+      branches:
+        only: prod/dev-react
+
+  dev-pptr__prod: &dev-pptr__prod
+    filters:
+      branches:
+        only: prod/dev-pptr
+
+executors:
+  node:
+    environment:
+      - TZ: Asia/Taipei
+    docker:
+      - image: circleci/node:12
+
+commands:
+    use_gcloud:
+      description: Install Google Cloud SDK
+      parameters:
+        v:
+          type: string
+          default: $GCLOUD_SDK_VER
+        key:
+          type: string
+          default: $GCLOUD_KEY
+        project:
+          type: string
+          default: $GCLOUD_PROJECT
+      steps:
+        - run:
+            name: Use Google Cloud SDK v<< parameters.v >>
+            command: |
+              TAR=~/gcloud-sdk.tar.gz
+              GCLOUD_PATH=~/gcloud-sdk
+              GCLOUD_KEY_PATH=~/gcloud.key.json
+
+              curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-<< parameters.v >>.0.0-linux-x86_64.tar.gz -o $TAR
+              mkdir $GCLOUD_PATH && tar xf $TAR -C $GCLOUD_PATH  --strip-components 1
+
+              echo "export PATH=$GCLOUD_PATH/bin:\$PATH" >> $BASH_ENV
+              source $BASH_ENV
+
+              gcloud components install kubectl
+              gcloud config set project << parameters.project >>
+
+              echo '<< parameters.key >>' | base64 --decode > $GCLOUD_KEY_PATH
+              gcloud auth activate-service-account --key-file $GCLOUD_KEY_PATH
+
+              gcloud container clusters get-credentials event-k8s --zone asia-northeast1-a
+              gcloud info
+    use_node:
+      description: Install Node
+      parameters:
+        v:
+          type: string
+          default: 10.15.3
+      steps:
+        - run:
+            name: Use Node v<< parameters.v >>
+            command: |
+              TAR=~/node.tar.xz
+              NODE_PATH=~/node
+
+              curl https://nodejs.org/dist/v<< parameters.v >>/node-v<< parameters.v >>-linux-x64.tar.xz -o $TAR
+              mkdir $NODE_PATH && tar xf $TAR -C $NODE_PATH --strip-components 1
+
+              echo "export PATH=$NODE_PATH/bin:\$PATH" >> $BASH_ENV
+              source $BASH_ENV
+
+    docker_build_push:
+      description: Docker build
+      parameters:
+        repo:
+          type: string
+          default: repo-name
+        url:
+          type: string
+          default: dkr.ecr.ap-northeast-1.amazonaws.com
+        tag:
+          type: string
+          default: $CIRCLE_SHA1
+      steps:
+        - setup-docker
+        - run:
+            name: Build Docker Image
+            command: |
+              IMAGE=<< parameters.url >>/<< parameters.repo >>:<< parameters.tag >>
+              docker build . -t $IMAGE
+              docker images $IMAGE
+              docker push $IMAGE
+
+    setup_docker:
+      steps:
+        - setup_remote_docker:
+            docker_layer_caching: true
+
+    setup_npm:
+      parameters:
+        token:
+          type: string
+          default: $NPM_TOKEN
+      steps:
+        - run:
+            name: Setup NPM
+            command: echo "//registry.npmjs.org/:_authToken=<<parameters.token>>" >> ~/.npmrc
+
+    deploy_npm:
+      parameters:
+        dir:
+          type: string
+          default: out
+      steps:
+        - setup_npm
+        - run: npm publish << parameters.dir >>
+
+    setup_git:
+      parameters:
+        user:
+          type: string
+          default: Rocky Wu
+        email :
+          type: string
+          default : rwu823@gmail.com
+      steps:
+        - run:
+            name: Setup Git
+            command: |
+              git config --global user.name '<<parameters.user>>'
+              git config --global user.email '<<parameters.email>>'
+
+    push_tag:
+      parameters:
+        tag:
+          type: string
+          default: $GIT_TAG
+        repo:
+          type: string
+          default: git@github.com:$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
+      steps:
+        - setup_git
+        - run:
+            name: Push git tag << parameters.tag >>
+            command: |
+              git tag $GIT_TAG
+              git push --quiet << parameters.repo >> << parameters.tag >>
+
+    push_branch:
+      parameters:
+        tag:
+          type: string
+          default: $GIT_TAG
+        dir:
+          type: string
+          default: out
+        repo:
+          type: string
+          default: git@github.com:$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
+        force:
+            type: boolean
+            default: false
+        branch:
+          type: string
+          default: $GIT_TAG
+      steps:
+        - setup_git
+        - run:
+            name: Push to << parameters.branch >>
+            command: |
+              cd << parameters.dir >>
+              git init
+              git add -A
+              git commit -nm "[ci skip] << parameters.tag >>"
+
+              git checkout -b << parameters.branch >>
+              git push --quiet <<# parameters.force >> -f <</ parameters.force >> << parameters.repo >> HEAD
+
+              rm -rf .git
+
+    docker_login:
+      parameters:
+          user:
+            type: string
+            default: $DOCKER_USER
+          pass:
+            type: string
+            default: $DOCKER_PASS
+      steps:
+        - run:
+            name: Docker Login
+            command: |
+              docker login -u <<parameters.user>> -p <<parameters.user.pass>>
+
+    checkout_install:
+      description: Checkout sources and install node_modules
+      steps:
+        - checkout
+        - restore_cache:
+            key: node_modules#{{ checksum "yarn.lock" }}
+        - run: yarn
+        - save_cache:
+            key: node_modules#{{ checksum "yarn.lock" }}
+            paths:
+              - node_modules
+              - packages/storybook/node_modules
+              - packages/dev-react/node_modules
+              - packages/dev-pptr/node_modules
+              - packages/gatsby/node_modules
+              - packages/ts-base/node_modules
+              - packages/ts-check-cli/node_modules
+        - run: git checkout -- .
+        - run:
+            name: Init Submodule
+            command: git submodule update --init --remote --depth 1
+        # - run:
+        #     name: Decrypt Secret
+        #     command: |
+        #       sudo apt-get -y -qq update
+        #       sudo apt-get install bsdmainutils
+        #       yarn --silent transcrypt -p "$REPO_SECRET" -y
+        - run:
+            name: Exports Env
+            command: |
+              echo "$(node env/export)" >> $BASH_ENV
+              echo 'export PATH="$(yarn global bin):$PATH"' >> $BASH_ENV
+
+              source $BASH_ENV
+
+jobs:
+  test:
+    executor: node
+    steps:
+      - checkout_install
+      - run: npx jest --passWithNoTests
+      - run: bash <(curl -s https://codecov.io/bash)
+
+  lint:
+    executor: node
+    steps:
+      - checkout_install
+      - run:
+          name: Run ESLint only on modified files.
+          command: npx eslint $(git diff --diff-filter=d origin/HEAD --name-only --cached '*.ts' '*.tsx' '*.js')
+
+  ts-base__deploy:
+    executor: node
+    steps:
+      - checkout_install
+      - run: yarn workspace @ts-mono/base build
+      - push_branch:
+          dir: packages/ts-base/out
+          branch: ts-base
+          force: true
+
+  ts-check-cli__deploy:
+    executor: node
+    steps:
+      - checkout_install
+      - run: yarn workspace ts-check-cli build
+      - deploy_npm:
+          dir: packages/ts-check-cli/out
+
+  gatsby__deploy:
+    executor: node
+    steps:
+        - checkout_install
+        - push_branch:
+            dir: packages/gatsby
+            branch: gatsby
+            force: true
+
+  dev-pptr__deploy:
+    executor: node
+    steps:
+        - checkout_install
+        - push_branch:
+            dir: packages/dev-pptr
+            branch: dev-pptr
+            force: true
+
+  storybook__deploy:
+    executor: node
+    steps:
+        - checkout_install
+        - push_branch:
+            dir: packages/storybook
+            branch: storybook
+            force: true
+
+  dev-react__deploy:
+    executor: node
+    steps:
+        - checkout_install
+        - push_branch:
+            dir: packages/dev-react
+            branch: dev-react
+            force: true
+
+  mono-deploy:
+    executor: node
+    steps:
+      - checkout_install
+      - run: npx ts-node scripts/mono-deploy
+
+workflows:
+  version: 2
+
+  Mono Base:
+    jobs:
+      - test:
+          <<: *branch_testing
+      - lint:
+          <<: *branch_testing
+      - mono-deploy:
+          <<: *branch_master
+
+  Build And Deploy:
+    jobs:
+      - storybook__deploy:
+          <<: *storybook__prod
+      - gatsby__deploy:
+          <<: *gatsby__prod
+      - dev-pptr__deploy:
+          <<: *dev-pptr__prod
+      - dev-react__deploy:
+          <<: *dev-react__prod
+      - ts-check-cli__deploy:
+          <<: *ts-check-cli__prod
+      - ts-base__deploy:
+          <<: *ts-base__prod

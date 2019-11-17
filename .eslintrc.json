@@ -1,0 +1,65 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "prettier/react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "useJSXTextNode": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "globals": {
+    "globalThis": "readonly"
+  },
+  "rules": {
+    "prettier/prettier": 2,
+
+    "no-undef": 0,
+    "no-unused-vars": 0,
+    "no-console": 0,
+    "no-unused-expressions": [2, {"allowTaggedTemplates": true}],
+    "no-param-reassign": 0,
+    "no-cond-assign": [2, "except-parens"],
+    "no-empty": [2, { "allowEmptyCatch": true }],
+    "spaced-comment": [2, "always", { "markers": ["/"] }],
+    "global-require": 0,
+
+    "import/newline-after-import": 0,
+    "import/no-extraneous-dependencies": [0, {"optionalDependencies": true}],
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "import/no-dynamic-require": 0,
+
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-curly-brace-presence": 0,
+    "react/static-property-placement": [2, "static public field"],
+    "react/no-unescaped-entities": 0,
+    "react/self-closing-comp": [2, {
+      "component": true,
+      "html": true
+    }],
+
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0
+  }
+}

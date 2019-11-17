@@ -1,0 +1,10 @@
+{
+  "extends": "../../.eslintrc.json",
+  "rules": {
+    "global-require": 0,
+
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": [0],
+    "react/prop-types": [0, { "ignore": ["children"] }]
+  }
+}

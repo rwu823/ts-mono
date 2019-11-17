@@ -1,0 +1,14 @@
+{
+  "name": "ts-check-cli",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "bin": {
+    "ts-check": "bin/ts-check"
+  },
+  "dependencies": {
+    "ora": "4.0.3"
+  },
+  "scripts": {
+    "build": "tsc -b && cp -r package.json bin out/"
+  }
+}

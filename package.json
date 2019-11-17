@@ -1,0 +1,36 @@
+{
+  "name": "ts-mono",
+  "version": "3.7.2-19.11.10",
+  "description": "The infrastructure of TypeScript project",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/storybook/**"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "eslint --fix"
+    ]
+  },
+  "author": "Rocky Wu <rwu823@gmail.com>",
+  "repository": "git@github.com:rwu823/ts-mono.git",
+  "license": "MIT",
+  "scripts": {
+    "rm-pkg": "rm -rf node_modules packages/*/node_modules",
+    "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
+    "lint": "eslint . --ignore-path .gitignore --ext .ts --ext .tsx --ext .js"
+  },
+  "devDependencies": {
+    "gatsby-cli": "^2.8.11",
+    "sh-exec": "^2.1.0"
+  }
+}

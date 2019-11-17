@@ -1,0 +1,51 @@
+{
+  "exclude": [
+    "node_modules",
+    "out/**/*",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+  ],
+  "compilerOptions": {
+    /* =Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitUseStrict": true,
+    "alwaysStrict": false,
+
+    /* =Strict Type-Checking Options */
+    "incremental": true,
+    "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
+
+    /* =Module Resolution Options */
+    // "baseUrl": ".",
+    // "paths": {
+
+    // },
+
+    /* =Basic Options */
+    "target": "es6",
+    "lib": [
+      "dom",
+      "esnext",
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "jsx": "react",
+
+    /* =import .json */
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+
+    "outDir": "out",
+    "module": "commonjs",
+    "newLine": "lf",
+
+
+    /* =Additional Checks */
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+  }
+}
