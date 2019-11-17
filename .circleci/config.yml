@@ -199,11 +199,15 @@ commands:
         branch:
           type: string
           default: $GIT_TAG
+        ignore_file:
+          type: string
+          default: .gitignore
       steps:
         - setup_git
         - run:
             name: Push to << parameters.branch >>
             command: |
+              cp << parameters.ignore_file >> << parameters.dir >>
               cd << parameters.dir >>
               git init
               git add -A
