@@ -11,12 +11,8 @@ vars:
       branches:
         ignore:
           - /^prod\//
+          - /^pkg\//
           - master
-          - ts-base
-          - dev-react
-          - storybook
-          - gatsby
-          - dev-pptr
 
   storybook__prod: &storybook__prod
     filters:
@@ -290,7 +286,7 @@ jobs:
       - run: yarn workspace @ts-mono/base build
       - push_branch:
           dir: packages/ts-base/out
-          branch: ts-base
+          branch: pkg/ts-base
           force: true
 
   ts-check-cli__deploy:
@@ -307,7 +303,7 @@ jobs:
         - checkout_install
         - push_branch:
             dir: packages/gatsby
-            branch: gatsby
+            branch: pkg/gatsby
             force: true
 
   dev-pptr__deploy:
@@ -316,7 +312,7 @@ jobs:
         - checkout_install
         - push_branch:
             dir: packages/dev-pptr
-            branch: dev-pptr
+            branch: pkg/dev-pptr
             force: true
 
   storybook__deploy:
@@ -325,7 +321,7 @@ jobs:
         - checkout_install
         - push_branch:
             dir: packages/storybook
-            branch: storybook
+            branch: pkg/storybook
             force: true
 
   dev-react__deploy:
@@ -334,7 +330,7 @@ jobs:
         - checkout_install
         - push_branch:
             dir: packages/dev-react
-            branch: dev-react
+            branch: pkg/dev-react
             force: true
 
   mono-deploy:
