@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-export const CopyIcon: React.FunctionComponent<
-  React.SVGProps<SVGSVGElement>
-> = props => (
+export const CopyIcon: React.FunctionComponent<React.SVGProps<
+  SVGSVGElement
+>> = props => (
   <svg
     style={{
       width: 20,
@@ -32,7 +32,7 @@ export const CopyRow = styled.div`
     background: rgba(255, 255, 255, 0.1);
     bottom: -50px;
     left: 0;
-    padding: 3px 0;
+    padding: 7px 0;
     width: 100%;
     text-align: center;
     cursor: pointer;

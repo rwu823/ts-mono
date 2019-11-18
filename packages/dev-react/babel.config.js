@@ -7,6 +7,10 @@ module.exports = api => {
 
   return {
     presets: ['next/babel'],
-    plugins: [['styled-components', { displayName: isDev }]],
+    plugins: [
+      '@babel/proposal-optional-chaining',
+      '@babel/proposal-nullish-coalescing-operator',
+      ['styled-components', { displayName: isDev }],
+    ],
   }
 }

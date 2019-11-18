@@ -15,24 +15,45 @@ import copy from '../../../share/copy'
 
 const Title = styled.div`
   ${() => css`
-    /* margin-right: auto; */
+    margin-left: auto;
+  `}
+`
+
+const languageTheme: { [key: string]: string } = {
+  js: '#e9d458',
+  jsx: '#e9d458',
+  ts: '#1279c4',
+  tsx: '#1279c4',
+  css: '#c56496',
+  htm: '#dc4c2f',
+  html: '#dc4c2f',
+}
+
+const Language = styled.sub<{ type: string }>`
+  ${p => css`
+    margin-right: auto;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 0 0 3px 3px;
+    color: #222;
+    background: ${p.type in languageTheme ? languageTheme[p.type] : '#ccc'};
+
+    ::after {
+      content: '${p.type}';
+    }
   `}
 `
 
 const ToolBar = styled.div`
   ${() => css`
-    font: 0.6rem 'Menlo', monospace;
-    color: #999;
+    font: 0.8rem 'Menlo', monospace;
+    color: #bbb;
     display: flex;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 1px solid #eee;
     padding: 12px 20px;
     justify-content: space-between;
-
-    sub {
-      margin-left: auto;
-    }
   `}
 `
 
@@ -66,7 +87,7 @@ const Div = styled.div<{ isDay: boolean }>`
 `
 
 export interface CodeProps {
-  language?: string | null
+  language?: string
   theme?: 'day' | 'night'
   src: string
   name?: string
@@ -111,10 +132,12 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
         onMouseEnter={() => setCopied(false)}
       >
         <Theme ref={$parent}>
-          <ToolBar>
-            {title && <Title>{title}</Title>}
-            <sub>{language}</sub>
-          </ToolBar>
+          {(language || title) && (
+            <ToolBar>
+              {language && <Language type={language} />}
+              {title && <Title>{title}</Title>}
+            </ToolBar>
+          )}
           <pre>
             <code
               dangerouslySetInnerHTML={{ __html: code.trim() }} // eslint-disable-line react/no-danger
@@ -132,7 +155,6 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
   }
 
   CodeBlock.defaultProps = {
-    language: 'jsx',
     theme: 'night',
     hasCopy: true,
     ...defaultProps,
