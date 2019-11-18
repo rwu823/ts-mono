@@ -8,7 +8,8 @@
       "packages/*"
     ],
     "nohoist": [
-      "**/storybook/**"
+      "**/storybook/**",
+      "**/dev-react/**"
     ]
   },
   "husky": {
