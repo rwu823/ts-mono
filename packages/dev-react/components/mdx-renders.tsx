@@ -3,6 +3,7 @@ import NextLink from 'next/link'
 
 // import { MDXRenderers } from '@mdx-js/react'
 import { H, Link, CodeBlock, Blockquote, Code } from './Markdown'
+import { Meta as TypeCodeMeta } from './Markdown/CodeBlock'
 
 type MDXRenderers = {
   inlineCode?: React.FC
@@ -40,12 +41,23 @@ export const mdxRenders: MDXRenderers = {
     )
   },
 
-  code: ({ children, className = '', file }) => {
-    const [, language] = className.split('-')
+  code: ({ children, className = '' }) => {
+    const language =
+      className
+        .split('-')
+        .slice(1)
+        .join('-') || ''
 
-    return (
-      <CodeBlock name={file} language={language} src={children as string} />
-    )
+    const [type, meta] = language.split('|')
+
+    let metaObj: TypeCodeMeta | undefined
+
+    if (meta) {
+      // eslint-disable-next-line no-new-func
+      metaObj = new Function(`return { ${meta} }`)()
+    }
+
+    return <CodeBlock meta={metaObj} language={type} src={children as string} />
   },
 
   blockquote: props => <Blockquote {...props} />,

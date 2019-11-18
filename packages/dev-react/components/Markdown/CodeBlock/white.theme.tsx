@@ -7,6 +7,17 @@ const CodeBlockTheme = styled.div`
  */
 
   /* @import url('https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap'); */
+
+  i[data-line] {
+    position: absolute;
+    background: rgba(39, 73, 144, 0.3);
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 21px;
+    pointer-events: none;
+  }
+
   code,
   pre {
     color: #393a34;
@@ -17,7 +28,7 @@ const CodeBlockTheme = styled.div`
     word-spacing: normal;
     word-break: normal;
     font-size: 0.9rem;
-    line-height: 1.2em;
+    line-height: 1.5em;
     tab-size: 4;
     hyphens: none;
   }

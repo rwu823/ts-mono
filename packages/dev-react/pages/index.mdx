@@ -25,14 +25,23 @@ Normal code block
 - import React from 'react'
 ~~~
 
-~~~jsx file=index.js
+## Add file name
+~~~
+```jsx|file:"index.js"
+~~~
+~~~jsx|file:"index.js"
 ReactDOM.render(
   <h1>Hello, world!</h1>,
   document.getElementById('root')
 );
 ~~~
 
-~~~css
+
+## Highlight the lines
+~~~
+```css|line:"2,6"
+~~~
+~~~css|line:"2,6"
 html {
   box-sizing: border-box;
 }
@@ -42,6 +51,25 @@ html {
 }
 ~~~
 
+~~~tsx
+import React from 'react'
+
+export type WithInjectProps = {}
+
+type HOCInject = <Props>(
+  Component: React.ComponentType<Props>,
+) => React.FC<Omit<Props, keyof WithInjectProps>>
+
+export const withInject: HOCInject = Component => props => {
+  const displayName = Component.displayName || Component.name || 'Component'
+
+  Component.displayName = `withInject(${displayName})`
+
+  return <Component {...(props as any)} />
+}
+
+export default withInject
+~~~
 
 ~~~html
 <meta charset="utf-8">

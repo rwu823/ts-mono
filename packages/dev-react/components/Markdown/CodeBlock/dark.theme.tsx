@@ -9,6 +9,16 @@ const CodeBlockTheme = styled.div`
 
   /* @import url('https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap'); */
 
+  i[data-line] {
+    position: absolute;
+    background: rgba(39, 73, 144, 0.3);
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 21px;
+    pointer-events: none;
+  }
+
   code,
   pre {
     color: #abb2bf;

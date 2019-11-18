@@ -26,8 +26,8 @@ const Title = styled.div`
 const languageTheme: { [key: string]: string } = {
   js: '#e9d458',
   jsx: '#e9d458',
-  ts: '#1279c4',
-  tsx: '#1279c4',
+  ts: '#55b7ff',
+  tsx: '#55b7ff',
   css: '#c56496',
   htm: '#dc4c2f',
   html: '#dc4c2f',
@@ -98,11 +98,16 @@ const Div = styled.div<{ isDay: boolean }>`
   `}
 `
 
+export type Meta = Partial<{
+  file: string
+  line: string
+}>
+
 export interface CodeProps {
   language?: string
   theme?: 'day' | 'night'
   src: string
-  name?: string
+  meta?: Meta
   hasCopy?: boolean
 }
 
@@ -118,7 +123,7 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
     src,
     theme,
     hasCopy,
-    name: title,
+    meta,
     ...props
   }) => {
     const code =
@@ -142,6 +147,26 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
 
     const isDay = theme === 'day'
 
+    const lines = React.useMemo(() => {
+      if (meta?.line) {
+        if (meta.line.includes(',')) {
+          return meta.line.split(',').map(s => parseInt(s.trim(), 10))
+        }
+
+        if (meta.line.includes('-')) {
+          const [start, end] = meta.line.split('-')
+
+          return [+start].concat(
+            [...Array(+end - +start)].map((_, i) => +start + i + 1),
+          )
+        }
+
+        return [+meta.line]
+      }
+
+      return []
+    }, [meta])
+
     return (
       <Div
         {...props}
@@ -150,15 +175,22 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
         onMouseEnter={() => setCopied(false)}
       >
         <Theme ref={$parent}>
-          {(language || title) && (
+          {(language || meta?.file) && (
             <ToolBar>
               {language && <Language type={language} />}
-              {title && <Title>{title}</Title>}
+              {meta?.file && <Title>{meta?.file}</Title>}
             </ToolBar>
           )}
 
           <Source>
-            <pre data-line="2-3">
+            {lines.map(line => (
+              <i
+                style={{ top: (line - 1) * 21 + 15 }}
+                key={line}
+                data-line={line}
+              />
+            ))}
+            <pre>
               <code
                 dangerouslySetInnerHTML={{ __html: code.trim() }} // eslint-disable-line react/no-danger
               />
