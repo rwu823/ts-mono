@@ -12,6 +12,7 @@ const Max800 = styled.div`
   ${() => css`
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 1em;
   `}
 `
 const ga = new GA('UA-4476856-23', { debug: true })

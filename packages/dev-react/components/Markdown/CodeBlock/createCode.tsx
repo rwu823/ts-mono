@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import Dark from './dark.theme'
 import White from './white.theme'
-import { CopyRow, CopyIcon } from './Copy'
+import { CopyIcon } from './Copy'
 
 import copy from '../../../share/copy'
 
@@ -28,6 +28,21 @@ const languageTheme: { [key: string]: string } = {
   htm: '#dc4c2f',
   html: '#dc4c2f',
 }
+
+const CopyRow = styled.div`
+  ${() => css`
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 0.6rem;
+    cursor: pointer;
+    opacity: 0.6;
+    padding: 7px 4px;
+    border-radius: 4px;
+    background: transparent;
+    transition: background 0.4s;
+  `}
+`
 
 const Language = styled.sub<{ type: string }>`
   ${p => css`
@@ -51,7 +66,7 @@ const ToolBar = styled.div`
     display: flex;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid transparent;
     padding: 12px 20px;
     justify-content: space-between;
   `}
@@ -67,21 +82,14 @@ const Div = styled.div<{ isDay: boolean }>`
     ${CopyRow} {
       fill: ${p.isDay ? '#000' : '#fff'};
       color: ${p.isDay ? '#000' : '#fff'};
-      background: ${p.isDay ? 'rgba(0,0,0,.1)' : 'rgba(255,255,255,.1)'};
 
       :hover {
-        background: ${p.isDay ? 'rgba(0,0,0,.2)' : 'rgba(255,255,255,.2)'};
+        background: ${p.isDay ? '#fff' : '#000'};
       }
     }
 
     ${ToolBar} {
       border-color: ${p.isDay ? '#ddd' : '#555'};
-    }
-
-    :hover {
-      ${CopyRow} {
-        bottom: 0;
-      }
     }
   `}
 `
@@ -93,6 +101,12 @@ export interface CodeProps {
   name?: string
   hasCopy?: boolean
 }
+
+const Source = styled.div`
+  ${() => css`
+    position: relative;
+  `}
+`
 
 export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
   const CodeBlock: React.FunctionComponent<CodeProps> = ({
@@ -138,18 +152,21 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
               {title && <Title>{title}</Title>}
             </ToolBar>
           )}
-          <pre>
-            <code
-              dangerouslySetInnerHTML={{ __html: code.trim() }} // eslint-disable-line react/no-danger
-            />
-          </pre>
-        </Theme>
 
-        {hasCopy && (
-          <CopyRow onClick={onCopy}>
-            <CopyIcon /> {isCopied ? 'Copied' : 'Copy'}
-          </CopyRow>
-        )}
+          <Source>
+            <pre>
+              <code
+                dangerouslySetInnerHTML={{ __html: code.trim() }} // eslint-disable-line react/no-danger
+              />
+            </pre>
+            {hasCopy && (
+              <CopyRow onClick={onCopy}>
+                <CopyIcon />
+                {isCopied ? 'Copied' : 'Copy'}
+              </CopyRow>
+            )}
+          </Source>
+        </Theme>
       </Div>
     )
   }

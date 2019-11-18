@@ -7,7 +7,6 @@ const CodeBlockTheme = styled.div`
  */
 
   /* @import url('https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap'); */
-
   code,
   pre {
     color: #393a34;

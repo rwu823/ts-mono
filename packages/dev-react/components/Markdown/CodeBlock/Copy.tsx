@@ -25,22 +25,3 @@ export const CopyIcon: React.FunctionComponent<React.SVGProps<
     />
   </svg>
 )
-
-export const CopyRow = styled.div`
-  ${() => css`
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    bottom: -50px;
-    left: 0;
-    padding: 7px 0;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    font-size: 0.7rem;
-    transition: all 0.4s;
-
-    :hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-  `}
-`
