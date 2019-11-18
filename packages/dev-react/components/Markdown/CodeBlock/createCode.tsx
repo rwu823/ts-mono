@@ -1,9 +1,13 @@
 import Prism from 'prismjs'
-import 'prismjs/components/prism-jsx'
-import 'prismjs/components/prism-tsx'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-css'
-import 'prismjs/components/prism-bash'
+// import 'prismjs/plugins/line-highlight/prism-line-highlight.min'
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.min'
+
+import 'prismjs/components/prism-jsx.min'
+import 'prismjs/components/prism-tsx.min'
+import 'prismjs/components/prism-typescript.min'
+import 'prismjs/components/prism-css.min'
+import 'prismjs/components/prism-bash.min'
+import 'prismjs/components/prism-diff.min'
 
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
@@ -154,7 +158,7 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
           )}
 
           <Source>
-            <pre>
+            <pre data-line="2-3">
               <code
                 dangerouslySetInnerHTML={{ __html: code.trim() }} // eslint-disable-line react/no-danger
               />
