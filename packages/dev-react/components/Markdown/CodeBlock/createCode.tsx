@@ -10,7 +10,7 @@ import 'prismjs/components/prism-bash.min'
 import 'prismjs/components/prism-diff.min'
 
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 import Dark from './dark.theme'
 import White from './white.theme'
 import { CopyIcon } from './Copy'
@@ -23,14 +23,32 @@ const Title = styled.div`
   `}
 `
 
-const languageTheme: { [key: string]: string } = {
-  js: '#e9d458',
-  jsx: '#e9d458',
-  ts: '#55b7ff',
-  tsx: '#55b7ff',
-  css: '#c56496',
-  htm: '#dc4c2f',
-  html: '#dc4c2f',
+const languageTheme: { [key: string]: FlattenSimpleInterpolation } = {
+  js: css`
+    color: #000;
+    background: #e9d458;
+  `,
+  get jsx() {
+    return this.js
+  },
+  ts: css`
+    color: #fff;
+    background: #1279c4;
+  `,
+  get tsx() {
+    return this.ts
+  },
+  css: css`
+    color: #fff;
+    background: #c56496;
+  `,
+  htm: css`
+    color: #fff;
+    background: #dc4c2f;
+  `,
+  get html() {
+    return this.htm
+  },
 }
 
 const CopyRow = styled.div`
@@ -55,7 +73,9 @@ const Language = styled.sub<{ type: string }>`
     padding: 4px;
     border-radius: 0 0 3px 3px;
     color: #222;
-    background: ${p.type in languageTheme ? languageTheme[p.type] : '#ccc'};
+    background: #ccc;
+
+    ${languageTheme[p.type]}
 
     ::after {
       content: '${p.type}';
