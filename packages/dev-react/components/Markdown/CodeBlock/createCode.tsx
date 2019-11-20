@@ -205,7 +205,7 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
           <Source>
             {lines.map(line => (
               <i
-                style={{ top: (line - 1) * 21 + 15 }}
+                style={{ top: (line - 1) * 19 + 14 }}
                 key={line}
                 data-line={line}
               />

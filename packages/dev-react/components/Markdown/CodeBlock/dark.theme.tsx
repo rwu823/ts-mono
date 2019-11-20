@@ -15,7 +15,7 @@ const CodeBlockTheme = styled.div`
     width: 100%;
     left: 0;
     top: 0;
-    height: 21px;
+    height: 18px;
     pointer-events: none;
   }
 
@@ -24,7 +24,7 @@ const CodeBlockTheme = styled.div`
     color: #abb2bf;
     background: none;
     font-family: 'Menlo', monospace;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
