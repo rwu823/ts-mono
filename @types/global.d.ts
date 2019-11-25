@@ -4,8 +4,6 @@ declare namespace NodeJS {
   interface Process {}
 }
 
-interface Window {
-  ABC: string
-}
+interface Window {}
 
 type Json = string | number | boolean | null | Json[] | { [key: string]: Json }
