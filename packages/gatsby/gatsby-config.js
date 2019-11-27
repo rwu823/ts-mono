@@ -12,6 +12,10 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {},
+    },
+    {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         displayName: isDev,
