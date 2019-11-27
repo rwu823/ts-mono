@@ -11,8 +11,10 @@ collections:
     folder: "packages/gatsby/src/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: mdx
+    format: frontmatter
     editor:
-      preview: false
+      preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
