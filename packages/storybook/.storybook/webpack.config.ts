@@ -1,5 +1,6 @@
 import { Configuration } from 'webpack'
 import path from 'path'
+
 export default {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -9,7 +10,7 @@ export default {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        include: path.resolve(__dirname, '../'),
+        exclude: /node_modules(?!\/@storybook\/addon-info)/,
       },
       {
         test: /story\.tsx?$/,

@@ -21,10 +21,7 @@
     "gatsby-plugin-typescript": "2.1.20",
     "gatsby-source-filesystem": "2.1.39",
     "netlify-cms-app": "2.9.7",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-helmet": "5.2.1",
-    "styled-components": "5.0.0-rc.2"
+    "react-helmet": "5.2.1"
   },
   "keywords": [
     "blog"
