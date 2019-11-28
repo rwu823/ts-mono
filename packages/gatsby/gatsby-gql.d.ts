@@ -15,6 +15,7 @@ interface GraphQLData {
     body: string
     frontmatter: {
       title: string
+      tags: string[]
     }
   }
 
