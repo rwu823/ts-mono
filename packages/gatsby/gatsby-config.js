@@ -20,22 +20,22 @@ module.exports = {
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
-        modulePath: `./src/cms`,
-        customizeWebpackConfig(config) {
-          config.module.rules.push({
-            test: /\.tsx?$/,
-            use: [
-              {
-                loader: 'awesome-typescript-loader',
-                options: {
-                  transpileOnly: true,
-                  useCache: true,
-                  cacheDirectory: 'node_modules/.cache/atl',
-                },
-              },
-            ],
-          })
-        },
+        // modulePath: `./src/cms`,
+        // customizeWebpackConfig(config) {
+        //   config.module.rules.push({
+        //     test: /\.tsx?$/,
+        //     use: [
+        //       {
+        //         loader: 'awesome-typescript-loader',
+        //         options: {
+        //           transpileOnly: true,
+        //           useCache: true,
+        //           cacheDirectory: 'node_modules/.cache/atl',
+        //         },
+        //       },
+        //     ],
+        //   })
+        // },
       },
     },
     {

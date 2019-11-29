@@ -17,10 +17,9 @@ const BlogPostTemplate: React.FC<Props> = ({ title, body, tags }) => (
         <li>{tag}</li>
       ))}
     </ul>
-    {body}
-    {/* <MDXProvider components={mdxRenders}>
+    <MDXProvider components={mdxRenders}>
       <MDXRenderer>{body}</MDXRenderer>
-    </MDXProvider> */}
+    </MDXProvider>
   </>
 )
 
