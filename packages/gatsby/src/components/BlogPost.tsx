@@ -1,24 +1,17 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
+import BlogPostTemplate from './BlogPostTemplate'
 import Layout from './Layout'
-const { MDXProvider } = require('@mdx-js/react')
-type Props = {
-  data: GraphQLData
-}
 
-const BlogPost: React.FC<Props> = ({ data: { mdx } }) => {
-  return (
-    <Layout>
-      <header>{mdx.id}</header>
-      <h1>{mdx.frontmatter.title}</h1>
-      <MDXProvider components={mdxRenders}>
-        <MDXRenderer>{mdx.body}</MDXRenderer>
-      </MDXProvider>
-    </Layout>
-  )
-}
+const BlogPost: React.FC<{ data: GraphQLData }> = ({ data: { mdx } }) => (
+  <Layout>
+    <BlogPostTemplate
+      title={mdx.frontmatter.title}
+      tags={mdx.frontmatter.tags}
+      body={mdx.body}
+    />
+  </Layout>
+)
 
 export default BlogPost
 
