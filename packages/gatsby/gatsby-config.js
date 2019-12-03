@@ -7,10 +7,12 @@ const pkg = require(path.resolve('package.json'))
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
+    siteUrl: `https://www.example.com`,
     description: `Kick off your CMS project`,
     author: `@rwu`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-netlify-cache`,
       options: {
