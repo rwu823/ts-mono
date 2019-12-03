@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer-core'
 
 import example from './pages/example'
 import rent591 from './pages/rent591'
@@ -17,6 +17,12 @@ puppeteer
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
     ],
+
+    ...(isDev && {
+      executablePath:
+        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    }),
+
     ...(isProd && {
       devtools: false,
       headless: true,

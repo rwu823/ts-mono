@@ -5,10 +5,12 @@
     "init-dev-pptr": "bin/init-dev-pptr"
   },
   "dependencies": {
-    "@types/jquery": "3.3.31",
-    "@types/puppeteer": "1.20.2",
     "axios": "0.19.0",
-    "puppeteer-core": "1.19.0"
+    "puppeteer-core": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "3.3.31",
+    "@types/puppeteer-core": "^2.0.0"
   },
   "scripts": {
     "dev": "ts-node ."
