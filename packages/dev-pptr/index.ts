@@ -17,11 +17,8 @@ puppeteer
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
     ],
-
-    ...(isDev && {
-      executablePath:
-        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    }),
+    executablePath:
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 
     ...(isProd && {
       devtools: false,
