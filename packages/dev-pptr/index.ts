@@ -37,13 +37,20 @@ puppeteer
     cron(async () => {
       const page = await browser.newPage()
 
-      return () => rent591(page)
+      return async () => {
+        console.log(`goto 591 ${new Date()}`)
+        const newObjects = await rent591(page)
+
+        if (newObjects) {
+          console.log(newObjects)
+        }
+      }
     }, 30e3)
 
-    cron(async () => {
-      const page = await browser.newPage()
+    // cron(async () => {
+    //   const page = await browser.newPage()
 
-      return () => example(page)
-    }, 5e3)
+    //   return () => example(page)
+    // }, 5e3)
   })
   .catch(console.error)

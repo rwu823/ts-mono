@@ -12,89 +12,94 @@ type RectObject = {
 
 let oldObjectList = {}
 
-const rent591: BrowserCron = async page => {
-  console.log('goto 591')
+const rent591: BrowserCron<null | {
+  [id: string]: RectObject
+}> = async page => {
   await page.goto(
     'https://rent.591.com.tw/?kind=1&region=1&section=5&rentprice=,40000&area=20,&shape=2,1',
   )
 
-  try {
-    if (await page.$('#area-box-body .pull-left.area-select-active')) {
-      await page.click('#area-box-body .pull-left.area-select-active')
-    }
-  } finally {
-    const pages = await page.$$eval(
-      '#container .pageBar .pageNum-form',
-      a => a.length,
+  if (await page.$('#area-box-body .pull-left.area-select-active')) {
+    await page.click('#area-box-body .pull-left.area-select-active')
+  }
+
+  const pages = await page.$$eval(
+    '#container .pageBar .pageNum-form',
+    a => a.length,
+  )
+
+  const getObjectList = async () =>
+    page.$$eval('#content .listInfo', uls =>
+      uls.reduce<{
+        [id: string]: RectObject
+      }>((o, ul) => {
+        const $info = $(ul).find('.infoContent')
+        const $a = $info.find('h3 a')
+        const $em = $info.find('p.lightBox em')
+        const $price = $(ul).find('.price i')
+
+        const id = ($a
+          .attr('href')!
+          .trim()
+          .match(/(\d+)\.html$/) || [])[1]
+
+        o[id] = {
+          id: +id,
+          address: $em.text().trim(),
+          title: $a.text().trim(),
+          price: $price.text().trim(),
+          info: $info
+            .find('p.lightBox')
+            .eq(0)
+            .text()
+            .trim()
+            .replace(/\n|\s/g, ''),
+        }
+
+        return o
+      }, {}),
     )
 
-    const getObjectList = async () =>
-      page.$$eval('#content .listInfo', uls =>
-        uls.reduce<{
-          [id: string]: RectObject
-        }>((o, ul) => {
-          const $info = $(ul).find('.infoContent')
-          const $a = $info.find('h3 a')
-          const $em = $info.find('p.lightBox em')
-          const $price = $(ul).find('.price i')
+  const objectList = await getObjectList()
 
-          const id = ($a
-            .attr('href')!
-            .trim()
-            .match(/(\d+)\.html$/) || [])[1]
+  await [...Array(pages)]
+    .reduce<Promise<any>>(
+      p =>
+        p.then(async () => {
+          await Promise.all([
+            page.waitForResponse(res =>
+              res
+                .url()
+                .startsWith('https://rent.591.com.tw/home/data/listExposure'),
+            ),
+            page.click('#container .pageBar a.pageNext'),
+          ])
 
-          o[id] = {
-            id: +id,
-            address: $em.text().trim(),
-            title: $a.text().trim(),
-            price: $price.text().trim(),
-            info: $info
-              .find('p.lightBox')
-              .eq(0)
-              .text()
-              .trim()
-              .replace(/\n|\s/g, ''),
-          }
+          Object.assign(objectList, await getObjectList())
+        }),
+      Promise.resolve(),
+    )
+    .catch(console.error)
 
-          return o
-        }, {}),
-      )
+  const newObjectList = Object.keys(oldObjectList).length
+    ? Object.entries(objectList).reduce((obj, [id, o]) => {
+        if (!(id in oldObjectList)) {
+          Object.assign(obj, {
+            [id]: o,
+          })
+        }
 
-    const objectList = await getObjectList()
+        return obj
+      }, {})
+    : objectList
 
-    await [...Array(pages)]
-      .reduce<Promise<any>>(
-        p =>
-          p.then(async () => {
-            await Promise.all([
-              page.waitForNavigation(),
-              page.click('#container .pageBar a.pageNext'),
-            ])
+  oldObjectList = objectList
 
-            Object.assign(objectList, await getObjectList())
-          }),
-        Promise.resolve(),
-      )
-      .catch(console.error)
-
-    const newObjectList = Object.keys(oldObjectList).length
-      ? Object.entries(objectList).reduce((obj, [id, o]) => {
-          if (!(id in oldObjectList)) {
-            Object.assign(obj, {
-              [id]: o,
-            })
-          }
-
-          return obj
-        }, {})
-      : objectList
-
-    if (Object.keys(newObjectList).length) {
-      console.log({ newObjectList })
-    }
-
-    oldObjectList = objectList
+  if (Object.keys(newObjectList).length) {
+    return newObjectList
   }
+
+  return null
 }
 
 export default rent591
