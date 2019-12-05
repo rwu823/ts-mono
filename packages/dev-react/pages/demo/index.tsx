@@ -2,11 +2,17 @@ import Modal, {
   ModalProps,
   useModal,
 } from '@ts-mono/dev-react/components/Modal'
+
+import { withIntl, intlKeys } from '@ts-mono/dev-react/utils'
+import { useIntl } from 'react-intl'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import styled, { css } from 'styled-components'
+import defaultLang from './langs'
+
+const main$t = intlKeys(defaultLang)
 
 const Div = styled.div`
   ${() => css``}
@@ -34,12 +40,14 @@ const ModalContent: React.FunctionComponent<{
 
 const Demo: NextPage<Props> = () => {
   const modal = useModal()
+  const { formatMessage: f } = useIntl()
 
   return (
     <Div>
       <Head>
         <title>Demo - Page</title>
       </Head>
+      {f(main$t('hello.world'))}
       <Link href="/">
         <a href="/home">go home</a>
       </Link>
@@ -54,4 +62,6 @@ const Demo: NextPage<Props> = () => {
   )
 }
 
-export default Demo
+export default withIntl(Demo, {
+  langs: [defaultLang],
+})

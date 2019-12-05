@@ -1,1 +1,1 @@
-export * from './intlHelper'
+export * from './intl'
