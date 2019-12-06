@@ -12,7 +12,10 @@ export const intlKeys = <O extends object>(langs: O) => (id: keyof O) => ({
   defaultMessage: langs[id],
 })
 
-type Values = Record<string, PrimitiveType>
+type Values = Record<
+  string,
+  PrimitiveType | JSX.Element | ((s: string) => JSX.Element)
+>
 
 export const useIntl = <O extends { [id: string]: string }>(
   langs: O,
@@ -28,7 +31,7 @@ export const useIntl = <O extends { [id: string]: string }>(
           id: id as string,
           defaultMessage: langs[id],
         },
-        values,
+        values as any,
       ),
   }
 }
