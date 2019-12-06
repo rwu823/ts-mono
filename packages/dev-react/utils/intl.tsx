@@ -27,11 +27,9 @@ export type Lang = {
   [locale: string]: { [id: string]: string }
 }
 
-export const intlKeys = <L extends Lang>(langs: L) => (
-  id: keyof L[typeof DEFAULT_LANG],
-) => ({
+export const intlKeys = <O extends object>(langs: O) => (id: keyof O) => ({
   id,
-  defaultMessage: langs[DEFAULT_LANG][id as string],
+  defaultMessage: langs[id],
 })
 
 export const mergeLangs = (langs: Lang[]): Lang => {

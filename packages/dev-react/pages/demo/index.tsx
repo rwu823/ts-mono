@@ -3,16 +3,16 @@ import Modal, {
   useModal,
 } from '@ts-mono/dev-react/components/Modal'
 
-import { withIntl, intlKeys } from '@ts-mono/dev-react/utils'
+import { withIntl, intlKeys, DEFAULT_LANG } from '@ts-mono/dev-react/utils'
 import { useIntl } from 'react-intl'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import styled, { css } from 'styled-components'
-import defaultLang from './langs'
+import langs from './langs'
 
-const main$t = intlKeys(defaultLang)
+const main$t = intlKeys(langs[DEFAULT_LANG])
 
 const Div = styled.div`
   ${() => css``}
@@ -63,5 +63,5 @@ const Demo: NextPage<Props> = () => {
 }
 
 export default withIntl(Demo, {
-  langs: [defaultLang],
+  langs: [langs],
 })
