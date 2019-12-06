@@ -455,3 +455,5 @@ export const globalCSS = css`
 export const GlobalStyle = createGlobalStyle`
   ${globalCSS}
 `
+
+export default GlobalStyle
