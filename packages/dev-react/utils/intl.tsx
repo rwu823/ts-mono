@@ -64,12 +64,14 @@ export type WithIntlProps = {
   locale: Locales
 }
 
-type HOCInject = <Props>(
-  NextPageComponent: NextPage<Props>,
+export type HOCInject = <Props>(
+  Component: React.FC<Props> & {
+    getInitialProps?: NextPage['getInitialProps']
+  },
   configs: {
     langs: Lang[]
   },
-) => NextPage<Omit<Props, keyof WithIntlProps>>
+) => React.FC<Omit<Props, keyof WithIntlProps>>
 
 export const withIntl: HOCInject = (Component, { langs }) => {
   const WithIntl: NextPage<any> = ({ locale, ...props }) => {
