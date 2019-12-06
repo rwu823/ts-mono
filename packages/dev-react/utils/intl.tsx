@@ -1,10 +1,37 @@
 import React from 'react'
-import { IntlProvider } from 'react-intl'
+import * as ReactIntl from 'react-intl'
 import { NextPage } from 'next'
 import accepts from 'accepts'
+import { PrimitiveType } from 'intl-messageformat'
 
 export const DEFAULT_LANG = 'en'
 export const SUPPORTED_LANGS = [DEFAULT_LANG, 'zh']
+
+export const intlKeys = <O extends object>(langs: O) => (id: keyof O) => ({
+  id,
+  defaultMessage: langs[id],
+})
+
+type Values = Record<string, PrimitiveType>
+
+export const useIntl = <O extends { [id: string]: string }>(
+  langs: O,
+  values: Values = {},
+) => {
+  const intl = ReactIntl.useIntl()
+
+  return {
+    ...intl,
+    $t: (id: keyof O) =>
+      intl.formatHTMLMessage(
+        {
+          id: id as string,
+          defaultMessage: langs[id],
+        },
+        values,
+      ),
+  }
+}
 
 type GetActiveLang = (config: {
   supportedLangs: string[]
@@ -26,11 +53,6 @@ export const getActiveLang: GetActiveLang = ({
 export type Lang = {
   [locale: string]: { [id: string]: string }
 }
-
-export const intlKeys = <O extends object>(langs: O) => (id: keyof O) => ({
-  id,
-  defaultMessage: langs[id],
-})
 
 export const mergeLangs = (langs: Lang[]): Lang => {
   const locales = Array.from(
@@ -78,9 +100,12 @@ export const withIntl: HOCInject = (Component, { langs }) => {
     Component.displayName = `withIntl(${displayName})`
 
     return (
-      <IntlProvider locale={locale} messages={mergeLangs(langs)[locale]}>
+      <ReactIntl.IntlProvider
+        locale={locale}
+        messages={mergeLangs(langs)[locale]}
+      >
         <Component {...(props as any)} />
-      </IntlProvider>
+      </ReactIntl.IntlProvider>
     )
   }
 
