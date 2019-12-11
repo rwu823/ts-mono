@@ -24,7 +24,6 @@
     "next": "9.1.5",
     "prismjs": "1.17.1",
     "raw-loader": "4.0.0",
-    "react-intl": "3.9.1",
     "react-markdown": "4.2.2"
   },
   "scripts": {
@@ -33,5 +32,8 @@
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
     "build": "rm -rf out && run-p build:* && cp README.md package.json out"
+  },
+  "devDependencies": {
+    "react-intl": "3.9.2"
   }
 }
