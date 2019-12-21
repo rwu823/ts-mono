@@ -4,7 +4,7 @@ import Modal, {
 } from '@ts-mono/dev-react/components/Modal'
 
 import { withIntl, DEFAULT_LANG, useIntl } from '@ts-mono/dev-react/utils'
-
+import Form, { Input } from '@ts-mono/dev-react/components/Form'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -45,6 +45,27 @@ const Demo: NextPage<Props> = () => {
       <Head>
         <title>Demo - Page</title>
       </Head>
+      <h2>Formik Demo</h2>
+      <Form
+        initialValues={{
+          name: 'Rocky',
+          age: '23',
+        }}
+        onSubmit={() => {}}
+        render={({ values }) => (
+          <>
+            <pre>{JSON.stringify(values, null, 2)}</pre>
+            <Input
+              name="name"
+              value={values.name}
+              validate={v => {
+                if (!v) return <span style={{ color: 'red' }}>* required</span>
+              }}
+            />
+            <Input name="age" value={values.age} />
+          </>
+        )}
+      />
       {$t('hello.world')}
       <Link href="/">
         <a href="/home">go home</a>
