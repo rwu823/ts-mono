@@ -10,7 +10,7 @@
     "@types/node": "12.12.21",
     "@typescript-eslint/parser": "2.12.0",
     "chalk": "3.0.0",
-    "eslint": "6.7.2",
+    "eslint": "6.8.0",
     "eslint-config-airbnb": "18.0.1",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-import": "2.19.1",
@@ -26,7 +26,7 @@
     "ts-jest": "24.2.0",
     "ts-node": "8.5.4",
     "tsconfig-paths": "3.9.0",
-    "typescript": "3.7.3"
+    "typescript": "3.7.4"
   },
   "scripts": {
     "build": "rm -rf out node_modules/.tsbuildinfo && tsc && cp -r bin scripts $(node scripts/cp) out"
