@@ -57,12 +57,11 @@ const Demo: NextPage<Props> = () => {
             <pre>{JSON.stringify(values, null, 2)}</pre>
             <Input
               name="name"
-              value={values.name}
               validate={v => {
                 if (!v) return <span style={{ color: 'red' }}>* required</span>
               }}
             />
-            <Input name="age" value={values.age} />
+            <Input name="age" />
           </>
         )}
       />

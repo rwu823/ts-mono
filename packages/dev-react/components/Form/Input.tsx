@@ -17,7 +17,13 @@ export const Input = React.forwardRef<HTMLInputElement, Props>(
     return (
       <>
         {meta.error}
-        <input {...props} onChange={field.onChange} ref={ref} name={name} />
+        <input
+          {...props}
+          value={field.value as any}
+          onChange={field.onChange}
+          ref={ref}
+          name={name}
+        />
       </>
     )
   },
