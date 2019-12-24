@@ -45,12 +45,7 @@ const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
   return (
     <>
       <pre>{JSON.stringify(values, null, 2)}</pre>
-      <Input
-        name="name"
-        validate={v => {
-          if (!v) return <span style={{ color: 'red' }}>* required</span>
-        }}
-      />
+      <Input name="name" isRequired />
       <Input
         type="number"
         name="age"
