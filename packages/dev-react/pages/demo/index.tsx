@@ -4,11 +4,11 @@ import Modal, {
 } from '@ts-mono/dev-react/components/Modal'
 
 import { withIntl, DEFAULT_LANG, useIntl } from '@ts-mono/dev-react/utils'
-import Form, { Input } from '@ts-mono/dev-react/components/Form'
+import Form, { Input, FormProps } from '@ts-mono/dev-react/components/Form'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import langs from './langs'
 
@@ -36,6 +36,37 @@ const ModalContent: React.FunctionComponent<{
   )
 })
 
+const initialValues = {
+  name: 'Rocky',
+  age: 23,
+}
+
+const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
+  return (
+    <>
+      <pre>{JSON.stringify(values, null, 2)}</pre>
+      <Input
+        name="name"
+        validate={v => {
+          if (!v) return <span style={{ color: 'red' }}>* required</span>
+        }}
+      />
+      <Input
+        type="number"
+        name="age"
+        onChange={(_, { setValue, value }) => {
+          let n = +value || 0
+
+          n = Math.max(-2, Math.min(99, n))
+          setValue(n)
+        }}
+      />
+
+      <button type="submit">Submit</button>
+    </>
+  )
+}
+
 const Demo: NextPage<Props> = () => {
   const modal = useModal()
   const { $t } = useIntl(langs[DEFAULT_LANG])
@@ -47,23 +78,12 @@ const Demo: NextPage<Props> = () => {
       </Head>
       <h2>Formik Demo</h2>
       <Form
-        initialValues={{
-          name: 'Rocky',
-          age: '23',
+        initialValues={initialValues}
+        onSubmit={val => {
+          console.log(val)
+          // debugger
         }}
-        onSubmit={() => {}}
-        render={({ values }) => (
-          <>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
-            <Input
-              name="name"
-              validate={v => {
-                if (!v) return <span style={{ color: 'red' }}>* required</span>
-              }}
-            />
-            <Input name="age" />
-          </>
-        )}
+        component={Fields}
       />
       {$t('hello.world')}
       <Link href="/">

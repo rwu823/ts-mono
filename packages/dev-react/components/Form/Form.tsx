@@ -1,18 +1,19 @@
 import React from 'react'
 
-import { Formik, FormikConfig } from 'formik'
+import { Formik, FormikConfig, FormikProps } from 'formik'
 
-type Props<T extends object> = FormikConfig<T> & {}
-export function Form<T extends object>({
-  children,
-  render,
-  ...props
-}: React.PropsWithChildren<Props<T>>) {
+type Props = Omit<FormikConfig<{}>, 'render' | 'component'> & {
+  component: React.ComponentType<any>
+}
+
+export type FormProps<Values extends object> = FormikProps<Values>
+
+export const Form: React.FC<Props> = ({ component, ...props }) => {
   return (
     <Formik {...props}>
       {formikProps => (
         <form onSubmit={formikProps.handleSubmit}>
-          {render && render(formikProps)}
+          {React.createElement(component, formikProps)}
         </form>
       )}
     </Formik>
