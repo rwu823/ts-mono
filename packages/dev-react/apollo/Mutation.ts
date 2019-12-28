@@ -11,11 +11,18 @@ export const QUERY_TODO_LIST = gql`
     }
   }
 `
+
+export const QUERY_USER = gql`
+  query {
+    name @client
+    age @client
+  }
+`
 const TODO_ITEM = 'TODO_ITEM'
 
 export type TodoItem = {
   __typename: typeof TODO_ITEM
-  id: number
+  id: string
   isDone: boolean
   name: string
 }
@@ -46,23 +53,27 @@ export const addTodo: Mutation<Pick<TodoItem, 'name'>> = (
   todo,
   { cache },
 ) => {
-  const data = cache.readQuery<{ todoList: TodoItem[] }>({
-    query: QUERY_TODO_LIST,
-  })
-
-  if (data) {
-    data.todoList.push({
-      __typename: TODO_ITEM,
-      id: Date.now(),
-      isDone: false,
-      ...todo,
-    })
-
-    cache.writeQuery({
+  const { todoList = [] } =
+    cache.readQuery<{ todoList: TodoItem[] }>({
       query: QUERY_TODO_LIST,
-      data,
-    })
+    }) || {}
+
+  const data = {
+    todoList: [
+      ...todoList,
+      {
+        __typename: TODO_ITEM,
+        id: String(Date.now()),
+        isDone: false,
+        ...todo,
+      },
+    ],
   }
+
+  cache.writeQuery({
+    query: QUERY_TODO_LIST,
+    data,
+  })
 
   return null
 }

@@ -35,7 +35,5 @@
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
     "build": "rm -rf out && run-p build:* && cp README.md package.json out"
   },
-  "devDependencies": {
-    "react-intl": "3.9.2"
-  }
+  "devDependencies": {}
 }
