@@ -8,11 +8,9 @@ type Props = {
   element?: HTMLElement | null
 }
 
-const Portal: React.FunctionComponent<Props> = ({ children, element }) =>
-  isDom ? createPortal(children, element!) : <>{children}</>
-
-Portal.defaultProps = {
-  element: isDom ? document.body : null,
-}
+const Portal: React.FC<Props> = ({
+  children,
+  element = isDom ? document.body : null,
+}) => (isDom ? createPortal(children, element!) : <>{children}</>)
 
 export default Portal

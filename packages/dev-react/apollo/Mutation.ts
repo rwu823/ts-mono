@@ -27,13 +27,12 @@ export type TodoItem = {
   name: string
 }
 
-export const toggleTodo: Mutation<Pick<TodoItem, 'id'>> = (
+export const toggleTodo: Mutation<Pick<TodoItem, 'id'> & { idx: number }> = (
   _,
   vars,
   { cache },
 ) => {
   const id = `${TODO_ITEM}:${vars.id}`
-
   const { isDone } = cache.readFragment({
     id,
     fragment: gql`
@@ -43,9 +42,19 @@ export const toggleTodo: Mutation<Pick<TodoItem, 'id'>> = (
     `,
   }) as Pick<TodoItem, 'isDone'>
 
-  cache.writeData({ id, data: { isDone: !isDone } })
+  const { todoList = [] } =
+    cache.readQuery<{ todoList: TodoItem[] }>({
+      query: QUERY_TODO_LIST,
+    }) || {}
 
-  return null
+  todoList.splice(vars.idx, 1)
+
+  const data = {
+    todoList,
+  }
+
+  // cache.writeData({ id, data: { isDone: !isDone } })
+  cache.writeData({ data })
 }
 
 export const addTodo: Mutation<Pick<TodoItem, 'name'>> = (
@@ -70,10 +79,7 @@ export const addTodo: Mutation<Pick<TodoItem, 'name'>> = (
     ],
   }
 
-  cache.writeQuery({
-    query: QUERY_TODO_LIST,
+  cache.writeData({
     data,
   })
-
-  return null
 }

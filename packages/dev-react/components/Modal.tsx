@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useContext, useReducer } from 'react'
 import styled, { css, createGlobalStyle } from 'styled-components'
 import Portal from './Portal'
 
@@ -33,7 +33,7 @@ const ModalStyle = createGlobalStyle`
 
 export type ModalProps = {
   isOpened: boolean
-  onESC?: (e: KeyboardEvent) => void
+  onESC?: ((ev: KeyboardEvent) => void) | boolean
   onClickMask?: (e: React.MouseEvent) => void
   top?: number
 }
@@ -43,33 +43,36 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   onESC,
   onClickMask,
   children,
-  top,
+  top = 10,
   ...props
 }) => {
-  if (onESC) {
-    useEffect(() => {
-      const onEsc = (e: KeyboardEvent) => {
+  useEffect(() => {
+    if (onESC) {
+      const handleEsc = (e: KeyboardEvent) => {
         if (e.which !== 27 || !isOpened) return
 
-        if (onESC) onESC(e)
+        if (typeof onESC === 'function') onESC(e)
       }
 
-      window.addEventListener('keyup', onEsc)
+      window.addEventListener('keyup', handleEsc)
 
       return () => {
-        window.removeEventListener('keyup', onEsc)
+        window.removeEventListener('keyup', handleEsc)
       }
-    }, [isOpened])
-  }
+    }
+  }, [isOpened, onESC])
 
-  const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
-  }, [])
+  const stopPropagation = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    e => {
+      e.stopPropagation()
+    },
+    [],
+  )
 
   return isOpened ? (
     <Portal>
       <ModalStyle />
-      <ModalBox {...props} onClick={onClickMask || undefined}>
+      <ModalBox {...props} onClick={onClickMask}>
         <ModalContent top={top} onClick={stopPropagation}>
           {children}
         </ModalContent>
@@ -78,41 +81,111 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   ) : null
 }
 
-Modal.defaultProps = {
-  top: 10,
+const act = (type: Type, payload?: any) => ({ type, payload })
+
+const initState: ModalProps = {
+  isOpened: false,
 }
 
-export const useModal = () => {
-  const [props, setProps] = React.useState<ModalProps>({
-    isOpened: false,
-  })
+enum Type {
+  OPEN_MODAL = 'OPEN_MODAL',
+  CLOSE_MODAL = 'CLOSE_MODAL',
+}
 
-  const setModal = (newProps: ModalProps) => {
-    setProps(prevProps => {
-      return {
-        ...prevProps,
-        ...newProps,
+type InitState = typeof initState
+
+type Action = {
+  type: Type
+  payload?: any
+}
+
+const reducer: React.Reducer<InitState, Action> = (
+  state,
+  { type, payload },
+) => {
+  let newState: Partial<InitState>
+
+  switch (type) {
+    case Type.OPEN_MODAL: {
+      newState = {
+        ...payload,
+        isOpened: true,
       }
-    })
+
+      break
+    }
+
+    case Type.CLOSE_MODAL: {
+      newState = {
+        isOpened: false,
+      }
+      break
+    }
+
+    default:
+      return state
   }
-
-  const close = React.useCallback((e?: React.MouseEvent | KeyboardEvent) => {
-    if (e) e.stopPropagation()
-
-    setModal({ isOpened: false })
-  }, [])
-
-  const open = React.useCallback((e?: React.MouseEvent) => {
-    if (e) e.stopPropagation()
-
-    setModal({ isOpened: true })
-  }, [])
 
   return {
-    open,
-    close,
-    props,
+    ...state,
+    ...newState,
   }
+}
+
+type ModalContextProps = ModalProps & {
+  open: (
+    children: React.ReactNode,
+    props?: OmitType<ModalProps, 'isOpened'>,
+  ) => void
+  close: () => void
+}
+
+const ModalContext = React.createContext<ModalContextProps>({} as any)
+
+export const useModal = (
+  modalProps?: OmitType<ModalProps, 'isOpened'>,
+): ModalContextProps => {
+  const ctxModalProps = useContext(ModalContext)
+
+  return {
+    ...ctxModalProps,
+    open: (children, props) =>
+      ctxModalProps.open(children, {
+        ...modalProps,
+        ...props,
+      }),
+  }
+}
+
+export const ModalProvider: React.FC<ModalProps> = ({ children, ...props }) => {
+  const [modalState, dispatch] = useReducer(reducer, initState)
+
+  const open = useCallback<ModalContextProps['open']>((c, openModalProps) => {
+    dispatch(
+      act(Type.OPEN_MODAL, {
+        ...props,
+        ...openModalProps,
+        children: c,
+      }),
+    )
+  }, [])
+
+  const close = useCallback<ModalContextProps['close']>(() => {
+    dispatch(act(Type.CLOSE_MODAL))
+  }, [])
+
+  return (
+    <ModalContext.Provider
+      value={{
+        ...modalState,
+        open,
+        close,
+      }}
+    >
+      <Modal {...modalState} />
+      {children}
+    </ModalContext.Provider>
+  )
 }
 
 export default Modal

@@ -1,14 +1,12 @@
-import Modal, {
-  ModalProps,
-  useModal,
-} from '@ts-mono/dev-react/components/Modal'
+import { useModal } from '@ts-mono/dev-react/components/Modal'
 
 import { withIntl, DEFAULT_LANG, useIntl } from '@ts-mono/dev-react/utils'
 import Form, { Input, FormProps } from '@ts-mono/dev-react/components/Form'
+
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import langs from './langs'
 
@@ -20,21 +18,9 @@ type Props = {}
 const ModalDiv = styled.div`
   ${() => css`
     background: #fff;
-    width: 700px;
-    height: 3000px;
+    padding: 2rem;
   `}
 `
-
-const ModalContent: React.FunctionComponent<{
-  close: ModalProps['onClickMask']
-}> = React.memo(({ close }) => {
-  return (
-    <ModalDiv>
-      Hello Modal1.
-      <div onClick={close}>close Modal</div>
-    </ModalDiv>
-  )
-})
 
 const initialValues = {
   name: 'Rocky',
@@ -61,9 +47,32 @@ const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
     </>
   )
 }
+const Button = () => {
+  const modal = useModal()
+
+  const Content = useMemo(() => {
+    return (
+      <ModalDiv>
+        hello form modal!!!
+        <button onClick={modal.close}>close</button>
+      </ModalDiv>
+    )
+  }, [modal.close])
+
+  return (
+    <button
+      onClick={useCallback(() => {
+        modal.open(Content, {
+          top: 30,
+        })
+      }, [])}
+    >
+      Open Modal
+    </button>
+  )
+}
 
 const Demo: NextPage<Props> = () => {
-  const modal = useModal()
   const { $t } = useIntl(langs[DEFAULT_LANG])
 
   return (
@@ -85,12 +94,7 @@ const Demo: NextPage<Props> = () => {
         <a href="/home">go home</a>
       </Link>
       Test page
-      <button type="button" onClick={modal.open}>
-        Open Modal
-      </button>
-      <Modal {...modal.props} onESC={modal.close}>
-        <ModalContent close={modal.close} />
-      </Modal>
+      <Button />
     </Div>
   )
 }

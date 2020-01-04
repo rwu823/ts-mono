@@ -17,7 +17,7 @@ type Props = {}
 
 const TOGGLE_TODO = gql`
   mutation {
-    toggleTodo(id: $id) @client
+    toggleTodo(id: $id, idx: $idx) @client
   }
 `
 const ADD_TODO = gql`
@@ -35,9 +35,7 @@ const User: React.FC = () => {
   }
   return (
     <div>
-      <pre style={style}>
-        <code>{JSON.stringify(data)}</code>
-      </pre>
+      <pre style={style}>{JSON.stringify(data, null, 2)}</pre>
     </div>
   )
 }
@@ -65,13 +63,14 @@ const TodoList: React.FC<{}> = () => {
       <input type="text" {...input.props} />
       <ul>
         {data &&
-          data.todoList.map(todo => (
+          data.todoList.map((todo, idx) => (
             <li
               key={todo.id}
               onClick={() =>
                 toggleTodo({
                   variables: {
                     id: todo.id,
+                    idx,
                   },
                 })
               }

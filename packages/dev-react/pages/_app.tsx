@@ -1,6 +1,6 @@
-import GlobalStateProvider from '@ts-mono/dev-react/components/GlobalStateProvider'
 import { GlobalStyle } from '@ts-mono/dev-react/components/GlobalStyles'
 import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
+import { ModalProvider } from '@ts-mono/dev-react/components/Modal'
 import GA from '@ts-mono/dev-react/share/GA'
 import NextApp, { AppContext } from 'next/app'
 import React from 'react'
@@ -32,9 +32,9 @@ class App extends NextApp {
       <MDXProvider components={mdxRenders}>
         <GlobalStyle />
         <Max800>
-          <GlobalStateProvider initState={{}}>
+          <ModalProvider isOpened={false}>
             <Component {...pageProps} />
-          </GlobalStateProvider>
+          </ModalProvider>
         </Max800>
       </MDXProvider>
     )

@@ -9,6 +9,7 @@
     "jsx": "preserve"
   },
   "include": [
+    "../../@types/global.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"

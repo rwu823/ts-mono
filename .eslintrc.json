@@ -51,6 +51,7 @@
     "import/extensions": [2, "never"],
 
     "react-hooks/exhaustive-deps": 0,
+    "react/button-has-type": 0,
     "react/prop-types": 0,
     "react/jsx-props-no-spreading": 0,
     "react/jsx-filename-extension": 0,
