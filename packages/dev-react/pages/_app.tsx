@@ -32,7 +32,7 @@ class App extends NextApp {
       <MDXProvider components={mdxRenders}>
         <GlobalStyle />
         <Max800>
-          <ModalProvider isOpened={false}>
+          <ModalProvider>
             <Component {...pageProps} />
           </ModalProvider>
         </Max800>

@@ -157,13 +157,15 @@ export const useModal = (
   }
 }
 
-export const ModalProvider: React.FC<ModalProps> = ({ children, ...props }) => {
+export const ModalProvider: React.FC<{
+  values?: ModalProps
+}> = ({ children, values }) => {
   const [modalState, dispatch] = useReducer(reducer, initState)
 
   const open = useCallback<ModalContextProps['open']>((c, openModalProps) => {
     dispatch(
       act(Type.OPEN_MODAL, {
-        ...props,
+        ...values,
         ...openModalProps,
         children: c,
       }),
@@ -182,7 +184,7 @@ export const ModalProvider: React.FC<ModalProps> = ({ children, ...props }) => {
         close,
       }}
     >
-      <Modal {...modalState} />
+      <Modal {...values} {...modalState} />
       {children}
     </ModalContext.Provider>
   )
