@@ -9,7 +9,7 @@ type Props = {
 
 const Portal: React.FC<Props> = ({
   children,
-  element = globalThis.document?.body ?? null,
+  element = globalThis.document?.body,
 }) => (element ? createPortal(children, element) : <>{children}</>)
 
 export default Portal
