@@ -5,7 +5,7 @@
     "init-dev-pptr": "bin/init-dev-pptr"
   },
   "dependencies": {
-    "axios": "0.19.0",
+    "axios": "0.19.1",
     "puppeteer-core": "2.0.0"
   },
   "devDependencies": {
