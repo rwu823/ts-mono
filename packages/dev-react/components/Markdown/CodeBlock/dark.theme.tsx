@@ -23,7 +23,7 @@ const CodeBlockTheme = styled.div`
   pre {
     color: #abb2bf;
     background: none;
-    font-family: 'Menlo', monospace;
+    font-family: 'Victor Mono', 'Menlo', monospace;
     font-size: 0.8rem;
     text-align: left;
     white-space: pre;
@@ -46,7 +46,7 @@ const CodeBlockTheme = styled.div`
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    color: #5c6370;
+    color: #779446;
   }
 
   .token.punctuation {

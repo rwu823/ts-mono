@@ -21,7 +21,7 @@ const CodeBlockTheme = styled.div`
   code,
   pre {
     color: #393a34;
-    font-family: 'Menlo', monospace;
+    font-family: 'Victor Mono', 'Menlo', monospace;
     direction: ltr;
     text-align: left;
     white-space: pre;
