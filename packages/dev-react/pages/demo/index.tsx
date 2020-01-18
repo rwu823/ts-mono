@@ -1,12 +1,12 @@
 import { useModal } from '@ts-mono/dev-react/components/Modal'
 
-import { withIntl, DEFAULT_LANG, useIntl } from '@ts-mono/dev-react/utils'
+import { withIntl, useIntl } from '@ts-mono/dev-react/utils'
 import Form, { Input, FormProps } from '@ts-mono/dev-react/components/Form'
 
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useEffect, useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import langs from './langs'
 
@@ -73,7 +73,7 @@ const Button = () => {
 }
 
 const Demo: NextPage<Props> = () => {
-  const { $t } = useIntl(langs[DEFAULT_LANG])
+  const { $t } = useIntl(langs)
 
   return (
     <Div>

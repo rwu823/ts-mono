@@ -17,7 +17,9 @@ type Values = Record<
   PrimitiveType | JSX.Element | ((s: string) => JSX.Element)
 >
 
-export const useIntl = <O extends { [id: string]: string }>(
+export const useIntl = <
+  O extends { [locale: string]: { [id: string]: string } }
+>(
   langs: O,
   values: Values = {},
 ) => {
@@ -25,11 +27,11 @@ export const useIntl = <O extends { [id: string]: string }>(
 
   return {
     ...intl,
-    $t: (id: keyof O) =>
+    $t: (id: keyof O[typeof DEFAULT_LANG]) =>
       intl.formatHTMLMessage(
         {
           id: id as string,
-          defaultMessage: langs[id],
+          defaultMessage: (langs[DEFAULT_LANG] as any)[id],
         },
         values as any,
       ),
