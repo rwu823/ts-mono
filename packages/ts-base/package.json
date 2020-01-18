@@ -6,8 +6,8 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@types/jest": "24.0.25",
-    "@types/node": "13.1.6",
+    "@types/jest": "24.9.0",
+    "@types/node": "13.1.8",
     "@typescript-eslint/parser": "2.16.0",
     "chalk": "3.0.0",
     "eslint": "6.8.0",
@@ -16,17 +16,17 @@
     "eslint-plugin-import": "2.20.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.2",
-    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react": "7.18.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "fast-glob": "3.1.1",
-    "husky": "4.0.7",
+    "husky": "4.0.10",
     "jest": "24.9.0",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1",
     "ts-jest": "24.3.0",
     "ts-node": "8.6.2",
     "tsconfig-paths": "3.9.0",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   },
   "scripts": {
     "build": "rm -rf out node_modules/.tsbuildinfo && tsc && cp -r bin scripts $(node scripts/cp) out"
