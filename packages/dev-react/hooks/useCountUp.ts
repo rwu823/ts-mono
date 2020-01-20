@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 type Options = {
   duration: number
@@ -11,8 +11,8 @@ export const useCountUp = (to: number, options?: Partial<Options>) => {
     ...options,
   }
 
-  let t = 0
-  const [n, setN] = React.useState(0)
+  const timer = useRef(0)
+  const [n, setN] = useState(0)
 
   React.useEffect(() => {
     const start = performance.now()
@@ -24,13 +24,13 @@ export const useCountUp = (to: number, options?: Partial<Options>) => {
         setN(to)
       } else {
         setN(prev => Math.min(to, prev + Math.max(1, Math.floor(diff / count))))
-        t = requestAnimationFrame(countUp)
+        timer.current = requestAnimationFrame(countUp)
       }
     }
 
     countUp()
 
-    return () => cancelAnimationFrame(t)
+    return () => cancelAnimationFrame(timer.current)
   }, [to])
 
   return n
