@@ -1,14 +1,15 @@
-import React from 'react'
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useState, useEffect } from 'react'
 
 export const useWindowSize = () => {
   if (!process.browser) return { width: 0, height: 0 }
 
-  const [size, setSize] = React.useState({
+  const [size, setSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     const resize = () => {
       setSize({
         width: window.innerWidth,

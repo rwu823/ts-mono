@@ -11,6 +11,8 @@ import styled, { css } from 'styled-components'
 import { useImmer } from 'use-immer'
 import langs from './langs'
 
+import { useWindowSize } from '../../hooks'
+
 const Div = styled.div`
   ${() => css``}
 `
@@ -66,7 +68,7 @@ const Button = () => {
         modal.open(Content, {
           top: 30,
         })
-      }, [])}
+      }, [Content, modal])}
     >
       Open Modal
     </button>
@@ -86,6 +88,7 @@ type State = typeof initState
 
 const Demo: NextPage<Props> = () => {
   const { $t } = useIntl(langs)
+  const size = useWindowSize()
 
   const [state, setState] = useImmer<State>(initState)
 
@@ -97,7 +100,7 @@ const Demo: NextPage<Props> = () => {
     setState(draft => {
       draft.name = 'Erin'
     })
-  }, [])
+  }, [setState])
 
   const updateAddr = useCallback<
     React.MouseEventHandler<HTMLButtonElement>
@@ -105,14 +108,14 @@ const Demo: NextPage<Props> = () => {
     setState(draft => {
       draft.address.code = 108
     })
-  }, [])
+  }, [setState])
 
   return (
     <Div>
       <Head>
         <title>Demo - Page</title>
       </Head>
-      <h2>Immer Sample</h2>
+      <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>
       <button onClick={updateName}>click name</button>
       <button onClick={updateAddr}>click addr</button>

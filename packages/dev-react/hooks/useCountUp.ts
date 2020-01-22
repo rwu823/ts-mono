@@ -1,26 +1,18 @@
 import React, { useRef, useState } from 'react'
 
-type Options = {
-  duration: number
-}
+const FPS60 = 1000 / 60
 
-const fps60 = 1000 / 60
-export const useCountUp = (to: number, options?: Partial<Options>) => {
-  const opts: Options = {
-    duration: 750,
-    ...options,
-  }
-
+export const useCountUp = (to: number, { duration = 750 } = {}) => {
   const timer = useRef(0)
   const [n, setN] = useState(0)
 
   React.useEffect(() => {
     const start = performance.now()
     const diff = to - n
-    const count = opts.duration / fps60
+    const count = duration / FPS60
 
     const countUp = () => {
-      if (performance.now() - start > opts.duration) {
+      if (performance.now() - start >= duration) {
         setN(to)
       } else {
         setN(prev => Math.min(to, prev + Math.max(1, Math.floor(diff / count))))
@@ -31,7 +23,7 @@ export const useCountUp = (to: number, options?: Partial<Options>) => {
     countUp()
 
     return () => cancelAnimationFrame(timer.current)
-  }, [to])
+  }, [n, duration, to])
 
   return n
 }
