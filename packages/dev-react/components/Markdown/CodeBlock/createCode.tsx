@@ -9,7 +9,7 @@ import 'prismjs/components/prism-css.min'
 import 'prismjs/components/prism-bash.min'
 import 'prismjs/components/prism-diff.min'
 
-import React, { useState } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 import Dark from './dark.theme'
 import White from './white.theme'
@@ -138,7 +138,7 @@ const Source = styled.div`
 `
 
 export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
-  const CodeBlock: React.FunctionComponent<CodeProps> = ({
+  const CodeBlock: React.FC<CodeProps> = ({
     language,
     src,
     theme,
@@ -146,24 +146,27 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
     meta,
     ...props
   }) => {
-    const code =
-      language && Prism.languages[language]
-        ? Prism.highlight(src, Prism.languages[language], language)
-        : src
+    const code = useMemo(
+      () =>
+        language && Prism.languages[language]
+          ? Prism.highlight(src, Prism.languages[language], language)
+          : src,
+      [language, src],
+    )
 
-    const Theme = theme === 'day' ? White : Dark
+    const Theme = useMemo(() => (theme === 'day' ? White : Dark), [theme])
     const $parent = React.useRef(null)
 
     const [isCopied, setCopied] = useState(false)
 
-    const onCopy = () => {
+    const onCopy = useCallback<React.MouseEventHandler<HTMLDivElement>>(() => {
       copy(src)
       setCopied(true)
 
       setTimeout(() => {
         setCopied(false)
       }, 2000)
-    }
+    }, [src])
 
     const isDay = theme === 'day'
 

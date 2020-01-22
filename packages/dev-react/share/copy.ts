@@ -1,12 +1,8 @@
 export const copy = (text: string) => {
   const textarea = document.createElement('textarea')
-
-  textarea.style.display = 'absolute'
-  textarea.style.left = '-99em'
-  textarea.style.top = '-99em'
+  textarea.value = text
 
   document.body.appendChild(textarea)
-  textarea.value = text
   textarea.select()
   document.execCommand('copy')
 
