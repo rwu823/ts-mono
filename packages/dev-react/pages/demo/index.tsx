@@ -6,8 +6,9 @@ import Form, { Input, FormProps } from '@ts-mono/dev-react/components/Form'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback, useEffect } from 'react'
 import styled, { css } from 'styled-components'
+import { useImmer } from 'use-immer'
 import langs from './langs'
 
 const Div = styled.div`
@@ -72,14 +73,49 @@ const Button = () => {
   )
 }
 
+const initState = {
+  name: 'Rocky',
+  age: 30,
+  address: {
+    code: 106,
+    info: '台北市大安區',
+  },
+}
+
+type State = typeof initState
+
 const Demo: NextPage<Props> = () => {
   const { $t } = useIntl(langs)
+
+  const [state, setState] = useImmer<State>(initState)
+
+  useEffect(() => {}, [state.address])
+
+  const updateName = useCallback<
+    React.MouseEventHandler<HTMLButtonElement>
+  >(() => {
+    setState(draft => {
+      draft.name = 'Erin'
+    })
+  }, [])
+
+  const updateAddr = useCallback<
+    React.MouseEventHandler<HTMLButtonElement>
+  >(() => {
+    setState(draft => {
+      draft.address.code = 108
+    })
+  }, [])
 
   return (
     <Div>
       <Head>
         <title>Demo - Page</title>
       </Head>
+      <h2>Immer Sample</h2>
+      <pre>{JSON.stringify(state)}</pre>
+      <button onClick={updateName}>click name</button>
+      <button onClick={updateAddr}>click addr</button>
       <h2>Formik Demo</h2>
       <Form
         initialValues={initialValues}
