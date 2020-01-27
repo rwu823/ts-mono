@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "axios": "0.19.2",
-    "puppeteer-core": "2.0.0"
+    "puppeteer-core": "2.1.0"
   },
   "devDependencies": {
     "@types/jquery": "3.3.31",
