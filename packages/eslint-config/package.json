@@ -3,6 +3,6 @@
   "name": "@ts-mono/eslint-config",
   "main": ".",
   "scripts": {
-    "build": "rm -rf out && mkdir out && cp ./*.* ../../.eslintrc.json out"
+    "build": "rm -rf out && mkdir out && cp ./*.* ../../.eslintrc out"
   }
 }
