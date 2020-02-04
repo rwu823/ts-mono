@@ -9,6 +9,7 @@ module.exports = {
   pageExtensions: ['tsx', 'mdx'],
   webpack(config, options) {
     config.resolve.mainFields = ['module', 'main', 'browser']
+    // config.devtool = 'cheap-eval-source-map'
 
     if (!options.isServer) {
       config.plugins = config.plugins.filter(

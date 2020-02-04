@@ -6,7 +6,18 @@ module.exports = api => {
   api.cache(true)
 
   return {
-    presets: ['next/babel'],
+    presets: [
+      [
+        'next/babel',
+        {
+          'preset-env': {
+            targets: 'defaults, not safari 5.1',
+            useBuiltIns: 'usage',
+            corejs: 3,
+          },
+        },
+      ],
+    ],
     plugins: [
       '@babel/proposal-optional-chaining',
       '@babel/proposal-nullish-coalescing-operator',

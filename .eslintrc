@@ -21,11 +21,13 @@
   },
   "settings": {
     "polyfills": [
-      // "Promise",
-      // "Set",
-      // "Map",
-      // "WeakMap",
-      // "Object.entries"
+      "Promise",
+      "Set",
+      "Map",
+      "WeakMap",
+      "Object",
+      "Array",
+      "URLSearchParams"
     ],
     "import/resolver": {
       "node": {

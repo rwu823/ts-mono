@@ -1,3 +1,5 @@
+import 'core-js/modules/es.global-this'
+
 import { GlobalStyle } from '@ts-mono/dev-react/components/GlobalStyles'
 import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
 import { ModalProvider } from '@ts-mono/dev-react/components/Modal'
