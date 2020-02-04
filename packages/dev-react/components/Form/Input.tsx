@@ -25,23 +25,26 @@ export const Input = React.forwardRef<HTMLInputElement, Props>(
 
     const handleChange = useCallback<
       React.ChangeEventHandler<HTMLInputElement>
-    >(e => {
-      if (onChange) {
-        onChange(e, {
-          value: e.currentTarget.value,
-          setValue: value => {
-            field.onChange({
-              currentTarget: {
-                name: e.currentTarget.name,
-                value,
-              },
-            })
-          },
-        })
-      } else {
-        field.onChange(e)
-      }
-    }, [])
+    >(
+      e => {
+        if (onChange) {
+          onChange(e, {
+            value: e.currentTarget.value,
+            setValue: value => {
+              field.onChange({
+                currentTarget: {
+                  name: e.currentTarget.name,
+                  value,
+                },
+              })
+            },
+          })
+        } else {
+          field.onChange(e)
+        }
+      },
+      [field, onChange],
+    )
 
     return (
       <>

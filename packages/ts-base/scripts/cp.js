@@ -14,8 +14,10 @@ const excludeSet = new Set([
   'node_modules',
   'package.json',
   'packages',
-  'scripts'
-])
+  'scripts',
+  '.eslintignore',
+  '.eslintrc.json'
+]);
 
 fs.writeFileSync(
   'out/package.json',

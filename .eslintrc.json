@@ -3,12 +3,12 @@
   "extends": [
     "airbnb",
     "airbnb/hooks",
+    "plugin:compat/recommended",
     "prettier",
     "prettier/react"
   ],
   "env": {
     "browser": true,
-    "node": true,
     "jest": true,
     "es6": true
   },
@@ -20,6 +20,13 @@
     "useJSXTextNode": true
   },
   "settings": {
+    "polyfills": [
+      // "Promise",
+      // "Set",
+      // "Map",
+      // "WeakMap",
+      // "Object.entries"
+    ],
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]

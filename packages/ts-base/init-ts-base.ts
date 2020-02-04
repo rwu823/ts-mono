@@ -81,7 +81,7 @@ module.exports = Object.assign(base, {
     } else {
       write(
         `${stringify({
-          extends: [`./node_modules/${packageJSON.name}/.eslintrc.json`],
+          extends: [`@ts-mono`],
         })}`,
       ).to('.eslintrc')
     }

@@ -8,6 +8,7 @@ const deploymentPackagesSet = new Set([
   'dev-pptr',
   'gatsby',
   'storybook',
+  'eslint-config',
 ])
 
 const getDeploymentPackages = async () => {
