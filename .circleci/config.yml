@@ -54,7 +54,7 @@ executors:
     environment:
       - TZ: Asia/Taipei
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:13
 
 commands:
     use_gcloud:
