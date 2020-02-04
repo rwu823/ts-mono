@@ -60,14 +60,14 @@ export type Lang = {
 }
 
 export const mergeLangs = (langs: Lang[]): Lang => {
-  const locales = Array.from(
-    new Set(
+  const locales = [
+    ...new Set(
       langs.reduce<string[]>(
         (keys, lang) => keys.concat(Object.keys(lang)),
         [],
       ),
     ),
-  )
+  ]
 
   const merge = (locale: string) =>
     langs.reduce<any>((o, lang) => ({ ...o, ...lang[locale] }), {})
@@ -96,7 +96,7 @@ export type HOCInject = <Props>(
   configs: {
     langs: Lang[]
   },
-) => React.FC<Omit<Props, keyof WithIntlProps>>
+) => NextPage<Omit<Props, keyof WithIntlProps>>
 
 export const withIntl: HOCInject = (Component, { langs }) => {
   const WithIntl: NextPage<any> = ({ locale, ...props }) => {
