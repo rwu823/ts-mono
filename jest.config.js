@@ -5,4 +5,5 @@ module.exports = {
       diagnostics: false,
     },
   },
+  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
 }
