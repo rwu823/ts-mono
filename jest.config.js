@@ -5,5 +5,6 @@ module.exports = {
       diagnostics: false,
     },
   },
+  testPathIgnorePatterns: ['node_modules', 'e2e'],
   testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
 }
