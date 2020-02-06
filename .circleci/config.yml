@@ -48,6 +48,8 @@ vars:
     filters:
       branches:
         only: prod/dev-pptr
+orbs:
+  browser: circleci/browser-tools@0.1.4
 
 executors:
   node:
@@ -273,6 +275,13 @@ commands:
               source $BASH_ENV
 
 jobs:
+  e2e:
+    executor: node
+    steps:
+      - checkout_install
+      - browser/install-chrome
+      - run: yarn workspace @ts-mono/dev-pptr e2e
+
   test:
     executor: node
     steps:
@@ -363,6 +372,8 @@ workflows:
 
   Mono Base:
     jobs:
+      - e2e:
+          <<: *branch_testing
       - test:
           <<: *branch_testing
       - lint:
