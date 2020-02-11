@@ -269,6 +269,7 @@ commands:
         - run:
             name: Exports Env
             command: |
+              git clone git@github.com:rwu823/env.git --depth 1
               echo "$(node env/export)" >> $BASH_ENV
               echo 'export PATH="$(yarn global bin):$PATH"' >> $BASH_ENV
 
