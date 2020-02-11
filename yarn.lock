@@ -9289,10 +9289,10 @@ gatsby-telemetry@^1.1.49:
     stack-utils "1.0.2"
     uuid "3.3.3"
 
-gatsby@2.19.15:
-  version "2.19.15"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.19.15.tgz#fc913f4f295f3c4f31977ea71d76ea4094af446c"
-  integrity sha512-9ndAxvom1Wsc6GgcXOxhV80ZjZb1Rk+aV7zjiHzzXfjjRU86X0/CMEjcEIbzbxqv7mcIoNAULoKyH1q0xXlNfQ==
+gatsby@2.19.16:
+  version "2.19.16"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.19.16.tgz#9b302f4159b983b603341f1aba8b6d48c4bbb453"
+  integrity sha512-p+hHj68rD5ebyJaxBd9RCCloiEK7WteWLSf1K/Ak7SnrGih4f3UCW0Ue1NaA+gzwi43YQ+IEGFDFwwTuEM4mWg==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.5"
@@ -20378,6 +20378,17 @@ ts-invariant@^0.4.0, ts-invariant@^0.4.4:
   integrity sha512-uEtWkFM/sdZvRNNDL3Ehu4WVpwaulhwQszV8mrtcdeE8nN00BV9mAmQ88RkrBhFgl9gMgvjJLAQcZbnPXI9mlA==
   dependencies:
     tslib "^1.9.3"
+
+ts-jest-puppeteer@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/ts-jest-puppeteer/-/ts-jest-puppeteer-0.0.5.tgz#bf55e026b6708a04e06c57a8515e1e87414daf87"
+  integrity sha512-hUVrSXJJUB92JIFz40TKMN8Gn27w1YiTO1kUvRnjWvWSTqih7/Sbjovcu3cVL3s3dZycCcan3C5C5dkoWQwU/A==
+  dependencies:
+    "@types/expect-puppeteer" "4.4.0"
+    "@types/jest-environment-puppeteer" "4.3.1"
+    expect-puppeteer "4.4.0"
+    jest-environment-node "25.1.0"
+    ts-jest "25.2.0"
 
 ts-jest@25.2.0:
   version "25.2.0"
