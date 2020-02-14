@@ -1,4 +1,7 @@
 {
+  "include": [
+    ".storybook/*"
+  ],
   "compilerOptions": {
     "strict": true,
     "noImplicitUseStrict": true,

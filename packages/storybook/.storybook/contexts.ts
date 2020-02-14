@@ -6,7 +6,7 @@ export const contexts = [
     icon: 'eye', // a icon displayed in the Storybook toolbar to control contextual props
     title: 'Themes', // an unique name of a contextual environment
     components: [
-      Button,
+      // Button,
       // an array of components that is going to be injected to wrap stories
       /* Styled-components ThemeProvider, */
       /* Material-ui ThemeProvider, */

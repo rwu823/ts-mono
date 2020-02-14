@@ -1,39 +1,39 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action, actions } from '@storybook/addon-actions'
+import { text, number, boolean } from '@storybook/addon-knobs'
+
 import Button from '.'
 
-storiesOf('Button', module)
-  .add(
-    'with text',
-    () => <Button onClick={action('button-clicked')}>Hello Button</Button>,
-    {
-      notes: '# This is Button Note',
-      info: {
-        inline: true,
-        header: true,
-        source: false,
-        text: `
-### Notes
+export default {
+  component: Button,
+  title: `Components|Button`,
+}
 
-light button seen on <https://zpl.io/aM49ZBd>
-
-### Usage
-~~~js
-<PrimaryButton
-  label={text('label', 'Enroll')}
-  disabled={boolean('disabled',false)}
-  onClick={() => alert('hello there')}
-/>
-~~~
-      `,
-      },
-    },
+export const normalText = () => {
+  const name = text('name', 'James')
+  const age = number('age', 23)
+  const isDone = boolean('done', false)
+  return (
+    <Button onClick={action('clicked')}>
+      {name} - {age} - {String(isDone)}
+    </Button>
   )
-  .add('with some emoji', () => (
+}
+
+normalText.story = {
+  parameters: {
+    options: {
+      selectedPanel: 'storybook/docs/panel',
+    },
+  },
+}
+
+export const withSomeEmoji = () => {
+  return (
     <Button {...actions('onClick', 'onMouseOver')}>
       <span role="img" aria-label="so cool">
         😀 😎 👍 💯
       </span>
     </Button>
-  ))
+  )
+}
