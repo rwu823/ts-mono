@@ -1,7 +1,10 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+
 const StyledButton = styled.button`
-  ${() => css``}
+  ${() => {
+    return css``
+  }}
 `
 type Props = {}
 

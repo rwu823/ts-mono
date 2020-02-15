@@ -1,0 +1,15 @@
+import { Story } from '@storybook/addon-docs/blocks';
+import { Button } from './';
+
+# Button
+## H2
+### H3
+#### H4
+
+I can embed a story (but not define one, since this file should not contain a `Meta`):
+
+<Story id="some--id" />
+
+And I can also embed arbitrary markdown & JSX in this file.
+
+<Button onClick={() => alert('hello')} />
