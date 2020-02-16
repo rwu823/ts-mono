@@ -1,6 +1,7 @@
 {
   "include": [
-    ".storybook/*"
+    ".storybook/*",
+    "jest-env.d.ts"
   ],
   "compilerOptions": {
     "strict": true,
