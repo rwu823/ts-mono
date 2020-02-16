@@ -6,5 +6,6 @@ module.exports = {
     },
   },
   testPathIgnorePatterns: ['node_modules', 'e2e'],
+  setupFilesAfterEnv: ['./jest/setupReactTestEnv.ts'],
   testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
 }

@@ -1,32 +1,34 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { act } from 'react-dom/test-utils'
+import { fireEvent } from '@testing-library/react'
 import Button from '.'
 
-let container: HTMLDivElement
-
-beforeEach(() => {
-  container = document.createElement('div')
-  document.body.appendChild(container)
-})
-
-afterEach(() => {
-  document.body.removeChild(container)
-  // container = null
-})
-
 describe('Test Button Spec:', () => {
-  it('can render and update a counter', () => {
-    // Test first render and componentDidMount
-    act(() => {
-      render(<Button />, container)
-    })
-    const button = container.querySelector('button')
-
-    expect(button).toBeTruthy()
+  beforeEach(() => {
+    render(<Button />)
   })
 
-  it('try let it fail', async () => {
-    expect(1).toBe(1)
+  it('can render and update a counter', () => {
+    expect(firstChild).toBeTruthy()
+  })
+
+  it('Button should have `btn` className', async () => {
+    expect(firstChild).toHaveClass('btn')
+  })
+
+  it('click button', () => {
+    const onClick = jest.fn()
+    render(
+      <Button onClick={onClick}>
+        <p>click me</p>
+      </Button>,
+    )
+
+    expect(firstChild).toHaveTextContent('click me')
+
+    act(() => {
+      fireEvent.click(firstChild)
+    })
+
+    expect(onClick).toBeCalled()
   })
 })

@@ -7,7 +7,11 @@ type Props = {}
 
 export const Button: React.FC<Props &
   React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>
+  return (
+    <StyledButton className="btn" {...props}>
+      {children}
+    </StyledButton>
+  )
 }
 
 export default Button
