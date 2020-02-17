@@ -1,12 +1,20 @@
 {
+
   "include": [
     ".storybook/*",
-    "jest-env.d.ts"
+    "**/*.ts",
+    "**/*.tsx",
   ],
+
   "compilerOptions": {
     "strict": true,
     "noImplicitUseStrict": true,
     "alwaysStrict": false,
+
+    "baseUrl": ".",
+    "paths": {
+      "@jest-env/*": ["jest/*"]
+    },
 
     "target": "es6",
     "lib": [
