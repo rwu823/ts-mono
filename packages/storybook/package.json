@@ -13,6 +13,7 @@
     "@storybook/addon-docs": "6.0.0-alpha.12",
     "@storybook/addon-jest": "5.3.13",
     "@storybook/addon-knobs": "6.0.0-alpha.12",
+    "@storybook/addon-notes": "5.3.13",
     "@storybook/addon-storysource": "6.0.0-alpha.12",
     "@storybook/addon-viewport": "6.0.0-alpha.12",
     "@storybook/react": "6.0.0-alpha.12",
@@ -25,7 +26,6 @@
   },
   "scripts": {
     "jest:watch": "jest --json --outputFile=.storybook/jest-test-results.json --watchAll",
-    "sb": "start-storybook -p 9090 --ci",
-    "dev": "run-s jest:watch sb"
+    "sb": "start-storybook -p 9090 --ci"
   }
 }

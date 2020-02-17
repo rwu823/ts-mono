@@ -3,23 +3,19 @@ import Button from '../components/Button'
 
 export const contexts = [
   {
-    icon: 'eye', // a icon displayed in the Storybook toolbar to control contextual props
+    // icon list: https://storybooks-official.netlify.com/?path=/story/basics-icon--labels
+    icon: 'ellipsis',
     title: 'Themes', // an unique name of a contextual environment
-    components: [
-      // Button,
-      // an array of components that is going to be injected to wrap stories
-      /* Styled-components ThemeProvider, */
-      /* Material-ui ThemeProvider, */
-    ],
+    components: [Button],
     params: [
       // an array of params contains a set of predefined `props` for `components`
       {
         name: 'Light Theme',
-        props: { theme: themes.light /* : your dark theme */ },
+        props: { theme: themes.light },
       },
       {
         name: 'Dark Theme',
-        props: { theme: themes.dark /* : your light theme */ },
+        props: { theme: themes.dark },
         default: true,
       },
     ],

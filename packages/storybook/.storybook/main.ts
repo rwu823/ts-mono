@@ -9,6 +9,7 @@ export default {
     '@storybook/addon-contexts/register',
     '@storybook/addon-knobs/register',
     '@storybook/addon-jest/register',
+    '@storybook/addon-notes/register-panel',
     {
       name: '@storybook/addon-docs',
       options: {

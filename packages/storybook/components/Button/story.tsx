@@ -1,6 +1,9 @@
 import React from 'react'
 import { action, actions } from '@storybook/addon-actions'
 import { text, number, boolean } from '@storybook/addon-knobs'
+// import { Preview, Story } from '@storybook/addon-docs/blocks'
+// @ts-ignore
+import page from './story.mdx'
 
 import Button from '.'
 
@@ -22,9 +25,7 @@ export const normalText = () => {
 
 normalText.story = {
   parameters: {
-    options: {
-      selectedPanel: 'storybook/docs/panel',
-    },
+    notes: 'some documentation here',
   },
 }
 
@@ -36,4 +37,14 @@ export const withSomeEmoji = () => {
       </span>
     </Button>
   )
+}
+
+withSomeEmoji.story = {
+  parameters: {
+    notes: /* md */ `
+# H1
+## H2
+### H3
+    `,
+  },
 }

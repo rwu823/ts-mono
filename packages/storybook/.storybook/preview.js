@@ -8,9 +8,9 @@ import { withKnobs } from '@storybook/addon-knobs'
 
 import results from './jest-test-results.json'
 
-// import { contexts } from './contexts'
+import { contexts } from './contexts'
 
-// addDecorator(withContexts(contexts))
+addDecorator(withContexts(contexts))
 addDecorator(centered)
 addDecorator(withTests({ results }))
 addDecorator(withKnobs)
