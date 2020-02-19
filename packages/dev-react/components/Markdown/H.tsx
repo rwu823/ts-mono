@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const IconAnchor: React.FunctionComponent = props => (
   <svg
@@ -21,6 +21,31 @@ const IconAnchorStyled = styled(IconAnchor)`
   visibility: hidden;
 `
 
+const A = styled.a`
+  ${() => css`
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+
+    ${IconAnchorStyled} {
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      transform: translateY(-50%);
+    }
+
+    :hover {
+      color: inherit;
+      text-decoration: none;
+      ${IconAnchorStyled} {
+        visibility: visible;
+      }
+    }
+  `}
+`
+
 type HeadLevel = 1 | 2 | 3 | 4 | 5 | 6
 export const H: React.FunctionComponent<{
   level: HeadLevel
@@ -30,28 +55,7 @@ export const H: React.FunctionComponent<{
     `h${level}`,
     {},
     React.createElement(
-      styled.a`
-        color: inherit;
-        text-decoration: none;
-        position: relative;
-        color: inherit;
-        text-decoration: none;
-
-        ${IconAnchorStyled} {
-          position: absolute;
-          top: 50%;
-          left: -20px;
-          transform: translateY(-50%);
-        }
-
-        :hover {
-          color: inherit;
-          text-decoration: none;
-          ${IconAnchorStyled} {
-            visibility: visible;
-          }
-        }
-      `,
+      A,
       {
         href: text
           ? `#${text
