@@ -5,6 +5,6 @@ module.exports = {
       diagnostics: false,
     },
   },
-  testPathIgnorePatterns: ['node_modules', 'e2e'],
+  testPathIgnorePatterns: ['node_modules', 'e2e', 'packages/storybook'],
   testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
 }
