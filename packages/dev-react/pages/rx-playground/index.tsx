@@ -14,7 +14,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
     [],
   )
 
-  const { data, error, loading, ...input } = useDebounceFetcher(500, fetcher)
+  const { data, error, loading, ...input } = useDebounceFetcher(fetcher)
 
   return (
     <Div {...props}>

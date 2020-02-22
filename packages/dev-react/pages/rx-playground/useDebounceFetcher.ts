@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from 'react'
 import { Subject, of, Observable } from 'rxjs'
-import { AjaxResponse, ajax } from 'rxjs/ajax'
+import { AjaxResponse } from 'rxjs/ajax'
 import { debounceTime, switchMap, catchError, map } from 'rxjs/operators'
 export type Fetcher = (value: string) => Observable<AjaxResponse>
 
@@ -73,33 +73,35 @@ const reducer: React.Reducer<InitState, Action> = (
   }
 }
 export const useDebounceFetcher = <T extends HTMLInputElement>(
-  timeout = 500,
   fetcher: Fetcher,
+  timeout = 500,
 ) => {
   const [state, dispatch] = useReducer(reducer, initState)
   const valueSub = useMemo(() => new Subject<string>(), [])
 
   useEffect(() => {
-    const sub = valueSub
+    valueSub
       .pipe(
         debounceTime(timeout),
         switchMap(v => {
           dispatch(act(types.FETCHING))
 
           return fetcher(v).pipe(
-            map(({ response }) => {
-              dispatch(act(types.FETCH_SUCCESS, response))
-            }),
-            catchError(err => {
-              dispatch(act(types.FETCH_FAIL, err.response))
-              return of(err)
-            }),
+            map(res => res),
+            catchError(err => of(err)),
           )
         }),
       )
-      .subscribe()
+      .subscribe(({ response, status }) => {
+        dispatch(
+          act(
+            status === 200 ? types.FETCH_SUCCESS : types.FETCH_FAIL,
+            response,
+          ),
+        )
+      })
 
-    return () => sub.unsubscribe()
+    return () => valueSub.unsubscribe()
   }, [fetcher, timeout, valueSub])
 
   const onChange = useCallback<React.ChangeEventHandler<T>>(
