@@ -1,13 +1,7 @@
-import React, {
-  useCallback,
-  useMemo,
-  useEffect,
-  useReducer,
-  useRef,
-} from 'react'
-import { Subject, of, Observable } from 'rxjs'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Observable, of, Subject } from 'rxjs'
 import { AjaxResponse } from 'rxjs/ajax'
-import { debounceTime, switchMap, catchError, map } from 'rxjs/operators'
+import { catchError, debounceTime, map, switchMap } from 'rxjs/operators'
 export type Fetcher = (value: string) => Observable<AjaxResponse>
 
 const initState = {
@@ -18,74 +12,54 @@ const initState = {
 }
 
 type InitState = typeof initState
-enum types {
-  SET,
 
-  FETCHING,
-  FETCH_SUCCESS,
-  FETCH_FAIL,
-}
-type Action = {
-  type: types
-  payload: any
-}
-
-const act = (type: types, payload?: any) => ({ type, payload })
-
-const reducer: React.Reducer<InitState, Action> = (
-  state,
-  { type, payload },
-) => {
-  let newState: Partial<InitState> = {}
-
-  switch (type) {
-    case types.SET:
-      newState = payload
-      break
-
-    case types.FETCHING:
-      newState = {
-        loading: true,
-        error: false,
-      }
-      break
-
-    case types.FETCH_SUCCESS:
-      newState = {
-        loading: false,
-        data: payload,
-      }
-      break
-
-    case types.FETCH_FAIL:
-      newState = {
-        loading: false,
-        error: payload,
-      }
-      break
-    default:
-      return state
-  }
-
-  return {
-    ...state,
-    ...newState,
-  }
-}
 export const useDebounceFetcher = <T extends HTMLInputElement>(
   fetcher: Fetcher,
   timeout = 500,
 ) => {
-  const [state, dispatch] = useReducer(reducer, initState)
+  const [state, setSate] = useState(initState)
   const valueSub = useMemo(() => new Subject<string>(), [])
+
+  const set = useCallback((newState: Partial<InitState>) => {
+    setSate(prevState => ({
+      ...prevState,
+      ...newState,
+    }))
+  }, [])
+
+  const fetching = useCallback(() => {
+    set({
+      loading: true,
+      error: false,
+    })
+  }, [set])
+
+  const fetchSuccess = useCallback(
+    data => {
+      set({
+        loading: false,
+        data,
+      })
+    },
+    [set],
+  )
+
+  const fetchFail = useCallback(
+    error => {
+      set({
+        loading: false,
+        error,
+      })
+    },
+    [set],
+  )
 
   useEffect(() => {
     valueSub
       .pipe(
         debounceTime(timeout),
         switchMap(v => {
-          dispatch(act(types.FETCHING))
-
+          fetching()
           return fetcher(v).pipe(
             map(res => res),
             catchError(err => of(err)),
@@ -93,25 +67,20 @@ export const useDebounceFetcher = <T extends HTMLInputElement>(
         }),
       )
       .subscribe(({ response, status }) => {
-        dispatch(
-          act(
-            status === 200 ? types.FETCH_SUCCESS : types.FETCH_FAIL,
-            response,
-          ),
-        )
+        if (status === 200) fetchSuccess(response)
+        else fetchFail(response)
       })
 
     return () => valueSub.unsubscribe()
-  }, [fetcher, timeout, valueSub])
+  }, [fetchFail, fetchSuccess, fetcher, fetching, timeout, valueSub])
 
   const onChange = useCallback<React.ChangeEventHandler<T>>(
     e => {
       const { value } = e.target
-
-      dispatch(act(types.SET, { value }))
+      set({ value })
       valueSub.next(value)
     },
-    [valueSub],
+    [set, valueSub],
   )
 
   return { ...state, onChange }
