@@ -7,6 +7,23 @@ import { Fetcher, useDebounceFetcher } from './useDebounceFetcher'
 const Div = styled.div`
   ${() => css``}
 `
+interface Error {
+  errorCode: number
+  errorMessage: string
+  errorTitle: string
+}
+
+interface User {
+  pushLiveStream: number
+  userID: string
+  openID: string
+  displayName: string
+  name: string
+  bio: string
+  picture: string
+  website: string
+}
+
 type Props = React.DOMAttributes<HTMLDivElement> & {}
 const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
   const fetcher = useCallback<Fetcher>(
@@ -14,7 +31,9 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
     [],
   )
 
-  const { data, error, loading, ...input } = useDebounceFetcher(fetcher)
+  const { data, error, loading, ...input } = useDebounceFetcher<User[], Error>(
+    fetcher,
+  )
 
   return (
     <Div {...props}>

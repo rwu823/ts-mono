@@ -2,56 +2,53 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Observable, of, Subject } from 'rxjs'
 import { AjaxResponse } from 'rxjs/ajax'
 import { catchError, debounceTime, map, switchMap } from 'rxjs/operators'
+import { useObjectState } from '@ts-mono/dev-react/hooks/'
+
 export type Fetcher = (value: string) => Observable<AjaxResponse>
 
-const initState = {
-  value: '',
-  error: false,
-  data: {},
-  loading: false,
-}
-
-type InitState = typeof initState
-
-export const useDebounceFetcher = <T extends HTMLInputElement>(
+export const useDebounceFetcher = <Data extends object, E = any>(
   fetcher: Fetcher,
   timeout = 500,
 ) => {
-  const [state, setSate] = useState(initState)
+  const [state, setState] = useObjectState<{
+    value: string
+    error: any
+    data: object
+    loading: boolean
+  }>({
+    value: '',
+    error: false,
+    data: {},
+    loading: false,
+  } as any)
+
   const valueSub = useMemo(() => new Subject<string>(), [])
 
-  const set = useCallback((newState: Partial<InitState>) => {
-    setSate(prevState => ({
-      ...prevState,
-      ...newState,
-    }))
-  }, [])
-
   const fetching = useCallback(() => {
-    set({
+    setState({
       loading: true,
       error: false,
     })
-  }, [set])
+  }, [setState])
 
   const fetchSuccess = useCallback(
     data => {
-      set({
+      setState({
         loading: false,
         data,
       })
     },
-    [set],
+    [setState],
   )
 
   const fetchFail = useCallback(
     error => {
-      set({
+      setState({
         loading: false,
         error,
       })
     },
-    [set],
+    [setState],
   )
 
   useEffect(() => {
@@ -74,16 +71,21 @@ export const useDebounceFetcher = <T extends HTMLInputElement>(
     return () => valueSub.unsubscribe()
   }, [fetchFail, fetchSuccess, fetcher, fetching, timeout, valueSub])
 
-  const onChange = useCallback<React.ChangeEventHandler<T>>(
+  const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     e => {
       const { value } = e.target
-      set({ value })
+      setState({ value })
       valueSub.next(value)
     },
-    [set, valueSub],
+    [setState, valueSub],
   )
 
-  return { ...state, onChange }
+  return {
+    ...state,
+    onChange,
+    data: state.data as Data,
+    error: state.error as E,
+  }
 }
 
 export default useDebounceFetcher
