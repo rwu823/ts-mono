@@ -52,7 +52,7 @@ export const useDebounceFetcher = <Data extends object, E = any>(
   )
 
   useEffect(() => {
-    valueSub
+    const sub = valueSub
       .pipe(
         debounceTime(timeout),
         switchMap(v => {
@@ -68,7 +68,7 @@ export const useDebounceFetcher = <Data extends object, E = any>(
         else fetchFail(response)
       })
 
-    return () => valueSub.unsubscribe()
+    return () => sub.unsubscribe()
   }, [fetchFail, fetchSuccess, fetcher, fetching, timeout, valueSub])
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
