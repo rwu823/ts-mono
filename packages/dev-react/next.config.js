@@ -31,6 +31,22 @@ module.exports = {
         test: /\.mdx$/,
         use: [options.defaultLoaders.babel, '@mdx-js/loader'],
       },
+
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'react-svg-loader',
+            options: {
+              svgo: {},
+              jsx: true, // true outputs JSX tags
+            },
+          },
+        ],
+      },
     )
     return config
   },
