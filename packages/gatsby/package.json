@@ -11,7 +11,7 @@
     "@mdx-js/react": "1.5.7",
     "@types/react-helmet": "5.0.15",
     "babel-plugin-styled-components": "1.10.7",
-    "gatsby": "2.19.22",
+    "gatsby": "2.19.23",
     "gatsby-plugin-manifest": "2.2.42",
     "gatsby-plugin-mdx": "1.0.74",
     "gatsby-plugin-netlify-cache": "1.2.0",
@@ -22,7 +22,7 @@
     "gatsby-plugin-styled-components": "3.1.19",
     "gatsby-plugin-typescript": "2.1.27",
     "gatsby-source-filesystem": "2.1.48",
-    "netlify-cms-app": "2.11.25",
+    "netlify-cms-app": "2.11.26",
     "react-helmet": "5.2.1"
   },
   "keywords": [
