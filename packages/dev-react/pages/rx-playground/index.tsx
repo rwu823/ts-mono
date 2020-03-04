@@ -29,7 +29,7 @@ interface User {
 
 type Props = React.DOMAttributes<HTMLDivElement> & {}
 const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
-  const [s, set, getStates] = useObjectState({
+  const [s, set] = useObjectState({
     value: '',
     isLoading: false,
   })
@@ -46,7 +46,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
       ev$.pipe(
         map(e => {
           const { value } = e.target
-          console.log(s)
+
           set({ value })
           return value
         }),
@@ -67,7 +67,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
           )
         }),
       ),
-    [s],
+    [],
   )
 
   return (

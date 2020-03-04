@@ -11,33 +11,13 @@ export const useObjectState = <T extends object>(initState: T) => {
   }
 
   const set = useCallback<SetStateFunc>((newState: SetPrevState | NewState) => {
-    if (typeof newState === 'function') {
-      setState(prevState => {
-        return {
-          ...prevState,
-          ...newState(prevState),
-        }
-      })
-    } else {
-      setState(prevState => ({
-        ...prevState,
-        ...newState,
-      }))
-    }
+    setState(prevState => ({
+      ...prevState,
+      ...(typeof newState === 'function' ? newState(prevState) : newState),
+    }))
   }, [])
 
-  const getState = useCallback(
-    () =>
-      new Promise(resolve => {
-        set(prev => {
-          resolve(prev)
-          return {}
-        })
-      }),
-    [set],
-  )
-
-  return [state, set, getState] as [T, SetStateFunc, () => Promise<T>]
+  return [state, set] as [T, SetStateFunc]
 }
 
 export default useObjectState
