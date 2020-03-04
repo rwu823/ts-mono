@@ -2,7 +2,7 @@ import { Configuration } from 'webpack'
 
 export default {
   addons: [
-    '@storybook/addon-storysource',
+    '@storybook/addon-storysource/register',
     '@storybook/addon-actions/register',
     '@storybook/addon-backgrounds/register',
     '@storybook/addon-viewport/register',
