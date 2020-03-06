@@ -5,7 +5,7 @@
     "init-storybook": "bin/init-storybook"
   },
   "dependencies": {
-    "@babel/core": "7.8.6",
+    "@babel/core": "7.8.7",
     "@storybook/addon-actions": "6.0.0-alpha.20",
     "@storybook/addon-backgrounds": "6.0.0-alpha.20",
     "@storybook/addon-centered": "6.0.0-alpha.20",

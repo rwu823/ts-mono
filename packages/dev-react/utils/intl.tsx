@@ -28,7 +28,7 @@ export const useIntl = <
   return {
     ...intl,
     $t: (id: keyof O[typeof DEFAULT_LANG]) =>
-      intl.formatHTMLMessage(
+      intl.formatMessage(
         {
           id: id as string,
           defaultMessage: (langs[DEFAULT_LANG] as any)[id],
