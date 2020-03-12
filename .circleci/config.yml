@@ -289,7 +289,7 @@ jobs:
     executor: node
     steps:
       - init
-      - run: npx jest --passWithNoTests
+      - run: yarn test:ci
       - run: bash <(curl -s https://codecov.io/bash)
 
   lint:
