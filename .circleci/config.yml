@@ -52,11 +52,16 @@ orbs:
   browser: circleci/browser-tools@0.1.4
 
 executors:
+  node-browsers:
+    environment:
+      - TZ: Asia/Taipei
+    docker:
+      - image: circleci/node-browser
   node:
     environment:
       - TZ: Asia/Taipei
     docker:
-      - image: circleci/node:13
+      - image: circleci/node:
 
 commands:
     use_gcloud:
@@ -239,7 +244,7 @@ commands:
             command: |
               docker login -u <<parameters.user>> -p <<parameters.user.pass>>
 
-    checkout_install:
+    init:
       description: Checkout sources and install node_modules
       steps:
         - checkout
@@ -277,23 +282,22 @@ commands:
 
 jobs:
   e2e:
-    executor: node
+    executor: node-browsers
     steps:
-      - checkout_install
-      - browser/install-chrome
+      - init
       - run: yarn workspace @ts-mono/dev-pptr e2e
 
   test:
     executor: node
     steps:
-      - checkout_install
+      - init
       - run: npx jest --passWithNoTests
       - run: bash <(curl -s https://codecov.io/bash)
 
   lint:
     executor: node
     steps:
-      - checkout_install
+      - init
       - run:
           name: Run ESLint only on modified files.
           command: npx eslint $(git diff --diff-filter=d origin/HEAD --name-only --cached '*.ts' '*.tsx' '*.js')
@@ -301,7 +305,7 @@ jobs:
   ts-base__deploy:
     executor: node
     steps:
-      - checkout_install
+      - init
       - run: yarn workspace @ts-mono/base build
       - push_branch:
           dir: packages/ts-base/out
@@ -311,7 +315,7 @@ jobs:
   ts-check-cli__deploy:
     executor: node
     steps:
-      - checkout_install
+      - init
       - run: yarn workspace ts-check-cli build
       - deploy_npm:
           dir: packages/ts-check-cli/out
@@ -319,7 +323,7 @@ jobs:
   gatsby__deploy:
     executor: node
     steps:
-        - checkout_install
+        - init
         - push_branch:
             dir: packages/gatsby
             branch: pkg/gatsby
@@ -328,7 +332,7 @@ jobs:
   dev-pptr__deploy:
     executor: node
     steps:
-        - checkout_install
+        - init
         - push_branch:
             dir: packages/dev-pptr
             branch: pkg/dev-pptr
@@ -337,7 +341,7 @@ jobs:
   eslint-config__deploy:
     executor: node
     steps:
-        - checkout_install
+        - init
         - run: yarn workspace @ts-mono/eslint-config build
         - push_branch:
             dir: packages/eslint-config/out
@@ -347,7 +351,7 @@ jobs:
   storybook__deploy:
     executor: node
     steps:
-        - checkout_install
+        - init
         - push_branch:
             dir: packages/storybook
             branch: pkg/storybook
@@ -356,7 +360,7 @@ jobs:
   dev-react__deploy:
     executor: node
     steps:
-        - checkout_install
+        - init
         - push_branch:
             dir: packages/dev-react
             branch: pkg/dev-react
@@ -365,7 +369,7 @@ jobs:
   mono-deploy:
     executor: node
     steps:
-      - checkout_install
+      - init
       - run: npx ts-node scripts/mono-deploy
 
 workflows:
