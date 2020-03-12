@@ -54,7 +54,7 @@ executors:
     environment:
       - TZ: Asia/Taipei
     docker:
-      - image: circleci/node-browsers
+      - image: circleci/node:latest-browsers
   node:
     environment:
       - TZ: Asia/Taipei
