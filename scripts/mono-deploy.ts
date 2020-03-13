@@ -1,4 +1,4 @@
-import sh from 'sh-exec'
+import sh from 'sh-exec/index'
 import pkgJSON from '../package.json'
 
 const deploymentPackagesSet = new Set([
