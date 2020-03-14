@@ -96,24 +96,6 @@ commands:
 
               gcloud container clusters get-credentials event-k8s --zone asia-northeast1-a
               gcloud info
-    use_node:
-      description: Install Node
-      parameters:
-        v:
-          type: string
-          default: 10.15.3
-      steps:
-        - run:
-            name: Use Node v<< parameters.v >>
-            command: |
-              TAR=~/node.tar.xz
-              NODE_PATH=~/node
-
-              curl https://nodejs.org/dist/v<< parameters.v >>/node-v<< parameters.v >>-linux-x64.tar.xz -o $TAR
-              mkdir $NODE_PATH && tar xf $TAR -C $NODE_PATH --strip-components 1
-
-              echo "export PATH=$NODE_PATH/bin:\$PATH" >> $BASH_ENV
-              source $BASH_ENV
 
     docker_build_push:
       description: Docker build
@@ -128,7 +110,7 @@ commands:
           type: string
           default: $CIRCLE_SHA1
       steps:
-        - setup-docker
+        - setup_docker
         - run:
             name: Build Docker Image
             command: |
@@ -243,22 +225,29 @@ commands:
               docker login -u <<parameters.user>> -p <<parameters.user.pass>>
 
     init:
+      parameters:
+        no_module:
+          type: boolean
+          default: false
       description: Checkout sources and install node_modules
       steps:
         - checkout
         - restore_cache:
             key: node_modules#{{ checksum "yarn.lock" }}
         - run: yarn
-        - save_cache:
-            key: node_modules#{{ checksum "yarn.lock" }}
-            paths:
-              - node_modules
-              - packages/storybook/node_modules
-              - packages/dev-react/node_modules
-              - packages/dev-pptr/node_modules
-              - packages/gatsby/node_modules
-              - packages/ts-base/node_modules
-              - packages/ts-check-cli/node_modules
+        - unless:
+            condition: << parameters.no_module >>
+            steps:
+              - save_cache:
+                  key: node_modules#{{ checksum "yarn.lock" }}
+                  paths:
+                    - node_modules
+                    - packages/storybook/node_modules
+                    - packages/dev-react/node_modules
+                    - packages/dev-pptr/node_modules
+                    - packages/gatsby/node_modules
+                    - packages/ts-base/node_modules
+                    - packages/ts-check-cli/node_modules
         - run: git checkout -- .
         - run:
             name: Init Submodule
@@ -321,7 +310,8 @@ jobs:
   gatsby__deploy:
     executor: node
     steps:
-        - init
+        - init:
+            no_module: true
         - push_branch:
             dir: packages/gatsby
             branch: pkg/gatsby
@@ -330,7 +320,8 @@ jobs:
   dev-pptr__deploy:
     executor: node
     steps:
-        - init
+        - init:
+            no_module: true
         - push_branch:
             dir: packages/dev-pptr
             branch: pkg/dev-pptr
@@ -339,7 +330,8 @@ jobs:
   eslint-config__deploy:
     executor: node
     steps:
-        - init
+        - init:
+            no_module: true
         - run: yarn workspace @ts-mono/eslint-config build
         - push_branch:
             dir: packages/eslint-config/out
