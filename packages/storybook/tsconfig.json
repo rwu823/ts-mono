@@ -11,11 +11,6 @@
     "noImplicitUseStrict": true,
     "alwaysStrict": false,
 
-    "baseUrl": ".",
-    "paths": {
-      "@jest-env/*": ["jest/*"]
-    },
-
     "target": "es6",
     "lib": [
       "dom",
