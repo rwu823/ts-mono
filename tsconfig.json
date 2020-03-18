@@ -11,7 +11,6 @@
     "noImplicitUseStrict": true,
     "alwaysStrict": false,
 
-    /* =Strict Type-Checking Options */
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
 
