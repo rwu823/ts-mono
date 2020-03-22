@@ -13,7 +13,7 @@ const BlogPostTemplate: React.FC<Props> = ({ title, body, tags }) => (
   <>
     <h1>{title}</h1>
     <ul>
-      {tags?.map(tag => (
+      {tags?.map((tag) => (
         <li>{tag}</li>
       ))}
     </ul>

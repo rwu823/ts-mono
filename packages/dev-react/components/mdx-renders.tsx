@@ -15,7 +15,7 @@ type MDXRenderers = {
 }
 
 export const mdxRenders: MDXRenderers = {
-  inlineCode: props => <Code {...props} />,
+  inlineCode: (props) => <Code {...props} />,
   h1: ({ children }) => <H level={1} text={children as string} />,
   h2: ({ children }) => <H level={2} text={children as string} />,
 
@@ -42,11 +42,7 @@ export const mdxRenders: MDXRenderers = {
   },
 
   code: ({ children, className = '' }) => {
-    const language =
-      className
-        .split('-')
-        .slice(1)
-        .join('-') || ''
+    const language = className.split('-').slice(1).join('-') || ''
 
     const [type, meta] = language.split('|')
 
@@ -60,5 +56,5 @@ export const mdxRenders: MDXRenderers = {
     return <CodeBlock meta={metaObj} language={type} src={children as string} />
   },
 
-  blockquote: props => <Blockquote {...props} />,
+  blockquote: (props) => <Blockquote {...props} />,
 }

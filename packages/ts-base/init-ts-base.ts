@@ -151,7 +151,7 @@ module.exports = {
     } else {
       const dir = '.vscode'
       await mkdir(dir)
-      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async file => {
+      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
         const baseFile = basename(file)
         write(await readFile(file)).to(`${dir}/${baseFile}`)
       })
@@ -165,7 +165,7 @@ module.exports = {
     } else {
       const dir = '.circleci'
       await mkdir(dir)
-      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async file => {
+      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
         const baseFile = basename(file)
         write(await readFile(file)).to(`${dir}/${baseFile}`)
       })
@@ -173,7 +173,7 @@ module.exports = {
   },
 )
 
-process.on('unhandledRejection', r => {
+process.on('unhandledRejection', (r) => {
   if (r instanceof Error) {
     console.log(r.stack)
   }

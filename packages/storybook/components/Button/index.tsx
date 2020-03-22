@@ -5,8 +5,9 @@ const StyledButton = styled.button`
 `
 type Props = {}
 
-export const Button: React.FC<Props &
-  React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ children, ...props }) => {
+export const Button: React.FC<
+  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = ({ children, ...props }) => {
   return (
     <StyledButton className="btn" {...props}>
       {children}

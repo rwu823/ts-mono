@@ -2,7 +2,7 @@ const { NODE_ENV } = process.env
 
 const isDev = !NODE_ENV || NODE_ENV === 'development'
 
-module.exports = api => {
+module.exports = (api) => {
   api.cache(true)
 
   return {

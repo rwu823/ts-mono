@@ -33,7 +33,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
     value: '',
     isLoading: false,
   })
-  const fetcher = useCallback<Fetcher>(v => {
+  const fetcher = useCallback<Fetcher>((v) => {
     return ajax(`https://api-dsa.17app.co/api/v1/user/search?query=${v}`)
   }, [])
 
@@ -42,16 +42,16 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
   )
 
   const onChange = useRxEvent<React.ChangeEventHandler<HTMLInputElement>>(
-    ev$ =>
+    (ev$) =>
       ev$.pipe(
-        map(e => {
+        map((e) => {
           const { value } = e.target
 
           set({ value })
           return value
         }),
         debounceTime(500),
-        switchMap(v => {
+        switchMap((v) => {
           set({ isLoading: true })
           return ajax(
             `https://api-dsa.17app.co/api/v1/user/search?query=${v}`,
@@ -60,7 +60,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
               set({ isLoading: false })
               console.log(response)
             }),
-            catchError(err => {
+            catchError((err) => {
               set({ isLoading: false })
               return of(err)
             }),

@@ -15,7 +15,7 @@ const ModalBox = styled.div`
   `}
 `
 const ModalContent = styled.div<Pick<ModalProps, 'top'>>`
-  ${p => css`
+  ${(p) => css`
     display: inline-block;
     display: inline-flex;
     position: relative;
@@ -63,7 +63,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   }, [isOpened, onESC])
 
   const stopPropagation = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    e => {
+    (e) => {
       e.stopPropagation()
     },
     [],

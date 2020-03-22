@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ExternalIcon: React.FunctionComponent = props => (
+const ExternalIcon: React.FunctionComponent = (props) => (
   <svg
     style={{
       width: '1em',

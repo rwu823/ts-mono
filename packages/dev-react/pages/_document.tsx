@@ -14,7 +14,7 @@ class MyDocument extends Document {
     const sheet = new ServerStyleSheet()
 
     try {
-      await ctx.renderPage(App => props =>
+      await ctx.renderPage((App) => (props) =>
         sheet.collectStyles(
           <StyleSheetManager>
             <App {...props} />

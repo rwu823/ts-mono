@@ -5,7 +5,7 @@ export const useInput = (defaultValue = '') => {
   const ref = React.useRef<HTMLInputElement>(null)
   const onChange = React.useCallback<
     React.ChangeEventHandler<HTMLInputElement>
-  >(ev => {
+  >((ev) => {
     setValue(ev.currentTarget.value)
   }, [])
 

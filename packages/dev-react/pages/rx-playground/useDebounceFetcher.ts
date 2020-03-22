@@ -32,7 +32,7 @@ export const useDebounceFetcher = <Data extends object, E = any>(
   }, [setState])
 
   const fetchSuccess = useCallback(
-    data => {
+    (data) => {
       setState({
         loading: false,
         data,
@@ -42,7 +42,7 @@ export const useDebounceFetcher = <Data extends object, E = any>(
   )
 
   const fetchFail = useCallback(
-    error => {
+    (error) => {
       setState({
         loading: false,
         error,
@@ -55,11 +55,11 @@ export const useDebounceFetcher = <Data extends object, E = any>(
     const sub = valueSub
       .pipe(
         debounceTime(timeout),
-        switchMap(v => {
+        switchMap((v) => {
           fetching()
           return fetcher(v).pipe(
-            map(res => res),
-            catchError(err => of(err)),
+            map((res) => res),
+            catchError((err) => of(err)),
           )
         }),
       )
@@ -72,7 +72,7 @@ export const useDebounceFetcher = <Data extends object, E = any>(
   }, [fetchFail, fetchSuccess, fetcher, fetching, timeout, valueSub])
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
-    e => {
+    (e) => {
       const { value } = e.target
       setState({ value })
       valueSub.next(value)

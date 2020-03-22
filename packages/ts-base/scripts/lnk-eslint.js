@@ -7,7 +7,7 @@ const cwd = (...args) => path.join('../../../', ...args)
 
 const [scope, name] = pkg.name.split('/')
 
-const isExists = p => {
+const isExists = (p) => {
   try {
     fs.statSync(p)
     return true
@@ -18,7 +18,7 @@ const isExists = p => {
 const eslintPath = cwd(`/node_modules/${scope}/eslint-config-base`)
 
 if (isExists(cwd(`/node_modules/${pkg.name}`)) && !isExists(eslintPath)) {
-  fs.symlink(`./${name}`, eslintPath, error => {
+  fs.symlink(`./${name}`, eslintPath, (error) => {
     if (error) {
       console.log(error)
     }

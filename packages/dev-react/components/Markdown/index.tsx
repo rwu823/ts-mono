@@ -30,7 +30,7 @@ const renderers: ReactMarkdownProps['renderers'] = {
 
     return <H level={level} text={text} />
   },
-  inlineCode: props => <Code {...props} />,
+  inlineCode: (props) => <Code {...props} />,
   get emphasis() {
     return this.inlineCode
   },
@@ -39,7 +39,7 @@ const renderers: ReactMarkdownProps['renderers'] = {
     return <CodeBlock src={value} language={language} />
   },
 
-  blockquote: props => <Blockquote {...props} />,
+  blockquote: (props) => <Blockquote {...props} />,
 }
 
 export const Markdown: React.FunctionComponent<{

@@ -31,7 +31,7 @@ fs.writeFileSync(
 )
 
 glob(path.resolve('../../*'), { dot: true, onlyFiles: false, deep: 0 }).then(
-  list => {
-    console.log(list.filter(l => !excludeSet.has(path.basename(l))).join(' '))
+  (list) => {
+    console.log(list.filter((l) => !excludeSet.has(path.basename(l))).join(' '))
   },
 )

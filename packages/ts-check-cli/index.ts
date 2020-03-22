@@ -18,10 +18,13 @@ const execa = async (cmd: string): Promise<string> =>
 
   if (modifiedTSFiles) {
     spinner.start()
-    spawn('npx', ['tsc', '--noEmit'], { stdio: 'inherit' }).on('exit', code => {
-      spinner.stop()
-      process.exit(code || 0)
-    })
+    spawn('npx', ['tsc', '--noEmit'], { stdio: 'inherit' }).on(
+      'exit',
+      (code) => {
+        spinner.stop()
+        process.exit(code || 0)
+      },
+    )
   } else {
     process.exit(0)
   }

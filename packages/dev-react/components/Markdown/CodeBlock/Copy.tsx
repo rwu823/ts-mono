@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 export const CopyIcon: React.FunctionComponent<React.SVGProps<
   SVGSVGElement
->> = props => (
+>> = (props) => (
   <svg
     style={{
       width: 20,

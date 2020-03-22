@@ -14,7 +14,7 @@ let oldObjectList = {}
 
 const rent591: BrowserCron<null | {
   [id: string]: RectObject
-}> = async page => {
+}> = async (page) => {
   await page.goto(
     'https://rent.591.com.tw/?kind=1&region=1&section=5&rentprice=,40000&area=20,&shape=2,1',
   )
@@ -25,11 +25,11 @@ const rent591: BrowserCron<null | {
 
   const pages = await page.$$eval(
     '#container .pageBar .pageNum-form',
-    a => a.length,
+    (a) => a.length,
   )
 
   const getObjectList = async () =>
-    page.$$eval('#content .listInfo', uls =>
+    page.$$eval('#content .listInfo', (uls) =>
       uls.reduce<{
         [id: string]: RectObject
       }>((o, ul) => {
@@ -64,10 +64,10 @@ const rent591: BrowserCron<null | {
 
   await [...Array(pages)]
     .reduce<Promise<any>>(
-      p =>
+      (p) =>
         p.then(async () => {
           await Promise.all([
-            page.waitForResponse(res =>
+            page.waitForResponse((res) =>
               res
                 .url()
                 .startsWith('https://rent.591.com.tw/home/data/listExposure'),

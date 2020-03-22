@@ -26,7 +26,7 @@ puppeteer
       executablePath: '/usr/bin/chromium-browser',
     }),
   })
-  .then(async Browser => {
+  .then(async (Browser) => {
     const browser = await puppeteer.connect({
       browserWSEndpoint: Browser.wsEndpoint(),
       ...(isDev && {

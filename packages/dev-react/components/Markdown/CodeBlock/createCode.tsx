@@ -67,7 +67,7 @@ const CopyRow = styled.div`
 `
 
 const Language = styled.sub<{ type: string }>`
-  ${p => css`
+  ${(p) => css`
     margin-right: auto;
     line-height: 1;
     padding: 4px;
@@ -97,7 +97,7 @@ const ToolBar = styled.div`
 `
 
 const Div = styled.div<{ isDay: boolean }>`
-  ${p => css`
+  ${(p) => css`
     background: ${p.isDay ? '#eee' : '#282c34'};
     position: relative;
     border-radius: 5px;
@@ -173,7 +173,7 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
     const lines = React.useMemo(() => {
       if (meta?.line) {
         if (meta.line.includes(',')) {
-          return meta.line.split(',').map(s => parseInt(s.trim(), 10))
+          return meta.line.split(',').map((s) => parseInt(s.trim(), 10))
         }
 
         if (meta.line.includes('-')) {
@@ -206,7 +206,7 @@ export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
           )}
 
           <Source>
-            {lines.map(line => (
+            {lines.map((line) => (
               <i
                 style={{ top: (line - 1) * 19 + 14 }}
                 key={line}

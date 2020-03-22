@@ -11,7 +11,7 @@ export const useObjectState = <T extends object>(initState: T) => {
   }
 
   const set = useCallback<SetStateFunc>((newState: SetPrevState | NewState) => {
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       ...(typeof newState === 'function' ? newState(prevState) : newState),
     }))

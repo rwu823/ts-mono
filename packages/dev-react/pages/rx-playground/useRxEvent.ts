@@ -10,7 +10,7 @@ export const useRxEvent = <T extends React.ChangeEventHandler<Element>>(
 
   const event = useCallback<T>(
     // @ts-ignore
-    e => {
+    (e) => {
       sub.next(e)
     },
     [sub],

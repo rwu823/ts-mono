@@ -97,7 +97,7 @@ const Demo: NextPage<Props> = () => {
   const updateName = useCallback<
     React.MouseEventHandler<HTMLButtonElement>
   >(() => {
-    setState(draft => {
+    setState((draft) => {
       draft.name = 'Erin'
     })
   }, [setState])
@@ -105,7 +105,7 @@ const Demo: NextPage<Props> = () => {
   const updateAddr = useCallback<
     React.MouseEventHandler<HTMLButtonElement>
   >(() => {
-    setState(draft => {
+    setState((draft) => {
       draft.address.code = 108
     })
   }, [setState])
@@ -122,7 +122,7 @@ const Demo: NextPage<Props> = () => {
       <h2>Formik Demo</h2>
       <Form
         initialValues={initialValues}
-        onSubmit={val => {
+        onSubmit={(val) => {
           console.log(val)
           // debugger
         }}

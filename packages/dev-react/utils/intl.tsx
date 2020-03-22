@@ -47,12 +47,12 @@ export const getActiveLang: GetActiveLang = ({
   supportedLangs,
   preferLangs,
 }) => {
-  preferLangs = preferLangs.map(l => l.split('-')[0])
+  preferLangs = preferLangs.map((l) => l.split('-')[0])
   preferLangs = [...new Set(preferLangs)]
 
   const supportedLangsSet = new Set(supportedLangs)
 
-  return preferLangs.find(l => supportedLangsSet.has(l))
+  return preferLangs.find((l) => supportedLangsSet.has(l))
 }
 
 export type Lang = {
@@ -114,7 +114,7 @@ export const withIntl: HOCInject = (Component, { langs }) => {
     )
   }
 
-  WithIntl.getInitialProps = async ctx => {
+  WithIntl.getInitialProps = async (ctx) => {
     let pageProps = {}
     const preferLangs: string[] = [
       (ctx.query.lang as string) ?? (ctx.query.lng as string),

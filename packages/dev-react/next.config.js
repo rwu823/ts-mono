@@ -13,7 +13,7 @@ module.exports = {
 
     if (!options.isServer) {
       config.plugins = config.plugins.filter(
-        plugin => !('useTypescriptIncrementalApi' in plugin),
+        (plugin) => !('useTypescriptIncrementalApi' in plugin),
       )
     }
 

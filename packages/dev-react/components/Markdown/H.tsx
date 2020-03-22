@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const IconAnchor: React.FunctionComponent = props => (
+const IconAnchor: React.FunctionComponent = (props) => (
   <svg
     viewBox="0 0 1024 1024"
     fill="currentColor"
@@ -57,12 +57,7 @@ export const H: React.FunctionComponent<{
     React.createElement(
       A,
       {
-        href: text
-          ? `#${text
-              .trim()
-              .toLowerCase()
-              .replace(/\s/g, '-')}`
-          : '#',
+        href: text ? `#${text.trim().toLowerCase().replace(/\s/g, '-')}` : '#',
       },
       [
         level < 3 && React.createElement(IconAnchorStyled, { key: 1 }),
