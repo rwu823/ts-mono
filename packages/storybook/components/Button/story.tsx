@@ -1,15 +1,14 @@
 import React from 'react'
+
 import { action, actions } from '@storybook/addon-actions'
 import { text, number, boolean } from '@storybook/addon-knobs'
-// import { Preview, Story } from '@storybook/addon-docs/blocks'
-// @ts-ignore
-import page from './story.mdx'
 
 import Button from '.'
+// import page from './doc.mdx'
 
 export default {
   component: Button,
-  title: `Components|Button`,
+  title: `UI|Button`,
 }
 
 export const normalText = () => {
@@ -26,6 +25,9 @@ export const normalText = () => {
 normalText.story = {
   parameters: {
     notes: 'some documentation here',
+    docs: {
+      // page,
+    },
   },
 }
 
