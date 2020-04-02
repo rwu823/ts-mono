@@ -38,7 +38,7 @@
     "esModuleInterop": true,
 
     "outDir": "out",
-    "module": "commonjs",
+    "module": "ESNext",
     "newLine": "lf",
 
 
