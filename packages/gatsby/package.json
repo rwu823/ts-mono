@@ -11,7 +11,7 @@
     "@mdx-js/react": "1.5.8",
     "@types/react-helmet": "5.0.15",
     "babel-plugin-styled-components": "1.10.7",
-    "gatsby": "2.20.10",
+    "gatsby": "2.20.12",
     "gatsby-plugin-manifest": "2.3.3",
     "gatsby-plugin-mdx": "1.1.4",
     "gatsby-plugin-netlify-cache": "1.2.0",
