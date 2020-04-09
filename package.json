@@ -3,11 +3,9 @@
   "version": "3.8.2-20.2.21",
   "description": "The infrastructure of TypeScript project",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
