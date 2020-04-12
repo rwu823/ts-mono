@@ -31,6 +31,11 @@
   "rules": {
     "prettier/prettier": 2,
 
+    "sort-imports": [2, {
+      "ignoreDeclarationSort": true
+    }],
+    "import/order": [2, {}],
+
     "no-undef": 0,
     "no-unused-vars": 0,
     "no-console": 0,

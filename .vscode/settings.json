@@ -5,4 +5,32 @@
   "i18n-ally.localesPaths": [
     "packages/dev-react/pages/demo/langs",
   ],
+
+  "extensions.ignoreRecommendations": false,
+  "extensions.showRecommendationsOnlyOnDemand": false,
+
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.importStringConfiguration.hasSemicolon": false,
+  "importSorter.sortConfiguration.customOrderingRules.rules": [
+    {
+      "regex": "^react(-dom)?$",
+      "orderLevel": 1
+    },
+    {
+      "regex": "styled-components",
+      "orderLevel": 1
+    },
+    {
+      "regex": "^next",
+      "orderLevel": 3
+    },
+    {
+      "regex": "^\\w",
+      "orderLevel": 4,
+    },
+    {
+      "regex": "^[@]",
+      "orderLevel": 5,
+    }
+  ]
 }
