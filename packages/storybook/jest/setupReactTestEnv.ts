@@ -1,4 +1,4 @@
-import { render } from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
 import '@testing-library/jest-dom'
 
@@ -12,6 +12,11 @@ global.render = (el: JSX.Element) =>
     global.firstChild = global.app.firstChild as HTMLElement
   })
 
+global.unMount = () =>
+  act(() => {
+    unmountComponentAtNode(global.app)
+  })
+
 beforeEach(() => {
   div = document.createElement('div')
   document.body.appendChild(div)
@@ -20,7 +25,5 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-  document.body.removeChild(div!)
-
-  global.app = null as any
+  global.unMount()
 })
