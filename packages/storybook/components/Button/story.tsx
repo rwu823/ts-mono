@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { action, actions } from '@storybook/addon-actions'
-import { text, number, boolean } from '@storybook/addon-knobs'
+import { boolean, number, text } from '@storybook/addon-knobs'
 
 import Button from '.'
 // import page from './doc.mdx'

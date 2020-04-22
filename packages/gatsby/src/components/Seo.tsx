@@ -6,8 +6,8 @@
  */
 
 import React from 'react'
-import Helmet, { HelmetProps } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Helmet, HelmetProps } from 'react-helmet'
+import { graphql, useStaticQuery } from 'gatsby'
 
 type Props = {
   lang?: string

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useWindowSize = () => {
   if (!process.browser) return { width: 0, height: 0 }

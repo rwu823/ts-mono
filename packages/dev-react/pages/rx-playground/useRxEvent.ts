@@ -1,5 +1,5 @@
-import React, { useMemo, useCallback, useEffect } from 'react'
-import { Subject, Observable, of } from 'rxjs'
+import React, { useCallback, useEffect, useMemo } from 'react'
+import { Observable, Subject, of } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 export const useRxEvent = <T extends React.ChangeEventHandler<Element>>(

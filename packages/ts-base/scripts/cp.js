@@ -1,6 +1,6 @@
-const glob = require('fast-glob')
 const path = require('path')
 const fs = require('fs')
+const glob = require('fast-glob')
 const pkg = require('../package.json')
 const rootPkg = require('../../../package.json')
 

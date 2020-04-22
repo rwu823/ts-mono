@@ -9,13 +9,12 @@ import 'prismjs/components/prism-css.min'
 import 'prismjs/components/prism-bash.min'
 import 'prismjs/components/prism-diff.min'
 
-import React, { useState, useCallback, useMemo } from 'react'
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import React, { useCallback, useMemo, useState } from 'react'
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components'
+import copy from '../../../share/copy'
 import Dark from './dark.theme'
 import White from './white.theme'
 import { CopyIcon } from './Copy'
-
-import copy from '../../../share/copy'
 
 const Title = styled.div`
   ${() => css`

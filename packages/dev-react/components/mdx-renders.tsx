@@ -2,7 +2,7 @@ import React from 'react'
 import NextLink from 'next/link'
 
 // import { MDXRenderers } from '@mdx-js/react'
-import { H, Link, CodeBlock, Blockquote, Code } from './Markdown'
+import { Blockquote, Code, CodeBlock, H, Link } from './Markdown'
 import { Meta as TypeCodeMeta } from './Markdown/CodeBlock'
 
 type MDXRenderers = {

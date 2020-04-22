@@ -1,12 +1,12 @@
 import { NextPage } from 'next'
-import React, { useMemo, useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { ajax } from 'rxjs/ajax'
 import { of } from 'rxjs'
 import styled, { css } from 'styled-components'
-import { map, debounceTime, switchMap, catchError } from 'rxjs/operators'
+import { catchError, debounceTime, map, switchMap } from 'rxjs/operators'
+import { useObjectState } from '../../hooks'
 import { Fetcher, useDebounceFetcher } from './useDebounceFetcher'
 import useRxEvent from './useRxEvent'
-import { useObjectState } from '../../hooks'
 const Div = styled.div`
   ${() => css``}
 `

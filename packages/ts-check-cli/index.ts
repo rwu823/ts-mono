@@ -1,5 +1,5 @@
-import ora from 'ora'
 import { exec, spawn } from 'child_process'
+import ora from 'ora'
 
 const execa = async (cmd: string): Promise<string> =>
   new Promise((resolve, reject) => {

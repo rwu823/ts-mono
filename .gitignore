@@ -3,3 +3,6 @@ node_modules
 coverage
 .next
 gh-pages
+
+packages/gatsby/.cache
+packages/gatsby/public

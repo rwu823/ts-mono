@@ -1,10 +1,10 @@
-import c from 'chalk'
 import { basename } from 'path'
+import c from 'chalk'
 
 import g from './utils/glob'
 import write from './utils/write'
 import { parseJSON, stringify } from './utils/JSON'
-import { readFile, mkdir } from './utils/fs'
+import { mkdir, readFile } from './utils/fs'
 
 import packageJSON from './package.json'
 

@@ -1,4 +1,4 @@
-import { addParameters, addDecorator } from '@storybook/react'
+import { addDecorator, addParameters } from '@storybook/react'
 // import { withInfo } from '@storybook/addon-info'
 import { withContexts } from '@storybook/addon-contexts/react'
 import centered from '@storybook/addon-centered/react'
