@@ -24,7 +24,6 @@ export const normalText = () => {
 
 normalText.story = {
   parameters: {
-    notes: 'some documentation here',
     docs: {
       // page,
     },
@@ -39,14 +38,4 @@ export const withSomeEmoji = () => {
       </span>
     </Button>
   )
-}
-
-withSomeEmoji.story = {
-  parameters: {
-    notes: /* md */ `
-# H1
-## H2
-### H3
-    `,
-  },
 }

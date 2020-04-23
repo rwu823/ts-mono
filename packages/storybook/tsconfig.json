@@ -11,6 +11,8 @@
     "noImplicitUseStrict": true,
     "alwaysStrict": false,
 
+    "allowSyntheticDefaultImports": true,
+
     "target": "es6",
     "lib": [
       "dom",

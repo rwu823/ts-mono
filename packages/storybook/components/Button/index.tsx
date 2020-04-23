@@ -3,11 +3,9 @@ import styled, { css } from 'styled-components'
 const StyledButton = styled.button`
   ${() => css``}
 `
-type Props = {}
+type Props = {} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button: React.FC<
-  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
-> = ({ children, ...props }) => {
+export const Button: React.FC<Props> = ({ children, ...props }) => {
   return (
     <StyledButton className="btn" {...props}>
       {children}

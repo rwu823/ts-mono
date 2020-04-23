@@ -1,7 +1,7 @@
 import { addDecorator, addParameters } from '@storybook/react'
-// import { withInfo } from '@storybook/addon-info'
 import { withContexts } from '@storybook/addon-contexts/react'
 import centered from '@storybook/addon-centered/react'
+import { themes } from '@storybook/theming'
 
 import { withTests } from '@storybook/addon-jest'
 import { withKnobs } from '@storybook/addon-knobs'
@@ -14,10 +14,12 @@ addDecorator(withContexts(contexts))
 addDecorator(centered)
 addDecorator(withTests({ results }))
 addDecorator(withKnobs)
-// addDecorator(withInfo)
 
 addParameters({
   jest: ['spec.tsx'],
+  doc: {
+    theme: themes.dark,
+  },
   backgrounds: [
     { name: 'twitter', value: '#00aced' },
     { name: 'facebook', value: '#3b5998' },
