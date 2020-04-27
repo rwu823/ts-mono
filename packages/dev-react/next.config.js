@@ -6,7 +6,7 @@
 
 module.exports = {
   assetPrefix: './',
-  pageExtensions: ['tsx', 'mdx'],
+  pageExtensions: ['tsx', 'ts', 'mdx'],
   webpack(config, options) {
     config.resolve.mainFields = ['module', 'main', 'browser']
     // config.devtool = 'cheap-eval-source-map'
