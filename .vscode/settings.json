@@ -2,6 +2,8 @@
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
   "typescript.tsdk": "node_modules/typescript/lib",
+
+  "i18n-ally.enabledFrameworks": "react",
   "i18n-ally.localesPaths": [
     "packages/dev-react/pages/demo/langs",
   ],
