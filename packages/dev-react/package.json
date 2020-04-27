@@ -33,7 +33,7 @@
     "use-immer": "0.4.0"
   },
   "scripts": {
-    "dev": "NEXT_TELEMETRY_DISABLED=1 next",
+    "dev": "NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS='--inspect' next",
     "build:cjs": "tsc -b tsconfig.cjs.json",
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
