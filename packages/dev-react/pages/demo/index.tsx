@@ -118,12 +118,6 @@ const Demo: NextPage<Props> = () => {
       </Head>
       <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>
-
-      <div onClick={() => {
-        window.open(`https://appleid.apple.com/auth/authorize?client_id=live.17&redirect_uri=https://c07ce3a4.ngrok.io/api/apple-auth&response_mode=form_post&response_type=code id_token&scope=name%20email`)
-      }}>
-        apple login
-      </div>
       <button onClick={updateName}>click name</button>
       <button onClick={updateAddr}>click addr</button>
       <h2>Formik Demo</h2>

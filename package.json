@@ -25,8 +25,8 @@
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx"
   },
-  "devDependencies": {
-    "@typescript-eslint/parser": "2.29.0",
+  "resolutions": {
+    "@typescript-eslint/parser": "2.30.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-prettier": "6.11.0",
