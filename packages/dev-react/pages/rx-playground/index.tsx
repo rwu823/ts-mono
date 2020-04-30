@@ -1,12 +1,32 @@
-import { NextPage } from 'next'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
-import { ajax } from 'rxjs/ajax'
-import { of } from 'rxjs'
 import styled, { css } from 'styled-components'
-import { catchError, debounceTime, map, switchMap } from 'rxjs/operators'
+import { NextPage } from 'next'
+
+import { of, timer } from 'rxjs'
+import { ajax } from 'rxjs/ajax'
+
+import {
+  bufferTime,
+  catchError,
+  concatMap,
+  debounceTime,
+  delay,
+  exhaustMap,
+  map,
+  mapTo,
+  mergeMap,
+  retryWhen,
+  switchMap,
+  takeUntil,
+  takeWhile,
+  tap,
+} from 'rxjs/operators'
+
 import { useObjectState } from '../../hooks'
+
 import { Fetcher, useDebounceFetcher } from './useDebounceFetcher'
 import useRxEvent from './useRxEvent'
+
 const Div = styled.div`
   ${() => css``}
 `
@@ -40,6 +60,23 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
   const { data, error, loading, ...input } = useDebounceFetcher<User[], Error>(
     fetcher,
   )
+  useEffect(() => {
+    console.clear()
+    const s$ = timer(0, 1_000)
+      .pipe(
+        map((val) => {
+          console.log(val)
+          return val
+        }),
+
+        takeWhile((n) => {
+          return n !== 10
+        }),
+      )
+      .subscribe()
+
+    return () => s$.unsubscribe()
+  }, [])
 
   const onChange = useRxEvent<React.ChangeEventHandler<HTMLInputElement>>(
     (ev$) =>
