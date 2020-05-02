@@ -2,24 +2,30 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import { NextPage } from 'next'
 
-import { of, timer } from 'rxjs'
+import { stringify } from 'query-string'
+import { Subject, concat, forkJoin, merge, of, timer } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
 
 import {
   bufferTime,
   catchError,
+  combineLatest,
   concatMap,
   debounceTime,
   delay,
   exhaustMap,
+  expand,
+  filter,
   map,
   mapTo,
   mergeMap,
+  reduce,
   retryWhen,
   switchMap,
   takeUntil,
   takeWhile,
   tap,
+  withLatestFrom,
 } from 'rxjs/operators'
 
 import { useObjectState } from '../../hooks'
@@ -62,50 +68,88 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
   )
   useEffect(() => {
     console.clear()
-    const s$ = timer(0, 1_000)
-      .pipe(
-        map((val) => {
-          console.log(val)
-          return val
-        }),
+    // const s$ = of(0, 1_000)
+    //   .pipe(
+    //     map((val) => {
+    //       console.log(val, 1)
+    //       throw new Error()
+    //     }),
 
-        takeWhile((n) => {
-          return n !== 10
-        }),
-      )
-      .subscribe()
+    //     retryWhen((err$) => err$.pipe(delay(2_000))),
+    //   )
+    //   .subscribe()
 
-    return () => s$.unsubscribe()
+    // return () => s$.unsubscribe()
   }, [])
 
-  const onChange = useRxEvent<React.ChangeEventHandler<HTMLInputElement>>(
-    (ev$) =>
-      ev$.pipe(
-        map((e) => {
-          const { value } = e.target
-
-          set({ value })
-          return value
-        }),
+  const deps = [loading] as const
+  const onChange = useRxEvent<
+    React.ChangeEventHandler<HTMLInputElement>,
+    typeof deps
+  >(
+    (event$, states$) =>
+      event$.pipe(
+        map((e) => e.currentTarget.value),
+        tap((value) => set({ value })),
         debounceTime(500),
-        switchMap((v) => {
-          set({ isLoading: true })
-          return ajax(
-            `https://api-dsa.17app.co/api/v1/user/search?query=${v}`,
-          ).pipe(
+        combineLatest(states$),
+        tap(([value, [loading]]) => {
+          console.log(1, { value, loading })
+        }),
+        map(([value]) => value),
+        filter((value) => !!value),
+        tap(() => set({ isLoading: true })),
+        switchMap((v) =>
+          ajax(`https://api-dsa.17app.co/api/v1/user/search?query=${v}`).pipe(
+            tap(() => set({ isLoading: false })),
             map(({ response }) => {
-              set({ isLoading: false })
               console.log(response)
             }),
             catchError((err) => {
-              set({ isLoading: false })
+              console.log(err)
               return of(err)
             }),
-          )
-        }),
+          ),
+        ),
       ),
+    deps,
+  )
+  const eventSubject = useMemo(
+    () => new Subject<React.ChangeEvent<HTMLInputElement>>(),
     [],
   )
+  const onChange2 = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    (ev) => {
+      eventSubject.next(ev)
+    },
+    [eventSubject],
+  )
+
+  useEffect(() => {
+    eventSubject
+      .pipe(
+        map((e) => e.currentTarget.value),
+        tap((value) => set({ value })),
+        debounceTime(500),
+        tap(() => set({ isLoading: true })),
+        tap(() => console.log(s.isLoading, 'loading')),
+        switchMap((v) =>
+          ajax(`https://api-dsa.17app.co/api/v1/user/search?query=${v}`).pipe(
+            tap(() => set({ isLoading: false })),
+            map(({ response }) => {
+              console.log(response)
+            }),
+            catchError((err) => {
+              console.log(err)
+              return of(err)
+            }),
+          ),
+        ),
+      )
+      .subscribe()
+
+    return () => eventSubject.complete()
+  }, [eventSubject, s.isLoading, set])
 
   return (
     <Div {...props}>
@@ -113,7 +157,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
       <input type="text" placeholder="type something..." {...input} />
 
       <input type="text" value={s.value} onChange={onChange} />
-      <h1>isLoading: {String(loading)}</h1>
+      <h1>isLoading: {String(s.isLoading)}</h1>
 
       {error && <div style={{ color: 'red' }}>{JSON.stringify(error)}</div>}
 
