@@ -36,11 +36,11 @@
     /* =import .json */
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
 
     "outDir": "out",
-    "module": "ESNext",
+    "module": "CommonJS",
     "newLine": "lf",
-
 
     /* =Additional Checks */
     "noUnusedLocals": false,
