@@ -21,6 +21,7 @@ import {
   mergeMap,
   reduce,
   retryWhen,
+  shareReplay,
   switchMap,
   takeUntil,
   takeWhile,
@@ -82,7 +83,7 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
     // return () => s$.unsubscribe()
   }, [])
 
-  const deps = [loading] as const
+  const deps = [s.isLoading] as const
   const onChange = useRxEvent<
     React.ChangeEventHandler<HTMLInputElement>,
     typeof deps
@@ -92,22 +93,23 @@ const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
         map((e) => e.currentTarget.value),
         tap((value) => set({ value })),
         debounceTime(500),
-        combineLatest(states$),
-        tap(([value, [loading]]) => {
-          console.log(1, { value, loading })
+        withLatestFrom(states$),
+        tap(([value, [isLoading]]) => {
+          console.log(1, { value, isLoading })
         }),
         map(([value]) => value),
-        filter((value) => !!value),
         tap(() => set({ isLoading: true })),
         switchMap((v) =>
           ajax(`https://api-dsa.17app.co/api/v1/user/search?query=${v}`).pipe(
-            tap(() => set({ isLoading: false })),
             map(({ response }) => {
               console.log(response)
             }),
             catchError((err) => {
               console.log(err)
               return of(err)
+            }),
+            tap(() => {
+              set({ isLoading: false })
             }),
           ),
         ),

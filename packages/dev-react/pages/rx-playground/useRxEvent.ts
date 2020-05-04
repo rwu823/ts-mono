@@ -19,7 +19,8 @@ export const useRxEvent = <
 
   useEffect(() => {
     states$.next(deps)
-  }, [deps, states$])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
 
   const eventHandler = useCallback<T>(
     // @ts-ignore
