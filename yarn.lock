@@ -9636,10 +9636,10 @@ gatsby-telemetry@^1.3.2:
     stack-utils "1.0.2"
     uuid "3.4.0"
 
-gatsby@2.21.15:
-  version "2.21.15"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.21.15.tgz#eb7edaa8b9c451a1ff0e92eb2128d170c88b8981"
-  integrity sha512-cFvL1FRkhnXIUN9+6Txza6Y0ThwYnYcWeW67Ovtc18faOK/qUx0gFTgCC5DXYFjVyYi+lN/eNHiKvqERAGpgwA==
+gatsby@2.21.16:
+  version "2.21.16"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.21.16.tgz#fd0a27e414c71d132622b116fc1ae1db1e6d0f84"
+  integrity sha512-ySWC4SIECqNs4cxQj400/Mr7d0B6DZc5gCuhGtwfUqi5fLvwAo7QYoDaSHqcBC+QMXFYqVhz3XQTV2Z0TP85bA==
   dependencies:
     "@babel/code-frame" "^7.8.3"
     "@babel/core" "^7.9.6"
@@ -9747,6 +9747,7 @@ gatsby@2.21.15:
     postcss-loader "^3.0.0"
     prompts "^2.3.2"
     prop-types "^15.7.2"
+    query-string "^6.12.1"
     raw-loader "^0.5.1"
     react-dev-utils "^4.2.3"
     react-error-overlay "^3.0.0"
@@ -16471,10 +16472,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer-core@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-3.0.2.tgz#3f1aaa48758d3626c7695e6efc98bf0c05a30b20"
-  integrity sha512-p7KASG81KnY7taJZrutZyMZrFZPYVQ0IRKNMmPviUYGhyq1mdF2VOZyw/+NqWumhBk4Swdd/yEboe/BYBx1QnA==
+puppeteer-core@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-3.0.3.tgz#bd24e93cc065c57091f3173d7f356116c4e3ae19"
+  integrity sha512-R4YGSrb4r4CSiJxw58IUYRENlPmCPEvI7oFJIDGx2ltHhuezxS7pLwo/whqw0e7NwvAB7+/wVONYVWMEjHf13A==
   dependencies:
     "@types/mime-types" "^2.1.0"
     debug "^4.1.0"
@@ -16509,7 +16510,7 @@ qs@~6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-query-string@6.12.1:
+query-string@6.12.1, query-string@^6.12.1:
   version "6.12.1"
   resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.12.1.tgz#2ae4d272db4fba267141665374e49a1de09e8a7c"
   integrity sha512-OHj+zzfRMyj3rmo/6G8a5Ifvw3AleL/EbcHMD27YA31Q+cO5lfmQxECkImuNVjcskLcvBRVHNAB3w6udMs1eAA==
