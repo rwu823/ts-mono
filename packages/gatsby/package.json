@@ -9,9 +9,9 @@
   "dependencies": {
     "@mdx-js/mdx": "1.6.1",
     "@mdx-js/react": "1.6.1",
-    "@types/react-helmet": "5.0.15",
+    "@types/react-helmet": "6.0.0",
     "babel-plugin-styled-components": "1.10.7",
-    "gatsby": "2.21.22",
+    "gatsby": "2.21.24",
     "gatsby-plugin-manifest": "2.4.2",
     "gatsby-plugin-mdx": "1.2.6",
     "gatsby-plugin-netlify-cache": "1.2.0",
