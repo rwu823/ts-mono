@@ -1,21 +1,16 @@
-import sh from 'sh-exec/index'
+import { readdirSync } from 'fs'
+import sh from 'sh-exec'
 import pkgJSON from '../package.json'
 
-const deploymentPackagesSet = new Set([
-  'ts-check-cli',
-  'ts-base',
-  'dev-react',
-  'dev-pptr',
-  'gatsby',
-  'storybook',
-  'eslint-config',
-])
+const deploymentPackagesSet = new Set(
+  readdirSync('packages').filter((dir) => dir !== 'share'),
+)
 
 const getDeploymentPackages = async () => {
   const stdout = await sh`git diff --name-only HEAD~1`
 
   const modifiedPaths = (stdout.match(/^packages\/([^/]+)/gm) || []).map(
-    filePath => filePath.split('/')[1],
+    (filePath) => filePath.split('/')[1],
   )
 
   const uniqPackages = [...new Set(modifiedPaths)].filter((pkg: string) =>
@@ -36,7 +31,7 @@ const getDeploymentPackages = async () => {
 
       sh.quiet`
         git push ${pkgJSON.repository} --force ${modifiedPackages
-        .map(pkg => `HEAD:prod/${pkg}`)
+        .map((pkg) => `HEAD:prod/${pkg}`)
         .join(' ')}
       `
     } else {
