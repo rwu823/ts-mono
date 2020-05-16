@@ -8,12 +8,12 @@
     "prettier",
     "prettier/react"
   ],
+  "plugins": ["prettier", "react-hooks", "graphql", "import", "jsx-a11y"],
   "env": {
     "browser": true,
     "jest": true,
     "es6": true
   },
-  "plugins": ["prettier"],
   "settings": {
     "polyfills": [
       "Promise",
@@ -53,6 +53,7 @@
     "import/no-unresolved": 0,
     "import/no-dynamic-require": 0,
     "import/extensions": 0,
+
     "react-hooks/exhaustive-deps": [1, {
       // "enableDangerousAutofixThisMayCauseInfiniteLoops": true
     }],

@@ -1,20 +1,12 @@
 import React from 'react'
 import NextLink from 'next/link'
 
-// import { MDXRenderers } from '@mdx-js/react'
+import { MDXProviderComponents } from '@mdx-js/react'
+
 import { Blockquote, Code, CodeBlock, H, Link } from './Markdown'
 import { Meta as TypeCodeMeta } from './Markdown/CodeBlock'
 
-type MDXRenderers = {
-  inlineCode?: React.FC
-  h1?: React.FC
-  h2?: React.FC
-  a?: React.FC<{ href: string }>
-  code: React.FC<{ className: string; file?: string }>
-  blockquote: React.FC
-}
-
-export const mdxRenders: MDXRenderers = {
+export const mdxRenders: MDXProviderComponents = {
   inlineCode: (props) => <Code {...props} />,
   h1: ({ children }) => <H level={1} text={children as string} />,
   h2: ({ children }) => <H level={2} text={children as string} />,

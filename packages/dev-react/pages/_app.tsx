@@ -1,14 +1,15 @@
 import 'core-js/modules/es.global-this'
 
+import NextApp, { AppContext } from 'next/app'
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { RecoilRoot } from 'recoil'
+import { MDXProvider } from '@mdx-js/react'
+
 import { GlobalStyle } from '@ts-mono/dev-react/components/GlobalStyles'
 import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
 import { ModalProvider } from '@ts-mono/dev-react/components/Modal'
 import GA from '@ts-mono/dev-react/share/GA'
-import NextApp, { AppContext } from 'next/app'
-import React from 'react'
-import styled, { css } from 'styled-components'
-
-const { MDXProvider } = require('@mdx-js/react')
 
 const Max800 = styled.div`
   ${() => css`
@@ -35,7 +36,9 @@ class App extends NextApp {
         <GlobalStyle />
         <Max800>
           <ModalProvider>
-            <Component {...pageProps} />
+            <RecoilRoot>
+              <Component {...pageProps} />
+            </RecoilRoot>
           </ModalProvider>
         </Max800>
       </MDXProvider>

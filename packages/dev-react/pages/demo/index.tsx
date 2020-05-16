@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import styled, { css } from 'styled-components'
+import { useRecoilState } from 'recoil'
 
 import { NextPage } from 'next'
 import Head from 'next/head'
@@ -9,6 +10,7 @@ import { useImmer } from 'use-immer'
 
 import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
 import { useModal } from '@ts-mono/dev-react/components/Modal'
+import * as state from '@ts-mono/dev-react/state'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
 import { useWindowSize } from '../../hooks'
@@ -51,6 +53,17 @@ const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
     </>
   )
 }
+
+const A = () => {
+  const [name, setName] = useRecoilState(state.name)
+  return <div>hello {name}</div>
+}
+
+const B = () => {
+  const [age, setAge] = useRecoilState(state.age)
+  return <div>You're {age} years old.</div>
+}
+
 const Button = () => {
   const modal = useModal()
 
@@ -133,7 +146,7 @@ const Demo: NextPage<Props> = () => {
       <Link href="/">
         <a href="/home">go home</a>
       </Link>
-      Test page
+      Test page <A /> <B />
       <Button />
     </Div>
   )

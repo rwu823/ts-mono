@@ -6,3 +6,5 @@ gh-pages
 
 packages/gatsby/.cache
 packages/gatsby/public
+
+.yarn
