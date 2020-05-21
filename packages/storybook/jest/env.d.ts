@@ -1,9 +1,11 @@
+/// <reference types="react" />
+
 type Act = {
   (callback: () => void): void
   (callback: () => Promise<void>): Promise<void>
 }
 
-declare namespace NodeJS {
+namespace NodeJS {
   interface Global {
     app: HTMLDivElement
     act: Act
