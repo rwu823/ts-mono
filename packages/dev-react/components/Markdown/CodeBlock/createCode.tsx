@@ -54,7 +54,7 @@ const CopyRow = styled.div`
   ${() => css`
     position: absolute;
     right: 10px;
-    top: 5px;
+    bottom: 5px;
     font-size: 0.6rem;
     cursor: pointer;
     opacity: 0.6;

@@ -10,6 +10,9 @@ import { useImmer } from 'use-immer'
 
 import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
 import { useModal } from '@ts-mono/dev-react/components/Modal'
+import ScrollBottom, {
+  Props as ScrollBottomProps,
+} from '@ts-mono/dev-react/components/ScrollBottom'
 import * as state from '@ts-mono/dev-react/state'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
@@ -91,6 +94,7 @@ const Button = () => {
 
 const initState = {
   name: 'Rocky',
+  list: [...Array(200)],
   age: 30,
   address: {
     code: 106,
@@ -124,6 +128,18 @@ const Demo: NextPage<Props> = () => {
     })
   }, [setState])
 
+  const onBottom = useCallback<ScrollBottomProps['onBottom']>(
+    (isBottom: boolean) => {
+      console.log(state.list)
+      if (isBottom) {
+        setState((draft) => {
+          draft.list = [...draft.list, ...[...Array(100)]]
+        })
+      }
+    },
+    [setState, state.list],
+  )
+
   return (
     <Div>
       <Head>
@@ -148,6 +164,11 @@ const Demo: NextPage<Props> = () => {
       </Link>
       Test page <A /> <B />
       <Button />
+      <ScrollBottom onBottom={onBottom}>
+        {state.list.map((_, i) => (
+          <div key={`id-${i}`}>{i}</div>
+        ))}
+      </ScrollBottom>
     </Div>
   )
 }
