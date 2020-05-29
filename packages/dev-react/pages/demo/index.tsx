@@ -130,7 +130,6 @@ const Demo: NextPage<Props> = () => {
 
   const onBottom = useCallback<ScrollBottomProps['onBottom']>(
     (isBottom: boolean) => {
-      console.log(state.list)
       if (isBottom) {
         setState((draft) => {
           draft.list = [...draft.list, ...[...Array(100)]]
