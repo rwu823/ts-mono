@@ -5,7 +5,7 @@
     "init-storybook": "bin/init-storybook"
   },
   "dependencies": {
-    "@babel/core": "7.10.1",
+    "@babel/core": "7.10.2",
     "@storybook/addon-actions": "6.0.0-beta.12",
     "@storybook/addon-backgrounds": "6.0.0-beta.12",
     "@storybook/addon-centered": "6.0.0-alpha.30",
@@ -18,7 +18,7 @@
     "@storybook/react": "6.0.0-beta.12",
     "@testing-library/jest-dom": "5.9.0",
     "@testing-library/react": "10.0.4",
-    "@types/webpack": "4.41.14",
+    "@types/webpack": "4.41.16",
     "awesome-typescript-loader": "5.2.1",
     "babel-loader": "8.1.0",
     "react-docgen-typescript-loader": "3.7.2"
