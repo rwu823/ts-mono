@@ -1,20 +1,20 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { BehaviorSubject, Observable, Subject } from 'rxjs'
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 const useConst = <T>(anyObj: T) => useMemo<T>(() => anyObj, [])
 
-export const useRxEvent = <
-  T extends React.ReactEventHandler<any>,
-  Deps extends React.DependencyList
+export const useObservable = <
+  T = any,
+  Deps extends React.DependencyList = React.DependencyList
 >(
-  emit: (
-    event$: Subject<Parameters<T>[0]>,
+  handler: (
+    event$: Subject<T>,
     states$: BehaviorSubject<Deps>,
   ) => Observable<any>,
   deps: Deps = [] as any,
 ) => {
-  const event$ = useConst(new Subject<any>())
+  const subj = useConst(new Subject<T>())
   const states$ = useConst(new BehaviorSubject<Deps>(deps))
 
   useEffect(() => {
@@ -22,28 +22,18 @@ export const useRxEvent = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps)
 
-  const eventHandler = useCallback<T>(
-    // @ts-ignore
-    (e) => {
-      event$.next(e)
-    },
-    [event$],
-  )
-
-  const onEmit = useCallback(emit, [emit])
-
   useEffect(() => {
-    const s$ = onEmit(event$, states$).subscribe()
+    const s$ = handler(subj, states$).subscribe()
 
     return () => {
       s$.unsubscribe()
-      event$.complete()
+      subj.complete()
       states$.complete()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return eventHandler
+  return subj
 }
 
-export default useRxEvent
+export default useObservable

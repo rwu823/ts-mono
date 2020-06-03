@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import styled, { css } from 'styled-components'
-import { useRecoilState } from 'recoil'
+// import { useRecoilState } from 'recoil'
 
 import { NextPage } from 'next'
 import Head from 'next/head'
@@ -16,7 +16,11 @@ import ScrollBottom, {
 import * as state from '@ts-mono/dev-react/state'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
+import { ajax } from 'rxjs/ajax'
+
+import { map } from 'rxjs/operators'
 import { useWindowSize } from '../../hooks'
+import { useECharts } from '../../hooks/useECharts'
 import langs from './langs'
 
 const Div = styled.div`
@@ -57,15 +61,15 @@ const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
   )
 }
 
-const A = () => {
-  const [name, setName] = useRecoilState(state.name)
-  return <div>hello {name}</div>
-}
+// const A = () => {
+//   const [name, setName] = useRecoilState(state.name)
+//   return <div>hello {name}</div>
+// }
 
-const B = () => {
-  const [age, setAge] = useRecoilState(state.age)
-  return <div>You're {age} years old.</div>
-}
+// const B = () => {
+//   const [age, setAge] = useRecoilState(state.age)
+//   return <div>You're {age} years old.</div>
+// }
 
 const Button = () => {
   const modal = useModal()
@@ -139,11 +143,84 @@ const Demo: NextPage<Props> = () => {
     [setState, state.list],
   )
 
+  const chart = useECharts()
+
+  type Response = {
+    date: number
+    mc: number
+    mh: number
+    ml: number
+    mo: number
+    mv: number
+  }
+
+  useEffect(() => {
+    const ajax$ = ajax({
+      url: `/api/stock`,
+    })
+      .pipe(
+        map(({ response }) => {
+          return response as Response[]
+        }),
+      )
+      .subscribe(console.log)
+
+    return () => ajax$.unsubscribe()
+  }, [])
+
+  useEffect(() => {
+    if (chart.instance) {
+      chart.instance.setOption({
+        textStyle: {
+          color: 'rgba(255, 255, 255, 0.7)',
+        },
+        backgroundColor: '#2c343c',
+        grid: {
+          left: '5%',
+          right: 0,
+          top: '3%',
+          bottom: '5%',
+        },
+
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        },
+        yAxis: {
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#555',
+              width: 1,
+            },
+          },
+          type: 'value',
+        },
+        series: [
+          {
+            data: [320, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+            lineStyle: {
+              color: 'yellow',
+              width: 2,
+            },
+          },
+        ],
+      })
+    }
+  }, [chart])
+
   return (
     <Div>
       <Head>
         <title>Demo - Page</title>
       </Head>
+
+      <div>
+        <h2>SEO Content</h2>
+        {chart.el}
+      </div>
+
       <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>
       <button onClick={updateName}>click name</button>
@@ -161,7 +238,7 @@ const Demo: NextPage<Props> = () => {
       <Link href="/">
         <a href="/home">go home</a>
       </Link>
-      Test page <A /> <B />
+
       <Button />
       <ScrollBottom onBottom={onBottom}>
         {state.list.map((_, i) => (
