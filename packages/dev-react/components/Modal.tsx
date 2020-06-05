@@ -14,6 +14,7 @@ const ModalBox = styled.div`
     overflow: auto;
   `}
 `
+
 const ModalContent = styled.div<Pick<ModalProps, 'top'>>`
   ${(p) => css`
     display: inline-block;
@@ -21,11 +22,11 @@ const ModalContent = styled.div<Pick<ModalProps, 'top'>>`
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: ${p.top || 0}vh;
+    margin-top: ${p.top ?? 0}vh;
   `}
 `
 
-const ModalStyle = createGlobalStyle`
+const ModalGlobalStyle = createGlobalStyle`
   body {
     overflow: hidden;
   }
@@ -38,7 +39,7 @@ export type ModalProps = {
   top?: number
 }
 
-const Modal: React.FunctionComponent<ModalProps> = ({
+const Modal: React.FC<ModalProps> = ({
   isOpened,
   onESC,
   onClickMask,
@@ -71,7 +72,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
 
   return isOpened ? (
     <Portal>
-      <ModalStyle />
+      <ModalGlobalStyle />
       <ModalBox {...props} onClick={onClickMask}>
         <ModalContent top={top} onClick={stopPropagation}>
           {children}
@@ -81,21 +82,52 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   ) : null
 }
 
-const act = (type: Type, payload?: any) => ({ type, payload })
+const ModalContext = React.createContext<React.Dispatch<Action>>(() => null)
 
-const initState: ModalProps = {
+enum ActionType {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+}
+
+export const useModal = (modalProps: OmitType<ModalProps, 'isOpened'> = {}) => {
+  const dispatch = useContext(ModalContext)
+
+  const open = useCallback(
+    (
+      children: React.ReactNode,
+      replaceProps: OmitType<ModalProps, 'isOpened'> = {},
+    ) => {
+      dispatch({
+        type: ActionType.OPEN_MODAL,
+        payload: {
+          children,
+          ...{
+            top: modalProps.top,
+            onESC: modalProps.onESC,
+            onClickMask: modalProps.onClickMask,
+          },
+          ...replaceProps,
+        },
+      })
+    },
+    [dispatch, modalProps.top, modalProps.onESC, modalProps.onClickMask],
+  )
+
+  const close = useCallback(() => {
+    dispatch({ type: ActionType.CLOSE_MODAL })
+  }, [dispatch])
+
+  return { open, close }
+}
+
+const initState = {
   isOpened: false,
+  children: null as React.ReactNode,
 }
-
-enum Type {
-  OPEN_MODAL = 'OPEN_MODAL',
-  CLOSE_MODAL = 'CLOSE_MODAL',
-}
-
 type InitState = typeof initState
 
 type Action = {
-  type: Type
+  type: ActionType
   payload?: any
 }
 
@@ -103,91 +135,31 @@ const reducer: React.Reducer<InitState, Action> = (
   state,
   { type, payload },
 ) => {
-  let newState: Partial<InitState>
-
+  let newState = {} as Partial<InitState>
   switch (type) {
-    case Type.OPEN_MODAL: {
-      newState = {
-        ...payload,
-        isOpened: true,
-      }
-
+    case ActionType.OPEN_MODAL:
+      newState = { isOpened: true, ...payload }
       break
-    }
 
-    case Type.CLOSE_MODAL: {
-      newState = {
-        isOpened: false,
-      }
+    case ActionType.CLOSE_MODAL:
+      newState = { isOpened: false }
       break
-    }
 
     default:
       return state
   }
 
-  return {
-    ...state,
-    ...newState,
-  }
-}
-
-type ModalContextProps = ModalProps & {
-  open: (
-    children: React.ReactNode,
-    props?: OmitType<ModalProps, 'isOpened'>,
-  ) => void
-  close: () => void
-}
-
-const ModalContext = React.createContext<ModalContextProps>({} as any)
-
-export const useModal = (
-  modalProps?: OmitType<ModalProps, 'isOpened'>,
-): ModalContextProps => {
-  const ctxModalProps = useContext(ModalContext)
-
-  return {
-    ...ctxModalProps,
-    open: (children, props) =>
-      ctxModalProps.open(children, {
-        ...modalProps,
-        ...props,
-      }),
-  }
+  return { ...state, ...newState }
 }
 
 export const ModalProvider: React.FC<{
-  values?: ModalProps
-}> = ({ children, values }) => {
-  const [modalState, dispatch] = useReducer(reducer, initState)
-
-  const open = useCallback<ModalContextProps['open']>(
-    (c, openModalProps) => {
-      dispatch(
-        act(Type.OPEN_MODAL, {
-          ...values,
-          ...openModalProps,
-          children: c,
-        }),
-      )
-    },
-    [values],
-  )
-
-  const close = useCallback<ModalContextProps['close']>(() => {
-    dispatch(act(Type.CLOSE_MODAL))
-  }, [])
+  defaultProps?: ModalProps
+}> = ({ children, defaultProps }) => {
+  const [state, dispatch] = useReducer(reducer, initState)
 
   return (
-    <ModalContext.Provider
-      value={{
-        ...modalState,
-        open,
-        close,
-      }}
-    >
-      <Modal {...values} {...modalState} />
+    <ModalContext.Provider value={dispatch}>
+      <Modal {...defaultProps} {...state} />
       {children}
     </ModalContext.Provider>
   )

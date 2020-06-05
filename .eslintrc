@@ -1,14 +1,22 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "prettier",
+    "react-hooks",
+    "graphql",
+    "import",
+    "jsx-a11y",
+    "@typescript-eslint"
+  ],
   "extends": [
     "airbnb",
     "plugin:react-hooks/recommended",
     "plugin:compat/recommended",
     "prettier",
-    "prettier/react"
+    "prettier/react",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["prettier", "react-hooks", "graphql", "import", "jsx-a11y"],
   "env": {
     "browser": true,
     "jest": true,
@@ -29,6 +37,7 @@
     "globalThis": "readonly"
   },
   "rules": {
+
     "prettier/prettier": 2,
 
     "sort-imports": [2, {
@@ -39,7 +48,10 @@
     "no-undef": 0,
     "no-unused-vars": 0,
     "no-console": 0,
-    "no-unused-expressions": [2, {"allowTaggedTemplates": true}],
+
+    "no-unused-expressions": 0,
+    "@typescript-eslint/no-unused-expressions": [2, {"allowTaggedTemplates": true}],
+
     "no-param-reassign": 0,
     "no-cond-assign": [2, "except-parens"],
     "no-empty": [2, { "allowEmptyCatch": true }],

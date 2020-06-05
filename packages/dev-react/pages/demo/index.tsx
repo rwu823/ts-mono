@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled, { css } from 'styled-components'
 // import { useRecoilState } from 'recoil'
 
@@ -18,15 +18,16 @@ import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
 import { ajax } from 'rxjs/ajax'
 
-import { map } from 'rxjs/operators'
-import { useWindowSize } from '../../hooks'
+import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
+import { EChartOption } from 'echarts'
+import { useObservable, useWindowSize } from '../../hooks'
 import { useECharts } from '../../hooks/useECharts'
 import langs from './langs'
 
 const Div = styled.div`
   ${() => css``}
 `
-type Props = {}
+type Props = unknown
 
 const ModalDiv = styled.div`
   ${() => css`
@@ -61,16 +62,6 @@ const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
   )
 }
 
-// const A = () => {
-//   const [name, setName] = useRecoilState(state.name)
-//   return <div>hello {name}</div>
-// }
-
-// const B = () => {
-//   const [age, setAge] = useRecoilState(state.age)
-//   return <div>You're {age} years old.</div>
-// }
-
 const Button = () => {
   const modal = useModal()
 
@@ -87,7 +78,8 @@ const Button = () => {
     <button
       onClick={useCallback(() => {
         modal.open(Content, {
-          top: 30,
+          top: 20,
+          onClickMask: modal.close,
         })
       }, [Content, modal])}
     >
@@ -113,8 +105,6 @@ const Demo: NextPage<Props> = () => {
   const size = useWindowSize()
 
   const [state, setState] = useImmer<State>(initState)
-
-  useEffect(() => {}, [state.address])
 
   const updateName = useCallback<
     React.MouseEventHandler<HTMLButtonElement>
@@ -154,61 +144,93 @@ const Demo: NextPage<Props> = () => {
     mv: number
   }
 
+  const [chartsRaw, setChartsRaw] = useState<Response[]>([])
+
   useEffect(() => {
-    const ajax$ = ajax({
-      url: `/api/stock`,
+    setTimeout(() => {
+      setChartsRaw((raw) => {
+        return [
+          ...raw,
+          {
+            date: new Date('2020-06-17T12:00:00+08:00').getTime(),
+            mc: 12_222,
+          },
+        ]
+      })
+    }, 5000)
+  }, [setChartsRaw])
+
+  const axis = useMemo(() => {
+    const filteredRaw = chartsRaw.filter((r) => {
+      const D = new Date(r.date)
+      D.setTime(+D + 8 * 60 * 60 * 1000)
+
+      return D.getUTCDay() === 3 && Math.ceil(D.getDate() / 7) === 3
     })
-      .pipe(
-        map(({ response }) => {
-          return response as Response[]
-        }),
-      )
-      .subscribe(console.log)
 
-    return () => ajax$.unsubscribe()
-  }, [])
+    return filteredRaw.reduce<{ x: string[]; y: number[] }>(
+      (o, r) => {
+        o.x.push(new Date(r.date).toDateString())
+        o.y.push(r.mc)
+
+        return o
+      },
+      {
+        x: [],
+        y: [],
+      },
+    )
+  }, [chartsRaw])
 
   useEffect(() => {
-    if (chart.instance) {
+    if (axis.x.length && axis.y.length && chart.instance) {
       chart.instance.setOption({
-        textStyle: {
-          color: 'rgba(255, 255, 255, 0.7)',
+        tooltip: {
+          axisPointer: {
+            type: 'cross',
+          },
+          trigger: 'axis',
         },
-        backgroundColor: '#2c343c',
-        grid: {
-          left: '5%',
-          right: 0,
-          top: '3%',
-          bottom: '5%',
-        },
-
+        dataZoom: [
+          {
+            type: 'inside',
+          },
+        ],
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          boundaryGap: false,
+          data: axis.x,
         },
         yAxis: {
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: '#555',
-              width: 1,
-            },
-          },
           type: 'value',
+          min: 7_000,
+          max: 13_000,
+          boundaryGap: false,
         },
         series: [
           {
-            data: [320, 932, 901, 934, 1290, 1330, 1320],
+            symbolSize: 10,
             type: 'line',
-            lineStyle: {
-              color: 'yellow',
-              width: 2,
-            },
+            data: axis.y,
           },
         ],
       })
     }
-  }, [chart])
+  }, [axis, chart.instance])
+
+  const ajaxSub = useObservable(($e) =>
+    $e.pipe(
+      switchMap(() => ajax(`/api/stock`)),
+      tap(({ response }) => {
+        const raw: Response[] = response
+        setChartsRaw(raw)
+      }),
+    ),
+  )
+
+  useEffect(() => {
+    ajaxSub.next()
+  }, [ajaxSub])
 
   return (
     <Div>
@@ -216,10 +238,7 @@ const Demo: NextPage<Props> = () => {
         <title>Demo - Page</title>
       </Head>
 
-      <div>
-        <h2>SEO Content</h2>
-        {chart.el}
-      </div>
+      <div>{chart.el}</div>
 
       <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>

@@ -1,11 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
-import echarts, { ECharts } from 'echarts/lib/echarts'
-
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/bar'
-import 'zrender/lib/svg/svg'
+import echarts, { ECharts } from 'echarts'
 
 const Div = styled.div<{ heightRatio: number }>`
   ${(p) => css`
