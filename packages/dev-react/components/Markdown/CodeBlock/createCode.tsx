@@ -19,6 +19,7 @@ import { CopyIcon } from './Copy'
 const Title = styled.div`
   ${() => css`
     margin-left: auto;
+    font-size: 0.6rem;
   `}
 `
 
@@ -109,10 +110,6 @@ const Div = styled.div<{ isDay: boolean }>`
       :hover {
         background: ${p.isDay ? '#fff' : '#000'};
       }
-    }
-
-    ${ToolBar} {
-      border-color: ${p.isDay ? '#ddd' : '#555'};
     }
   `}
 `
