@@ -90,7 +90,6 @@ const ToolBar = styled.div`
     display: flex;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border-bottom: 1px solid transparent;
     padding: 12px 20px;
     justify-content: space-between;
   `}

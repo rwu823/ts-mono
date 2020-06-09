@@ -45,7 +45,7 @@
     "build": "rm -rf out && run-p build:* && cp README.md package.json out"
   },
   "devDependencies": {
-    "eslint-plugin-import": "2.21.0",
+    "eslint-plugin-import": "2.21.1",
     "lint-staged": "10.2.9",
     "typescript": "3.9.5"
   }

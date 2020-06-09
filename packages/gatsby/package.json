@@ -23,7 +23,7 @@
     "gatsby-plugin-typescript": "2.4.4",
     "gatsby-source-filesystem": "2.3.10",
     "netlify-cms-app": "2.12.14",
-    "react-helmet": "6.0.0"
+    "react-helmet": "6.1.0"
   },
   "keywords": [
     "blog"

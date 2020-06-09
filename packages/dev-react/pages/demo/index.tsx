@@ -100,6 +100,18 @@ const initState = {
 
 type State = typeof initState
 
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+
+  > * {
+    padding: 0 2em;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+`
+
 const Demo: NextPage<Props> = () => {
   const { $t } = useIntl(langs)
   const size = useWindowSize()
@@ -237,7 +249,11 @@ const Demo: NextPage<Props> = () => {
       <Head>
         <title>Demo - Page</title>
       </Head>
-
+      <Flex>
+        {[...Array(130)].map((_, i) => (
+          <div>{i}</div>
+        ))}
+      </Flex>
       <div>{chart.el}</div>
 
       <h2>Immer Sample {JSON.stringify(size)}</h2>
