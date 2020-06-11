@@ -10,17 +10,20 @@ import { useImmer } from 'use-immer'
 
 import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
 import { useModal } from '@ts-mono/dev-react/components/Modal'
-import ScrollBottom, {
-  Props as ScrollBottomProps,
-} from '@ts-mono/dev-react/components/ScrollBottom'
+
 import * as state from '@ts-mono/dev-react/state'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
 import { ajax } from 'rxjs/ajax'
+import { forkJoin } from 'rxjs'
 
 import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
 import { EChartOption } from 'echarts'
-import { useObservable, useWindowSize } from '../../hooks'
+import {
+  useIntersectionObserver,
+  useObservable,
+  useWindowSize,
+} from '../../hooks'
 import { useECharts } from '../../hooks/useECharts'
 import langs from './langs'
 
@@ -89,6 +92,7 @@ const Button = () => {
 }
 
 const initState = {
+  once: true,
   name: 'Rocky',
   list: [...Array(200)],
   age: 30,
@@ -115,8 +119,17 @@ const Flex = styled.div`
 const Demo: NextPage<Props> = () => {
   const { $t } = useIntl(langs)
   const size = useWindowSize()
-
   const [state, setState] = useImmer<State>(initState)
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('reset once')
+      setState((draft) => {
+        draft.once = false
+      })
+    }, 5000)
+  }, [setState])
+  const ob = useIntersectionObserver(state.once)
 
   const updateName = useCallback<
     React.MouseEventHandler<HTMLButtonElement>
@@ -134,17 +147,6 @@ const Demo: NextPage<Props> = () => {
     })
   }, [setState])
 
-  const onBottom = useCallback<ScrollBottomProps['onBottom']>(
-    (isBottom: boolean) => {
-      if (isBottom) {
-        setState((draft) => {
-          draft.list = [...draft.list, ...[...Array(100)]]
-        })
-      }
-    },
-    [setState, state.list],
-  )
-
   const chart = useECharts()
 
   type Response = {
@@ -157,20 +159,6 @@ const Demo: NextPage<Props> = () => {
   }
 
   const [chartsRaw, setChartsRaw] = useState<Response[]>([])
-
-  useEffect(() => {
-    setTimeout(() => {
-      setChartsRaw((raw) => {
-        return [
-          ...raw,
-          {
-            date: new Date('2020-06-17T12:00:00+08:00').getTime(),
-            mc: 12_222,
-          },
-        ]
-      })
-    }, 5000)
-  }, [setChartsRaw])
 
   const axis = useMemo(() => {
     const filteredRaw = chartsRaw.filter((r) => {
@@ -244,6 +232,7 @@ const Demo: NextPage<Props> = () => {
     ajaxSub.next()
   }, [ajaxSub])
 
+  console.log(ob.isIntersecting)
   return (
     <Div>
       <Head>
@@ -260,7 +249,7 @@ const Demo: NextPage<Props> = () => {
       <pre>{JSON.stringify(state)}</pre>
       <button onClick={updateName}>click name</button>
       <button onClick={updateAddr}>click addr</button>
-      <h2>Formik Demo</h2>
+      <h2 ref={ob.ref}>Formik Demo</h2>
       <Form
         initialValues={initialValues}
         onSubmit={(val) => {
@@ -275,11 +264,6 @@ const Demo: NextPage<Props> = () => {
       </Link>
 
       <Button />
-      <ScrollBottom onBottom={onBottom}>
-        {state.list.map((_, i) => (
-          <div key={`id-${i}`}>{i}</div>
-        ))}
-      </ScrollBottom>
     </Div>
   )
 }

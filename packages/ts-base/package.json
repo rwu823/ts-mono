@@ -7,8 +7,8 @@
   "main": "index.js",
   "dependencies": {
     "@ts-mono/eslint-config": "rwu823/ts-mono#pkg/eslint-config",
-    "@types/jest": "25.2.3",
-    "@types/node": "14.0.12",
+    "@types/jest": "26.0.0",
+    "@types/node": "14.0.13",
     "chalk": "4.1.0",
     "fast-glob": "3.2.2",
     "husky": "4.2.5",

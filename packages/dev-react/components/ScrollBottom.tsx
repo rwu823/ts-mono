@@ -33,7 +33,8 @@ const ScrollBottom: React.FC<Props & React.DOMAttributes<HTMLDivElement>> = ({
   useEffect(() => {
     // eslint-disable-next-line compat/compat
     const observer = new IntersectionObserver(([entry]) => {
-      if (onBottom) onBottom(entry.isIntersecting)
+      if (onBottom)
+        onBottom(entry.isIntersecting || entry.intersectionRatio > 0)
     })
 
     const el = flagRef.current
@@ -41,7 +42,7 @@ const ScrollBottom: React.FC<Props & React.DOMAttributes<HTMLDivElement>> = ({
     if (el) {
       observer.observe(el)
 
-      return () => observer.unobserve(el)
+      return () => observer.disconnect()
     }
   }, [onBottom])
 
