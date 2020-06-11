@@ -1,35 +1,38 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const useIntersectionObserver = <T extends HTMLElement>(
-  once = false,
+  onceIntersectingOrThreshold?: boolean | IntersectionObserverInit['threshold'],
 ) => {
   const ref = useRef<T>(null)
+  const ioRef = useRef<IntersectionObserver>()
+  const optionsRef = useRef<IntersectionObserverInit>({})
+  const [entry, setEntry] = useState<IntersectionObserverEntry>()
 
-  const [isIntersecting, setIsIntersecting] = useState(false)
+  const isOnce = typeof onceIntersectingOrThreshold === 'boolean'
+
+  if (!isOnce) {
+    optionsRef.current = {
+      threshold: onceIntersectingOrThreshold as IntersectionObserverInit['threshold'],
+    }
+  }
 
   useEffect(() => {
     // eslint-disable-next-line compat/compat
-    const observer = new IntersectionObserver(([entry]) => {
-      const isViewed = entry.isIntersecting || entry.intersectionRatio > 0
-
-      if (once) {
-        if (isViewed) {
-          setIsIntersecting(true)
-          observer.disconnect()
-        }
-      } else {
-        setIsIntersecting(isViewed)
+    ioRef.current = new IntersectionObserver(([e]) => {
+      setEntry(e)
+      if (isOnce && e.intersectionRatio > 0) {
+        ioRef.current?.disconnect()
       }
-    })
+    }, optionsRef.current)
 
     if (ref.current) {
-      observer.observe(ref.current)
+      ioRef.current.observe(ref.current)
     }
 
-    return () => observer.disconnect()
-  }, [once])
+    return () => ioRef.current?.disconnect()
+  }, [isOnce])
 
-  return { ref, isIntersecting }
+  return { ref, entry, instance: ioRef.current }
 }
 
 export default useIntersectionObserver
