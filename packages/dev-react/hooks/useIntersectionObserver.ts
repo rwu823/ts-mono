@@ -8,7 +8,9 @@ export const useIntersectionObserver = <T extends HTMLElement>(
   const optionsRef = useRef<IntersectionObserverInit>({})
   const [entry, setEntry] = useState<IntersectionObserverEntry>()
 
-  const isOnce = typeof onceIntersectingOrThreshold === 'boolean'
+  const isOnce =
+    typeof onceIntersectingOrThreshold === 'boolean' &&
+    onceIntersectingOrThreshold
 
   if (!isOnce) {
     optionsRef.current = {
