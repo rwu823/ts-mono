@@ -43,10 +43,5 @@
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
     "build": "rm -rf out && run-p build:* && cp README.md package.json out"
-  },
-  "devDependencies": {
-    "eslint-plugin-import": "2.21.2",
-    "lint-staged": "10.2.9",
-    "typescript": "3.9.5"
   }
 }
