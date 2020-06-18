@@ -7,7 +7,9 @@ import { PrimitiveType } from 'intl-messageformat'
 export const DEFAULT_LANG = 'en'
 export const SUPPORTED_LANGS = [DEFAULT_LANG, 'zh']
 
-export const intlKeys = <O extends object>(langs: O) => (id: keyof O) => ({
+export const intlKeys = <O extends Record<string, unknown>>(langs: O) => (
+  id: keyof O,
+) => ({
   id,
   defaultMessage: langs[id],
 })
