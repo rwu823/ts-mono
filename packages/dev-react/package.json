@@ -33,7 +33,7 @@
     "react-intl": "4.6.9",
     "react-markdown": "4.3.1",
     "react-svg-loader": "3.0.3",
-    "recoil": "0.0.8",
+    "recoil": "0.0.10",
     "rxjs": "6.5.5",
     "use-immer": "0.4.0"
   },

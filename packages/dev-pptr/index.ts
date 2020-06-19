@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer-core'
 
 import example from './pages/example'
 import rent591 from './pages/rent591'
+import stock from './pages/stock'
 import { cron } from './utils'
 
 const { NODE_ENV = 'development' } = process.env
@@ -34,18 +35,24 @@ puppeteer
       }),
     })
 
-    cron(async () => {
-      const page = await browser.newPage()
+    const page = await browser.newPage()
 
-      return async () => {
-        console.log(`goto 591 ${new Date()}`)
-        const newObjects = await rent591(page)
+    const ids = await stock(page)
+    console.log(ids)
+    await browser.close()
 
-        if (newObjects) {
-          console.log(newObjects)
-        }
-      }
-    }, 30e3)
+    // cron(async () => {
+    //   const page = await browser.newPage()
+
+    //   return async () => {
+    //     console.log(`goto 591 ${new Date()}`)
+    //     const newObjects = await rent591(page)
+
+    //     if (newObjects) {
+    //       console.log(newObjects)
+    //     }
+    //   }
+    // }, 30e3)
 
     // cron(async () => {
     //   const page = await browser.newPage()

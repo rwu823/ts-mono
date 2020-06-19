@@ -232,7 +232,6 @@ const Demo: NextPage<Props> = () => {
     ajaxSub.next()
   }, [ajaxSub])
 
-  console.log(ob.isIntersecting)
   return (
     <Div>
       <Head>
