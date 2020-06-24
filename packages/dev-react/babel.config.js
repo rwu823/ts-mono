@@ -18,10 +18,6 @@ module.exports = (api) => {
         },
       ],
     ],
-    plugins: [
-      '@babel/proposal-optional-chaining',
-      '@babel/proposal-nullish-coalescing-operator',
-      ['styled-components', { displayName: isDev }],
-    ],
+    plugins: [['styled-components', { displayName: isDev }]],
   }
 }
