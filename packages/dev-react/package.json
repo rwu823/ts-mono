@@ -22,7 +22,7 @@
     "core-js": "3.6.5",
     "echarts": "4.8.0",
     "formik": "2.1.4",
-    "graphql": "15.1.0",
+    "graphql": "15.2.0",
     "isomorphic-unfetch": "3.0.0",
     "next": "9.4.4",
     "prismjs": "1.20.0",
