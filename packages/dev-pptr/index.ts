@@ -1,44 +1,47 @@
-import puppeteer from 'puppeteer-core'
+import { chromium } from 'playwright'
 
 import example from './pages/example'
 import rent591 from './pages/rent591'
+
 import stock from './pages/stock'
+
 import { cron } from './utils'
 
 const { NODE_ENV = 'development' } = process.env
 const isDev = NODE_ENV === 'development'
 const isProd = NODE_ENV === 'production'
 
-puppeteer
+chromium
   .launch({
     devtools: true,
     headless: false,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-    ],
-    executablePath:
-      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    slowMo: 250,
+    // executablePath:
+    //   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 
     ...(isProd && {
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+      ],
       devtools: false,
       headless: true,
-      executablePath: '/usr/bin/chromium-browser',
+      slowMo: undefined,
+      // executablePath: '/usr/bin/chromium-browser',
     }),
   })
-  .then(async (Browser) => {
-    const browser = await puppeteer.connect({
-      browserWSEndpoint: Browser.wsEndpoint(),
-      ...(isDev && {
-        slowMo: 250,
-      }),
-    })
+  .then(async (browser) => {
+    // const browser = await puppeteer.connect({
+    //   browserWSEndpoint: Browser.wsEndpoint(),
+    //   ...(isDev && {
+    //     slowMo: 250,
+    //   }),
+    // })
 
-    const page = await browser.newPage()
-
-    const ids = await stock(page)
+    const ids = await stock(browser)
     console.log(ids)
+
     await browser.close()
 
     // cron(async () => {

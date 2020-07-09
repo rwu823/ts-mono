@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 
-import { BrowserCron } from '../types'
+import { ChromiumBrowser } from 'playwright'
+
 import * as api from './apis/notion'
 
 interface NotionBlocks {
@@ -38,7 +39,9 @@ interface Properties {
   title: string[][]
 }
 
-const stock: BrowserCron<string[]> = async (page) => {
+const stock = async (browser: ChromiumBrowser) => {
+  const page = await browser.newPage()
+
   const [res] = await Promise.all([
     api.notion<NotionBlocks>({
       method: 'POST',
