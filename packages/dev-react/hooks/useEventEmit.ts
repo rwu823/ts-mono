@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { BehaviorSubject, Observable, Subject } from 'rxjs'
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -9,7 +9,7 @@ export type Epic<T, Deps> = (
   states$: BehaviorSubject<Deps>,
 ) => Observable<any>
 
-export const useObservable = <
+export const useEventEmit = <
   T = any,
   Deps extends React.DependencyList = React.DependencyList
 >(
@@ -35,7 +35,14 @@ export const useObservable = <
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return subj
+  const emit = useCallback(
+    (value?: T) => {
+      subj.next(value)
+    },
+    [subj],
+  )
+
+  return emit
 }
 
-export default useObservable
+export default useEventEmit

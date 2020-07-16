@@ -17,11 +17,18 @@ import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 import { ajax } from 'rxjs/ajax'
 import { forkJoin } from 'rxjs'
 
-import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators'
+import {
+  debounceTime,
+  filter,
+  map,
+  switchMap,
+  tap,
+  withLatestFrom,
+} from 'rxjs/operators'
 import { EChartOption } from 'echarts'
 import {
+  useEventEmit,
   useIntersectionObserver,
-  useObservable,
   useWindowSize,
 } from '../../hooks'
 import { useECharts } from '../../hooks/useECharts'
@@ -218,20 +225,6 @@ const Demo: NextPage<Props> = () => {
     }
   }, [axis, chart.instance])
 
-  const ajaxSub = useObservable(($e) =>
-    $e.pipe(
-      switchMap(() => ajax(`/api/stock`)),
-      tap(({ response }) => {
-        const raw: Response[] = response
-        setChartsRaw(raw)
-      }),
-    ),
-  )
-
-  useEffect(() => {
-    ajaxSub.next()
-  }, [ajaxSub])
-
   return (
     <Div>
       <Head>
@@ -243,7 +236,7 @@ const Demo: NextPage<Props> = () => {
         ))}
       </Flex>
       <div>{chart.el}</div>
-
+      input
       <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>
       <button onClick={updateName}>click name</button>
@@ -261,7 +254,6 @@ const Demo: NextPage<Props> = () => {
       <Link href="/">
         <a href="/home">go home</a>
       </Link>
-
       <Button />
     </Div>
   )
