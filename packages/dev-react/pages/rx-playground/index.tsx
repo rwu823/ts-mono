@@ -5,6 +5,7 @@ import { NextPage } from 'next'
 import { stringify } from 'query-string'
 import {
   ConnectableObservable,
+  MonoTypeOperatorFunction,
   Observable,
   Subject,
   concat,
@@ -44,50 +45,21 @@ import {
 } from 'rxjs/operators'
 
 import { useObjectState } from '../../hooks'
-
-const obs = new Observable((ob) => {
-  console.log('hi')
-  ob.next(1)
-  ob.next(2)
-
-  setTimeout(() => {
-    ob.next(3)
-
-    setTimeout(() => {
-      ob.next(4)
-      ob.complete()
-    }, 2000)
-  }, 500)
-}).pipe(publish()) as ConnectableObservable<number>
-
-// const sub = new Subject()
-
-obs.subscribe(console.info)
-obs.subscribe(console.info)
-
-obs.connect()
-// obs.subscribe(sub)
-// obs.connect()
-
+import { map1, op2 } from './rx'
 const Div = styled.div`
   ${() => css``}
 `
-interface Error {
-  errorCode: number
-  errorMessage: string
-  errorTitle: string
-}
+timer(0, 1000)
+  .pipe(
+    op2('1'),
+    map((o) => {
+      const x = o.a
+      // o.
 
-interface User {
-  pushLiveStream: number
-  userID: string
-  openID: string
-  displayName: string
-  name: string
-  bio: string
-  picture: string
-  website: string
-}
+      return o
+    }),
+  )
+  .subscribe(console.info)
 
 type Props = React.DOMAttributes<HTMLDivElement>
 const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
