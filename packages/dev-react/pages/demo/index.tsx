@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { customRandom, nanoid, urlAlphabet } from 'nanoid'
 
 import { useImmer } from 'use-immer'
 
@@ -15,7 +16,14 @@ import * as state from '@ts-mono/dev-react/state'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
 import { ajax } from 'rxjs/ajax'
-import { forkJoin } from 'rxjs'
+import { forkJoin, of } from 'rxjs'
+import {
+  pluckCurrentTargetValue,
+  useObservable,
+  useObservableCallback,
+  useObservableState,
+  useSubscription,
+} from 'observable-hooks'
 
 import {
   debounceTime,
@@ -28,6 +36,7 @@ import {
 import { EChartOption } from 'echarts'
 import {
   useEventEmit,
+  useInput,
   useIntersectionObserver,
   useWindowSize,
 } from '../../hooks'
@@ -37,6 +46,9 @@ import langs from './langs'
 const Div = styled.div`
   ${() => css``}
 `
+
+// console.info([...Array(10)].map(() => customRandom(urlAlphabet, 10)))
+
 type Props = unknown
 
 const ModalDiv = styled.div`
@@ -224,12 +236,39 @@ const Demo: NextPage<Props> = () => {
       })
     }
   }, [axis, chart.instance])
+  const input = useInput()
+
+  const [data, fetchData] = useObservableState<
+    { name: string; age: number },
+    string
+  >(
+    (text$) =>
+      text$.pipe(
+        debounceTime(500),
+        map((name) => {
+          return {
+            name,
+            age: 18,
+          }
+        }),
+      ),
+    {
+      name: 'rocky',
+      age: 23,
+    },
+  )
+
+  // useEffect(() => {
+  //   fetchData(input.value)
+  // }, [input.value, fetchData])
 
   return (
     <Div>
       <Head>
         <title>Demo - Page</title>
       </Head>
+      {input.value} - {JSON.stringify(data)}
+      <input {...input.props} />
       <Flex>
         {[...Array(130)].map((_, i) => (
           <div>{i}</div>

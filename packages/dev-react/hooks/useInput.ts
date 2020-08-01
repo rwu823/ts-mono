@@ -1,25 +1,27 @@
-import React from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 
 export const useInput = (defaultValue = '') => {
-  const [value, setValue] = React.useState(defaultValue)
-  const ref = React.useRef<HTMLInputElement>(null)
-  const onChange = React.useCallback<
-    React.ChangeEventHandler<HTMLInputElement>
-  >((ev) => {
-    setValue(ev.currentTarget.value)
-  }, [])
+  const [value, setValue] = useState(defaultValue)
+  const ref = useRef<HTMLInputElement>(null)
+  const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    (ev) => {
+      setValue(ev.currentTarget.value)
+    },
+    [],
+  )
 
-  const focus = React.useCallback(() => {
+  const focus = useCallback(() => {
     if (ref.current) {
       ref.current.focus()
     }
   }, [])
 
-  const clean = React.useCallback(() => {
+  const clean = useCallback(() => {
     setValue('')
   }, [])
 
   return {
+    value,
     props: {
       ref,
       onChange,
