@@ -7,17 +7,17 @@
   "main": "index.js",
   "dependencies": {
     "@ts-mono/eslint-config": "rwu823/ts-mono#pkg/eslint-config",
-    "@types/jest": "26.0.9",
-    "@types/node": "14.0.27",
+    "@types/jest": "26.0.10",
+    "@types/node": "14.6.0",
     "chalk": "4.1.0",
     "fast-glob": "3.2.4",
     "husky": "4.2.5",
-    "jest": "26.4.0",
+    "jest": "26.4.1",
     "lint-staged": "10.2.11",
     "ts-jest": "26.2.0",
     "ts-node": "8.10.2",
     "tsconfig-paths": "3.9.0",
-    "typescript": "3.9.7"
+    "typescript": "4.0.2"
   },
   "scripts": {
     "build": "rm -rf out node_modules/.tsbuildinfo && tsc && cp -r bin scripts $(node scripts/cp) out"
