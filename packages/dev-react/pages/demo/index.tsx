@@ -1,15 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styled, { css } from 'styled-components'
-// import { useRecoilState } from 'recoil'
 
-import { NextPage } from 'next'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { customRandom, nanoid, urlAlphabet } from 'nanoid'
 
 import { useImmer } from 'use-immer'
 
+import { gql } from '@apollo/client'
+
 import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
+import { initializeApollo } from '@ts-mono/dev-react/apollo'
 import { useModal } from '@ts-mono/dev-react/components/Modal'
 
 import * as state from '@ts-mono/dev-react/state'
@@ -135,11 +137,11 @@ const Flex = styled.div`
   }
 `
 
-const Demo: NextPage<Props> = () => {
-  const { $t } = useIntl(langs)
+const Demo: React.FC<Props> = (props) => {
+  // const { $t } = useIntl(langs)
   const size = useWindowSize()
   const [state, setState] = useImmer<State>(initState)
-
+  console.info(111, props)
   useEffect(() => {
     setTimeout(() => {
       console.log('reset once')
@@ -148,7 +150,7 @@ const Demo: NextPage<Props> = () => {
       })
     }, 5000)
   }, [setState])
-  const ob = useIntersectionObserver(state.once)
+  const ob = useIntersectionObserver<HTMLHeadingElement>(state.once)
 
   const updateName = useCallback<
     React.MouseEventHandler<HTMLButtonElement>
@@ -265,7 +267,7 @@ const Demo: NextPage<Props> = () => {
   return (
     <Div>
       <Head>
-        <title>Demo - Page</title>
+        <title>Demo - Page {props.initialApolloState.name}</title>
       </Head>
       {input.value} - {JSON.stringify(data)}
       <input {...input.props} />
@@ -289,7 +291,6 @@ const Demo: NextPage<Props> = () => {
         }}
         component={Fields}
       />
-      {$t('hello.world')}
       <Link href="/">
         <a href="/home">go home</a>
       </Link>
@@ -297,7 +298,39 @@ const Demo: NextPage<Props> = () => {
     </Div>
   )
 }
+export const allPostsQueryVars = {
+  skip: 0,
+  first: 10,
+}
 
-export default withIntl(Demo, {
-  langs: [langs],
-})
+export const ALL_POSTS_QUERY = gql`
+  query allPosts($first: Int!, $skip: Int!) {
+    allPosts(orderBy: { createdAt: desc }, first: $first, skip: $skip) {
+      id
+      title
+      votes
+      url
+      createdAt
+    }
+    _allPostsMeta {
+      count
+    }
+  }
+`
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: ALL_POSTS_QUERY,
+    variables: allPostsQueryVars,
+  })
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+    revalidate: 1,
+  }
+}
+
+export default Demo

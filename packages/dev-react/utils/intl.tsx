@@ -98,10 +98,10 @@ export type HOCInject = <Props>(
   configs: {
     langs: Lang[]
   },
-) => NextPage<Omit<Props, keyof WithIntlProps>>
+) => React.FC<Omit<Props, keyof WithIntlProps>>
 
 export const withIntl: HOCInject = (Component, { langs }) => {
-  const WithIntl: NextPage<any> = ({ locale, ...props }) => {
+  const WithIntl: React.FC<any> = ({ locale, ...props }) => {
     const displayName = Component.displayName || Component.name || 'Component'
 
     Component.displayName = `withIntl(${displayName})`

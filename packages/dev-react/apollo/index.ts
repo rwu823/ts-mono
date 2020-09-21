@@ -1,2 +1,1 @@
-export * from './withApollo'
-export * from './createApolloClient'
+export * from './useApollo'

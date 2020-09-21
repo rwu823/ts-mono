@@ -62,7 +62,7 @@ timer(0, 1000)
   .subscribe(console.info)
 
 type Props = React.DOMAttributes<HTMLDivElement>
-const RxPlayground: NextPage<Props> = ({ children, ...props }) => {
+const RxPlayground: React.FC<Props> = ({ children, ...props }) => {
   const [s, set] = useObjectState({
     value: '',
     isLoading: false,
