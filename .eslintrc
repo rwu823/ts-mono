@@ -6,7 +6,7 @@
     "react-hooks",
     "import",
     "jsx-a11y",
-    "@typescript-eslint"
+    // "@typescript-eslint"
   ],
   "extends": [
     "airbnb",
@@ -14,7 +14,7 @@
     "plugin:compat/recommended",
     "prettier",
     "prettier/react",
-    "plugin:@typescript-eslint/recommended"
+    // "plugin:@typescript-eslint/recommended"
   ],
   "env": {
     "browser": true,
@@ -36,10 +36,10 @@
     "globalThis": "readonly"
   },
   "rules": {
-    "@typescript-eslint/no-unused-expressions": [2, {"allowTaggedTemplates": true}],
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/no-unused-vars": 0,
-    "@typescript-eslint/no-explicit-any": 0,
+    // "@typescript-eslint/no-unused-expressions": [2, {"allowTaggedTemplates": true}],
+    // "@typescript-eslint/explicit-module-boundary-types": 0,
+    // "@typescript-eslint/no-unused-vars": 0,
+    // "@typescript-eslint/no-explicit-any": 0,
 
     "prettier/prettier": 2,
 

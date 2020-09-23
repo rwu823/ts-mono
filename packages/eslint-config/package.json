@@ -6,7 +6,6 @@
     "build": "rm -rf out && mkdir out && cp ./*.* ../../.eslintrc out"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "4.2.0",
     "@typescript-eslint/parser": "4.2.0",
     "eslint": "7.9.0",
     "eslint-config-airbnb": "18.2.0",
