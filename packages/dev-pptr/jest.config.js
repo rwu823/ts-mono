@@ -1,3 +1,9 @@
 module.exports = {
-  preset: 'ts-jest-puppeteer',
+  preset: 'jest-playwright-preset',
+
+  globals: {
+    'ts-jest': {
+      diagnostics: false,
+    },
+  },
 }
