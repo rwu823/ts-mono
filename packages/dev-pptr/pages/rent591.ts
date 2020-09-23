@@ -1,4 +1,4 @@
-import { BrowserCron } from '../types'
+import { ChromiumBrowser } from 'playwright'
 
 declare const $: JQueryStatic
 
@@ -12,9 +12,8 @@ type RectObject = {
 
 let oldObjectList = {}
 
-const rent591: BrowserCron<null | {
-  [id: string]: RectObject
-}> = async (page) => {
+const rent591 = async (browser: ChromiumBrowser) => {
+  const page = await browser.newPage()
   await page.goto(
     'https://rent.591.com.tw/?kind=1&region=1&section=5&rentprice=,40000&area=20,&shape=2,1',
   )
@@ -39,7 +38,7 @@ const rent591: BrowserCron<null | {
         const $price = $(ul).find('.price i')
 
         const id = ($a
-          .attr('href')!
+          .attr('href')
           .trim()
           .match(/(\d+)\.html$/) || [])[1]
 

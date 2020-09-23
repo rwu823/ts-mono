@@ -1,6 +1,6 @@
 export const cron = async (
   func: () => Promise<() => Promise<void>>,
-  timeout: number = 0,
+  timeout = 0,
 ) => {
   const job = await func()
 

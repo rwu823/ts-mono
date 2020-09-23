@@ -1,6 +1,5 @@
 import { chromium } from 'playwright'
 
-import example from './pages/example'
 import rent591 from './pages/rent591'
 
 import stock from './pages/stock'
