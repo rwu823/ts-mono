@@ -141,7 +141,7 @@ const Demo: React.FC<Props> = (props) => {
   // const { $t } = useIntl(langs)
   const size = useWindowSize()
   const [state, setState] = useImmer<State>(initState)
-  console.info(111, props)
+
   useEffect(() => {
     setTimeout(() => {
       console.log('reset once')
@@ -260,10 +260,6 @@ const Demo: React.FC<Props> = (props) => {
     },
   )
 
-  // useEffect(() => {
-  //   fetchData(input.value)
-  // }, [input.value, fetchData])
-
   return (
     <Div>
       <Head>
@@ -273,7 +269,7 @@ const Demo: React.FC<Props> = (props) => {
       <input {...input.props} />
       <Flex>
         {[...Array(130)].map((_, i) => (
-          <div>{i}</div>
+          <div key={i}>{i}</div>
         ))}
       </Flex>
       <div>{chart.el}</div>

@@ -26,8 +26,8 @@
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx"
   },
   "devDependencies": {
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "sh-exec": "2.1.0",
     "styled-components": "5.2.0"
   }
