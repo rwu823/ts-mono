@@ -14,7 +14,6 @@ import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
 import { initializeApollo } from '@ts-mono/dev-react/apollo'
 import { useModal } from '@ts-mono/dev-react/components/Modal'
 
-import * as state from '@ts-mono/dev-react/state'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
 import { ajax } from 'rxjs/ajax'
