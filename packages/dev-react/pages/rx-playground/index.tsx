@@ -20,6 +20,7 @@ import {
   bufferTime,
   catchError,
   combineLatest,
+  concatAll,
   concatMap,
   debounceTime,
   delay,
@@ -28,6 +29,7 @@ import {
   filter,
   map,
   mapTo,
+  mergeAll,
   mergeMap,
   multicast,
   publish,
@@ -41,6 +43,7 @@ import {
   takeUntil,
   takeWhile,
   tap,
+  toArray,
   withLatestFrom,
 } from 'rxjs/operators'
 
@@ -49,17 +52,6 @@ import { map1, op2 } from './rx'
 const Div = styled.div`
   ${() => css``}
 `
-timer(0, 1000)
-  .pipe(
-    op2('1'),
-    map((o) => {
-      const x = o.a
-      // o.
-
-      return o
-    }),
-  )
-  .subscribe(console.info)
 
 type Props = React.DOMAttributes<HTMLDivElement>
 const RxPlayground: React.FC<Props> = ({ children, ...props }) => {

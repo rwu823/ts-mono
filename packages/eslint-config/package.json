@@ -6,9 +6,9 @@
     "build": "rm -rf out && mkdir out && cp ./*.* ../../.eslintrc out"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "4.6.0",
-    "eslint": "7.12.1",
-    "eslint-config-airbnb": "18.2.0",
+    "@typescript-eslint/parser": "4.8.2",
+    "eslint": "7.14.0",
+    "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-compat": "3.8.0",
     "eslint-plugin-import": "2.22.1",
@@ -16,6 +16,6 @@
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
-    "prettier": "2.1.2"
+    "prettier": "2.2.0"
   }
 }
