@@ -26,11 +26,7 @@
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx"
   },
   "devDependencies": {
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "sh-exec": "2.1.0",
-    "styled-components": "5.2.1",
-    "@typescript-eslint/parser": "4.8.2",
+    "@typescript-eslint/parser": "4.9.0",
     "eslint": "7.14.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "6.15.0",
@@ -40,6 +36,10 @@
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
-    "prettier": "2.2.0"
+    "prettier": "2.2.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "sh-exec": "2.1.0",
+    "styled-components": "5.2.1"
   }
 }

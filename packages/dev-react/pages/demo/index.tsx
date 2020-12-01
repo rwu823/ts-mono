@@ -266,12 +266,7 @@ const Demo: React.FC<Props> = (props) => {
       </Head>
       {input.value} - {JSON.stringify(data)}
       <input {...input.props} />
-      <Flex>
-        {[...Array(130)].map((_, i) => (
-          <div key={i}>{i}</div>
-        ))}
-      </Flex>
-      <div>{chart.el}</div>
+      <span>{chart.el}</span>
       input
       <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>

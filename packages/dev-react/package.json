@@ -23,7 +23,7 @@
     "formik": "2.2.5",
     "graphql": "15.4.0",
     "isomorphic-unfetch": "3.1.0",
-    "nanoid": "3.1.18",
+    "nanoid": "3.1.19",
     "next": "10.0.3",
     "observable-hooks": "3.1.2",
     "prismjs": "1.22.0",
