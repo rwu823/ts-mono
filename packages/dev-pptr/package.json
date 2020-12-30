@@ -5,12 +5,12 @@
     "init-dev-pptr": "bin/init-dev-pptr"
   },
   "dependencies": {
-    "axios": "0.21.0",
-    "jest-playwright-preset": "1.4.1",
-    "playwright": "1.6.2"
+    "axios": "0.21.1",
+    "jest-playwright-preset": "1.4.2",
+    "playwright": "1.7.1"
   },
   "devDependencies": {
-    "@types/jquery": "3.5.4"
+    "@types/jquery": "3.5.5"
   },
   "scripts": {
     "dev": "ts-node .",
