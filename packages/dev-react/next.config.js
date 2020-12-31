@@ -1,11 +1,4 @@
-// const withTypescript = require('@zeit/next-typescript')
-
-// const withMDX = require('@next/mdx')({
-//   extension: /\.mdx?$/,
-// })
-
-module.exports = {
-  assetPrefix: './',
+module.exports = (phase, { defaultConfig }) => ({
   pageExtensions: ['tsx', 'ts', 'mdx'],
   webpack(config, options) {
     // config.resolve.mainFields = ['module', 'main', 'browser']
@@ -22,11 +15,11 @@ module.exports = {
         test: /\.md$/,
         use: 'raw-loader',
       },
-      // {
-      //   test: /\.tsx?$/,
-      //   include: undefined,
-      //   use: [options.defaultLoaders.babel],
-      // },
+      {
+        test: /\.tsx?$/,
+        include: undefined,
+        use: [options.defaultLoaders.babel],
+      },
       {
         test: /\.mdx$/,
         use: [options.defaultLoaders.babel, '@mdx-js/loader'],
@@ -50,4 +43,4 @@ module.exports = {
     )
     return config
   },
-}
+})
