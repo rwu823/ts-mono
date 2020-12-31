@@ -27,7 +27,7 @@
     "next": "10.0.4",
     "observable-hooks": "3.1.2",
     "prismjs": "1.22.0",
-    "query-string": "6.13.7",
+    "query-string": "6.13.8",
     "raw-loader": "4.0.2",
     "react-intl": "5.10.9",
     "react-markdown": "5.0.3",
@@ -41,5 +41,8 @@
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
     "build": "rm -rf out && run-p build:* && cp README.md package.json out"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "7.22.0"
   }
 }
