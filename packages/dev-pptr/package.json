@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "axios": "0.21.1",
-    "jest-playwright-preset": "1.4.2",
+    "jest-playwright-preset": "1.4.3",
     "playwright": "1.7.1"
   },
   "devDependencies": {
