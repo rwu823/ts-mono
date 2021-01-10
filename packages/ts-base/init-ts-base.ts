@@ -81,6 +81,7 @@ module.exports = {
     } else {
       write(
         `${stringify({
+          root: true,
           extends: [`@ts-mono`],
         })}`,
       ).to('.eslintrc')
