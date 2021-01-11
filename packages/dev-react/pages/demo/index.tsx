@@ -1,23 +1,13 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import styled, { css } from 'styled-components'
-
+import { gql } from '@apollo/client'
+import { initializeApollo } from '@ts-mono/dev-react/apollo'
+import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
+import { useModal } from '@ts-mono/dev-react/components/Modal'
+import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
+import { EChartOption } from 'echarts'
+import { customRandom, nanoid, urlAlphabet } from 'nanoid'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { customRandom, nanoid, urlAlphabet } from 'nanoid'
-
-import { useImmer } from 'use-immer'
-
-import { gql } from '@apollo/client'
-
-import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
-import { initializeApollo } from '@ts-mono/dev-react/apollo'
-import { useModal } from '@ts-mono/dev-react/components/Modal'
-
-import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
-
-import { ajax } from 'rxjs/ajax'
-import { forkJoin, of } from 'rxjs'
 import {
   pluckCurrentTargetValue,
   useObservable,
@@ -25,7 +15,9 @@ import {
   useObservableState,
   useSubscription,
 } from 'observable-hooks'
-
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { forkJoin, of } from 'rxjs'
+import { ajax } from 'rxjs/ajax'
 import {
   debounceTime,
   filter,
@@ -34,7 +26,9 @@ import {
   tap,
   withLatestFrom,
 } from 'rxjs/operators'
-import { EChartOption } from 'echarts'
+import styled, { css } from 'styled-components'
+import { useImmer } from 'use-immer'
+
 import {
   useEventEmit,
   useInput,
@@ -64,38 +58,37 @@ const initialValues = {
   age: 23,
 }
 
-const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => {
-  return (
-    <>
-      <pre>{JSON.stringify(values, null, 2)}</pre>
-      <Input name="name" isRequired />
-      <Input
-        type="number"
-        name="age"
-        onChange={(_, { setValue, value }) => {
-          let n = +value || 0
+const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => (
+  <>
+    <pre>{JSON.stringify(values, null, 2)}</pre>
+    <Input name="name" isRequired />
+    <Input
+      type="number"
+      name="age"
+      onChange={(_, { setValue, value }) => {
+        let n = +value || 0
 
-          n = Math.max(-2, Math.min(99, n))
-          setValue(n)
-        }}
-      />
+        n = Math.max(-2, Math.min(99, n))
+        setValue(n)
+      }}
+    />
 
-      <button type="submit">Submit</button>
-    </>
-  )
-}
+    <button type="submit">Submit</button>
+  </>
+)
 
 const Button = () => {
   const modal = useModal()
 
-  const Content = useMemo(() => {
-    return (
+  const Content = useMemo(
+    () => (
       <ModalDiv>
         hello form modal!!!
         <button onClick={modal.close}>close</button>
       </ModalDiv>
-    )
-  }, [modal.close])
+    ),
+    [modal.close],
+  )
 
   return (
     <button
@@ -246,12 +239,10 @@ const Demo: React.FC<Props> = (props) => {
     (text$) =>
       text$.pipe(
         debounceTime(500),
-        map((name) => {
-          return {
-            name,
-            age: 18,
-          }
-        }),
+        map((name) => ({
+          name,
+          age: 18,
+        })),
       ),
     {
       name: 'rocky',

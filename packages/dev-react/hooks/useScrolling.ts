@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+
 export const useScrolling = (time = 250) => {
   const [isScrolling, setScrolling] = useState(false)
   const t = useRef(0)

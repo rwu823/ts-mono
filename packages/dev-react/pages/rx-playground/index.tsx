@@ -1,21 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
-import styled, { css } from 'styled-components'
 import { NextPage } from 'next'
-
 import { stringify } from 'query-string'
+import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import {
-  ConnectableObservable,
-  MonoTypeOperatorFunction,
-  Observable,
-  Subject,
   concat,
+  ConnectableObservable,
   forkJoin,
   merge,
+  MonoTypeOperatorFunction,
+  Observable,
   of,
+  Subject,
   timer,
 } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
-
 import {
   bufferTime,
   catchError,
@@ -46,9 +43,11 @@ import {
   toArray,
   withLatestFrom,
 } from 'rxjs/operators'
+import styled, { css } from 'styled-components'
 
 import { useObjectState } from '../../hooks'
 import { map1, op2 } from './rx'
+
 const Div = styled.div`
   ${() => css``}
 `

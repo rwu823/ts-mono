@@ -1,11 +1,11 @@
-import { useMemo } from 'react'
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
+import { useMemo } from 'react'
 
 let apolloClient: ApolloClient<{ name: string }>
 
-const createApolloClient = () => {
-  return new ApolloClient({
+const createApolloClient = () =>
+  new ApolloClient({
     ssrMode: !process.browser,
     link: new HttpLink({
       uri: 'https://nextjs-graphql-with-prisma-simple.vercel.app/api', // Server URL (must be absolute)
@@ -21,7 +21,6 @@ const createApolloClient = () => {
       },
     }),
   })
-}
 
 export const initializeApollo = (initialState?: Record<string, any>) => {
   const nextApolloClient = apolloClient ?? createApolloClient()

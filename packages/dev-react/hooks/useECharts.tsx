@@ -1,7 +1,6 @@
+import echarts, { ECharts } from 'echarts'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-
-import echarts, { ECharts } from 'echarts'
 
 const Div = styled.div<{ heightRatio: number }>`
   ${(p) => css`
@@ -35,11 +34,12 @@ export const useECharts = (heightRatio = 9 / 16) => {
     }
   }, [])
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       if (instance) instance.dispose()
-    }
-  }, [instance])
+    },
+    [instance],
+  )
 
   return { instance, el }
 }

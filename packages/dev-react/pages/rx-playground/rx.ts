@@ -1,17 +1,16 @@
 import {
-  ConnectableObservable,
-  MonoTypeOperatorFunction,
-  Observable,
-  OperatorFunction,
-  Subject,
   concat,
+  ConnectableObservable,
   defer,
   forkJoin,
   merge,
+  MonoTypeOperatorFunction,
+  Observable,
   of,
+  OperatorFunction,
+  Subject,
   timer,
 } from 'rxjs'
-
 import { map, mapTo, tap } from 'rxjs/operators'
 
 const customOperator = <T>() =>
@@ -30,7 +29,5 @@ export const map1 = () => map((v: { a: number; b: string }) => `${v.a}+${v.b}`)
 export const op2 = (state: string) => (source$: Observable<number>) =>
   source$.pipe(
     map((n) => ({ o: n, a: state })),
-    map(() => {
-      return { a: '111' }
-    }),
+    map(() => ({ a: '111' })),
   )

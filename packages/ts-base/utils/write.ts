@@ -1,6 +1,6 @@
+import c from 'chalk'
 import { createWriteStream } from 'fs'
 import stream from 'stream'
-import c from 'chalk'
 
 class Write {
   private text: string

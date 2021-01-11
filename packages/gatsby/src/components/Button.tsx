@@ -8,8 +8,8 @@ const StyledButton = styled.button`
 `
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {}
 
-export const Button: React.FC<Props> = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>
-}
+export const Button: React.FC<Props> = ({ children, ...props }) => (
+  <StyledButton {...props}>{children}</StyledButton>
+)
 
 export default Button

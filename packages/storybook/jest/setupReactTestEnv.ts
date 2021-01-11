@@ -1,6 +1,7 @@
+import '@testing-library/jest-dom'
+
 import { render, unmountComponentAtNode } from 'react-dom'
 import { act } from 'react-dom/test-utils'
-import '@testing-library/jest-dom'
 
 let div: HTMLDivElement
 

@@ -9,8 +9,6 @@ export type Props = {}
 const StockPage: React.FC<Props & React.DOMAttributes<HTMLDivElement>> = ({
   children,
   ...props
-}) => {
-  return <Div {...props}>{children}</Div>
-}
+}) => <Div {...props}>{children}</Div>
 
 export default StockPage

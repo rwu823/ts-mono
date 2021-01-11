@@ -26,6 +26,7 @@
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.12.0",
     "@typescript-eslint/parser": "4.12.0",
     "eslint": "7.17.0",
     "eslint-config-airbnb": "18.2.1",

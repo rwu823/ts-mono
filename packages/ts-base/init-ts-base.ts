@@ -1,12 +1,11 @@
-import { basename } from 'path'
 import c from 'chalk'
-
-import g from './utils/glob'
-import write from './utils/write'
-import { parseJSON, stringify } from './utils/JSON'
-import { mkdir, readFile } from './utils/fs'
+import { basename } from 'path'
 
 import packageJSON from './package.json'
+import { mkdir, readFile } from './utils/fs'
+import g from './utils/glob'
+import { parseJSON, stringify } from './utils/JSON'
+import write from './utils/write'
 
 const tsBasePath = `node_modules/${packageJSON.name}`
 

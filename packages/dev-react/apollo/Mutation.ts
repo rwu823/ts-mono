@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+
 import { Mutation } from './types'
 
 export const QUERY_TODO_LIST = gql`

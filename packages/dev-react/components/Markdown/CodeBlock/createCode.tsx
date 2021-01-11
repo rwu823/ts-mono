@@ -1,7 +1,5 @@
-import Prism from 'prismjs'
 // import 'prismjs/plugins/line-highlight/prism-line-highlight.min'
 // import 'prismjs/plugins/line-numbers/prism-line-numbers.min'
-
 import 'prismjs/components/prism-jsx.min'
 import 'prismjs/components/prism-tsx.min'
 import 'prismjs/components/prism-typescript.min'
@@ -9,12 +7,14 @@ import 'prismjs/components/prism-css.min'
 import 'prismjs/components/prism-bash.min'
 import 'prismjs/components/prism-diff.min'
 
+import Prism from 'prismjs'
 import React, { useCallback, useMemo, useState } from 'react'
-import styled, { FlattenSimpleInterpolation, css } from 'styled-components'
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+
 import copy from '../../../share/copy'
+import { CopyIcon } from './Copy'
 import Dark from './dark.theme'
 import White from './white.theme'
-import { CopyIcon } from './Copy'
 
 const Title = styled.div`
   ${() => css`

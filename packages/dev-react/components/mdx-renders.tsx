@@ -1,7 +1,6 @@
-import React from 'react'
-import NextLink from 'next/link'
-
 import { MDXProviderComponents } from '@mdx-js/react'
+import NextLink from 'next/link'
+import React from 'react'
 
 import { Blockquote, Code, CodeBlock, H, Link } from './Markdown'
 import { Meta as TypeCodeMeta } from './Markdown/CodeBlock'

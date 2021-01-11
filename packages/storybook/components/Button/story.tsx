@@ -1,7 +1,6 @@
-import React from 'react'
-
 import { action, actions } from '@storybook/addon-actions'
 import { boolean, number, text } from '@storybook/addon-knobs'
+import React from 'react'
 
 import Button from '.'
 // import page from './doc.mdx'
@@ -30,12 +29,10 @@ normalText.story = {
   },
 }
 
-export const withSomeEmoji = () => {
-  return (
-    <Button {...actions('onClick', 'onMouseOver')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  )
-}
+export const withSomeEmoji = () => (
+  <Button {...actions('onClick', 'onMouseOver')}>
+    <span role="img" aria-label="so cool">
+      😀 😎 👍 💯
+    </span>
+  </Button>
+)

@@ -1,20 +1,20 @@
-import { ApolloClientOptions } from 'apollo-boost'
+import { ApolloClientOptions } from '@apollo/client'
 
-export type Mutation<Variables extends object> = (
-  root: any,
+export type Mutation<Variables extends Record<string, unknown>> = (
+  root: unknown,
   vars: Variables,
   ctx: {
     cache: ApolloClientOptions<{}>['cache']
     getCacheKey: <T>(obj: { __typename: string; id: string | number }) => T
   },
-) => any
+) => unknown
 
 export type Resolver = {
   Query?: {
-    [key: string]: () => any
+    [key: string]: () => unknown
   }
 
   Mutation?: {
-    [key: string]: any
+    [key: string]: unknown
   }
 }

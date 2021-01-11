@@ -50,8 +50,8 @@ type HeadLevel = 1 | 2 | 3 | 4 | 5 | 6
 export const H: React.FunctionComponent<{
   level: HeadLevel
   text?: string
-}> = ({ level, text }) => {
-  return React.createElement(
+}> = ({ level, text }) =>
+  React.createElement(
     `h${level}`,
     {},
     React.createElement(
@@ -65,4 +65,3 @@ export const H: React.FunctionComponent<{
       ].filter(Boolean),
     ),
   )
-}

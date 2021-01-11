@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useReducer } from 'react'
 import styled, { createGlobalStyle, css } from 'styled-components'
+
 import Portal from './Portal'
 
 const ModalBox = styled.div`
@@ -31,6 +32,11 @@ const ModalGlobalStyle = createGlobalStyle`
     overflow: hidden;
   }
 `
+
+enum ActionType {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+}
 
 export type ModalProps = {
   isOpened: boolean
@@ -83,11 +89,6 @@ const Modal: React.FC<ModalProps> = ({
 }
 
 const ModalContext = React.createContext<React.Dispatch<Action>>(() => null)
-
-enum ActionType {
-  OPEN_MODAL,
-  CLOSE_MODAL,
-}
 
 export const useModal = (modalProps: OmitType<ModalProps, 'isOpened'> = {}) => {
   const dispatch = useContext(ModalContext)

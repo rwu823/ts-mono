@@ -1,5 +1,6 @@
 import { readdirSync } from 'fs'
 import sh from 'sh-exec'
+
 import pkgJSON from '../package.json'
 
 const deploymentPackagesSet = new Set(

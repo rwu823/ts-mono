@@ -1,5 +1,5 @@
-import { promisify } from 'util'
 import fs, { PathLike } from 'fs'
+import { promisify } from 'util'
 
 export const readFile = (
   path: PathLike,

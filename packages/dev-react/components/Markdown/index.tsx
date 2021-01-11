@@ -1,18 +1,19 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
 import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import CodeBlock, { createCode } from './CodeBlock'
-import { Code } from './Code'
-import { H } from './H'
+import styled, { css } from 'styled-components'
+
 import { Link } from './A'
 import { Blockquote } from './Blockquote'
+import { Code } from './Code'
+import CodeBlock, { createCode } from './CodeBlock'
+import { H } from './H'
 
-export { createCode, CodeBlock }
+export { CodeBlock, createCode }
 
-export * from './Code'
-export * from './H'
 export * from './A'
 export * from './Blockquote'
+export * from './Code'
+export * from './H'
 
 const renderers: ReactMarkdownProps['renderers'] = {
   link: ({ href, ...props }) => {
@@ -35,9 +36,7 @@ const renderers: ReactMarkdownProps['renderers'] = {
     return this.inlineCode
   },
 
-  code: ({ language, value }) => {
-    return <CodeBlock src={value} language={language} />
-  },
+  code: ({ language, value }) => <CodeBlock src={value} language={language} />,
 
   blockquote: (props) => <Blockquote {...props} />,
 }

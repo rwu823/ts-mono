@@ -29,9 +29,9 @@ export class GA {
 
   private readonly options: GAOptions
 
-  private reTryTimes: number = 0
+  private reTryTimes = 0
 
-  private isScriptLoaded: boolean = false
+  private isScriptLoaded = false
 
   constructor(id: string, options?: GAOptions) {
     this.id = id

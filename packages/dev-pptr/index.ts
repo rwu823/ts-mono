@@ -1,9 +1,7 @@
 import { chromium } from 'playwright'
 
 import rent591 from './pages/rent591'
-
 import stock from './pages/stock'
-
 import { cron } from './utils'
 
 const { NODE_ENV = 'development' } = process.env

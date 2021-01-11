@@ -1,5 +1,6 @@
-import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+
 import GlobalStyle from './GlobalStyle'
 import Header from './Header'
 

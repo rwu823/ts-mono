@@ -68,9 +68,7 @@ const stock = async (browser: ChromiumBrowser) => {
   ])
 
   const myListIDs = Object.values(res.recordMap.block)
-    .map((block) => {
-      return block.value?.properties?.title[0][0]
-    })
+    .map((block) => block.value?.properties?.title[0][0])
     .filter(Boolean)
 
   const stockIDs = await page.$$eval(

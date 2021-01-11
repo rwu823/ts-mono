@@ -1,5 +1,5 @@
-import React from 'react'
 import Head from 'next/head'
+import React from 'react'
 
 type Props = {
   ogImg: string
@@ -9,13 +9,11 @@ type Props = {
 export const FacebookMeta: React.FunctionComponent<Props> = ({
   ogImg,
   ogImgWidth,
-}) => {
-  return (
-    <Head>
-      <meta property="og:image" content={ogImg} />
-      <meta property="og:image:width" content={String(ogImgWidth)} />
-    </Head>
-  )
-}
+}) => (
+  <Head>
+    <meta property="og:image" content={ogImg} />
+    <meta property="og:image:width" content={String(ogImgWidth)} />
+  </Head>
+)
 
 export default FacebookMeta
