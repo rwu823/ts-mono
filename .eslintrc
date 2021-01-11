@@ -4,8 +4,9 @@
   "plugins": [
     "prettier",
     "react-hooks",
-    "import",
-    "jsx-a11y",
+    "simple-import-sort",
+    "import"
+    // "jsx-a11y",
     // "@typescript-eslint"
   ],
   "extends": [
@@ -13,7 +14,7 @@
     "plugin:react-hooks/recommended",
     "plugin:compat/recommended",
     "prettier",
-    "prettier/react",
+    "prettier/react"
     // "plugin:@typescript-eslint/recommended"
   ],
   "env": {
@@ -36,17 +37,24 @@
     "globalThis": "readonly"
   },
   "rules": {
-    // "@typescript-eslint/no-unused-expressions": [2, {"allowTaggedTemplates": true}],
-    // "@typescript-eslint/explicit-module-boundary-types": 0,
-    // "@typescript-eslint/no-unused-vars": 0,
-    // "@typescript-eslint/no-explicit-any": 0,
-
     "prettier/prettier": 2,
 
-    "sort-imports": [2, {
-      "ignoreDeclarationSort": true
-    }],
-    "import/order": [2, {}],
+    "simple-import-sort/imports": 2,
+    "simple-import-sort/exports": 2,
+    "sort-imports": 0,
+    "import/first": 2,
+    "import/newline-after-import": 2,
+    "import/no-duplicates": 2,
+    "import/no-extraneous-dependencies": [0, {"optionalDependencies": true}],
+    "import/prefer-default-export": 0,
+    "import/no-unresolved": 0,
+    "import/no-dynamic-require": 0,
+    "import/extensions": 0,
+
+    // "sort-imports": [2, {
+    //   "ignoreDeclarationSort": true
+    // }],
+    // "import/order": [2, {}],
 
     "no-undef": 0,
     "no-unused-vars": 0,
@@ -62,12 +70,6 @@
     "global-require": 0,
     "consistent-return": 0,
 
-    "import/newline-after-import": 0,
-    "import/no-extraneous-dependencies": [0, {"optionalDependencies": true}],
-    "import/prefer-default-export": 0,
-    "import/no-unresolved": 0,
-    "import/no-dynamic-require": 0,
-    "import/extensions": 0,
 
     "react-hooks/exhaustive-deps": [1, {
       // "enableDangerousAutofixThisMayCauseInfiniteLoops": true
