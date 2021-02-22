@@ -258,7 +258,6 @@ const Demo: React.FC<Props> = (props) => {
       {input.value} - {JSON.stringify(data)}
       <input {...input.props} />
       <span>{chart.el}</span>
-      input
       <h2>Immer Sample {JSON.stringify(size)}</h2>
       <pre>{JSON.stringify(state)}</pre>
       <button onClick={updateName}>click name</button>
