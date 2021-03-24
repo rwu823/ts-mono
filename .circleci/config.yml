@@ -53,11 +53,13 @@ executors:
   node-browsers:
     environment:
       - TZ: Asia/Taipei
+      - PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
     docker:
       - image: circleci/node:latest-browsers
   node:
     environment:
       - TZ: Asia/Taipei
+      - PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
     docker:
       - image: circleci/node
 
@@ -230,8 +232,6 @@ commands:
           type: boolean
           default: false
       description: Checkout sources and install node_modules
-      environment:
-        - PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
       steps:
         - checkout
         - restore_cache:
