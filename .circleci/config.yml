@@ -274,6 +274,7 @@ jobs:
     executor: node-browsers
     steps:
       - init
+      - run: yarn add playwright -W
       - run: yarn workspace @ts-mono/dev-pptr e2e
 
   test:
