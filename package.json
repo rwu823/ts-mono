@@ -1,6 +1,6 @@
 {
   "name": "ts-mono",
-  "version": "4.2.2-21.2.25",
+  "version": "4.2.3-21.3.24",
   "description": "The infrastructure of TypeScript project",
   "private": true,
   "workspaces": [
@@ -18,24 +18,25 @@
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/master --maxWorkers=4",
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
-    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx"
+    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "4.15.2",
-    "@typescript-eslint/parser": "4.15.2",
-    "eslint": "7.20.0",
+    "@typescript-eslint/eslint-plugin": "4.19.0",
+    "@typescript-eslint/parser": "4.19.0",
+    "eslint": "7.22.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-compat": "3.9.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-prettier": "3.3.1",
-    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "prettier": "2.2.1",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "sh-exec": "2.1.0",
     "styled-components": "5.2.1"
   }

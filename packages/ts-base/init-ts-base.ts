@@ -19,6 +19,7 @@ Promise.all([
   g('.gitignore'),
   g('.gitattributes'),
   g('.env.ts'),
+  g('.husky'),
 ]).then(
   async ([
     // tslints,
@@ -31,6 +32,7 @@ Promise.all([
     gitignore,
     gitattr,
     envTs,
+    husky,
   ]) => {
     if (gitignore.length) {
       console.log(`${c.cyan('.gitignore')} is already exist.`)
@@ -113,15 +115,16 @@ module.exports = {
       pkg.scripts = {}
     }
 
-    if (!pkg.husky || !pkg.husky.hooks || !pkg.husky.hooks['pre-commit']) {
-      Object.assign(pkg, {
-        husky: {
-          hooks: {
-            'pre-commit': 'ts-check && lint-staged',
-          },
-        },
-      })
-    }
+    // TODO: for husky v4
+    // if (!pkg.husky || !pkg.husky.hooks || !pkg.husky.hooks['pre-commit']) {
+    //   Object.assign(pkg, {
+    //     husky: {
+    //       hooks: {
+    //         'pre-commit': 'ts-check && lint-staged',
+    //       },
+    //     },
+    //   })
+    // }
 
     if (jestConf.length) {
       console.log(`${c.cyan('jest.config.js')} is already exist.`)
@@ -150,6 +153,17 @@ module.exports = {
       console.log(`${c.cyan(vscode[0])} is already exist.`)
     } else {
       const dir = '.vscode'
+      await mkdir(dir)
+      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
+        const baseFile = basename(file)
+        write(await readFile(file)).to(`${dir}/${baseFile}`)
+      })
+    }
+
+    if (husky.length) {
+      console.log(`${c.cyan(husky[0])} is already exist.`)
+    } else {
+      const dir = '.husky'
       await mkdir(dir)
       ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
         const baseFile = basename(file)

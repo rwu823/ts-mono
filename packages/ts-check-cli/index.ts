@@ -22,6 +22,7 @@ const execa = async (cmd: string): Promise<string> =>
       'exit',
       (code) => {
         spinner.stop()
+
         process.exit(code || 0)
       },
     )

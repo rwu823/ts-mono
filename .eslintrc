@@ -13,8 +13,7 @@
     "airbnb",
     "plugin:react-hooks/recommended",
     "plugin:compat/recommended",
-    "prettier",
-    "prettier/react"
+    "prettier"
     // "plugin:@typescript-eslint/recommended"
   ],
   "env": {

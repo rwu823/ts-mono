@@ -4,9 +4,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
 
   "i18n-ally.localesPaths": [
-    "packages/dev-react/pages/demo/langs",
+    "packages/dev-react/pages/demo/langs"
   ],
 
-  "extensions.ignoreRecommendations": false,
-  "extensions.showRecommendationsOnlyOnDemand": false,
+  "extensions.ignoreRecommendations": false
 }
