@@ -29,6 +29,7 @@
     "raw-loader": "4.0.2",
     "react-intl": "5.13.5",
     "react-markdown": "5.0.3",
+    "react-query": "3.13.0",
     "react-svg-loader": "3.0.3",
     "rxjs": "6.6.6",
     "use-immer": "0.5.1"
