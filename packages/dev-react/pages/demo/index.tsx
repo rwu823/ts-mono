@@ -8,13 +8,6 @@ import { customRandom, nanoid, urlAlphabet } from 'nanoid'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import {
-  pluckCurrentTargetValue,
-  useObservable,
-  useObservableCallback,
-  useObservableState,
-  useSubscription,
-} from 'observable-hooks'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { forkJoin, of } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
