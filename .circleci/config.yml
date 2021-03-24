@@ -234,7 +234,7 @@ commands:
         - checkout
         - restore_cache:
             key: node_modules#{{ checksum "yarn.lock" }}
-        - run: yarn
+        - run: PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright yarn
         - unless:
             condition: << parameters.no_module >>
             steps:
@@ -272,7 +272,6 @@ jobs:
     executor: node-browsers
     steps:
       - init
-      - run: PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright yarn add playwright -W
       - run: yarn workspace @ts-mono/dev-pptr e2e
 
   test:
