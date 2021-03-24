@@ -231,7 +231,7 @@ commands:
           default: false
       description: Checkout sources and install node_modules
       environment:
-        PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
+        - PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
       steps:
         - checkout
         - restore_cache:
