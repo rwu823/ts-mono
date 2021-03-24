@@ -270,6 +270,8 @@ commands:
 jobs:
   e2e:
     executor: node-browsers
+    environment:
+      PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
     steps:
       - init
       - run: yarn workspace @ts-mono/dev-pptr e2e
