@@ -53,13 +53,11 @@ executors:
   node-browsers:
     environment:
       - TZ: Asia/Taipei
-      - PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
     docker:
       - image: circleci/node:latest-browsers
   node:
     environment:
       - TZ: Asia/Taipei
-      - PLAYWRIGHT_BROWSERS_PATH: $HOME/.cache/ms-playwright
     docker:
       - image: circleci/node
 
@@ -274,7 +272,7 @@ jobs:
     executor: node-browsers
     steps:
       - init
-      - run: yarn add playwright -W
+      - run: PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/ms-playwright yarn add playwright -W
       - run: yarn workspace @ts-mono/dev-pptr e2e
 
   test:
