@@ -241,7 +241,7 @@ commands:
               - save_cache:
                   key: node_modules#{{ checksum "yarn.lock" }}
                   paths:
-                    - $HOME/.cache/ms-playwright
+                    - ~/.cache/ms-playwright
                     - node_modules
                     - packages/storybook/node_modules
                     - packages/dev-react/node_modules
