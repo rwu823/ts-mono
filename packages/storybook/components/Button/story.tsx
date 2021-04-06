@@ -1,36 +1,34 @@
-import { action, actions } from '@storybook/addon-actions'
-import { boolean, number, text } from '@storybook/addon-knobs'
+import base from 'paths.macro'
 import React from 'react'
 
+// import  from '@storybook/react'
 import Button from '.'
 // import page from './doc.mdx'
 
 export default {
   component: Button,
-  title: `UI|Button`,
+  title: `${base}/Button`,
 }
 
-export const normalText = () => {
-  const name = text('name', 'James')
-  const age = number('age', 23)
-  const isDone = boolean('done', false)
-  return (
-    <Button onClick={action('clicked')}>
-      {name} - {age} - {String(isDone)}
-    </Button>
-  )
+type NormalTextProps = {
+  name: string
+  age: number
+  isDone: boolean
 }
+export const normalText = ({ name, age, isDone }: NormalTextProps) => (
+  <Button>
+    {name} - {age} - {String(isDone)}
+  </Button>
+)
 
-normalText.story = {
-  parameters: {
-    docs: {
-      // page,
-    },
-  },
-}
+normalText.args = {
+  name: 'James',
+  age: 23,
+  isDone: false,
+} as NormalTextProps
 
 export const withSomeEmoji = () => (
-  <Button {...actions('onClick', 'onMouseOver')}>
+  <Button>
     <span role="img" aria-label="so cool">
       😀 😎 👍 💯
     </span>
