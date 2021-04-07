@@ -1,4 +1,3 @@
-import base from 'paths.macro'
 import React from 'react'
 
 // import  from '@storybook/react'
@@ -7,7 +6,7 @@ import Button from '.'
 
 export default {
   component: Button,
-  title: `${base}/Button`,
+  title: `UI/Button`,
 }
 
 type NormalTextProps = {

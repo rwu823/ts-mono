@@ -5,13 +5,11 @@
     "init-storybook": "bin/init-storybook"
   },
   "dependencies": {
-    "@storybook/addon-centered": "6.0.0-alpha.30",
     "@storybook/addon-essentials": "6.2.3",
     "@storybook/addon-jest": "6.2.3",
     "@storybook/react": "6.2.3",
     "@testing-library/jest-dom": "5.11.10",
-    "@testing-library/react": "11.2.6",
-    "paths.macro": "3.0.1"
+    "@testing-library/react": "11.2.6"
   },
   "scripts": {
     "jest:watch": "jest --json --outputFile=.storybook/jest-test-results.json --watchAll",
