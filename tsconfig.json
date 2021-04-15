@@ -6,6 +6,9 @@
     "**/*.test.ts",
   ],
   "compilerOptions": {
+    "paths": {
+      "@ts-mono/*": ["packages/*"],
+    },
     /* =Strict Type-Checking Options */
     "strict": true,
     "noImplicitUseStrict": true,

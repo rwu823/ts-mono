@@ -6,10 +6,7 @@ type Props = {
   ogImgWidth: number
 }
 
-export const FacebookMeta: React.FunctionComponent<Props> = ({
-  ogImg,
-  ogImgWidth,
-}) => (
+export const FacebookMeta: React.FC<Props> = ({ ogImg, ogImgWidth }) => (
   <Head>
     <meta property="og:image" content={ogImg} />
     <meta property="og:image:width" content={String(ogImgWidth)} />

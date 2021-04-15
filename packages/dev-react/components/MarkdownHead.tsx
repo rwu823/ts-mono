@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-const IconAnchor: React.FunctionComponent = (props) => (
+const IconAnchor: React.FC = (props) => (
   <svg
     viewBox="0 0 1024 1024"
     fill="currentColor"
@@ -47,7 +47,7 @@ const A = styled.a`
 `
 
 type HeadLevel = 1 | 2 | 3 | 4 | 5 | 6
-export const H: React.FunctionComponent<{
+export const MarkdownHead: React.FC<{
   level: HeadLevel
   text?: string
 }> = ({ level, text }) =>

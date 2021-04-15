@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ExternalIcon: React.FunctionComponent = (props) => (
+const ExternalIcon: React.FC = (props) => (
   <svg
     style={{
       width: '1em',
@@ -20,7 +20,7 @@ const ExternalIcon: React.FunctionComponent = (props) => (
   </svg>
 )
 
-export const A = styled.a`
+const A = styled.a`
   background-color: rgba(187, 239, 253, 0.3);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   color: #1a1a1a;
@@ -40,10 +40,10 @@ type Props = {
   external?: boolean
 }
 
-export const Link: React.FunctionComponent<Props> = React.forwardRef<
+export const MarkdownLink: React.FC<Props> = React.forwardRef<
   HTMLAnchorElement,
   Props
->(({ children, external, ...props }, ref) => {
+>(({ children, external = false, ...props }, ref) => {
   if (external)
     return (
       <A ref={ref} {...props} target="_new">
@@ -58,7 +58,3 @@ export const Link: React.FunctionComponent<Props> = React.forwardRef<
     </A>
   )
 })
-
-Link.defaultProps = {
-  external: false,
-}

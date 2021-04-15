@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Code = styled.code`
+export const MarkdownCode = styled.code`
   color: #c7254e;
   background-color: #f9f2f4;
   border: 1px solid #e1e1e8;

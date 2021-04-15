@@ -14,10 +14,10 @@ import 'prismjs/components/prism-diff.min'
 import React, { useCallback, useMemo, useState } from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 
-import copy from '../../../share/copy'
-import { CopyIcon } from './Copy'
-import Dark from './dark.theme'
-import White from './white.theme'
+import copy from '../share/copy'
+import { CopyIcon } from './MarkdownCodeBlockCopy'
+import Dark from './MarkdownCodeBlock.darkTheme'
+import White from './MarkdownCodeBlock.whiteTheme'
 
 const Title = styled.div`
   ${() => css`
@@ -116,16 +116,16 @@ const Div = styled.div<{ isDay: boolean }>`
   `}
 `
 
-export type Meta = Partial<{
+export type MarkdownCodeBlockMeta = Partial<{
   file: string
   line: string
 }>
 
-export interface CodeProps {
+export interface MarkdownCodeBlockProps {
   language?: string
   theme?: 'day' | 'night'
   src: string
-  meta?: Meta
+  meta?: MarkdownCodeBlockMeta
   hasCopy?: boolean
 }
 
@@ -135,8 +135,10 @@ const Source = styled.div`
   `}
 `
 
-export const createCode = (defaultProps: Partial<CodeProps> = {}) => {
-  const CodeBlock: React.FC<CodeProps> = ({
+export const markdownCreateCode = (
+  defaultProps: Partial<MarkdownCodeBlockProps> = {},
+) => {
+  const CodeBlock: React.FC<MarkdownCodeBlockProps> = ({
     language,
     src,
     theme,

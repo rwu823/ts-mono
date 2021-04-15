@@ -1,9 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-export const CopyIcon: React.FunctionComponent<
-  React.SVGProps<SVGSVGElement>
-> = (props) => (
+export const CopyIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     style={{
       width: 20,

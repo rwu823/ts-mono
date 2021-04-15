@@ -225,30 +225,12 @@ const Demo: React.FC<Props> = (props) => {
   }, [axis, chart.instance])
   const input = useInput()
 
-  const [data, fetchData] = useObservableState<
-    { name: string; age: number },
-    string
-  >(
-    (text$) =>
-      text$.pipe(
-        debounceTime(500),
-        map((name) => ({
-          name,
-          age: 18,
-        })),
-      ),
-    {
-      name: 'rocky',
-      age: 23,
-    },
-  )
-
   return (
     <Div>
       <Head>
         <title>Demo - Page {props.initialApolloState.name}</title>
       </Head>
-      {input.value} - {JSON.stringify(data)}
+
       <input {...input.props} />
       <span>{chart.el}</span>
       <h2>Immer Sample {JSON.stringify(size)}</h2>

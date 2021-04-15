@@ -12,7 +12,7 @@ type Props = {
   tip: React.ReactNode
 }
 
-const ToolTip: React.FunctionComponent<Props> = ({ children, tip }) => {
+const ToolTip: React.FC<Props> = ({ children, tip }) => {
   const [{ x, y }, setPos] = React.useState({ x: 0, y: 0 })
   const [isMouseIn, setMouseIn] = React.useState(false)
 
