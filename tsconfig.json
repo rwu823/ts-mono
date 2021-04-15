@@ -6,6 +6,7 @@
     "**/*.test.ts",
   ],
   "compilerOptions": {
+    "baseUrl": "./",
     "paths": {
       "@ts-mono/*": ["packages/*"],
     },
