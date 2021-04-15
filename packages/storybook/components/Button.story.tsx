@@ -1,7 +1,7 @@
 import React from 'react'
 
 // import  from '@storybook/react'
-import Button from '.'
+import Button from './Button'
 // import page from './doc.mdx'
 
 export default {

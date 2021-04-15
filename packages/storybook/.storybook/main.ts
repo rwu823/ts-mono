@@ -1,7 +1,7 @@
 export default {
   addons: ['@storybook/addon-essentials', '@storybook/addon-jest'],
 
-  stories: ['../components/**/story.tsx'],
+  stories: ['../components/*.story.tsx'],
 
   babel: async (options: any) => ({
     ...options,
