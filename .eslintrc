@@ -40,7 +40,17 @@
 
     "prettier/prettier": 2,
 
-    "simple-import-sort/imports": 2,
+    "simple-import-sort/imports": [2, {
+      "groups": [
+        // Side effect imports.
+        ["^\\u0000"],
+        ["^react", "^redux"],
+        ["styled-components"],
+        ["^use-"],
+        ["^@"],
+        ["^"],
+        ["^\\."]
+    ]}],
     "simple-import-sort/exports": 2,
     "sort-imports": 0,
     "import/first": 2,
