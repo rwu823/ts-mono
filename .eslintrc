@@ -47,6 +47,9 @@
         ["^react", "^redux"],
         ["styled-components"],
         ["^use-"],
+        ["^next", "^next\/"],
+        ["^@ts-mono"],
+        ["^@apollo"],
         ["^@"],
         ["^"],
         ["^\\."]

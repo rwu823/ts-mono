@@ -1,14 +1,19 @@
 import 'core-js/modules/es.global-this'
 
-import { ApolloProvider } from '@apollo/client'
-import { MDXProvider } from '@mdx-js/react'
+import React, { useEffect } from 'react'
+
+import styled, { css } from 'styled-components'
+
+import { AppProps } from 'next/app'
+
 import { GlobalStyle } from '@ts-mono/dev-react/components/GlobalStyles'
 import { mdxRenders } from '@ts-mono/dev-react/components/Markdown.mdxRenders'
 import { ModalProvider } from '@ts-mono/dev-react/components/Modal'
 import GA from '@ts-mono/dev-react/share/GA'
-import { AppProps } from 'next/app'
-import React, { useEffect } from 'react'
-import styled, { css } from 'styled-components'
+
+import { ApolloProvider } from '@apollo/client'
+
+import { MDXProvider } from '@mdx-js/react'
 
 import { useApollo } from '../apollo'
 

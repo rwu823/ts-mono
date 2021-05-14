@@ -5,9 +5,10 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { Helmet, HelmetProps } from 'react-helmet'
+
+import { graphql, useStaticQuery } from 'gatsby'
 
 type Props = {
   lang?: string

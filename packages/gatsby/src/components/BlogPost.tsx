@@ -1,5 +1,6 @@
-import { graphql } from 'gatsby'
 import React from 'react'
+
+import { graphql } from 'gatsby'
 
 import BlogPostTemplate from './BlogPostTemplate'
 import Layout from './Layout'
@@ -17,7 +18,7 @@ const BlogPost: React.FC<{ data: GraphQLData }> = ({ data: { mdx } }) => (
 export default BlogPost
 
 export const pageQuery = graphql`
-  query($id: String) {
+  query ($id: String) {
     mdx(id: { eq: $id }) {
       id
       body

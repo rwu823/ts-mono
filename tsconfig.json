@@ -1,14 +1,9 @@
 {
-  "exclude": [
-    "node_modules",
-    "out/**/*",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-  ],
+  "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts"],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@ts-mono/*": ["packages/*"],
+      "@ts-mono/*": ["packages/*"]
     },
     /* =Strict Type-Checking Options */
     "strict": true,
@@ -26,10 +21,7 @@
 
     /* =Basic Options */
     "target": "es6",
-    "lib": [
-      "dom",
-      "esnext",
-    ],
+    "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
@@ -49,6 +41,6 @@
     /* =Additional Checks */
     "noUnusedLocals": false,
     "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

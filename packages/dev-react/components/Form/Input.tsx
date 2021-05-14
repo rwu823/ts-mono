@@ -1,6 +1,8 @@
-import { useField } from 'formik'
 import React, { useCallback, useEffect } from 'react'
+
 import styled, { css } from 'styled-components'
+
+import { useField } from 'formik'
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   validate?: (val: string) => React.ReactNode | Promise<React.ReactNode> | void

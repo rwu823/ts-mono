@@ -1,6 +1,8 @@
-import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
+
+import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
+
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 const { MDXProvider } = require('@mdx-js/react')
 

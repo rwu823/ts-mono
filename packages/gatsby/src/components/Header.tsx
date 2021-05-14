@@ -1,5 +1,6 @@
-import { Link } from 'gatsby'
 import React from 'react'
+
+import { Link } from 'gatsby'
 
 type Props = {
   siteTitle?: string

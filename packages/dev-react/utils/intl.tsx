@@ -1,18 +1,20 @@
-import accepts from 'accepts'
-import { PrimitiveType } from 'intl-messageformat'
-import { NextPage } from 'next'
 import React from 'react'
 import * as ReactIntl from 'react-intl'
+
+import { NextPage } from 'next'
+
+import accepts from 'accepts'
+import { PrimitiveType } from 'intl-messageformat'
 
 export const DEFAULT_LANG = 'en'
 export const SUPPORTED_LANGS = [DEFAULT_LANG, 'zh']
 
-export const intlKeys = <O extends Record<string, unknown>>(langs: O) => (
-  id: keyof O,
-) => ({
-  id,
-  defaultMessage: langs[id],
-})
+export const intlKeys =
+  <O extends Record<string, unknown>>(langs: O) =>
+  (id: keyof O) => ({
+    id,
+    defaultMessage: langs[id],
+  })
 
 type Values = Record<
   string,
@@ -20,7 +22,7 @@ type Values = Record<
 >
 
 export const useIntl = <
-  O extends { [locale: string]: { [id: string]: string } }
+  O extends { [locale: string]: { [id: string]: string } },
 >(
   langs: O,
   values: Values = {},

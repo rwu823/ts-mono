@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
+
 import { BehaviorSubject, Observable, Subject } from 'rxjs'
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -11,7 +12,7 @@ export type Epic<T, Deps> = (
 
 export const useEventEmit = <
   T = any,
-  Deps extends React.DependencyList = React.DependencyList
+  Deps extends React.DependencyList = React.DependencyList,
 >(
   epic: Epic<T, Deps>,
   deps: Deps = [] as any,

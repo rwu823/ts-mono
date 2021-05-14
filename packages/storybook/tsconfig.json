@@ -1,10 +1,5 @@
 {
-
-  "include": [
-    ".storybook/*",
-    "**/*.ts",
-    "**/*.tsx",
-  ],
+  "include": [".storybook/*", "**/*.ts", "**/*.tsx"],
 
   "compilerOptions": {
     "strict": true,
@@ -14,10 +9,7 @@
     "allowSyntheticDefaultImports": true,
 
     "target": "es6",
-    "lib": [
-      "dom",
-      "esnext",
-    ],
+    "lib": ["dom", "esnext"],
 
     // for babel
     "allowJs": true,
@@ -38,6 +30,6 @@
 
     "noUnusedLocals": false,
     "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

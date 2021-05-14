@@ -1,5 +1,9 @@
-import { NextPage } from 'next'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+
+import styled, { css } from 'styled-components'
+
+import { NextPage } from 'next'
+
 import {
   concat,
   ConnectableObservable,
@@ -42,7 +46,6 @@ import {
   toArray,
   withLatestFrom,
 } from 'rxjs/operators'
-import styled, { css } from 'styled-components'
 
 import { useObjectState } from '../../hooks'
 import { map1, op2 } from './rx'

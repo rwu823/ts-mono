@@ -1,14 +1,9 @@
 {
   "extends": "../../tsconfig",
-  "exclude": [
-    "node_modules",
-    "out/**/*",
-    "**/*.spec.ts",
-    "**/*.test.ts",
-  ],
+  "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts"],
   "compilerOptions": {
     "target": "esnext",
     "outDir": "out",
-    "declaration": false,
-  },
+    "declaration": false
+  }
 }

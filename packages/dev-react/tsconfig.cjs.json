@@ -1,8 +1,6 @@
 {
   "extends": "@ts-mono/base/tsconfig",
-  "files": [
-    "lib/index.tsx"
-  ],
+  "files": ["lib/index.tsx"],
   "compilerOptions": {
     "declaration": true,
     "incremental": true,

@@ -14,7 +14,8 @@ export const useIntersectionObserver = <T extends HTMLElement>(
 
   if (!isOnce) {
     optionsRef.current = {
-      threshold: onceIntersectingOrThreshold as IntersectionObserverInit['threshold'],
+      threshold:
+        onceIntersectingOrThreshold as IntersectionObserverInit['threshold'],
     }
   }
 

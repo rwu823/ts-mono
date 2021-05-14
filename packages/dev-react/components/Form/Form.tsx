@@ -1,5 +1,6 @@
-import { Formik, FormikConfig, FormikProps } from 'formik'
 import React from 'react'
+
+import { Formik, FormikConfig, FormikProps } from 'formik'
 
 type Props = Omit<FormikConfig<{}>, 'render' | 'component'> & {
   component: React.ComponentType<any>

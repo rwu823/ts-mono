@@ -1,3 +1,7 @@
+import React from 'react'
+
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+
 import Document, {
   DocumentContext,
   Head,
@@ -5,20 +9,19 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import React from 'react'
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
 
     try {
-      await ctx.renderPage((App) => (props) =>
-        sheet.collectStyles(
-          <StyleSheetManager>
-            <App {...props} />
-          </StyleSheetManager>,
-        ),
+      await ctx.renderPage(
+        (App) => (props) =>
+          sheet.collectStyles(
+            <StyleSheetManager>
+              <App {...props} />
+            </StyleSheetManager>,
+          ),
       )
 
       const initialProps = await Document.getInitialProps(ctx)

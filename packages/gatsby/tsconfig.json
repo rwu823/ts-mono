@@ -17,10 +17,5 @@
     "target": "es6",
     "moduleResolution": "node"
   },
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "public",
-    ".cache"
-  ]
+  "exclude": ["node_modules", "**/*.spec.ts", "public", ".cache"]
 }

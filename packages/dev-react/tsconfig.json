@@ -8,12 +8,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": [
-    "../../@types/global.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["../../@types/global.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
