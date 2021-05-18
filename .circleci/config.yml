@@ -1,10 +1,10 @@
 version: 2.1
 
 vars:
-  branch_master: &branch_master
+  branch_main: &branch_main
     filters:
       branches:
-        only: master
+        only: main
 
   branch_testing: &branch_testing
     filters:
@@ -12,7 +12,7 @@ vars:
         ignore:
           - /^prod\//
           - /^pkg\//
-          - master
+          - main
 
   eslint-config__prod: &eslint-config__prod
     filters:
@@ -375,7 +375,7 @@ workflows:
       - lint:
           <<: *branch_testing
       - mono-deploy:
-          <<: *branch_master
+          <<: *branch_main
 
   Build And Deploy:
     jobs:

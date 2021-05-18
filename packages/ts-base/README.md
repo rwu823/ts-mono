@@ -6,7 +6,7 @@
     <img src="https://flat.badgen.net/github/release/rwu823/ts-base" />
   </a>
   <a href="https://circleci.com/gh/rwu823/ts-base" alt="Build Status">
-    <img src="https://flat.badgen.net/circleci/github/rwu823/ts-base/master" />
+    <img src="https://flat.badgen.net/circleci/github/rwu823/ts-base/main" />
   </a>
   <a href="https://codecov.io/gh/rwu823/ts-base" alt="Coverage">
     <img src="https://flat.badgen.net/codecov/c/github/rwu823/ts-base" />
