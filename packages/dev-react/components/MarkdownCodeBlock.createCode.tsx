@@ -1,7 +1,3 @@
-// import 'prismjs/plugins/line-highlight/prism-line-highlight.min'
-// import 'prismjs/plugins/line-numbers/prism-line-numbers.min'
-
-/* eslint-disable simple-import-sort/imports */
 import Prism from 'prismjs'
 import 'prismjs/components/prism-jsx.min'
 import 'prismjs/components/prism-tsx.min'
@@ -9,15 +5,17 @@ import 'prismjs/components/prism-typescript.min'
 import 'prismjs/components/prism-css.min'
 import 'prismjs/components/prism-bash.min'
 import 'prismjs/components/prism-diff.min'
-/* eslint-enable simple-import-sort/imports */
 
+// import 'prismjs/plugins/line-highlight/prism-line-highlight.min'
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.min'
 import React, { useCallback, useMemo, useState } from 'react'
+
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 
 import copy from '../share/copy'
-import { CopyIcon } from './MarkdownCodeBlockCopy'
 import Dark from './MarkdownCodeBlock.darkTheme'
 import White from './MarkdownCodeBlock.whiteTheme'
+import { CopyIcon } from './MarkdownCodeBlockCopy'
 
 const Title = styled.div`
   ${() => css`

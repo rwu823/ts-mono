@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { mdxRenders } from '@ts-mono/dev-react/components/mdx-renders'
+import { mdxRenders } from '@ts-mono/dev-react/components/Markdown.mdxRenders'
 
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 

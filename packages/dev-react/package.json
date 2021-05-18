@@ -27,12 +27,12 @@
     "next": "10.2.0",
     "prismjs": "1.23.0",
     "raw-loader": "4.0.2",
-    "react-intl": "5.17.5",
+    "react-intl": "5.17.7",
     "react-markdown": "6.0.2",
     "react-query": "3.16.0",
     "react-svg-loader": "3.0.3",
     "rxjs": "7.0.1",
-    "use-immer": "0.5.1"
+    "use-immer": "0.5.2"
   },
   "scripts": {
     "dev": "NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS='--inspect' next",

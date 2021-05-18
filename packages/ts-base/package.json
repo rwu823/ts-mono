@@ -8,7 +8,7 @@
   "dependencies": {
     "@ts-mono/eslint-config": "rwu823/ts-mono#pkg/eslint-config",
     "@types/jest": "26.0.23",
-    "@types/node": "15.0.3",
+    "@types/node": "15.3.0",
     "chalk": "4.1.1",
     "fast-glob": "3.2.5",
     "husky": "6.0.0",

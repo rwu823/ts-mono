@@ -30,8 +30,5 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop"
-  },
-  "devDependencies": {
-    "styled-components": "5.2.3"
   }
 }
