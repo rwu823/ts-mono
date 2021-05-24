@@ -27,6 +27,7 @@ import {
   tap,
   withLatestFrom,
 } from 'rxjs/operators'
+import typehole from 'typehole'
 
 import {
   useEventEmit,
@@ -51,30 +52,6 @@ const ModalDiv = styled.div`
     padding: 2rem;
   `}
 `
-
-const initialValues = {
-  name: 'Rocky',
-  age: 23,
-}
-
-const Fields: React.FC<FormProps<typeof initialValues>> = ({ values }) => (
-  <>
-    <pre>{JSON.stringify(values, null, 2)}</pre>
-    <Input name="name" isRequired />
-    <Input
-      type="number"
-      name="age"
-      onChange={(_, { setValue, value }) => {
-        let n = +value || 0
-
-        n = Math.max(-2, Math.min(99, n))
-        setValue(n)
-      }}
-    />
-
-    <button type="submit">Submit</button>
-  </>
-)
 
 const Button = () => {
   const modal = useModal()
@@ -128,134 +105,32 @@ const Flex = styled.div`
   }
 `
 
+interface AutoDiscovered {
+  name: string
+  age: number
+  deep?: Deep
+}
+interface Deep {
+  name: string
+}
+
+interface AutoDiscovered1 {
+  name: string
+  age: number
+}
+
 const Demo: React.FC<Props> = (props) => {
-  // const { $t } = useIntl(langs)
-  const size = useWindowSize()
-  const [state, setState] = useImmer<State>(initState)
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log('reset once')
-      setState((draft) => {
-        draft.once = false
-      })
-    }, 5000)
-  }, [setState])
-  const ob = useIntersectionObserver<HTMLHeadingElement>(state.once)
-
-  const updateName = useCallback<
-    React.MouseEventHandler<HTMLButtonElement>
-  >(() => {
-    setState((draft) => {
-      draft.name = 'Erin'
-    })
-  }, [setState])
-
-  const updateAddr = useCallback<
-    React.MouseEventHandler<HTMLButtonElement>
-  >(() => {
-    setState((draft) => {
-      draft.address.code = 108
-    })
-  }, [setState])
-
-  const chart = useECharts()
-
-  type Response = {
-    date: number
-    mc: number
-    mh: number
-    ml: number
-    mo: number
-    mv: number
-  }
-
-  const [chartsRaw, setChartsRaw] = useState<Response[]>([])
-
-  const axis = useMemo(() => {
-    const filteredRaw = chartsRaw.filter((r) => {
-      const D = new Date(r.date)
-      D.setTime(+D + 8 * 60 * 60 * 1000)
-
-      return D.getUTCDay() === 3 && Math.ceil(D.getDate() / 7) === 3
-    })
-
-    return filteredRaw.reduce<{ x: string[]; y: number[] }>(
-      (o, r) => {
-        o.x.push(new Date(r.date).toDateString())
-        o.y.push(r.mc)
-
-        return o
-      },
-      {
-        x: [],
-        y: [],
-      },
-    )
-  }, [chartsRaw])
-
-  useEffect(() => {
-    if (axis.x.length && axis.y.length && chart.instance) {
-      chart.instance.setOption({
-        tooltip: {
-          axisPointer: {
-            type: 'cross',
-          },
-          trigger: 'axis',
-        },
-        dataZoom: [
-          {
-            type: 'inside',
-          },
-        ],
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: axis.x,
-        },
-        yAxis: {
-          type: 'value',
-          min: 7_000,
-          max: 13_000,
-          boundaryGap: false,
-        },
-        series: [
-          {
-            symbolSize: 10,
-            type: 'line',
-            data: axis.y,
-          },
-        ],
-      })
-    }
-  }, [axis, chart.instance])
-  const input = useInput()
+  const autoCheckType: AutoDiscovered1 = typehole.t10({
+    name: 'Jerry',
+    age: 40,
+  })
 
   return (
     <Div>
       <Head>
-        <title>Demo - Page {props.initialApolloState.name}</title>
+        <title>Demo - Page</title>
+        <div>{String(autoCheckType)}</div>
       </Head>
-
-      <input {...input.props} />
-      <span>{chart.el}</span>
-      <h2>Immer Sample {JSON.stringify(size)}</h2>
-      <pre>{JSON.stringify(state)}</pre>
-      <button onClick={updateName}>click name</button>
-      <button onClick={updateAddr}>click addr</button>
-      <h2 ref={ob.ref}>Formik Demo</h2>
-      <Form
-        initialValues={initialValues}
-        onSubmit={(val) => {
-          console.log(val)
-          // debugger
-        }}
-        component={Fields}
-      />
-      <Link href="/">
-        <a href="/home">go home</a>
-      </Link>
-      <Button />
     </Div>
   )
 }
@@ -278,20 +153,20 @@ export const ALL_POSTS_QUERY = gql`
     }
   }
 `
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const apolloClient = initializeApollo()
+// export const getStaticProps: GetStaticProps = async (ctx) => {
+//   const apolloClient = initializeApollo()
 
-  await apolloClient.query({
-    query: ALL_POSTS_QUERY,
-    variables: allPostsQueryVars,
-  })
+//   await apolloClient.query({
+//     query: ALL_POSTS_QUERY,
+//     variables: allPostsQueryVars,
+//   })
 
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    revalidate: 1,
-  }
-}
+//   return {
+//     props: {
+//       initialApolloState: apolloClient.cache.extract(),
+//     },
+//     revalidate: 1,
+//   }
+// }
 
 export default Demo

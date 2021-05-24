@@ -7,5 +7,6 @@
     "packages/dev-react/pages/demo/langs"
   ],
 
-  "extensions.ignoreRecommendations": false
+  "extensions.ignoreRecommendations": false,
+  "typehole.runtime.projectPath": "/Users/rwu/dev/ts-mono"
 }
