@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-module */
+
 const { NODE_ENV } = process.env
 
 const isDev = !NODE_ENV || NODE_ENV === 'development'

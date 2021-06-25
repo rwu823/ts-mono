@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-module */
+
 module.exports = {
   printWidth: 80,
   tabWidth: 2,

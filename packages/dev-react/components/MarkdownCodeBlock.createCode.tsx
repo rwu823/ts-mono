@@ -13,9 +13,9 @@ import React, { useCallback, useMemo, useState } from 'react'
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
 
 import copy from '../share/copy'
-import Dark from './MarkdownCodeBlock.darkTheme'
-import White from './MarkdownCodeBlock.whiteTheme'
 import { CopyIcon } from './MarkdownCodeBlockCopy'
+import Dark from './MarkdownCodeBlockDarkTheme'
+import White from './MarkdownCodeBlockWhiteTheme'
 
 const Title = styled.div`
   ${() => css`
@@ -171,15 +171,18 @@ export const markdownCreateCode = (
     const lines = React.useMemo(() => {
       if (meta?.line) {
         if (meta.line.includes(',')) {
-          return meta.line.split(',').map((s) => parseInt(s.trim(), 10))
+          return meta.line.split(',').map((s) => Number.parseInt(s.trim(), 10))
         }
 
         if (meta.line.includes('-')) {
           const [start, end] = meta.line.split('-')
 
-          return [+start].concat(
-            [...Array(+end - +start)].map((_, i) => +start + i + 1),
-          )
+          return [
+            +start,
+            ...[Array.from({ length: +end - +start })].map(
+              (_, i) => +start + i + 1,
+            ),
+          ]
         }
 
         return [+meta.line]

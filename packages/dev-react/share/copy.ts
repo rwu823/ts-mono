@@ -2,11 +2,11 @@ export const copy = (text: string) => {
   const textarea = document.createElement('textarea')
   textarea.value = text
 
-  document.body.appendChild(textarea)
+  document.body.append(textarea)
   textarea.select()
   document.execCommand('copy')
 
-  document.body.removeChild(textarea)
+  textarea.remove()
 }
 
 export default copy

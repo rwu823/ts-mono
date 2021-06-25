@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { initializeApollo } from '@ts-mono/dev-react/apollo'
 import Form, { FormProps, Input } from '@ts-mono/dev-react/components/Form'
 import { useModal } from '@ts-mono/dev-react/components/Modal'
+import { DemoContainer } from '@ts-mono/dev-react/containers/DemoContainer'
 import { useIntl, withIntl } from '@ts-mono/dev-react/utils'
 
 import { gql } from '@apollo/client'
@@ -105,35 +106,15 @@ const Flex = styled.div`
   }
 `
 
-interface AutoDiscovered {
-  name: string
-  age: number
-  deep?: Deep
-}
-interface Deep {
-  name: string
-}
+const Demo: React.FC<Props> = (props) => (
+  <Div>
+    <Head>
+      <title>Demo - Page</title>
+    </Head>
 
-interface AutoDiscovered1 {
-  name: string
-  age: number
-}
-
-const Demo: React.FC<Props> = (props) => {
-  const autoCheckType: AutoDiscovered1 = typehole.t10({
-    name: 'Jerry',
-    age: 40,
-  })
-
-  return (
-    <Div>
-      <Head>
-        <title>Demo - Page</title>
-        <div>{String(autoCheckType)}</div>
-      </Head>
-    </Div>
-  )
-}
+    <DemoContainer />
+  </Div>
+)
 export const allPostsQueryVars = {
   skip: 0,
   first: 10,

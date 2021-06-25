@@ -14,7 +14,7 @@ type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   ) => void
 }
 
-export const Input = React.forwardRef<HTMLInputElement, Props>(
+export const FormInput = React.forwardRef<HTMLInputElement, Props>(
   ({ name, validate, onChange, isRequired = false, ...props }, ref) => {
     const [field, meta] = useField({
       name,
@@ -63,4 +63,4 @@ export const Input = React.forwardRef<HTMLInputElement, Props>(
   },
 )
 
-export default Input
+export default FormInput

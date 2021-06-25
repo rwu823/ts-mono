@@ -452,8 +452,8 @@ export const globalCSS = css`
   }
 `
 
-export const GlobalStyle = createGlobalStyle`
+export const TheGlobalStyles = createGlobalStyle`
   ${globalCSS}
 `
 
-export default GlobalStyle
+export default TheGlobalStyles

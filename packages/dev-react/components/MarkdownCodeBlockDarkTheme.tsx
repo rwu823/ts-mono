@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const CodeBlockTheme = styled.div`
+const MarkdownCodeBlockDarkTheme = styled.div`
   /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -148,4 +148,4 @@ const CodeBlockTheme = styled.div`
     text-align: right;
   }
 `
-export default CodeBlockTheme
+export default MarkdownCodeBlockDarkTheme

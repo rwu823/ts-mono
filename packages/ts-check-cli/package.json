@@ -6,7 +6,7 @@
     "ts-check": "bin/ts-check"
   },
   "dependencies": {
-    "ora": "5.4.0"
+    "ora": "5.4.1"
   },
   "scripts": {
     "build": "tsc -b && cp -r package.json bin out/"

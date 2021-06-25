@@ -45,5 +45,3 @@ export const useEventEmit = <
 
   return emit
 }
-
-export default useEventEmit

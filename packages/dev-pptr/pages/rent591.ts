@@ -80,21 +80,22 @@ const rent591 = async (browser: ChromiumBrowser) => {
     )
     .catch(console.error)
 
-  const newObjectList = Object.keys(oldObjectList).length
-    ? Object.entries(objectList).reduce((obj, [id, o]) => {
-        if (!(id in oldObjectList)) {
-          Object.assign(obj, {
-            [id]: o,
-          })
-        }
+  const newObjectList =
+    Object.keys(oldObjectList).length > 0
+      ? Object.entries(objectList).reduce((obj, [id, o]) => {
+          if (!(id in oldObjectList)) {
+            Object.assign(obj, {
+              [id]: o,
+            })
+          }
 
-        return obj
-      }, {})
-    : objectList
+          return obj
+        }, {})
+      : objectList
 
   oldObjectList = objectList
 
-  if (Object.keys(newObjectList).length) {
+  if (Object.keys(newObjectList).length > 0) {
     return newObjectList
   }
 

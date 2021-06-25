@@ -24,7 +24,7 @@ function gtag(_type: GAType, ..._args: any[]): void {
   globalThis.dataLayer.push(arguments)
 }
 
-export class GA {
+export class Ga {
   private readonly id: string
 
   private readonly options: GAOptions
@@ -50,12 +50,12 @@ export class GA {
     gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${id}`
     gaScript.async = true
 
-    document.head.appendChild(gaScript)
+    document.head.append(gaScript)
 
-    gaScript.onload = () => {
+    gaScript.addEventListener('load', () => {
       this.isScriptLoaded = true
       gtag('js', new Date())
-    }
+    })
   }
 
   pageView(options: PageView = {}) {
@@ -83,4 +83,4 @@ export class GA {
   }
 }
 
-export default GA
+export default Ga

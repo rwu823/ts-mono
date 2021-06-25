@@ -37,5 +37,3 @@ export const useCountUp = (to: number, { duration = 750 } = {}) => {
 
   return n
 }
-
-export default useCountUp

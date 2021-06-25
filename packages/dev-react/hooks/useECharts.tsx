@@ -7,6 +7,7 @@ import * as echarts from 'echarts'
 const Div = styled.div<{ heightRatio: number }>`
   ${(p) => css`
     width: 100%;
+    height: 200px;
 
     &:before,
     &:after {

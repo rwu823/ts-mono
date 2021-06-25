@@ -6,16 +6,15 @@ import styled, { css } from 'styled-components'
 
 import { AppProps } from 'next/app'
 
-import { GlobalStyle } from '@ts-mono/dev-react/components/GlobalStyles'
+import { useApollo } from '@ts-mono/dev-react/apollo/useApollo'
 import { mdxRenders } from '@ts-mono/dev-react/components/Markdown.mdxRenders'
 import { ModalProvider } from '@ts-mono/dev-react/components/Modal'
-import GA from '@ts-mono/dev-react/share/GA'
+import { TheGlobalStyles } from '@ts-mono/dev-react/components/TheGlobalStyles'
+import Ga from '@ts-mono/dev-react/share/Ga'
 
 import { ApolloProvider } from '@apollo/client'
 
 import { MDXProvider } from '@mdx-js/react'
-
-import { useApollo } from '../apollo'
 
 const Max800 = styled.div`
   ${() => css`
@@ -24,7 +23,7 @@ const Max800 = styled.div`
     padding: 0 1em;
   `}
 `
-const ga = new GA('UA-4476856-23', { debug: true })
+const ga = new Ga('UA-4476856-23', { debug: true })
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -35,7 +34,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <MDXProvider components={mdxRenders}>
-      <GlobalStyle />
+      <TheGlobalStyles />
       <Max800>
         <ModalProvider>
           <ApolloProvider client={apolloClient}>

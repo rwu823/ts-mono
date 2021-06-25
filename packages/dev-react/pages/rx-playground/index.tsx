@@ -47,7 +47,6 @@ import {
   withLatestFrom,
 } from 'rxjs/operators'
 
-import { useObjectState } from '../../hooks'
 import { map1, op2 } from './rx'
 
 const Div = styled.div`
@@ -55,17 +54,10 @@ const Div = styled.div`
 `
 
 type Props = React.DOMAttributes<HTMLDivElement>
-const RxPlayground: React.FC<Props> = ({ children, ...props }) => {
-  const [s, set] = useObjectState({
-    value: '',
-    isLoading: false,
-  })
-
-  return (
-    <Div {...props}>
-      <h1>RxJS Playground</h1>
-    </Div>
-  )
-}
+const RxPlayground: React.FC<Props> = ({ children, ...props }) => (
+  <Div {...props}>
+    <h1>RxJS Playground</h1>
+  </Div>
+)
 
 export default RxPlayground

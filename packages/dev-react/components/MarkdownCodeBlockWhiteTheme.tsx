@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const CodeBlockTheme = styled.div`
+const MarkdownCodeBlockWhiteTheme = styled.div`
   /**
  * VS theme by Andrew Lock (https://andrewlock.net)
  * Inspired by Visual Studio syntax coloring
@@ -162,4 +162,4 @@ const CodeBlockTheme = styled.div`
     );
   }
 `
-export default CodeBlockTheme
+export default MarkdownCodeBlockWhiteTheme

@@ -67,7 +67,7 @@ export const mergeLangs = (langs: Lang[]): Lang => {
   const locales = [
     ...new Set(
       langs.reduce<string[]>(
-        (keys, lang) => keys.concat(Object.keys(lang)),
+        (keys, lang) => [...keys, ...Object.keys(lang)],
         [],
       ),
     ),

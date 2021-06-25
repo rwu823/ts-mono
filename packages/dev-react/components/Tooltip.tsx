@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { createPortal } from 'react-dom'
 
 import styled, { css } from 'styled-components'
@@ -43,16 +43,17 @@ const ToolTip: React.FC<Props> = ({ children, tip }) => {
       document.body,
     )
 
+  const onScroll = useCallback(() => {
+    setMouseIn(false)
+  }, [])
+
   React.useEffect(() => {
-    const onScroll = () => {
-      setMouseIn(false)
-    }
     window.addEventListener('scroll', onScroll)
 
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [])
+  }, [onScroll])
 
   return (
     <Div onMouseMove={mousemove} onMouseLeave={() => setMouseIn(false)}>
