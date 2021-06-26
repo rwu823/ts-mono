@@ -1,8 +1,9 @@
-const path = require('path')
-const fs = require('fs')
-const glob = require('fast-glob')
-const pkg = require('../package.json')
-const rootPkg = require('../../../package.json')
+import glob from 'fast-glob'
+import fs from 'fs'
+import path from 'path'
+
+import rootPkg from '../../../package.json'
+import pkg from '../package.json'
 
 // prettier-ignore
 const excludeSet = new Set([

@@ -9,7 +9,7 @@ import write from './utils/write'
 
 const tsBasePath = `node_modules/${packageJSON.name}`
 
-const ESLINTRC = '.eslintrc.'
+const ESLINTRC = '.eslintrc'
 const PRETTIER = 'prettier'
 const TSCONFIG = 'tsconfig.json'
 const VSCODE = '.vscode'
@@ -33,7 +33,6 @@ Promise.all([
   g(HUSKY),
 ]).then(
   async ([
-    // tslints,
     eslintrc,
     prettiers,
     tsconfigs,
