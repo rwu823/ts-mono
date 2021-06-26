@@ -20,6 +20,10 @@ export const normalText = ({ name, age, isDone }: NormalTextProps) => (
   </Button>
 )
 
+normalText.parameters = {
+  jest: ['Button.spec'],
+}
+
 normalText.args = {
   name: 'James',
   age: 23,

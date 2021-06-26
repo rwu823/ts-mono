@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "name": "@ts-mono/eslint-config",
-  "main": ".",
+  "main": "browser",
   "scripts": {
     "build": "rm -rf out && mkdir out && cp ./*.* ../../.eslintrc out && ts-node scripts/build"
   },

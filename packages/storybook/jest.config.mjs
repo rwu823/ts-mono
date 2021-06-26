@@ -6,4 +6,6 @@ export default {
     },
   },
   setupFilesAfterEnv: ['./jest/setupReactTestEnv.ts'],
+  testEnvironment: 'jsdom',
+  watchPathIgnorePatterns: ['.jest-test-results.json'],
 }

@@ -10,6 +10,10 @@ describe('Test Button Spec:', () => {
     render(<Button />)
   })
 
+  it('test fail', async () => {
+    expect(1).toBe(1)
+  })
+
   it('can render and update a counter', () => {
     expect(firstChild).toBeTruthy()
   })

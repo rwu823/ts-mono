@@ -1,22 +1,22 @@
 const globalThis = (1, eval)('this') // eslint-disable-line no-eval
 
-const ofType = (o: any, type: string) =>
+const ofType = (o: unknown, type: string) =>
   `[object ${type}]` === Object.prototype.toString.call(o)
 
 const { NODE_ENV } = process.env
 
 export const is = {
   ofType,
-  string: (o: any): o is string => ofType(o, 'String'),
-  function: (o: any): o is Function => ofType(o, 'Function'),
-  object: (o: any): o is object => ofType(o, 'Object'),
-  array: (o: any): o is any[] => ofType(o, 'Array'),
-  number: (o: any): o is number => ofType(o, 'Number'),
-  null: (o: any): o is null => ofType(o, 'Null'),
-  undefined: (o: any): o is undefined => ofType(o, 'Undefined'),
-  date: (o: any): o is Date => ofType(o, 'Date'),
-  document: (o: any): o is HTMLDocument => ofType(o, 'HTMLDocument'),
-  process: (o: any): o is NodeJS.Process => ofType(o, 'process'),
+  string: (o: unknown): o is string => ofType(o, 'String'),
+  function: (o: unknown): o is Function => ofType(o, 'Function'),
+  object: (o: unknown): o is object => ofType(o, 'Object'),
+  array: (o: unknown): o is any[] => ofType(o, 'Array'),
+  number: (o: unknown): o is number => ofType(o, 'Number'),
+  null: (o: unknown): o is null => ofType(o, 'Null'),
+  undefined: (o: unknown): o is undefined => ofType(o, 'Undefined'),
+  date: (o: unknown): o is Date => ofType(o, 'Date'),
+  document: (o: unknown): o is HTMLDocument => ofType(o, 'HTMLDocument'),
+  process: (o: unknown): o is NodeJS.Process => ofType(o, 'process'),
 
   get env() {
     return {

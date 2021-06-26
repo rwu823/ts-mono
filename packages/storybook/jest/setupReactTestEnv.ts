@@ -20,7 +20,7 @@ global.unMount = () =>
 
 beforeEach(() => {
   div = document.createElement('div')
-  document.body.appendChild(div)
+  document.body.append(div)
 
   global.app = div
 })
