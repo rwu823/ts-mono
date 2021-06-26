@@ -1,5 +1,5 @@
 import c from 'chalk'
-import { basename } from 'path'
+import path from 'path'
 
 import packageJSON from './package.json'
 import { mkdir, readFile } from './utils/fs'
@@ -14,7 +14,7 @@ Promise.all([
   g('*prettier*'),
   g('tsconfig.json'),
   g('.vscode/**'),
-  g('jest.config.js'),
+  g('jest.config.mjs'),
   g('.circleci/**'),
   g('.gitignore'),
   g('.gitattributes'),
@@ -34,19 +34,19 @@ Promise.all([
     envTs,
     husky,
   ]) => {
-    if (gitignore.length) {
+    if (gitignore.length > 0) {
       console.log(`${c.cyan('.gitignore')} is already exist.`)
     } else {
       write(await readFile(`${tsBasePath}/.gitignore`)).to('.gitignore')
     }
 
-    if (gitattr.length) {
+    if (gitattr.length > 0) {
       console.log(`${c.cyan('.gitattributes')} is already exist.`)
     } else {
       write(await readFile(`${tsBasePath}/.gitattributes`)).to('.gitattributes')
     }
 
-    if (envTs.length) {
+    if (envTs.length > 0) {
       console.log(`${c.cyan('.env.ts')} is already exist.`)
     } else {
       write('').to('.env.ts')
@@ -54,7 +54,7 @@ Promise.all([
     /**
      * =prettier.config.js
      */
-    if (prettiers.length) {
+    if (prettiers.length > 0) {
       console.log(`${c.cyan(prettiers[0])} is already exist.`)
     } else {
       write(`const base = require('${packageJSON.name}/prettier.config')
@@ -77,7 +77,7 @@ module.exports = {
     // }
 
     // = eslintrc
-    if (eslintrc.length) {
+    if (eslintrc.length > 0) {
       console.log(`${c.cyan('.esintrc.js')} is already exist.`)
     } else {
       write(
@@ -91,7 +91,7 @@ module.exports = {
     /**
      * =tsconfig.json
      */
-    if (tsconfigs.length) {
+    if (tsconfigs.length > 0) {
       console.log(`${c.cyan('tsconfig.json')} is already exist.`)
     } else {
       write(
@@ -126,10 +126,12 @@ module.exports = {
     //   })
     // }
 
-    if (jestConf.length) {
-      console.log(`${c.cyan('jest.config.js')} is already exist.`)
+    if (jestConf.length > 0) {
+      console.log(`${c.cyan('jest.config.mjs')} is already exist.`)
     } else {
-      write(await readFile(`${tsBasePath}/jest.config.js`)).to('jest.config.js')
+      write(await readFile(`${tsBasePath}/jest.config.mjs`)).to(
+        'jest.config.mjs',
+      )
     }
 
     if (!pkg['lint-staged']) {
@@ -149,40 +151,50 @@ module.exports = {
     /**
      * .vscode
      */
-    if (vscode.length) {
+    if (vscode.length > 0) {
       console.log(`${c.cyan(vscode[0])} is already exist.`)
     } else {
       const dir = '.vscode'
       await mkdir(dir)
       ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
-        const baseFile = basename(file)
+        const baseFile = path.basename(file)
         write(await readFile(file)).to(`${dir}/${baseFile}`)
       })
     }
 
-    if (husky.length) {
+    if (husky.length > 0) {
       console.log(`${c.cyan(husky[0])} is already exist.`)
     } else {
       const dir = '.husky'
       await mkdir(dir)
-      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
-        const baseFile = basename(file)
-        write(await readFile(file)).to(`${dir}/${baseFile}`)
-      })
+
+      const files = await g(`${tsBasePath}/${dir}/**`)
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const file of files) {
+        readFile(file).then((text) => {
+          write(text).to(`${dir}/${path.basename(file)}`)
+        })
+      }
     }
 
     /**
      * .circleci/config.yml
      */
-    if (circleCIConf.length) {
+    if (circleCIConf.length > 0) {
       console.log(`${c.cyan(circleCIConf[0])} is already exist.`)
     } else {
       const dir = '.circleci'
       await mkdir(dir)
-      ;(await g(`${tsBasePath}/${dir}/**`)).forEach(async (file) => {
-        const baseFile = basename(file)
-        write(await readFile(file)).to(`${dir}/${baseFile}`)
-      })
+
+      const files = await g(`${tsBasePath}/${dir}/**`)
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const file of files) {
+        readFile(file).then((text) => {
+          write(text).to(`${dir}/${path.basename(file)}`)
+        })
+      }
     }
   },
 )
