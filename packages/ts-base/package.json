@@ -2,7 +2,7 @@
   "name": "@ts-mono/base",
   "version": "0.0.0",
   "bin": {
-    "init-ts-base": "bin/init-ts-base"
+    "init-ts-base": "bin/initTSBase"
   },
   "main": "index.js",
   "dependencies": {

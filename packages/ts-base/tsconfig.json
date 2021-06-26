@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig",
-  "files": ["init-ts-base.ts"],
+  "files": ["initTsBase.ts"],
   "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts"],
   "compilerOptions": {
     "outDir": "out",

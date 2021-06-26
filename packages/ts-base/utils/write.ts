@@ -12,8 +12,8 @@ class Write {
   to(fileName: string) {
     return new Promise((resolve, reject) => {
       const sr = new stream.Readable()
-      sr.push(this.text)
-      sr.push(null)
+      // eslint-disable-next-line unicorn/no-useless-undefined
+      sr.push(this.text, undefined)
 
       sr.pipe(createWriteStream(fileName))
         .on('finish', (res: string) => {
