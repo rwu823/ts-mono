@@ -5,6 +5,7 @@
   "bin": {
     "ts-check": "bin/ts-check"
   },
+  "main": "main",
   "dependencies": {
     "ora": "5.4.1"
   },

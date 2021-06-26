@@ -114,6 +114,7 @@
     "filenames/no-index": 2,
 
     // unicorn
+    "unicorn/prefer-module": 0,
     "unicorn/prevent-abbreviations": 0,
     "unicorn/no-array-reduce": 0,
     "unicorn/new-for-builtins": 0,

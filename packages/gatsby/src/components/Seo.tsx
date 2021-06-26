@@ -17,7 +17,7 @@ type Props = {
   meta?: HelmetProps['meta']
 }
 
-const SEO: React.FC<Props> = ({
+const Seo: React.FC<Props> = ({
   description = ``,
   lang = 'en',
   title = ``,
@@ -81,4 +81,4 @@ const SEO: React.FC<Props> = ({
   )
 }
 
-export default SEO
+export default Seo

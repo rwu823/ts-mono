@@ -3,7 +3,7 @@ import c from 'chalk'
 import packageJSON from './package.json'
 import { readFile } from './utils/fs'
 import g from './utils/glob'
-import { parseJSON, stringify } from './utils/JSON'
+import { parseJSON, stringify } from './utils/json'
 import { mkDirCopyFiles } from './utils/mkDirCopyFiles'
 import write from './utils/write'
 

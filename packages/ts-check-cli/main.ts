@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-process-exit */
+
 import { exec, spawn } from 'child_process'
 import ora from 'ora'
 
@@ -23,7 +25,7 @@ const execa = async (cmd: string): Promise<string> =>
       (code) => {
         spinner.stop()
 
-        process.exit(code || 0)
+        process.exit(code ?? 0)
       },
     )
   } else {

@@ -20,7 +20,7 @@
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
-    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx",
+    "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -38,7 +38,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "eslint-plugin-unicorn": "33.0.1",
-    "prettier": "2.3.1",
+    "prettier": "2.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sh-exec": "2.1.0",

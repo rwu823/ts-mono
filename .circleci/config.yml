@@ -361,7 +361,7 @@ jobs:
     executor: node
     steps:
       - init
-      - run: npx ts-node scripts/mono-deploy
+      - run: npx ts-node scripts/monoDeploy
 
 workflows:
   version: 2

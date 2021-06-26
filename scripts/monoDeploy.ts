@@ -24,7 +24,7 @@ const getDeploymentPackages = async () => {
   const modifiedPackages = await getDeploymentPackages().catch(console.error)
 
   if (Array.isArray(modifiedPackages)) {
-    if (modifiedPackages.length) {
+    if (modifiedPackages.length > 0) {
       sh`
         git config --global user.name CircleCI
         git config --global user.email mono_deploy@circleci.com

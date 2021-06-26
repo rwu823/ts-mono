@@ -11,7 +11,7 @@ const isExists = (p) => {
   try {
     fs.statSync(p)
     return true
-  } catch (er) {
+  } catch {
     return false
   }
 }
