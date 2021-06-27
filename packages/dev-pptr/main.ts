@@ -36,8 +36,8 @@ chromium
     //   }),
     // })
 
-    const ids = await stock(browser)
-    console.log(ids)
+    const monthlyKdStock = await stock(browser)
+    console.info(monthlyKdStock)
 
     await browser.close()
 

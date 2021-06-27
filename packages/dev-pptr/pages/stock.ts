@@ -67,17 +67,27 @@ const stock = async (browser: ChromiumBrowser) => {
     ),
   ])
 
-  const myListIDs = Object.values(res.recordMap.block)
-    .map((block) => block.value?.properties?.title[0][0])
-    .filter(Boolean)
+  const notionStockList: Record<string, string> = {}
+  for (const block of Object.values(res.recordMap.block)) {
+    const id = block.value?.properties?.title[0][0]
 
-  const stockIDs = await page.$$eval(
+    if (id) {
+      notionStockList[id] = block.value?.properties?.['?)n>'][0][0]
+    }
+  }
+
+  const stockIDsMonthlyKD = await page.$$eval(
     '#tblStockList tbody > tr > td:first-child a',
     (elList) =>
       elList.map((el) => (el.firstChild as Text)?.data).filter(Boolean),
   )
-  const myListIDsSet = new Set(myListIDs)
-  return stockIDs.filter((id) => myListIDsSet.has(id))
+  const stockMonthlyKdIdsSet = new Set(stockIDsMonthlyKD)
+
+  const filteredEntries = Object.entries(notionStockList).filter(([id]) =>
+    stockMonthlyKdIdsSet.has(id),
+  )
+
+  return filteredEntries
 }
 
 export default stock
