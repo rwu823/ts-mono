@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React from 'react'
 
 import styled, { css } from 'styled-components'
 
@@ -11,16 +11,12 @@ export type Props = {}
 
 export const DemoContainer: React.FC<
   Props & React.DOMAttributes<HTMLDivElement>
-> = ({ children, ...properties }) => {
-  123
+> = ({ children, ...properties }) => (
+  <Div {...properties}>
+    <h1>DemoContainer</h1>
 
-  return (
-    <Div {...properties}>
-      <h1>DemoContainer</h1>
-
-      <DemoContainerChild />
-    </Div>
-  )
-}
+    <DemoContainerChild />
+  </Div>
+)
 
 export default DemoContainer
