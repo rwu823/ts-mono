@@ -15,7 +15,7 @@
       "type": "node",
       "request": "launch",
       "name": "ts $file",
-      "sourceMaps": false,
+      "sourceMaps": true,
       "args": [
         "-r",
         "ts-node/register/transpile-only",

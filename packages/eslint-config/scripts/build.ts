@@ -1,8 +1,8 @@
+import { stringify } from '@ts-mono/base/utils/json'
 import write from '@ts-mono/base/utils/write'
-import originalPkgJSON from '@ts-mono/eslint-config/package.json'
-import { stringify } from '@ts-mono/ts-base/utils/json'
 
 import rootPkgJSON from '../../../package.json'
+import originalPkgJSON from '../package.json'
 
 const pickEslintPackages = Object.entries(rootPkgJSON.devDependencies).reduce(
   (o, [k, v]) => {

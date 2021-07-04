@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['./.eslintrc.json'],
+  extends: ['./.eslintrc'],
   env: {
     browser: false,
     node: true,

@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-
 module.exports = {
   extends: 'stylelint-config-standard',
   plugins: ['stylelint-order'],
@@ -8,8 +6,9 @@ module.exports = {
 
     'order/properties-order': [
       [
-        /* eslint-disable */
+        /* eslint-disable prettier/prettier */
         'position', 'inset', 'top', 'right', 'bottom', 'left',
+
         'width', 'height',
       ],
       /* eslint-enable */

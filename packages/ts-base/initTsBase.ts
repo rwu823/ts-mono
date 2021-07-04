@@ -19,6 +19,7 @@ const GIT_IGNORE = '.gitignore'
 const GIT_ATTRIBUTES = '.gitattributes'
 const HUSKY = '.husky'
 const ENV = '.env.ts'
+const STYLE_LINT = 'stylelint'
 
 Promise.all([
   g(`${ESLINTRC}*`),
@@ -31,6 +32,7 @@ Promise.all([
   g(GIT_ATTRIBUTES),
   g(ENV),
   g(HUSKY),
+  g(`*${STYLE_LINT}*`),
 ]).then(
   async ([
     eslintrc,
@@ -43,17 +45,18 @@ Promise.all([
     gitattr,
     envTs,
     husky,
+    styleLintConfigs,
   ]) => {
     if (gitignore.length > 0) {
       console.log(`${c.cyan(GIT_IGNORE)} is already exist.`)
     } else {
-      write(await readFile(`${tsBasePath}/${GIT_IGNORE}`)).to(GIT_IGNORE)
+      await write(await readFile(`${tsBasePath}/${GIT_IGNORE}`)).to(GIT_IGNORE)
     }
 
     if (gitattr.length > 0) {
       console.log(`${c.cyan(GIT_ATTRIBUTES)} is already exist.`)
     } else {
-      write(await readFile(`${tsBasePath}/${GIT_ATTRIBUTES}`)).to(
+      await write(await readFile(`${tsBasePath}/${GIT_ATTRIBUTES}`)).to(
         GIT_ATTRIBUTES,
       )
     }
@@ -61,7 +64,7 @@ Promise.all([
     if (envTs.length > 0) {
       console.log(`${c.cyan(ENV)} is already exist.`)
     } else {
-      write('').to(ENV)
+      await write('').to(ENV)
     }
     /**
      * =prettier.config.js
@@ -69,7 +72,7 @@ Promise.all([
     if (prettiers.length > 0) {
       console.log(`${c.cyan(prettiers[0])} is already exist.`)
     } else {
-      write(`const base = require('${packageJSON.name}/prettier.config')
+      await write(`const base = require('${packageJSON.name}/prettier.config')
 
 module.exports = {
   ...base,
@@ -81,7 +84,7 @@ module.exports = {
     if (eslintrc.length > 0) {
       console.log(`${c.cyan(eslintrc[0])} is already exist.`)
     } else {
-      write(
+      await write(
         `${stringify({
           root: true,
           extends: [`@ts-mono`],
@@ -89,13 +92,19 @@ module.exports = {
       ).to(ESLINTRC)
     }
 
+    // if (styleLintConfigs.length > 0) {
+    //   console.log(`${c.cyan(styleLintConfigs[0])} is already exist.`)
+    // } else {
+    //   write().to(`${styleLintConfigs}.config.js`)
+    // }
+
     /**
      * =tsconfig.json
      */
     if (tsconfigs.length > 0) {
       console.log(`${c.cyan('tsconfig.json')} is already exist.`)
     } else {
-      write(
+      await write(
         stringify({
           extends: `${packageJSON.name}/tsconfig`,
           exclude: ['node_modules', 'out/**/*', '**/*.spec.ts', '**/*.test.ts'],
@@ -109,26 +118,21 @@ module.exports = {
     /**
      * =package.json
      */
-    const pkg = parseJSON<any>(await readFile('package.json'))
+    const pkg = parseJSON<typeof packageJSON>(await readFile('package.json'))
 
-    if (!pkg.scripts) {
-      pkg.scripts = {}
-    }
+    // @ts-expect-error
+    pkg.scripts = pkg.scripts ?? {}
+    pkg['lint-staged'] = pkg['lint-staged'] ?? packageJSON['lint-staged']
+
+    await write(stringify(pkg)).to('package.json')
+
     if (jestConf.length > 0) {
       console.log(`${c.cyan(JEST_CONFIG)} is already exist.`)
     } else {
-      write(await readFile(`${tsBasePath}/${JEST_CONFIG}`)).to(JEST_CONFIG)
+      await write(await readFile(`${tsBasePath}/${JEST_CONFIG}`)).to(
+        JEST_CONFIG,
+      )
     }
-
-    if (!pkg['lint-staged']) {
-      Object.assign(pkg, {
-        'lint-staged': {
-          '*.{ts,tsx,js,mjs}': ['eslint --fix'],
-        },
-      })
-    }
-
-    write(stringify(pkg)).to('package.json')
 
     /**
      * .vscode
@@ -148,6 +152,12 @@ module.exports = {
     /**
      * .circleci/config.yml
      */
+    if (circleCIConf.length > 0) {
+      console.log(`${c.cyan(circleCIConf[0])} is already exist.`)
+    } else {
+      await mkDirCopyFiles(CIRCLE_CI)
+    }
+
     if (circleCIConf.length > 0) {
       console.log(`${c.cyan(circleCIConf[0])} is already exist.`)
     } else {

@@ -5,6 +5,7 @@
     "init-ts-base": "bin/initTSBase"
   },
   "main": "index.js",
+  "lint-staged": {},
   "dependencies": {
     "@ts-mono/eslint-config": "rwu823/ts-mono#pkg/eslint-config",
     "@types/jest": "26.0.23",

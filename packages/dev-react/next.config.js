@@ -2,6 +2,9 @@
 
 module.exports = (phase, { defaultConfig }) => ({
   pageExtensions: ['tsx', 'ts', 'mdx'],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   webpack(config, options) {
     // config.resolve.mainFields = ['module', 'main', 'browser']
     // config.devtool = 'cheap-eval-source-map'
@@ -11,7 +14,6 @@ module.exports = (phase, { defaultConfig }) => ({
     //     (plugin) => !('useTypescriptIncrementalApi' in plugin),
     //   )
     // }
-
     config.module.rules.push(
       {
         test: /\.md$/,

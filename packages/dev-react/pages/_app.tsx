@@ -18,11 +18,12 @@ import { MDXProvider } from '@mdx-js/react'
 
 const Max800 = styled.div`
   ${() => css`
-    max-width: 800px;
     margin: 0 auto;
+    max-width: 800px;
     padding: 0 1em;
   `}
 `
+
 const ga = new Ga('UA-4476856-23', { debug: true })
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
