@@ -1,4 +1,5 @@
 import c from 'chalk'
+import { exec } from 'child_process'
 
 import packageJSON from './package.json'
 import { readFile } from './utils/fs'
@@ -164,7 +165,9 @@ module.exports = {
     if (husky.length > 0) {
       console.log(`${c.cyan(husky[0])} is already exist.`)
     } else {
-      await mkDirCopyFiles(HUSKY)
+      exec(
+        `npx husky install && npx husky add .husky/pre-commit "npx lint-staged"`,
+      )
     }
 
     /**
