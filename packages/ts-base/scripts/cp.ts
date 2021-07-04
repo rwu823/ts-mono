@@ -9,6 +9,7 @@ import pkg from '../package.json'
 const excludeSet = new Set([
   'out',
   '.git',
+  '.husky',
   'yarn.lock',
   '.env.ts',
   'src',
