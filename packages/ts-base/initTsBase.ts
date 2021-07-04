@@ -99,7 +99,7 @@ module.exports = {
       console.log(`${c.cyan(styleLintConfigs[0])} is already exist.`)
     } else {
       write(`module.exports = { extends: ['@ts-mono/stylelint-config'] }`).to(
-        `${styleLintConfigs}.config.js`,
+        `${STYLE_LINT}.config.js`,
       )
     }
 
