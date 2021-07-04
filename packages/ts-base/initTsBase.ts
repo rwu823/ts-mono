@@ -166,7 +166,7 @@ module.exports = {
       console.log(`${c.cyan(husky[0])} is already exist.`)
     } else {
       exec(
-        `npx husky install && npx husky add .husky/pre-commit "npx lint-staged"`,
+        /* sh */ `git init && npx husky install && npx husky add .husky/pre-commit "npx lint-staged"`,
       )
     }
 
