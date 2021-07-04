@@ -165,9 +165,12 @@ module.exports = {
     if (husky.length > 0) {
       console.log(`${c.cyan(husky[0])} is already exist.`)
     } else {
-      exec(
-        /* sh */ `git init && npx husky install && npx husky add .husky/pre-commit "npx lint-staged"`,
-      ).stdout?.pipe(process.stdout)
+      exec(/* sh */ `
+git init
+npx husky install
+npx husky add .husky/pre-commit "npx lint-staged"
+git br -M main
+`).stdout?.pipe(process.stdout)
     }
 
     /**
