@@ -129,6 +129,10 @@ module.exports = {
     pkg.scripts = pkg.scripts ?? {}
     pkg['lint-staged'] = pkg['lint-staged'] ?? packageJSON['lint-staged']
 
+    Object.assign(pkg.scripts, {
+      prepare: 'husky install',
+    })
+
     await write(stringify(pkg)).to('package.json')
 
     if (jestConf.length > 0) {
