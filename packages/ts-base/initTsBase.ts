@@ -45,7 +45,7 @@ Promise.all([
     gitattr,
     envTs,
     husky,
-    styleLintConfigs,
+    // styleLintConfigs,
   ]) => {
     if (gitignore.length > 0) {
       console.log(`${c.cyan(GIT_IGNORE)} is already exist.`)
