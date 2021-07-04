@@ -20,6 +20,7 @@ const GIT_ATTRIBUTES = '.gitattributes'
 const HUSKY = '.husky'
 const ENV = '.env.ts'
 const STYLE_LINT = 'stylelint'
+const TYPES = '@types'
 
 Promise.all([
   g(`${ESLINTRC}*`),
@@ -33,6 +34,7 @@ Promise.all([
   g(ENV),
   g(HUSKY),
   g(`*${STYLE_LINT}*`),
+  g(TYPES),
 ]).then(
   async ([
     eslintrc,
@@ -45,7 +47,8 @@ Promise.all([
     gitattr,
     envTs,
     husky,
-    // styleLintConfigs,
+    styleLintConfigs,
+    globalTypes,
   ]) => {
     if (gitignore.length > 0) {
       console.log(`${c.cyan(GIT_IGNORE)} is already exist.`)
@@ -92,11 +95,13 @@ module.exports = {
       ).to(ESLINTRC)
     }
 
-    // if (styleLintConfigs.length > 0) {
-    //   console.log(`${c.cyan(styleLintConfigs[0])} is already exist.`)
-    // } else {
-    //   write().to(`${styleLintConfigs}.config.js`)
-    // }
+    if (styleLintConfigs.length > 0) {
+      console.log(`${c.cyan(styleLintConfigs[0])} is already exist.`)
+    } else {
+      write(`module.exports = { extends: ['@ts-mono/stylelint-config'] }`).to(
+        `${styleLintConfigs}.config.js`,
+      )
+    }
 
     /**
      * =tsconfig.json
@@ -132,6 +137,15 @@ module.exports = {
       await write(await readFile(`${tsBasePath}/${JEST_CONFIG}`)).to(
         JEST_CONFIG,
       )
+    }
+
+    /**
+     * @types
+     */
+    if (globalTypes.length > 0) {
+      console.log(`${c.cyan(globalTypes[0])} is already exist.`)
+    } else {
+      await mkDirCopyFiles(TYPES)
     }
 
     /**

@@ -8,6 +8,7 @@
   "lint-staged": {},
   "dependencies": {
     "@ts-mono/eslint-config": "rwu823/ts-mono#pkg/eslint-config",
+    "@ts-mono/stylelint-config": "rwu823/ts-mono#pkg/stylelint-config",
     "@types/jest": "26.0.23",
     "@types/node": "16.0.0",
     "chalk": "4.1.1",

@@ -2973,6 +2973,14 @@
     eslint-plugin-unicorn "33.0.1"
     prettier "2.3.1"
 
+"@ts-mono/stylelint-config@rwu823/ts-mono#pkg/stylelint-config":
+  version "0.0.1"
+  resolved "https://codeload.github.com/rwu823/ts-mono/tar.gz/4a427cff111ad39f3df3a6470f9cdb69ab4543ab"
+  dependencies:
+    stylelint "13.13.1"
+    stylelint-config-standard "22.0.0"
+    stylelint-order "4.1.0"
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.8.tgz#c1e4e80d6f964fbecb3359c43bd48b40f7cadad9"
