@@ -19,6 +19,11 @@ vars:
       branches:
         only: prod/eslint-config
 
+  stylelint-config__prod: &stylelint-config__prod
+    filters:
+      branches:
+        only: prod/stylelint-config
+
   storybook__prod: &storybook__prod
     filters:
       branches:
@@ -339,6 +344,17 @@ jobs:
             branch: pkg/eslint-config
             force: true
 
+  stylelint-config__deploy:
+    executor: node
+    steps:
+        - init:
+            no_module: true
+        - run: yarn workspace @ts-mono/stylelint-config build
+        - push_branch:
+            dir: packages/stylelint-config/out
+            branch: pkg/stylelint-config
+            force: true
+
   storybook__deploy:
     executor: node
     steps:
@@ -379,6 +395,8 @@ workflows:
 
   Build And Deploy:
     jobs:
+      - stylelint-config__deploy:
+          <<: *stylelint-config__prod
       - eslint-config__deploy:
           <<: *eslint-config__prod
       - storybook__deploy:
