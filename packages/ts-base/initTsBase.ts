@@ -167,7 +167,7 @@ module.exports = {
     } else {
       exec(
         /* sh */ `git init && npx husky install && npx husky add .husky/pre-commit "npx lint-staged"`,
-      )
+      ).stdout?.pipe(process.stdout)
     }
 
     /**
