@@ -13,6 +13,7 @@
     "@types/node": "16.0.0",
     "chalk": "4.1.1",
     "fast-glob": "3.2.6",
+    "fs-extra": "10.0.0",
     "husky": "7.0.0",
     "jest": "27.0.6",
     "lint-staged": "11.0.0",
@@ -23,5 +24,8 @@
   },
   "scripts": {
     "build": "rm -rf out node_modules/.tsbuildinfo && tsc && cp -r bin scripts $(ts-node -T scripts/cp) out"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "9.0.11"
   }
 }
