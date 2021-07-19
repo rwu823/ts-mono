@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+DIST=./node_modules/@ts-mono/dev-pptrv
