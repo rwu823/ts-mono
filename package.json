@@ -1,0 +1,17 @@
+{
+  "name": "@ts-mono/storybook",
+  "version": "0.0.0",
+  "bin": {
+    "init-storybook": "bin/init-storybook"
+  },
+  "dependencies": {
+    "@storybook/addon-essentials": "6.3.4",
+    "@storybook/react": "6.3.4",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "12.0.0"
+  },
+  "scripts": {
+    "sb": "start-storybook -p 9090 --ci"
+  },
+  "devDependencies": {}
+}
