@@ -1,0 +1,7 @@
+{
+
+  "rules": {
+    "filenames/no-index": 0,
+    "filenames/match-exported": 0
+  }
+}
