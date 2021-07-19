@@ -1,0 +1,4 @@
+defaults
+not kaios > 0
+not op_mini all
+not ie > 0
