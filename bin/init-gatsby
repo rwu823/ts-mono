@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+DIST=./node_modules/@ts-mono/gatsby
+
+cp -r $DIST/src src
+
+cp $DIST/gatsby-node.js .
