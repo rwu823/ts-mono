@@ -14,7 +14,7 @@ const ESLINTRC = '.eslintrc'
 const PRETTIER = 'prettier'
 const TSCONFIG = 'tsconfig.json'
 const VSCODE = '.vscode'
-const JEST_CONFIG = 'jest.config.mjs'
+const JEST_CONFIG = 'jest.config.ts'
 const CIRCLE_CI = '.circleci'
 const GIT_IGNORE = '.gitignore'
 const GIT_ATTRIBUTES = '.gitattributes'
@@ -22,6 +22,7 @@ const HUSKY = '.husky'
 const ENV = '.env.ts'
 const STYLE_LINT = 'stylelint'
 const TYPES = '@types'
+const BROWSER_LIST_RC = '.browserslistrc'
 
 Promise.all([
   g(`${ESLINTRC}*`),
@@ -36,6 +37,7 @@ Promise.all([
   g(HUSKY),
   g(`*${STYLE_LINT}*`),
   g(TYPES),
+  g(BROWSER_LIST_RC),
 ]).then(
   async ([
     eslintrc,
@@ -50,7 +52,16 @@ Promise.all([
     husky,
     styleLintConfigs,
     globalTypes,
+    browserslist,
   ]) => {
+    if (browserslist.length > 0) {
+      console.log(`${c.cyan(BROWSER_LIST_RC)} is already exist.`)
+    } else {
+      await write(await readFile(`${tsBasePath}/${BROWSER_LIST_RC}`)).to(
+        BROWSER_LIST_RC,
+      )
+    }
+
     if (gitignore.length > 0) {
       console.log(`${c.cyan(GIT_IGNORE)} is already exist.`)
     } else {

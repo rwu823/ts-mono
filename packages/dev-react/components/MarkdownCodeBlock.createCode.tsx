@@ -19,33 +19,33 @@ import White from './MarkdownCodeBlockWhiteTheme'
 
 const Title = styled.div`
   ${() => css`
-    margin-left: auto;
     font-size: 0.6rem;
+    margin-left: auto;
   `}
 `
 
 const languageTheme: { [key: string]: FlattenSimpleInterpolation } = {
   js: css`
-    color: #000;
     background: #e9d458;
+    color: #000;
   `,
   get jsx() {
     return this.js
   },
   ts: css`
-    color: #fff;
     background: #1279c4;
+    color: #fff;
   `,
   get tsx() {
     return this.ts
   },
   css: css`
-    color: #fff;
     background: #c56496;
+    color: #fff;
   `,
   htm: css`
-    color: #fff;
     background: #dc4c2f;
+    color: #fff;
   `,
   get html() {
     return this.htm
@@ -57,27 +57,26 @@ const CopyRow = styled.div`
     position: absolute;
     right: 10px;
     bottom: 5px;
-    font-size: 0.6rem;
+    background: transparent;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.6rem;
     opacity: 0.6;
     padding: 7px 4px;
-    border-radius: 4px;
-    background: transparent;
     transition: background 0.4s;
   `}
 `
 
 const Language = styled.sub<{ type: string }>`
   ${(p) => css`
-    margin-right: auto;
-    line-height: 1;
-    padding: 4px;
+    background: #ccc;
     border-radius: 0 0 3px 3px;
     color: #222;
-    background: #ccc;
+    line-height: 1;
+    margin-right: auto;
+    padding: 4px;
 
     ${languageTheme[p.type]}
-
     ::after {
       content: '${p.type}';
     }
@@ -86,26 +85,26 @@ const Language = styled.sub<{ type: string }>`
 
 const ToolBar = styled.div`
   ${() => css`
-    font: 0.8rem 'Menlo', monospace;
-    color: #bbb;
-    display: flex;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    padding: 12px 20px;
+    color: #bbb;
+    display: flex;
+    font: 0.8rem 'Menlo', monospace;
     justify-content: space-between;
+    padding: 12px 20px;
   `}
 `
 
 const Div = styled.div<{ isDay: boolean }>`
   ${(p) => css`
-    background: ${p.isDay ? '#eee' : '#282c34'};
     position: relative;
+    background: ${p.isDay ? '#eee' : '#282c34'};
     border-radius: 5px;
     overflow: hidden;
 
     ${CopyRow} {
-      fill: ${p.isDay ? '#000' : '#fff'};
       color: ${p.isDay ? '#000' : '#fff'};
+      fill: ${p.isDay ? '#000' : '#fff'};
 
       :hover {
         background: ${p.isDay ? '#fff' : '#000'};

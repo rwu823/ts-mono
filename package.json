@@ -47,7 +47,9 @@
     "styled-components": "5.3.0",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
+    "stylelint-no-unsupported-browser-features": "5.0.1",
     "stylelint-order": "4.1.0",
     "typehole": "1.7.0"
-  }
+  },
+  "dependencies": {}
 }

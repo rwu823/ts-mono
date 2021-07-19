@@ -1,3 +1,5 @@
+import { InitialOptionsTsJest } from 'ts-jest/dist/types'
+
 export default {
   preset: 'jest-playwright-preset',
 
@@ -6,4 +8,4 @@ export default {
       diagnostics: false,
     },
   },
-}
+} as InitialOptionsTsJest

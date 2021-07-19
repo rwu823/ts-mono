@@ -1,7 +1,12 @@
 module.exports = {
   extends: 'stylelint-config-standard',
-  plugins: ['stylelint-order'],
+  plugins: ['stylelint-order', 'stylelint-no-unsupported-browser-features'],
   rules: {
+    'no-eol-whitespace': null,
+    'no-missing-end-of-source-newline': null,
+
+    'plugin/no-unsupported-browser-features': [true],
+
     'order/order': ['custom-properties', 'declarations'],
 
     'order/properties-order': [

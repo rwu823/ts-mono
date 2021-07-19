@@ -13,7 +13,6 @@ module.exports = (api) => {
         'next/babel',
         {
           'preset-env': {
-            targets: 'defaults, not safari 5.1',
             useBuiltIns: 'usage',
             corejs: 3,
           },

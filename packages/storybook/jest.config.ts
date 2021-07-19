@@ -1,3 +1,5 @@
+import { InitialOptionsTsJest } from 'ts-jest/dist/types'
+
 export default {
   preset: 'ts-jest',
   globals: {
@@ -8,4 +10,4 @@ export default {
   setupFilesAfterEnv: ['./jest/setupReactTestEnv.ts'],
   testEnvironment: 'jsdom',
   watchPathIgnorePatterns: ['.jest-test-results.json'],
-}
+} as InitialOptionsTsJest
