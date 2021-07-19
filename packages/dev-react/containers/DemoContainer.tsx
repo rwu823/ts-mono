@@ -7,16 +7,21 @@ import DemoContainerChild from '@ts-mono/dev-react/containers/DemoContainerChild
 const Div = styled.div`
   ${() => css``}
 `
-export type Props = {}
+export type Props = {
+  n: number
+}
 
 export const DemoContainer: React.FC<
   Props & React.DOMAttributes<HTMLDivElement>
-> = ({ children, ...properties }) => (
-  <Div {...properties}>
-    <h1>DemoContainer</h1>
+> = ({ children, n, ...properties }) => {
+  console.log('demo container render')
 
-    <DemoContainerChild />
-  </Div>
-)
+  return (
+    <Div {...properties}>
+      <h1>DemoContainer</h1>
+      {n}-{children}
+    </Div>
+  )
+}
 
-export default DemoContainer
+export default React.memo(DemoContainer)

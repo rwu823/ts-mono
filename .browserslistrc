@@ -1,2 +1,4 @@
 defaults
-not safari 5.1
+not kaios > 0
+not op_mini all
+not ie > 0

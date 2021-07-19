@@ -9,14 +9,14 @@ const Div = styled.div<{ heightRatio: number }>`
     width: 100%;
     height: 200px;
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
+      clear: both;
       content: '';
       display: block;
-      clear: both;
     }
 
-    &:before {
+    &::before {
       float: left;
       padding-top: ${p.heightRatio * 100}%;
     }

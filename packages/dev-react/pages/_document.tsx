@@ -10,37 +10,30 @@ import Document, {
   NextScript,
 } from 'next/document'
 
-class MyDocument extends Document {
+class MyDocument extends Document<{ styleTags: React.ReactNode }> {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
 
-    try {
-      await ctx.renderPage(
-        (App) => (props) =>
-          sheet.collectStyles(
-            <StyleSheetManager>
-              <App {...props} />
-            </StyleSheetManager>,
-          ),
-      )
-
-      const initialProps = await Document.getInitialProps(ctx)
-
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
+    const pageProps = await ctx.renderPage(
+      (App) => (props) =>
+        sheet.collectStyles(
+          <StyleSheetManager>
+            <App {...props} />
+          </StyleSheetManager>,
         ),
-      }
-    } finally {
-      sheet.seal()
+    )
+
+    const styleTags = sheet.getStyleElement()
+
+    return {
+      ...pageProps,
+      styleTags,
     }
   }
 
   render() {
+    const { styleTags } = this.props
+
     return (
       <Html lang="en">
         <Head>
@@ -48,6 +41,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/victormono@latest/dist/index.min.css"
           />
+          {styleTags}
         </Head>
         <body>
           <Main />
