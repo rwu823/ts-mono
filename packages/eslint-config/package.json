@@ -3,7 +3,7 @@
   "name": "@ts-mono/eslint-config",
   "main": "browser",
   "scripts": {
-    "build": "rm -rf out && mkdir out && cp ./*.* ../../.eslintrc out && ts-node scripts/build"
+    "build": "ts-node -T scripts/build"
   },
   "dependencies": {}
 }

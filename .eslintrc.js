@@ -1,0 +1,60 @@
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    'prettier',
+    'react-hooks',
+    'simple-import-sort',
+    'import',
+    '@typescript-eslint',
+    'filenames',
+    'testing-library',
+    'jsx-a11y',
+  ],
+  extends: [
+    'airbnb',
+    'plugin:import/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:compat/recommended',
+    'plugin:unicorn/recommended',
+    'plugin:jest-dom/recommended',
+    '@ts-mono/eslint-config/rules/react',
+    '@ts-mono/eslint-config/rules/importSort',
+    '@ts-mono/eslint-config/rules/compat',
+    '@ts-mono/eslint-config/rules/unicorn',
+    '@ts-mono/eslint-config/rules/testing',
+    '@ts-mono/eslint-config/rules/import',
+    '@ts-mono/eslint-config/rules/typescript',
+    'prettier',
+  ],
+  env: {
+    browser: true,
+    jest: true,
+    es6: true,
+  },
+  globals: {
+    globalThis: 'readonly',
+  },
+  rules: {
+    'prettier/prettier': 2,
+
+    // eslint
+    'no-undef': 0,
+    'no-unused-vars': 0,
+    'no-console': 0,
+    'no-use-before-define': 0,
+    'no-restricted-syntax': 0,
+    'no-unused-expressions': 0,
+    'no-param-reassign': 0,
+    'no-cond-assign': [2, 'except-parens'],
+    'no-empty': [2, { allowEmptyCatch: true }],
+    'spaced-comment': [2, 'always', { markers: ['/'] }],
+    'global-require': 0,
+    'consistent-return': 0,
+
+    // jsx-ally
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/no-static-element-interactions': 0,
+    'jsx-a11y/no-noninteractive-element-interactions': 0,
+  },
+}

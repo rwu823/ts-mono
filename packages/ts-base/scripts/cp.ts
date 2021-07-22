@@ -5,7 +5,6 @@ import path from 'path'
 import rootPkg from '../../../package.json'
 import pkg from '../package.json'
 
-// prettier-ignore
 const excludeSet = new Set([
   'out',
   '.git',
@@ -18,8 +17,8 @@ const excludeSet = new Set([
   'packages',
   'scripts',
   '.eslintignore',
-  '.eslintrc'
-]);
+  '.eslintrc',
+])
 
 fs.writeFileSync(
   'out/package.json',

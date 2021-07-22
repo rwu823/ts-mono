@@ -3,7 +3,7 @@ const path = require('path')
 const { NODE_ENV } = process.env
 const isDev = !NODE_ENV || NODE_ENV === 'development'
 
-const pkg = require(path.resolve('package.json'))
+const pkg = require('./package.json')
 
 module.exports = {
   siteMetadata: {

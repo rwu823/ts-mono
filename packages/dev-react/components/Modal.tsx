@@ -8,23 +8,23 @@ const ModalBox = styled.div`
   ${() => css`
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 9999;
     overflow: auto;
+    z-index: 9999;
   `}
 `
 
 const ModalContent = styled.div<Pick<ModalProps, 'top'>>`
   ${(p) => css`
-    display: inline-block;
-    display: inline-flex;
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
+    display: inline-block;
+    display: inline-flex;
     margin-top: ${p.top ?? 0}vh;
+    transform: translateX(-50%);
   `}
 `
 

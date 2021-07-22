@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/filename-case */
+
 const fs = require('fs')
 const path = require('path')
 const pkg = require('../package.json')
