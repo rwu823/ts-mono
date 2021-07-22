@@ -135,11 +135,19 @@ module.exports = {
     /**
      * =package.json
      */
-    const pkg = parseJSON<typeof packageJSON>(await readFile('package.json'))
+    const pkg = parseJSON<{
+      scripts: Record<string, string>
+      'lint-staged': Record<string, unknown>
+    }>(await readFile('package.json'))
 
-    // @ts-expect-error
     pkg.scripts = pkg.scripts ?? {}
-    pkg['lint-staged'] = pkg['lint-staged'] ?? packageJSON['lint-staged']
+    Object.assign(pkg.scripts, {
+      postinstall: pkg.scripts.postinstall
+        ? `${pkg.scripts.postinstall} && ${packageJSON.scripts.postinstall}`
+        : packageJSON.scripts.postinstall,
+    })
+
+    if (!pkg['lint-staged']) pkg['lint-staged'] = packageJSON['lint-staged']
 
     Object.assign(pkg.scripts, {
       prepare: 'husky install',

@@ -22,7 +22,8 @@
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "browserslist --update-db"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.28.4",

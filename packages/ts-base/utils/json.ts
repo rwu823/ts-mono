@@ -1,4 +1,4 @@
-export const parseJSON = <T extends { [name: string]: any }>(
+export const parseJSON = <T extends Record<string, unknown>>(
   stringLikeJSON = '',
 ): Partial<{ [name in keyof T]: T[name] }> =>
   // eslint-disable-next-line no-new-func
