@@ -26,6 +26,10 @@ fs.writeFileSync(
     Object.assign(pkg, {
       version: rootPkg.version,
       'lint-staged': rootPkg['lint-staged'],
+      scripts: {
+        ...rootPkg.scripts,
+        ...(pkg.scripts ?? {}),
+      },
     }),
     null,
     2,
