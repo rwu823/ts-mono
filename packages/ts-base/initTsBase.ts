@@ -143,8 +143,8 @@ module.exports = {
     pkg.scripts = pkg.scripts ?? {}
     Object.assign(pkg.scripts, {
       postinstall: pkg.scripts.postinstall
-        ? `${pkg.scripts.postinstall} && ${packageJSON.scripts.postinstall}`
-        : packageJSON.scripts.postinstall,
+        ? `${pkg.scripts.postinstall} && browserslist --update-db`
+        : 'browserslist --update-db',
     })
 
     if (!pkg['lint-staged']) pkg['lint-staged'] = packageJSON['lint-staged']
