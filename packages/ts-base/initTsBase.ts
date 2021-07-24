@@ -140,13 +140,10 @@ module.exports = {
       'lint-staged': Record<string, unknown>
     }>(await readFile('package.json'))
 
-    // pkg.scripts = pkg.scripts ?? {}
+    pkg.scripts = pkg.scripts ?? {}
 
-    // if (!pkg['lint-staged']) pkg['lint-staged'] = packageJSON['lint-staged']
-
-    // Object.assign(pkg.scripts, {
-    //   prepare: 'husky install & browserslist --update-db',
-    // })
+    Object.assign(pkg['lint-staged'], packageJSON['lint-staged'])
+    Object.assign(pkg.scripts, packageJSON.scripts)
 
     await write(stringify(pkg)).to('package.json')
 
