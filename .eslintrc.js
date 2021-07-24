@@ -25,6 +25,9 @@ module.exports = {
     '@ts-mono/eslint-config/rules/testing',
     '@ts-mono/eslint-config/rules/import',
     '@ts-mono/eslint-config/rules/typescript',
+    '@ts-mono/eslint-config/rules/filenames',
+    '@ts-mono/eslint-config/rules/a11y',
+    '@ts-mono/eslint-config/rules/base',
     'prettier',
   ],
   env: {
@@ -37,24 +40,5 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 2,
-
-    // eslint
-    'no-undef': 0,
-    'no-unused-vars': 0,
-    'no-console': 0,
-    'no-use-before-define': 0,
-    'no-restricted-syntax': 0,
-    'no-unused-expressions': 0,
-    'no-param-reassign': 0,
-    'no-cond-assign': [2, 'except-parens'],
-    'no-empty': [2, { allowEmptyCatch: true }],
-    'spaced-comment': [2, 'always', { markers: ['/'] }],
-    'global-require': 0,
-    'consistent-return': 0,
-
-    // jsx-ally
-    'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'jsx-a11y/no-noninteractive-element-interactions': 0,
   },
 }
