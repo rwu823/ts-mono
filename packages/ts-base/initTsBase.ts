@@ -140,10 +140,8 @@ module.exports = {
       'lint-staged': Record<string, unknown>
     }>(await readFile('package.json'))
 
-    pkg.scripts = pkg.scripts ?? {}
-
-    Object.assign(pkg['lint-staged'], packageJSON['lint-staged'])
-    Object.assign(pkg.scripts, packageJSON.scripts)
+    Object.assign(pkg['lint-staged'] ?? {}, packageJSON['lint-staged'])
+    Object.assign(pkg.scripts ?? {}, packageJSON.scripts)
 
     await write(stringify(pkg)).to('package.json')
 
