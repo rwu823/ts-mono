@@ -13,39 +13,17 @@ const Div = styled.div`
   ${() => css``}
 `
 
-const Demo: React.FC = (props) => {
-  const [state, setState] = useState(0)
+const Demo: React.FC = (props) => (
+  <Div>
+    <Head>
+      <title>Demo - Page</title>
+    </Head>
 
-  let s: string | undefined
-
-  useEffect(() => {
-    if (s) {
-      s
-      return () => {
-        s
-      }
-    }
-  }, [s])
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setState((n) => n + 1)
-    }, 1000)
-
-    return () => clearInterval(t)
-  }, [])
-  return (
-    <Div>
-      <Head>
-        <title>Demo - Page</title>
-      </Head>
-
-      <DemoContainer n={state}>
-        <DemoContainerChild />
-      </DemoContainer>
-    </Div>
-  )
-}
+    <DemoContainer>
+      <DemoContainerChild />
+    </DemoContainer>
+  </Div>
+)
 export const allPostsQueryVars = {
   skip: 0,
   first: 10,

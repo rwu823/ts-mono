@@ -2,6 +2,6 @@
   "compilerOptions": {
     "types": ["jquery", "jest", "jest-playwright-preset", "expect-playwright"],
     "lib": ["dom", "ESNext"],
-    "sourceMap": false
+    "esModuleInterop": true
   }
 }
