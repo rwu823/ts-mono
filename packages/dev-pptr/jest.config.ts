@@ -1,4 +1,4 @@
-import { LaunchOptions } from 'playwright'
+import { JestPlaywrightConfig } from 'jest-playwright-preset'
 import { InitialOptionsTsJest } from 'ts-jest/dist/types'
 
 const isDebug = !!process.env.PWDEBUG
@@ -13,13 +13,15 @@ export default {
       diagnostics: false,
     },
   },
+  setupFiles: ['./e2e/setup.ts'],
 
   testEnvironmentOptions: {
     'jest-playwright': {
       launchOptions: {
         devtools: isDebug,
-        slowMo: isDebug ? 200 : 0,
-      } as LaunchOptions,
-    },
+        slowMo: isDebug ? 100 : 0,
+      },
+      contextOptions: {},
+    } as JestPlaywrightConfig,
   },
 } as InitialOptionsTsJest
