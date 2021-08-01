@@ -1,48 +1,46 @@
 import { useMemo } from 'react'
 
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { age } from '@ts-mono/dev-react/apollo/Query'
+
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client'
 import { concatPagination } from '@apollo/client/utilities'
 
-let apolloClient: ApolloClient<{ name: string }>
+let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
 const createApolloClient = () =>
   new ApolloClient({
     ssrMode: !process.browser,
     link: new HttpLink({
-      uri: 'https://nextjs-graphql-with-prisma-simple.vercel.app/api', // Server URL (must be absolute)
+      uri: 'https://api.spacex.land/graphql/', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            allPosts: concatPagination(),
-          },
-        },
-      },
+      typePolicies: {},
     }),
   })
 
-export const initializeApollo = (initialState?: Record<string, any>) => {
-  const nextApolloClient = apolloClient ?? createApolloClient()
+export const initializeApollo = (initialState = {}) => {
+  apolloClient = apolloClient ?? createApolloClient()
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
   if (initialState) {
     // Get existing cache, loaded during client side data fetching
-    const existingCache = nextApolloClient.extract()
+    const existingCache = apolloClient.extract()
     // Restore the cache using the data passed from getStaticProps/getServerSideProps
     // combined with the existing cached data
-    nextApolloClient.cache.restore({ ...existingCache, ...initialState })
+    apolloClient.cache.restore({ ...initialState, ...existingCache })
   }
 
-  // Create the Apollo Client once in the client
-  if (!apolloClient) apolloClient = nextApolloClient
-
-  return nextApolloClient
+  return apolloClient
 }
 
-export const useApollo = (initialState) => {
+export const useApollo = (initialState = {}) => {
   const store = useMemo(() => initializeApollo(initialState), [initialState])
   return store
 }

@@ -2,8 +2,10 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import styled, { css } from 'styled-components'
 
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
+import { initializeApollo } from '@ts-mono/dev-react/apollo/useApollo'
 import { DemoContainer } from '@ts-mono/dev-react/containers/DemoContainer'
 import DemoContainerChild from '@ts-mono/dev-react/containers/DemoContainerChild'
 
@@ -13,50 +15,47 @@ const Div = styled.div`
   ${() => css``}
 `
 
-const Demo: React.FC = (props) => (
+export const QUERY_SPACEX = gql`
+  {
+    company {
+      ceo
+    }
+    missions {
+      name
+    }
+  }
+`
+
+type DemoProps = {
+  spaceX: unknown
+}
+const Demo: React.FC<DemoProps> = ({ spaceX }) => (
   <Div>
     <Head>
       <title>Demo - Page</title>
     </Head>
 
-    <DemoContainer>
+    <DemoContainer n={1}>
+      <h1>XXX</h1>
+      <pre>{JSON.stringify(spaceX, null, 2)}</pre>
       <DemoContainerChild />
     </DemoContainer>
   </Div>
 )
-export const allPostsQueryVars = {
-  skip: 0,
-  first: 10,
-}
 
-export const ALL_POSTS_QUERY = gql`
-  query allPosts($first: Int!, $skip: Int!) {
-    allPosts(orderBy: { createdAt: desc }, first: $first, skip: $skip) {
-      id
-      title
-      votes
-      url
-      createdAt
-    }
-    _allPostsMeta {
-      count
-    }
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const apolloClient = initializeApollo()
+
+  const spaceX = await apolloClient.query({
+    query: QUERY_SPACEX,
+    variables: {},
+  })
+
+  return {
+    props: {
+      spaceX,
+    },
   }
-`
-// export const getStaticProps: GetStaticProps = async (ctx) => {
-//   const apolloClient = initializeApollo()
-
-//   await apolloClient.query({
-//     query: ALL_POSTS_QUERY,
-//     variables: allPostsQueryVars,
-//   })
-
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//     revalidate: 1,
-//   }
-// }
+}
 
 export default Demo

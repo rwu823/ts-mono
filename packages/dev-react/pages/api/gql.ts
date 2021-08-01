@@ -1,11 +1,12 @@
 import { NextApiHandler } from 'next'
 
+import { fetch } from '@ts-mono/dev-react/utils/fetch'
+
 import { IResolvers } from '@graphql-tools/utils'
 
 import { ApolloServer, gql } from 'apollo-server-micro'
-import fetch from 'isomorphic-fetch'
 
-const typeDefs = gql`
+const StockInfo = gql`
   type StockInfo {
     Id: String
     Name: String
@@ -23,40 +24,60 @@ const typeDefs = gql`
     Mean60Distance: Float
     Mean60DistanceRate: Float
   }
-
-  type Query {
-    twFuture: StockInfo
-  }
 `
 
 const resolvers: IResolvers = {
   Query: {
-    twFuture: async () => {
+    twFuture: async (_, { isNight }: { isNight: boolean }) => {
+      const qs = new URLSearchParams({
+        stockNo: isNight ? 'WTXP&' : 'WTX&',
+        topDays: '1',
+      })
+
       const json = await fetch(
-        `https://www.wantgoo.com/stock/techchart/realtimedata?stockNo=WTX%26&topDays=1`,
-      ).then((res) => res.json())
+        `https://www.wantgoo.com/stock/techchart/realtimedata?${qs.toString()}`,
+      )
 
       return json.StockInfo
     },
   },
 }
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers })
+const apolloServer = new ApolloServer({
+  plugins: [],
+  typeDefs: gql`
+    enum CacheControlScope {
+      PUBLIC
+      PRIVATE
+    }
+
+    directive @cacheControl(
+      maxAge: Int
+      scope: CacheControlScope
+      inheritMaxAge: Boolean
+    ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
+    ${StockInfo}
+
+    type Query {
+      twFuture(isNight: Boolean): StockInfo
+    }
+  `,
+  resolvers,
+})
 
 const startServer = apolloServer.start()
 
 export default (async (req, res) => {
-  res
-    .setHeader('Access-Control-Allow-Credentials', 'true')
-
-    .setHeader(
-      'Access-Control-Allow-Origin',
-      'https://studio.apollographql.com',
-    )
-    .setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept',
-    )
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+  res.setHeader(
+    'Access-Control-Allow-Origin',
+    'https://studio.apollographql.com',
+  )
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  )
 
   if (req.method === 'OPTIONS') {
     res.end()

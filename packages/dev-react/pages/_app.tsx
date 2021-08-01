@@ -31,7 +31,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     ga.pageView()
   })
 
-  const apolloClient = useApollo({ name: 'Rocky' })
+  const apolloClient = useApollo()
 
   return (
     <MDXProvider components={mdxRenders}>
