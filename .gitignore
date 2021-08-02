@@ -8,3 +8,5 @@ packages/gatsby/.cache
 packages/gatsby/public
 
 .yarn
+
+*.pem

@@ -20,7 +20,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['gatsby-*', 'next-*'],
+      files: ['gatsby-*', 'next-*', '**/pages/**'],
       rules: {
         'unicorn/filename-case': 0,
       },

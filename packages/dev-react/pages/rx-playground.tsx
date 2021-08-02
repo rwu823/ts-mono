@@ -47,8 +47,6 @@ import {
   withLatestFrom,
 } from 'rxjs/operators'
 
-import { map1, op2 } from './rx'
-
 const Div = styled.div`
   ${() => css``}
 `

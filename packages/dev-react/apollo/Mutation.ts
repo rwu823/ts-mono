@@ -54,8 +54,8 @@ export const toggleTodo: Mutation<Pick<TodoItem, 'id'> & { idx: number }> = (
     todoList,
   }
 
-  cache.write({ id, data: { isDone: !isDone } })
-  cache.write({ data })
+  // cache.write({ id, data: { isDone: !isDone } })
+  // cache.write({ data })
 }
 
 export const addTodo: Mutation<Pick<TodoItem, 'name'>> = (
@@ -80,7 +80,7 @@ export const addTodo: Mutation<Pick<TodoItem, 'name'>> = (
     ],
   }
 
-  cache.writeData({
-    data,
-  })
+  // cache.writeData({
+  //   data,
+  // })
 }

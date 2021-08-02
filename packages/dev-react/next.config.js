@@ -5,6 +5,9 @@ module.exports = (phase, { defaultConfig }) => ({
   eslint: {
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config, options) {
     // config.resolve.mainFields = ['module', 'main', 'browser']
     // config.devtool = 'cheap-eval-source-map'
@@ -14,6 +17,7 @@ module.exports = (phase, { defaultConfig }) => ({
     //     (plugin) => !('useTypescriptIncrementalApi' in plugin),
     //   )
     // }
+
     config.module.rules.push(
       {
         test: /\.md$/,
