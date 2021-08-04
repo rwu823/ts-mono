@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
-import Document, {
+import NextDocument, {
   DocumentContext,
   Head,
   Html,
@@ -10,30 +10,38 @@ import Document, {
   NextScript,
 } from 'next/document'
 
-class MyDocument extends Document<{ styleTags: React.ReactNode }> {
+class Document extends NextDocument {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
 
-    const pageProps = await ctx.renderPage(
-      (App) => (props) =>
-        sheet.collectStyles(
-          <StyleSheetManager>
-            <App {...props} />
-          </StyleSheetManager>,
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(
+              <StyleSheetManager>
+                <App {...props} />
+              </StyleSheetManager>,
+            ),
+        })
+
+      const initialProps = await NextDocument.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
         ),
-    )
-
-    const styleTags = sheet.getStyleElement()
-
-    return {
-      ...pageProps,
-      styleTags,
+      }
+    } finally {
+      sheet.seal()
     }
   }
 
   render() {
-    const { styleTags } = this.props
-
     return (
       <Html lang="en">
         <Head>
@@ -41,7 +49,6 @@ class MyDocument extends Document<{ styleTags: React.ReactNode }> {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/victormono@latest/dist/index.min.css"
           />
-          {styleTags}
         </Head>
         <body>
           <Main />
@@ -52,4 +59,4 @@ class MyDocument extends Document<{ styleTags: React.ReactNode }> {
   }
 }
 
-export default MyDocument
+export default Document
