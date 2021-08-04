@@ -1,4 +1,4 @@
-import isomorphicFetch from 'isomorphic-fetch'
+import isomorphicFetch from 'isomorphic-unfetch'
 
 export const fetch = (endpoint: string, config: RequestInit = {}) =>
   isomorphicFetch(endpoint, config).then(async (res) => {

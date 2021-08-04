@@ -4,4 +4,4 @@ DIST=./node_modules/@ts-mono/dev-react
 
 cp -r $DIST/pages pages
 
-cp $DIST/babel.config.js $DIST/next.config.js .
+cp $DIST/babel.config.js $DIST/next.config.js $DIST/server.ts .
