@@ -2,11 +2,12 @@ import isomorphicFetch from 'isomorphic-unfetch'
 
 export const fetch = (endpoint: string, config: RequestInit = {}) =>
   isomorphicFetch(endpoint, config).then(async (res) => {
-    const json = await res.json()
+    const text = await res.text()
 
-    if (String(res.status).startsWith('2')) {
-      return json
+    try {
+      const json = JSON.parse(text)
+      return String(res.status).startsWith('2') ? json : Promise.reject(json)
+    } catch (error) {
+      return Promise.reject(error)
     }
-
-    return Promise.reject(json)
   })
