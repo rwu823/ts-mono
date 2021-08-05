@@ -4,6 +4,7 @@ import { fetch } from '@ts-mono/dev-react/utils/fetch'
 
 import { IResolvers } from '@graphql-tools/utils'
 
+import { ApolloServerPluginLandingPageDisabled } from 'apollo-server-core'
 import { ApolloServer, gql } from 'apollo-server-micro'
 
 const StockInfo = gql`
@@ -44,7 +45,8 @@ const resolvers: IResolvers = {
 }
 
 const apolloServer = new ApolloServer({
-  plugins: [],
+  plugins: [ApolloServerPluginLandingPageDisabled()],
+  introspection: true,
   typeDefs: gql`
     enum CacheControlScope {
       PUBLIC
@@ -69,6 +71,15 @@ const apolloServer = new ApolloServer({
 const startServer = apolloServer.start()
 
 export default (async (req, res) => {
+  const { method, headers, url } = req
+  const protocol = headers['x-forwarded-proto'] ?? 'http'
+
+  if (method === 'GET') {
+    return res.redirect(
+      `https://studio.apollographql.com/sandbox/explorer?endpoint=${protocol}://${headers.host}${url}`,
+    )
+  }
+
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader(
     'Access-Control-Allow-Origin',
@@ -79,14 +90,14 @@ export default (async (req, res) => {
     'Origin, X-Requested-With, Content-Type, Accept',
   )
 
-  if (req.method === 'OPTIONS') {
+  if (method === 'OPTIONS') {
     res.end()
     return false
   }
 
   return startServer.then(() =>
     apolloServer.createHandler({
-      path: '/api/gql',
+      path: url,
     })(req, res),
   )
 }) as NextApiHandler

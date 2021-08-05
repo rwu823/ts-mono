@@ -7,7 +7,7 @@ export const fetch = (endpoint: string, config: RequestInit = {}) =>
     try {
       const json = JSON.parse(text)
       return String(res.status).startsWith('2') ? json : Promise.reject(json)
-    } catch (error) {
-      return Promise.reject(error)
+    } catch {
+      return Promise.reject(text)
     }
   })
