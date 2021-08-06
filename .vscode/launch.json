@@ -5,18 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-chrome",
-      "request": "launch",
-      "name": "chrome",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "nextjs",
+      "port": 9229,
     },
     {
       "type": "node",
       "request": "launch",
       "name": "ts $file",
       "runtimeExecutable": "/usr/local/bin/node",
-      "sourceMaps": true,
       "args": [
         "-r",
         "ts-node/register/transpile-only",

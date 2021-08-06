@@ -1,54 +1,64 @@
-/* eslint-disable unicorn/prefer-module */
+/* eslint-disable unicorn/prefer-module, filenames/match-exported */
 
-module.exports = (phase, { defaultConfig }) => ({
-  pageExtensions: ['tsx', 'ts', 'mdx'],
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  webpack(config, options) {
-    // config.resolve.mainFields = ['module', 'main', 'browser']
-    // config.devtool = 'cheap-eval-source-map'
+const {
+  PHASE_DEVELOPMENT_SERVER,
+  PHASE_PRODUCTION_BUILD,
+} = require('next/constants')
 
-    // if (!options.isServer) {
-    //   config.plugins = config.plugins.filter(
-    //     (plugin) => !('useTypescriptIncrementalApi' in plugin),
-    //   )
-    // }
+module.exports = (phase, { defaultConfig }) => {
+  const nextConfig = {
+    productionBrowserSourceMaps: true,
 
-    config.module.rules.push(
-      {
-        test: /\.md$/,
-        use: 'raw-loader',
-      },
-      {
-        test: /\.tsx?$/,
-        include: undefined,
-        use: [options.defaultLoaders.babel],
-      },
-      {
-        test: /\.mdx$/,
-        use: [options.defaultLoaders.babel, '@mdx-js/loader'],
-      },
+    pageExtensions: ['tsx', 'ts', 'mdx'],
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+    typescript: {
+      ignoreBuildErrors: true,
+    },
 
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'react-svg-loader',
-            options: {
-              svgo: {},
-              jsx: true, // true outputs JSX tags
+    webpack(config, options) {
+      // config.resolve.mainFields = ['module', 'main', 'browser']
+
+      // if (!options.isServer) {
+      //   config.plugins = config.plugins.filter(
+      //     (plugin) => !('useTypescriptIncrementalApi' in plugin),
+      //   )
+      // }
+
+      config.module.rules.push(
+        {
+          test: /\.md$/,
+          use: 'raw-loader',
+        },
+        {
+          test: /\.tsx?$/,
+          include: undefined,
+          use: [options.defaultLoaders.babel],
+        },
+        {
+          test: /\.mdx$/,
+          use: [options.defaultLoaders.babel, '@mdx-js/loader'],
+        },
+
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: 'babel-loader',
             },
-          },
-        ],
-      },
-    )
-    return config
-  },
-})
+            {
+              loader: 'react-svg-loader',
+              options: {
+                svgo: {},
+                jsx: true, // true outputs JSX tags
+              },
+            },
+          ],
+        },
+      )
+      return config
+    },
+  }
+  return nextConfig
+}

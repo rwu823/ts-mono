@@ -1,5 +1,4 @@
-import { NextApiHandler } from 'next'
-
+import { gqlExplorer } from '@ts-mono/dev-react/apollo/gqlExplorer'
 import { fetch } from '@ts-mono/dev-react/utils/fetch'
 
 import { IResolvers } from '@graphql-tools/utils'
@@ -68,39 +67,7 @@ const apolloServer = new ApolloServer({
   resolvers,
 })
 
-const startServer = apolloServer.start()
-
-export default (async (req, res) => {
-  const { method, headers, url } = req
-  const protocol = headers['x-forwarded-proto'] ?? 'http'
-
-  if (method === 'GET') {
-    return res.redirect(
-      `https://studio.apollographql.com/sandbox/explorer?endpoint=${protocol}://${headers.host}${url}`,
-    )
-  }
-
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader(
-    'Access-Control-Allow-Origin',
-    'https://studio.apollographql.com',
-  )
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
-  )
-
-  if (method === 'OPTIONS') {
-    res.end()
-    return false
-  }
-
-  return startServer.then(() =>
-    apolloServer.createHandler({
-      path: url,
-    })(req, res),
-  )
-}) as NextApiHandler
+export default gqlExplorer(apolloServer)
 
 export const config = {
   api: {

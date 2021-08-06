@@ -31,17 +31,18 @@
     "raw-loader": "4.0.2",
     "react-intl": "5.20.6",
     "react-markdown": "6.0.3",
-    "react-query": "3.19.1",
+    "react-query": "3.19.2",
     "react-svg-loader": "3.0.3",
     "rxjs": "7.3.0",
     "use-immer": "0.6.0"
   },
   "scripts": {
     "dev": "NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS='--inspect'",
-    "dev:ssl": "ts-node -T server",
+    "dev:ssl": "yarn dev ts-node -T server",
     "build:cjs": "tsc -b tsconfig.cjs.json",
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
     "build": "rm -rf out && run-p build:* && cp README.md package.json out"
-  }
+  },
+  "devDependencies": {}
 }
