@@ -37,7 +37,7 @@ const Seo: React.FC<Props> = ({
     `,
   )
 
-  const des = description || site.siteMetadata.description
+  const des = description ?? site.siteMetadata.description
 
   return (
     <Helmet
