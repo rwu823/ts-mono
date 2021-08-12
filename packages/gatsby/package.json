@@ -20,7 +20,7 @@
     "gatsby-plugin-styled-components": "4.11.0",
     "gatsby-plugin-typescript": "3.11.0",
     "gatsby-source-filesystem": "3.11.0",
-    "netlify-cms-app": "2.15.35",
+    "netlify-cms-app": "2.15.36",
     "react-helmet": "6.1.0"
   },
   "keywords": [

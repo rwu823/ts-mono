@@ -52,6 +52,5 @@
     "stylelint-no-unsupported-browser-features": "5.0.1",
     "stylelint-order": "4.1.0",
     "typehole": "1.7.0"
-  },
-  "dependencies": {}
+  }
 }

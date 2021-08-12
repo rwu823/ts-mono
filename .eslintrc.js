@@ -6,7 +6,7 @@ module.exports = {
     'react-hooks',
     'simple-import-sort',
     'import',
-    '@typescript-eslint',
+    // '@typescript-eslint',
     'filenames',
     'testing-library',
     'jsx-a11y',
