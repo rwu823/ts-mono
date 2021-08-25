@@ -10,9 +10,6 @@ const isProd = NODE_ENV === 'production'
 
 chromium
   .launch({
-    devtools: true,
-    headless: false,
-    slowMo: 250,
     // executablePath:
     //   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 
@@ -22,9 +19,6 @@ chromium
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
       ],
-      devtools: false,
-      headless: true,
-      slowMo: undefined,
       // executablePath: '/usr/bin/chromium-browser',
     }),
   })
@@ -36,8 +30,8 @@ chromium
     //   }),
     // })
 
-    const monthlyKdStock = await stock(browser)
-    console.info(monthlyKdStock)
+    // const monthlyKdStock = await stock(browser)
+    // console.info(monthlyKdStock)
 
     await browser.close()
 

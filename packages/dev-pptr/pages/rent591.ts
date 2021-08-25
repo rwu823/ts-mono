@@ -18,9 +18,7 @@ const rent591 = async (browser: ChromiumBrowser) => {
     'https://rent.591.com.tw/?kind=1&region=1&section=5&rentprice=,40000&area=20,&shape=2,1',
   )
 
-  if (await page.$('#area-box-body .pull-left.area-select-active')) {
-    await page.click('#area-box-body .pull-left.area-select-active')
-  }
+  await page.click('#area-box-body .pull-left.area-select-active')
 
   const pages = await page.$$eval(
     '#container .pageBar .pageNum-form',
@@ -29,34 +27,35 @@ const rent591 = async (browser: ChromiumBrowser) => {
 
   const getObjectList = async () =>
     page.$$eval('#content .listInfo', (uls) =>
-      uls.reduce<{
-        [id: string]: RectObject
-      }>((o, ul) => {
-        const $info = $(ul).find('.infoContent')
-        const $a = $info.find('h3 a')
-        const $em = $info.find('p.lightBox em')
-        const $price = $(ul).find('.price i')
+      Object.fromEntries(
+        uls.map((ul) => {
+          const $info = $(ul).find('.infoContent')
+          const $a = $info.find('h3 a')
+          const $em = $info.find('p.lightBox em')
+          const $price = $(ul).find('.price i')
 
-        const id = ($a
-          .attr('href')
-          .trim()
-          .match(/(\d+)\.html$/) || [])[1]
-
-        o[id] = {
-          id: +id,
-          address: $em.text().trim(),
-          title: $a.text().trim(),
-          price: $price.text().trim(),
-          info: $info
-            .find('p.lightBox')
-            .eq(0)
-            .text()
+          const id = ($a
+            .attr('href')
             .trim()
-            .replace(/\n|\s/g, ''),
-        }
+            .match(/(\d+)\.html$/) || [])[1]
 
-        return o
-      }, {}),
+          return [
+            id,
+            {
+              id: +id,
+              address: $em.text().trim(),
+              title: $a.text().trim(),
+              price: $price.text().trim(),
+              info: $info
+                .find('p.lightBox')
+                .eq(0)
+                .text()
+                .trim()
+                .replace(/\n|\s/g, ''),
+            },
+          ]
+        }),
+      ),
     )
 
   const objectList = await getObjectList()
