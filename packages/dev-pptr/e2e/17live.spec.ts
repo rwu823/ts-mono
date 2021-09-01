@@ -1,6 +1,3 @@
-const oneMinute = 60 * 1000
-jest.setTimeout(oneMinute * 10)
-
 const testOBSAccount = {
   id: 'tw_obs_streamer_web',
   passwd: 'qqqqqqqq',
@@ -33,7 +30,11 @@ const doLogin = async ({ id, passwd }: { id: string; passwd: string }) => {
 }
 
 const stopStreaming = async () => {
-  const isStreaming = await page.$('button[data-testid=stopStreaming]')
+  const isStreaming = await page
+    .waitForSelector('button[data-testid=stopStreaming]', {
+      timeout: 5 * 1000,
+    })
+    .catch(() => false)
 
   if (isStreaming) {
     await waitForAction('button[data-testid=stopStreaming]', 'click')
@@ -46,16 +47,16 @@ const stopStreaming = async () => {
 
 describe('Live Stream Settings', () => {
   beforeAll(async () => {
-    await page.goto('')
+    await page.goto('https://sta.17.live')
     await doLogin(testOBSAccount)
-    await page.goto(`/settings/live`, {})
+    await page.goto(`${page.url()}/settings/live`)
     await stopStreaming()
   })
 
   afterAll(stopStreaming)
 
   it('should see the live setting form', async () => {
-    const captionEl = await page.$('#caption')
+    const captionEl = await page.waitForSelector('#caption')
 
     expect(captionEl).toBeTruthy()
   })
@@ -73,7 +74,8 @@ describe('Live Stream Settings', () => {
 
   it('should stop streaming success', async () => {
     await stopStreaming()
-
+    await page.waitForTimeout(5 * 1000)
+    await page.reload()
     const createStreamButton = await page.waitForSelector(
       'button[data-testid=createStreaming]',
     )
