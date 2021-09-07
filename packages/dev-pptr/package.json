@@ -5,7 +5,7 @@
     "init-dev-pptr": "bin/init-dev-pptr"
   },
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.21.4",
     "jest-playwright-preset": "1.7.0",
     "playwright": "1.14.1"
   },
