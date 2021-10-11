@@ -7,7 +7,7 @@
   },
   "main": "main",
   "dependencies": {
-    "ora": "6.0.0"
+    "ora": "6.0.1"
   },
   "scripts": {
     "build": "tsc -b && cp -r package.json bin out/"

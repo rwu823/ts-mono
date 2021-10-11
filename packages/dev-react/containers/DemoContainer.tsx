@@ -19,7 +19,10 @@ export const DemoContainer: React.FC<
   return (
     <Div {...properties}>
       <h1>DemoContainer</h1>
-      {n}-{children}
+
+      <DemoContainerChild>
+        {n}-{children}
+      </DemoContainerChild>
     </Div>
   )
 }

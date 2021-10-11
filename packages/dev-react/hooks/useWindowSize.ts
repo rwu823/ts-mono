@@ -1,25 +1,27 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react'
 
+import { debounceTime, fromEvent } from 'rxjs'
+
 export const useWindowSize = () => {
-  if (!process.browser) return { width: 0, height: 0 }
+  const { innerWidth = 0, innerHeight = 0 } = process.browser ? window : {}
 
   const [size, setSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: innerWidth,
+    height: innerHeight,
   })
 
   useEffect(() => {
-    const resize = () => {
-      setSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+    const winResize$ = fromEvent<UIEvent>(window, 'resize')
+      .pipe(debounceTime(0))
+      .subscribe(() => {
+        setSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        })
       })
-    }
-    window.addEventListener('resize', resize)
 
-    return () => window.removeEventListener('resize', resize)
-  }, [])
+    return () => winResize$.unsubscribe()
+  })
 
   return size
 }

@@ -2,6 +2,7 @@ module.exports = {
   extends: 'stylelint-config-standard',
   plugins: ['stylelint-order', 'stylelint-no-unsupported-browser-features'],
   rules: {
+    'declaration-colon-newline-after': null,
     'no-eol-whitespace': null,
     'no-missing-end-of-source-newline': null,
 

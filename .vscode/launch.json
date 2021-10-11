@@ -8,7 +8,7 @@
       "type": "pwa-node",
       "request": "attach",
       "name": "nextjs",
-      "port": 9229,
+      "port": 9229
     },
     {
       "type": "node",
@@ -29,14 +29,19 @@
       "name": "ts-jest",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "args": ["${workspaceFolder}/node_modules/.bin/jest", "--runInBand"]
+      "args": [
+        "${workspaceFolder}/node_modules/.bin/jest",
+        "--runInBand"
+      ]
     },
     {
       "type": "extensionHost",
       "request": "launch",
       "name": "dev:extension",
       "runtimeExecutable": "${execPath}",
-      "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ]
     }
   ]
 }

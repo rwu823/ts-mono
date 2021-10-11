@@ -5,9 +5,11 @@ import styled, { css } from 'styled-components'
 import { NextPage } from 'next'
 
 import {
+  animationFrameScheduler,
   concat,
   ConnectableObservable,
   forkJoin,
+  fromEvent,
   merge,
   MonoTypeOperatorFunction,
   Observable,
@@ -32,6 +34,7 @@ import {
   mergeAll,
   mergeMap,
   multicast,
+  observeOn,
   publish,
   publishReplay,
   reduce,
@@ -52,10 +55,14 @@ const Div = styled.div`
 `
 
 type Props = React.DOMAttributes<HTMLDivElement>
-const RxPlayground: React.FC<Props> = ({ children, ...props }) => (
-  <Div {...props}>
-    <h1>RxJS Playground</h1>
-  </Div>
-)
+const RxPlayground: React.FC<Props> = ({ children, ...props }) => {
+  const divRef = useRef<HTMLDivElement>(null)
+
+  return (
+    <Div ref={divRef} {...props}>
+      <h1>RxJS Playground</h1>
+    </Div>
+  )
+}
 
 export default RxPlayground

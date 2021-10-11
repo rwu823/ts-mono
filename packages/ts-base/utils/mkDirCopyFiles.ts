@@ -1,4 +1,4 @@
-import c from 'chalk'
+import c from 'colorette'
 import { copy, mkdirp } from 'fs-extra'
 
 import packageJSON from '../package.json'
