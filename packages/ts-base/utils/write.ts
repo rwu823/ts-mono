@@ -1,4 +1,4 @@
-import c from 'colorette'
+import * as c from 'colorette'
 import { createWriteStream } from 'fs'
 
 class Write {

@@ -1,5 +1,5 @@
 import { exec } from 'child_process'
-import c from 'colorette'
+import * as c from 'colorette'
 
 import packageJSON from './package.json'
 import { readFile } from './utils/fs'
