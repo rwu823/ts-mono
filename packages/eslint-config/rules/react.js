@@ -1,5 +1,15 @@
 module.exports = {
   rules: {
+    'react/jsx-sort-props': [
+      2,
+      {
+        callbacksLast: true,
+        shorthandFirst: true,
+        noSortAlphabetically: false,
+        ignoreCase: false,
+        reservedFirst: ['key'],
+      },
+    ],
     'react/prop-types': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': 0,

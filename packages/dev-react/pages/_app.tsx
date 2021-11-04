@@ -1,4 +1,5 @@
 import 'core-js/modules/es.global-this'
+import 'modern-normalize/modern-normalize.css'
 
 import React, { useEffect } from 'react'
 
@@ -14,15 +15,31 @@ import Ga from '@ts-mono/dev-react/share/Ga'
 
 import { ApolloProvider } from '@apollo/client'
 
+import {
+  chakra,
+  ChakraProvider,
+  extendTheme,
+  ThemeConfig,
+} from '@chakra-ui/react'
 import { MDXProvider } from '@mdx-js/react'
 
-const Max800 = styled.div`
-  ${() => css`
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 0 1em;
-  `}
-`
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
+const theme = extendTheme({ config })
+
+const Max800 = chakra('div', {
+  baseStyle: {
+    p: '0 1em',
+    m: '0 auto',
+    maxW: 800,
+    // margin: 0 auto;
+    // max-width: 800px;
+    // padding: 0 1em;
+  },
+})
 
 const ga = new Ga('UA-4476856-23', { debug: true })
 
@@ -35,14 +52,16 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <MDXProvider components={mdxRenders}>
-      <TheGlobalStyles />
-      <Max800>
-        <ModalProvider>
-          <ApolloProvider client={apolloClient}>
-            <Component {...pageProps} />
-          </ApolloProvider>
-        </ModalProvider>
-      </Max800>
+      {/* <TheGlobalStyles /> */}
+      <ModalProvider>
+        <ApolloProvider client={apolloClient}>
+          <ChakraProvider resetCSS={false} theme={theme}>
+            <Max800>
+              <Component {...pageProps} />
+            </Max800>
+          </ChakraProvider>
+        </ApolloProvider>
+      </ModalProvider>
     </MDXProvider>
   )
 }

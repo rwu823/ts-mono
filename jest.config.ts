@@ -2,6 +2,7 @@ import { InitialOptionsTsJest } from 'ts-jest/dist/types'
 
 export default {
   preset: 'ts-jest',
+  automock: true,
   globals: {
     'ts-jest': {
       diagnostics: false,

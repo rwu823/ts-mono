@@ -11,7 +11,6 @@ import { MarkdownLink } from '@ts-mono/dev-react/components/MarkdownLink'
 
 import { MDXProviderComponents } from '@mdx-js/react'
 
-MarkdownCodeBlock
 export const mdxRenders: MDXProviderComponents = {
   inlineCode: (props) => <MarkdownCode {...props} />,
   h1: ({ children }) => <MarkdownHead level={1} text={children as string} />,
@@ -24,7 +23,7 @@ export const mdxRenders: MDXProviderComponents = {
     if (isExternal) {
       title = title.replace(/!$/, '')
       return (
-        <MarkdownLink {...props} href={href} external={isExternal}>
+        <MarkdownLink {...props} external={isExternal} href={href}>
           {title}
         </MarkdownLink>
       )
@@ -53,8 +52,8 @@ export const mdxRenders: MDXProviderComponents = {
 
     return (
       <MarkdownCodeBlock
-        meta={metaObj}
         language={type}
+        meta={metaObj}
         src={children as string}
       />
     )

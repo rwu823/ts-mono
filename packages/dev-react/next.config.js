@@ -7,6 +7,8 @@ const {
 
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
+    swcMinify: true,
+
     productionBrowserSourceMaps: true,
 
     pageExtensions: ['tsx', 'ts', 'mdx'],

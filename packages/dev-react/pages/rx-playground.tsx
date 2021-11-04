@@ -7,7 +7,7 @@ import { NextPage } from 'next'
 import {
   animationFrameScheduler,
   concat,
-  ConnectableObservable,
+  EMPTY,
   forkJoin,
   fromEvent,
   merge,

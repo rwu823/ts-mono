@@ -7,7 +7,7 @@ import originalPkgJSON from '../package.json'
 const pickStyleLintPackages: Record<string, string> = {}
 
 for (const [key, version] of Object.entries(rootPkgJSON.devDependencies)) {
-  if (/(^stylelint$|^stylelint-)/.test(key)) {
+  if (/(^stylelint$|^stylelint-|^@stylelint|^postcss-)/.test(key)) {
     pickStyleLintPackages[key] = version
   }
 }
