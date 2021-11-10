@@ -1,4 +1,5 @@
 module.exports = {
+  customSyntax: '@stylelint/postcss-css-in-js',
   extends: 'stylelint-config-standard',
   plugins: ['stylelint-order', 'stylelint-no-unsupported-browser-features'],
   rules: {

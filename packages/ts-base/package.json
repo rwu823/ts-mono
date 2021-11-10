@@ -10,7 +10,7 @@
     "@ts-mono/eslint-config": "rwu823/ts-mono#pkg/eslint-config",
     "@ts-mono/stylelint-config": "rwu823/ts-mono#pkg/stylelint-config",
     "@types/jest": "27.0.2",
-    "@types/node": "16.11.6",
+    "@types/node": "16.11.7",
     "colorette": "2.0.16",
     "fast-glob": "3.2.7",
     "fs-extra": "10.0.0",
