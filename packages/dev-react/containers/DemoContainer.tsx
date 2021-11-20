@@ -4,11 +4,12 @@ import styled, { css } from 'styled-components'
 
 import DemoContainerChild from '@ts-mono/dev-react/containers/DemoContainerChild'
 
-const Div = styled.div`
-  ${() => css``}
+const Div = styled.div`${() => css``}
 `
 export type Props = {
   n: number
+  foo: string
+  bar: number
 }
 
 export const DemoContainer: React.FC<

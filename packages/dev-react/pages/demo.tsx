@@ -12,10 +12,9 @@ import { useDragAndDrop } from '@ts-mono/dev-react/hooks/useDragAndDrop'
 
 import { gql } from '@apollo/client'
 
-import { chakra } from '@chakra-ui/system'
+import { chakra, keyframes } from '@chakra-ui/system'
 
-const Div = styled.div`
-  ${() => css``}
+const Div = styled.div`${() => css``}
 `
 
 export const QUERY_SPACEX = gql`
@@ -33,8 +32,7 @@ type DemoProps = {
   spaceX: unknown
 }
 
-const Drag = styled.div`
-  ${() => css`
+const Drag = styled.div`${() => css`
     position: fixed;
     background-color: red;
     cursor: move;
@@ -42,16 +40,15 @@ const Drag = styled.div`
   `}
 `
 
-const Input = styled.input`
-  display: flex;
-`
+const abc = keyframes`
+ 0% {
+   background-color: red;
+ }
 
-const Div2 = chakra('h1', {
-  baseStyle: {
-    fontSize: 20,
-    color: 'blue',
-  },
-})
+ 100% {
+   background-color: blue;
+ }
+`
 const Demo: React.FC<DemoProps> = ({ spaceX }) => {
   const { ref, style } = useDragAndDrop({
     paddingTop: 70,
@@ -60,23 +57,19 @@ const Demo: React.FC<DemoProps> = ({ spaceX }) => {
     paddingLeft: 20,
   })
 
+  const props = {
+    n: 1,
+  }
+
   return (
     <Div>
       <Head>
         <title>Demo - Page</title>
       </Head>
 
-      <Div2>Hello Chakra H1</Div2>
-
-      <Drag ref={ref} style={style}>
-        drag me +<div>hello world</div>
-      </Drag>
-      <DemoContainer n={1}>
-        <h1>XXX</h1>
-
-        <pre>{JSON.stringify(spaceX, null, 2)}</pre>
-        <DemoContainerChild />
-      </DemoContainer>
+      <chakra.div animation={`${abc} 5s`} p={50}>
+        hello world
+      </chakra.div>
     </Div>
   )
 }

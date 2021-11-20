@@ -44,7 +44,7 @@ const resolvers: IResolvers = {
 }
 
 const apolloServer = new ApolloServer({
-  plugins: [ApolloServerPluginLandingPageDisabled()],
+  // plugins: [ApolloServerPluginLandingPageDisabled()],
   introspection: true,
   typeDefs: gql`
     enum CacheControlScope {
