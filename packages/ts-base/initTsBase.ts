@@ -137,11 +137,11 @@ module.exports = {
      */
     const pkg = parseJSON<{
       scripts: Record<string, string>
-      'lint-staged': Record<string, unknown>
+      'lint-staged': Record<string, JSON>
     }>(await readFile('package.json'))
 
     Object.assign(pkg, {
-      'lint-staged': packageJSON['lint-staged'],
+      'lint-staged': {},
       scripts: packageJSON.scripts,
     })
 

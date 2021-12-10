@@ -14,9 +14,9 @@ import { gql } from '@apollo/client'
 
 import { chakra, keyframes } from '@chakra-ui/system'
 
-const Div = styled.div`${() => css``}
+const Div = styled.div`
+  ${() => css``}
 `
-
 export const QUERY_SPACEX = gql`
   {
     company {
@@ -32,7 +32,8 @@ type DemoProps = {
   spaceX: unknown
 }
 
-const Drag = styled.div`${() => css`
+const Drag = styled.div<{ a: string; b: number }>`
+  ${() => css`
     position: fixed;
     background-color: red;
     cursor: move;
@@ -49,6 +50,7 @@ const abc = keyframes`
    background-color: blue;
  }
 `
+
 const Demo: React.FC<DemoProps> = ({ spaceX }) => {
   const { ref, style } = useDragAndDrop({
     paddingTop: 70,
@@ -67,9 +69,10 @@ const Demo: React.FC<DemoProps> = ({ spaceX }) => {
         <title>Demo - Page</title>
       </Head>
 
-      <chakra.div animation={`${abc} 5s`} p={50}>
-        hello world
-      </chakra.div>
+      <chakra.div
+      >hello world</chakra.div>
+
+      <Drag a>hello drag</Drag>
     </Div>
   )
 }

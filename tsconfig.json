@@ -5,29 +5,23 @@
     "paths": {
       "@ts-mono/*": ["packages/*"]
     },
+
     /* =Strict Type-Checking Options */
     "strict": true,
     "noImplicitUseStrict": true,
-    "alwaysStrict": false,
 
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
 
-    /* =Module Resolution Options */
-    // "baseUrl": ".",
-    // "paths": {
-
-    // },
-
     /* =Basic Options */
-    "target": "es6",
+    "target": "ES6",
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": true,
-    "jsx": "react",
+    // "jsx": "react-jsx",
 
     /* =import .json */
     "resolveJsonModule": true,

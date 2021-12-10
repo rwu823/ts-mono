@@ -6,7 +6,7 @@ module.exports = {
         namedComponents: 'arrow-function',
       },
     ],
-
+    'react/react-in-jsx-scope': 0,
     'react/jsx-sort-props': [
       2,
       {

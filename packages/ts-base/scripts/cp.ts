@@ -18,6 +18,7 @@ const excludeSet = new Set([
   'scripts',
   '.eslintignore',
   '.eslintrc',
+  'algorithm',
 ])
 
 fs.writeFileSync(
@@ -25,10 +26,10 @@ fs.writeFileSync(
   JSON.stringify(
     Object.assign(pkg, {
       version: rootPkg.version,
-      'lint-staged': rootPkg['lint-staged'],
+      'nano-staged': rootPkg['nano-staged'],
       scripts: {
         ...rootPkg.scripts,
-        ...(pkg.scripts ?? {}),
+        ...pkg.scripts,
       },
     }),
     null,
