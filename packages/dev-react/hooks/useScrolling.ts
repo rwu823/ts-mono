@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const useScrolling = (time = 250) => {
   const [isScrolling, setScrolling] = useState(false)
@@ -8,7 +8,8 @@ export const useScrolling = (time = 250) => {
     const onScroll = () => {
       setScrolling(true)
       clearTimeout(t.current)
-      t.current = setTimeout(() => {
+
+      t.current = window.setTimeout(() => {
         setScrolling(false)
       }, time)
     }

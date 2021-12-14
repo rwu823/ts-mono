@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import styled, { css } from 'styled-components'
 
-import * as echarts from 'echarts'
+import echarts from 'echarts'
 
 const Div = styled.div<{ heightRatio: number }>`
   ${(p) => css`

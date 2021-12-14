@@ -12,11 +12,8 @@ import { useDragAndDrop } from '@ts-mono/dev-react/hooks/useDragAndDrop'
 
 import { gql } from '@apollo/client'
 
-import { chakra, keyframes } from '@chakra-ui/system'
+import { Box } from '@chakra-ui/react'
 
-const Div = styled.div`
-  ${() => css``}
-`
 export const QUERY_SPACEX = gql`
   {
     company {
@@ -32,23 +29,13 @@ type DemoProps = {
   spaceX: unknown
 }
 
-const Drag = styled.div<{ a: string; b: number }>`
+const Drag = styled.div`
   ${() => css`
     position: fixed;
     background-color: red;
     cursor: move;
     display: inline-block;
   `}
-`
-
-const abc = keyframes`
- 0% {
-   background-color: red;
- }
-
- 100% {
-   background-color: blue;
- }
 `
 
 const Demo: React.FC<DemoProps> = ({ spaceX }) => {
@@ -59,21 +46,16 @@ const Demo: React.FC<DemoProps> = ({ spaceX }) => {
     paddingLeft: 20,
   })
 
-  const props = {
-    n: 1,
-  }
-
   return (
-    <Div>
+    <Box bg={'red'} p={20}>
       <Head>
         <title>Demo - Page</title>
       </Head>
-
-      <chakra.div
-      >hello world</chakra.div>
-
-      <Drag a>hello drag</Drag>
-    </Div>
+      <DemoContainer />
+      <Drag ref={ref} style={style}>
+        hello drag
+      </Drag>
+    </Box>
   )
 }
 

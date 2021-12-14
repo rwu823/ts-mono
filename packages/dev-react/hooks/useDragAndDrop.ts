@@ -2,7 +2,8 @@ import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
 
 import useWindowSize from '@ts-mono/dev-react/hooks/useWindowSize'
 
-import { finalize, fromEvent, map, switchMap, takeUntil, tap } from 'rxjs'
+import { fromEvent } from 'rxjs'
+import { finalize, map, switchMap, takeUntil, tap } from 'rxjs/operators'
 
 type UseDragAndDropOptions = Partial<{
   paddingTop: number
