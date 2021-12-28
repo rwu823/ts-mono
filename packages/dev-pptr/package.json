@@ -10,7 +10,7 @@
     "playwright": "1.17.1"
   },
   "devDependencies": {
-    "@types/jquery": "3.5.10"
+    "@types/jquery": "3.5.11"
   },
   "scripts": {
     "dev": "ts-node .",

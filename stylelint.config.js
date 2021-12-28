@@ -1,8 +1,14 @@
 module.exports = {
-  customSyntax: '@stylelint/postcss-css-in-js',
-  extends: ['stylelint-config-standard'],
+  overrides: [
+    {
+      files: ['**/*.tsx', '**/*.js'],
+      customSyntax: '@stylelint/postcss-css-in-js',
+    },
+  ],
+  extends: ['stylelint-config-standard', 'stylelint-config-styled-components'],
   plugins: ['stylelint-order', 'stylelint-no-unsupported-browser-features'],
   rules: {
+    'no-empty-first-line': null,
     'declaration-colon-newline-after': null,
     'no-eol-whitespace': null,
     'no-missing-end-of-source-newline': null,
