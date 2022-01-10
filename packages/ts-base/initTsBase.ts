@@ -141,7 +141,7 @@ module.exports = {
     }>(await readFile('package.json'))
 
     Object.assign(pkg, {
-      'lint-staged': {},
+      'lint-staged': packageJSON['lint-staged'],
       scripts: packageJSON.scripts,
     })
 
