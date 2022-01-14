@@ -18,8 +18,14 @@ jobs:
       - uses: rwu823/actions@yarn-install-with-cache
       - run: yarn test:ci
       - run: bash <(curl -s https://codecov.io/bash)
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rwu823/actions@yarn-install-with-cache
+      - run: npx playwright install-deps
+      - run: yarn workspace @ts-mono/dev-pptr e2e
   mono-deploy:
-    needs: [test, lint]
+    needs: [test, lint, e2e]
     runs-on: ubuntu-latest
     steps:
       - uses: rwu823/actions@yarn-install-with-cache
