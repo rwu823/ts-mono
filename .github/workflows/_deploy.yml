@@ -1,0 +1,18 @@
+on:
+  workflow_call:
+    inputs:
+      pkg:
+        required: true
+        type: string
+
+jobs:
+  deploy to ${{ inputs.pkg }}:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rwu823/actions@yarn-install-with-cache
+      - uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          FOLDER: packages/${{ inputs.pkg }}
+          BRANCH: pkg/${{ inputs.pkg }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

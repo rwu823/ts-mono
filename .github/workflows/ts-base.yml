@@ -7,12 +7,6 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: rwu823/actions@yarn-install-with-cache
-      - uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          FOLDER: packages/ts-base
-          BRANCH: pkg/ts-base
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: ./github/workflows/_deploy.yml
+    with:
+      pkg: ts-base
