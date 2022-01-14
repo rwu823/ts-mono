@@ -20,6 +20,7 @@ const getDeploymentPackages = async () => {
 
   return uniqPackages
 }
+
 ;(async () => {
   const modifiedPackages = await getDeploymentPackages().catch(console.error)
 

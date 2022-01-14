@@ -25,7 +25,7 @@ jobs:
       - run: npx playwright install-deps
       - run: yarn workspace @ts-mono/dev-pptr e2e
   mono-deploy:
-    needs: [test, lint, e2e]
+    needs: [test, lint]
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
