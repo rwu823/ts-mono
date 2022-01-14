@@ -7,7 +7,7 @@ const {
 
 module.exports = (phase, { defaultConfig }) => {
   const nextConfig = {
-    swcMinify: true,
+    // swcMinify: true,
 
     productionBrowserSourceMaps: true,
 

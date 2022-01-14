@@ -11,7 +11,7 @@ const ModalBox = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgb(0 0 0 / 60%);
     overflow: auto;
     z-index: 9999;
   `}
@@ -103,11 +103,10 @@ export const useModal = (modalProps: OmitType<ModalProps, 'isOpened'> = {}) => {
         type: ActionType.OPEN_MODAL,
         payload: {
           children,
-          ...{
-            top: modalProps.top,
-            onESC: modalProps.onESC,
-            onClickMask: modalProps.onClickMask,
-          },
+
+          top: modalProps.top,
+          onESC: modalProps.onESC,
+          onClickMask: modalProps.onClickMask,
           ...replaceProps,
         },
       })
@@ -156,7 +155,7 @@ const reducer: React.Reducer<InitState, Action> = (
 
 export const ModalProvider: React.FC<{
   defaultProps?: ModalProps
-}> = ({ children, defaultProps }) => {
+}> = ({ children, defaultProps = { isOpened: false } }) => {
   const [state, dispatch] = useReducer(reducer, initState)
 
   return (

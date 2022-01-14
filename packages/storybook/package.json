@@ -5,8 +5,8 @@
     "init-storybook": "bin/init-storybook"
   },
   "dependencies": {
-    "@storybook/addon-essentials": "6.4.10",
-    "@storybook/react": "6.4.10",
+    "@storybook/addon-essentials": "6.4.12",
+    "@storybook/react": "6.4.12",
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "12.1.2"
   },

@@ -26,7 +26,7 @@ fs.writeFileSync(
   JSON.stringify(
     Object.assign(pkg, {
       version: rootPkg.version,
-      'lint-staged': pkg['lint-staged'],
+      'lint-staged': rootPkg['lint-staged'],
       scripts: {
         ...rootPkg.scripts,
         ...pkg.scripts,

@@ -5,16 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
-      "request": "attach",
-      "name": "nextjs",
-      "port": 9229
-    },
-    {
       "type": "node",
       "request": "launch",
       "name": "ts $file",
-      "runtimeExecutable": "/opt/homebrew/bin/node",
       "args": [
         "-r",
         "ts-node/register/transpile-only",
@@ -33,6 +26,12 @@
         "${workspaceFolder}/node_modules/.bin/jest",
         "--runInBand"
       ]
+    },
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "nextjs",
+      "port": 9229
     },
     {
       "type": "extensionHost",

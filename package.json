@@ -23,13 +23,12 @@
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
-    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
-    "prepare": "husky install & browserslist --update-db"
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs"
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "0.37.2",
-    "@typescript-eslint/eslint-plugin": "5.9.0",
-    "@typescript-eslint/parser": "5.9.0",
+    "@typescript-eslint/eslint-plugin": "5.9.1",
+    "@typescript-eslint/parser": "5.9.1",
     "eslint": "8.6.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.3.0",

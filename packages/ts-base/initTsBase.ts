@@ -45,6 +45,7 @@ Promise.all([
     tsconfigs,
     vscode,
     jestConf,
+    // @ts-expect-error
     circleCIConf,
     gitignore,
     gitattr,
@@ -187,11 +188,11 @@ git br -M main
     /**
      * .circleci/config.yml
      */
-    if (circleCIConf.length > 0) {
-      console.log(`${c.cyan(circleCIConf[0])} is already exist.`)
-    } else {
-      await mkDirCopyFiles(CIRCLE_CI)
-    }
+    // if (circleCIConf.length > 0) {
+    //   console.log(`${c.cyan(circleCIConf[0])} is already exist.`)
+    // } else {
+    //   await mkDirCopyFiles(CIRCLE_CI)
+    // }
   },
 )
 

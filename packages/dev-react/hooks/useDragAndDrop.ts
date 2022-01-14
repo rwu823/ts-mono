@@ -38,14 +38,12 @@ export const useDragAndDrop = <
   const ref = useRef<TargetElement>(null)
 
   const startDragging = useCallback(() => {
-    document.body.style.webkitUserSelect = 'none'
     document.body.style.userSelect = 'none'
 
     if (onStartDragging) onStartDragging()
   }, [onStartDragging])
 
   const stopDragging = useCallback(() => {
-    document.body.style.webkitUserSelect = ''
     document.body.style.userSelect = ''
 
     if (onStopDragging) onStopDragging()
