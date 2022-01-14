@@ -7,6 +7,6 @@ on:
 
 jobs:
   deploy:
-    uses: ./.github/workflows/_deploy.yml@main
+    uses: ${{ github.repository }}/.github/workflows/_deploy.yml@main
     with:
       pkg: ts-base
