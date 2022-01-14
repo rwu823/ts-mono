@@ -1,6 +1,6 @@
 {
-  "version": "0.0.1",
   "name": "@ts-mono/stylelint-config",
+  "version": "0.0.1",
   "main": "stylelint.config.js",
   "scripts": {
     "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.js out && ts-node scripts/build"

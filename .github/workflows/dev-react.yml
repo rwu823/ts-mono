@@ -10,3 +10,5 @@ jobs:
     uses: rwu823/ts-mono/.github/workflows/_deploy.yml@main
     with:
       pkg: dev-react
+      is_build: false
+      dir:

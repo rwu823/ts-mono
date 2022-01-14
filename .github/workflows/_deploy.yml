@@ -4,6 +4,14 @@ on:
       pkg:
         required: true
         type: string
+      is_build:
+        required: false
+        type: boolean
+        default: true
+      dir:
+        required: false
+        type: string
+        default: out
 
 jobs:
   deploy-to-pkg:
@@ -11,9 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rwu823/actions@yarn-install-with-cache
+      - run: yarn workspace @ts-mono/${{ inputs.pkg }} build
+        if: ${{ inputs.is_build }}
       - uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
-          FOLDER: packages/${{ inputs.pkg }}
+          FOLDER: packages/${{ inputs.pkg }}/${{ inputs.dir }}
           BRANCH: pkg/${{ inputs.pkg }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

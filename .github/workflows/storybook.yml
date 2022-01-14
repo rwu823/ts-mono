@@ -10,3 +10,5 @@ jobs:
     uses: rwu823/ts-mono/.github/workflows/_deploy.yml@main
     with:
       pkg: storybook
+      is_build: false
+      dir:

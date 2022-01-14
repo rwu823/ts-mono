@@ -1,5 +1,5 @@
 {
-  "name": "@ts-mono/base",
+  "name": "@ts-mono/ts-base",
   "version": "0.0.0",
   "bin": {
     "init-ts-base": "bin/initTSBase"
