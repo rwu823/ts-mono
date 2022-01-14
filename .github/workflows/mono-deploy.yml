@@ -1,9 +1,9 @@
-name: mono-deploy
+name: Mono Deploy
 
 on:
   push:
     branches:
-      - "main"
+      - main
 
 jobs:
   lint:

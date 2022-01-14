@@ -1,0 +1,18 @@
+name: ts-base Deploy
+
+on:
+  push:
+    branches:
+      - prod/ts-base
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rwu823/actions@yarn-install-with-cache
+      - uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          FOLDER: packages/ts-base
+          BRANCH: pkg/ts-base
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
