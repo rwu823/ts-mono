@@ -1,0 +1,12 @@
+name: dev-pptr Deploy
+
+on:
+  push:
+    branches:
+      - prod/dev-pptr
+
+jobs:
+  deploy:
+    uses: rwu823/ts-mono/.github/workflows/_deploy.yml@main
+    with:
+      pkg: dev-pptr

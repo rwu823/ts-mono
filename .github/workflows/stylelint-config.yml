@@ -1,0 +1,12 @@
+name: stylelint-config Deploy
+
+on:
+  push:
+    branches:
+      - prod/stylelint-config
+
+jobs:
+  deploy:
+    uses: rwu823/ts-mono/.github/workflows/_deploy.yml@main
+    with:
+      pkg: stylelint-config

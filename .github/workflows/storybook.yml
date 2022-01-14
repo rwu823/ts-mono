@@ -1,0 +1,12 @@
+name: storybook Deploy
+
+on:
+  push:
+    branches:
+      - prod/storybook
+
+jobs:
+  deploy:
+    uses: rwu823/ts-mono/.github/workflows/_deploy.yml@main
+    with:
+      pkg: storybook
