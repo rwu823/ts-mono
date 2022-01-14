@@ -1,7 +1,7 @@
 import { readdirSync } from 'fs'
 import sh from 'sh-exec'
 
-import pkgJSON from '../package.json'
+const { GITHUB_TOKEN, GITHUB_REPOSITORY } = process.env
 
 const deploymentPackagesSet = new Set(
   readdirSync('packages').filter((dir) => dir !== 'share'),
@@ -26,12 +26,12 @@ const getDeploymentPackages = async () => {
   if (Array.isArray(modifiedPackages)) {
     if (modifiedPackages.length > 0) {
       sh`
-        git config --global user.name CircleCI
-        git config --global user.email mono_deploy@circleci.com
+        git config --global user.name GitHub_Actions
+        git config --global user.email mono_deploy@github.com
       `
 
       sh.quiet`
-        git push ${pkgJSON.repository} --force ${modifiedPackages
+        git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
         .map((pkg) => `HEAD:prod/${pkg}`)
         .join(' ')}
       `

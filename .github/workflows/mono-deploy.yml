@@ -27,6 +27,8 @@ jobs:
   mono-deploy:
     needs: [test, lint, e2e]
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: rwu823/actions@yarn-install-with-cache
       - run: npx ts-node scripts/monoDeploy
