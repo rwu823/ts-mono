@@ -25,6 +25,7 @@ const getDeploymentPackages = async () => {
 
   if (Array.isArray(modifiedPackages)) {
     if (modifiedPackages.length > 0) {
+      console.log({ modifiedPackages })
       sh`
         git config --global user.name GitHub_Actions
         git config --global user.email mono_deploy@github.com
