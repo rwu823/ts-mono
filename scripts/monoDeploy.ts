@@ -30,10 +30,8 @@ const getDeploymentPackages = async () => {
         git config --global user.name GitHub_Actions
         git config --global user.email mono_deploy@github.com
       `
-      console.log(
-        `git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git`,
-      )
-      sh.quiet`
+
+      sh`
         git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
         .map((pkg) => `HEAD:prod/${pkg}`)
         .join(' ')}
