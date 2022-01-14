@@ -6,7 +6,20 @@ on:
       - "main"
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rwu823/actions@yarn-install-with-cache
+      - name: Run ESLint only on modified files.
+        run: npx eslint $(git diff --diff-filter=d origin/HEAD --name-only --cached '*.ts' '*.tsx' '*.js')
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rwu823/actions@yarn-install-with-cache
+      - run: yarn test:ci
+      - run: bash <(curl -s https://codecov.io/bash)
   mono-deploy:
+    needs: [test, lint]
     runs-on: ubuntu-latest
     steps:
       - uses: rwu823/actions@yarn-install-with-cache
