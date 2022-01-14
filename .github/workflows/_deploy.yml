@@ -6,7 +6,7 @@ on:
         type: string
 
 jobs:
-  deploy to pkg/*:
+  deploy to pkg:
     runs-on: ubuntu-latest
     steps:
       - uses: rwu823/actions@yarn-install-with-cache
