@@ -8,7 +8,7 @@ const deploymentPackagesSet = new Set(
 )
 
 const getDeploymentPackages = async () => {
-  const stdout = await sh`git diff --name-only HEAD~1`
+  const stdout = await sh.quiet`git diff --name-only HEAD~1`
 
   const modifiedPaths = (stdout.match(/^packages\/([^/]+)/gm) || []).map(
     (filePath) => filePath.split('/')[1],
@@ -30,7 +30,9 @@ const getDeploymentPackages = async () => {
         git config --global user.name GitHub_Actions
         git config --global user.email mono_deploy@github.com
       `
-
+      console.log(
+        `git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git`,
+      )
       sh.quiet`
         git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
         .map((pkg) => `HEAD:prod/${pkg}`)
