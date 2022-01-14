@@ -1,28 +1,22 @@
-import { stringify } from '@ts-mono/base/utils/json'
-import write from '@ts-mono/base/utils/write'
+import { stringify } from '@ts-mono/ts-base/utils/json'
+import write from '@ts-mono/ts-base/utils/write'
 
 import fg from 'fast-glob'
 import fse from 'fs-extra'
 
+// eslint-disable-next-line import/no-relative-packages
 import rootPkgJSON from '../../../package.json'
 import originalPkgJSON from '../package.json'
 
 fse.removeSync('out')
 fse.mkdirSync('out')
 
-const pickEslintPackages = Object.entries(rootPkgJSON.devDependencies).reduce(
-  (o, [k, v]) => {
-    if (/(^prettier$|^eslint|^@typescript-eslint)/.test(k)) {
-      return {
-        ...o,
-        [k]: v,
-      }
-    }
-
-    return o
-  },
-  {},
-) as Record<keyof typeof rootPkgJSON.devDependencies, string>
+const pickEslintPackages: Record<string, string> = {}
+for (const [pkgName, v] of Object.entries(rootPkgJSON.devDependencies)) {
+  if (/(^prettier$|^eslint|^@typescript-eslint)/.test(pkgName)) {
+    Object.assign(pickEslintPackages, { [pkgName]: v })
+  }
+}
 
 Promise.all([
   fse.copy('rules', 'out/rules'),

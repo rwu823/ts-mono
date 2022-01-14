@@ -299,7 +299,7 @@ jobs:
     executor: node
     steps:
       - init
-      - run: yarn workspace @ts-mono/base build
+      - run: yarn workspace @ts-mono/ts-base build
       - push_branch:
           dir: packages/ts-base/out
           branch: pkg/ts-base

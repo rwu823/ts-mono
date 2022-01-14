@@ -1,5 +1,5 @@
 {
-  "extends": "@ts-mono/base/tsconfig",
+  "extends": "@ts-mono/ts-base/tsconfig",
   "files": ["lib/index.tsx"],
   "compilerOptions": {
     "declaration": true,
