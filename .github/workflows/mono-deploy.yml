@@ -1,0 +1,13 @@
+name: mono-deploy
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build_node-yarn-init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rwu823/actions@yarn-install-with-cache
+      - run: npx ts-node scripts/monoDeploy
