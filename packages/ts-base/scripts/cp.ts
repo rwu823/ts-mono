@@ -1,7 +1,8 @@
-import glob from 'fast-glob'
+import fg from 'fast-glob'
 import fs from 'fs'
 import path from 'path'
 
+// eslint-disable-next-line import/no-relative-packages
 import rootPkg from '../../../package.json'
 import pkg from '../package.json'
 
@@ -9,6 +10,7 @@ const excludeSet = new Set([
   'out',
   '.git',
   '.husky',
+  '.circleci',
   'yarn.lock',
   '.env.ts',
   'src',
@@ -37,7 +39,7 @@ fs.writeFileSync(
   ),
 )
 
-glob(path.resolve('../../*'), { dot: true, onlyFiles: false, deep: 0 }).then(
+fg(path.resolve('../../*'), { dot: true, onlyFiles: false, deep: 0 }).then(
   (list) => {
     console.log(list.filter((l) => !excludeSet.has(path.basename(l))).join(' '))
   },

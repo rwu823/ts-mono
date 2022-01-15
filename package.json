@@ -23,7 +23,8 @@
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
-    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs"
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
+    "deploy": "ts-node -T scripts/deploy"
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "0.37.2",
