@@ -1,7 +1,7 @@
 import { readdirSync } from 'fs'
 import sh from 'sh-exec'
 
-const { GITHUB_TOKEN, GITHUB_REPOSITORY } = process.env
+const { GITHUB_TOKEN, GITHUB_REPOSITORY, GITHUB_JOB } = process.env
 
 const deploymentPackagesSet = new Set(
   readdirSync('packages').filter((dir) => dir !== 'share'),
@@ -32,6 +32,10 @@ const isBuildedPackagesSet = new Set([
   const modifiedPackages = await getDeploymentPackages().catch(console.error)
 
   if (Array.isArray(modifiedPackages)) {
+    await sh`
+      git config --global user.email "actions@github.com"
+      git config --global user.name "${GITHUB_JOB}"
+    `
     for (const pkg of modifiedPackages) {
       console.log(`Start to deploy ${pkg}`)
 
