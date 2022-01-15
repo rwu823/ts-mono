@@ -33,7 +33,7 @@ const getDeploymentPackages = async () => {
       // `
 
       sh`
-        git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
+        git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
         .map((pkg) => `HEAD:prod/${pkg}`)
         .join(' ')}
       `
