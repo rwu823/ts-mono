@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "stylelint.config.js",
   "scripts": {
-    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.js out && ts-node scripts/build"
+    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.js out && ts-node scripts/build",
+    "deploy": "yarn build && yarn ts-node ../../scripts/deployDirBranch"
   },
   "dependencies": {}
 }

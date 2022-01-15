@@ -1,9 +1,10 @@
 {
-  "version": "0.0.1",
   "name": "@ts-mono/eslint-config",
+  "version": "0.0.1",
   "main": "browser",
   "scripts": {
-    "build": "ts-node -T scripts/build"
+    "build": "ts-node -T scripts/build",
+    "deploy": "yarn build && yarn ts-node ../../scripts/deployDirBranch"
   },
   "dependencies": {}
 }
