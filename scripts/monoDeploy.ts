@@ -21,7 +21,7 @@ const getDeploymentPackages = async () => {
   return uniqPackages
 }
 
-const repo = `https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git`
+const repo = `https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git`
 const isBuildedPackagesSet = new Set([
   'ts-base',
   'eslint-config',
