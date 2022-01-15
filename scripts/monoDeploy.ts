@@ -21,24 +21,35 @@ const getDeploymentPackages = async () => {
   return uniqPackages
 }
 
+const repo = `https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git`
+const isBuildedPackagesSet = new Set([
+  'ts-base',
+  'eslint-config',
+  'stylelint-config',
+])
+
 ;(async () => {
   const modifiedPackages = await getDeploymentPackages().catch(console.error)
 
   if (Array.isArray(modifiedPackages)) {
-    if (modifiedPackages.length > 0) {
-      console.log({ modifiedPackages })
-      // sh`
-      //   git config --global user.name GitHub_Actions
-      //   git config --global user.email mono_deploy@github.com
-      // `
+    for (const pkg of modifiedPackages) {
+      console.log(`Start to deploy ${pkg}`)
 
-      sh`
-        git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
-        .map((pkg) => `HEAD:prod/${pkg}`)
-        .join(' ')}
-      `
-    } else {
-      console.log(`No branches be deployed.`)
+      const isBuild = isBuildedPackagesSet.has(pkg)
+
+      const buildCommand = isBuild
+        ? sh`yarn @workspace/${pkg} build`
+        : Promise.resolve()
+
+      buildCommand.then(
+        () => sh`
+        cd packages/${pkg}${isBuild ? `/out` : ``}
+        git init
+        git add .
+        git commit -nm 'update'
+        git push ${repo} HEAD:pkg/${pkg} --force
+    `,
+      )
     }
   }
 })()
