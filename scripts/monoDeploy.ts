@@ -27,10 +27,10 @@ const getDeploymentPackages = async () => {
   if (Array.isArray(modifiedPackages)) {
     if (modifiedPackages.length > 0) {
       console.log({ modifiedPackages })
-      sh`
-        git config --global user.name GitHub_Actions
-        git config --global user.email mono_deploy@github.com
-      `
+      // sh`
+      //   git config --global user.name GitHub_Actions
+      //   git config --global user.email mono_deploy@github.com
+      // `
 
       sh`
         git push https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git --force ${modifiedPackages
