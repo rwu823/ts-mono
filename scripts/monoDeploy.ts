@@ -38,7 +38,7 @@ const isBuildedPackagesSet = new Set([
       const isBuild = isBuildedPackagesSet.has(pkg)
 
       const buildCommand = isBuild
-        ? sh`yarn workspace/@ts-mono/${pkg} build`
+        ? sh`yarn workspace @ts-mono/${pkg} build`
         : Promise.resolve()
 
       buildCommand.then(
