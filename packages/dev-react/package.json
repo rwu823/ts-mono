@@ -44,6 +44,6 @@
     "build:cjs": "tsc -b tsconfig.cjs.json",
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
-    "build": "rm -rf out && run-p build:* && cp README.md package.json out"
+    "build": "rm -rf out && mkdir out && cp -R `ts-node -T scripts/build` out/"
   }
 }

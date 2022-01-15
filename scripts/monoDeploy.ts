@@ -40,21 +40,14 @@ const isBuildedPackagesSet = new Set([
     for (const pkg of modifiedPackages) {
       console.log(`Start to deploy ${pkg}`)
 
-      const isBuild = isBuildedPackagesSet.has(pkg)
-
-      const buildCommand = isBuild
-        ? sh`yarn workspace @ts-mono/${pkg} build`
-        : Promise.resolve()
-
-      buildCommand.then(
-        () => sh`
-        cd packages/${pkg}${isBuild ? `/out` : ``}
+      sh`
+        yarn workspace @ts-mono/${pkg} build
+        cd packages/${pkg}/out
         git init
         git add .
-        git commit -nm 'update'
+        git commit -nm update
         git push ${repo} HEAD:pkg/${pkg} --force
-    `,
-      )
+      `
     }
   }
 })()
