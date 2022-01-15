@@ -24,7 +24,8 @@
 
   },
   "scripts": {
-    "build": "rm -rf out node_modules/.tsbuildinfo && tsc && cp -r bin scripts $(ts-node -T scripts/cp) out"
+    "build": "rm -rf out node_modules/.tsbuildinfo && tsc && cp -r bin scripts $(ts-node -T scripts/cp) out",
+    "deploy": "yarn build && yarn ts-node ../../scripts/deployDirBranch"
   },
   "devDependencies": {
     "@types/fs-extra": "9.0.13"

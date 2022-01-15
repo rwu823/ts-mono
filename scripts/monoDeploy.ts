@@ -35,6 +35,7 @@ const isBuildedPackagesSet = new Set([
     await sh`
       git config --global user.email "actions@github.com"
       git config --global user.name "${GITHUB_JOB}"
+      git config --global init.defaultBranch main
     `
     for (const pkg of modifiedPackages) {
       console.log(`Start to deploy ${pkg}`)
