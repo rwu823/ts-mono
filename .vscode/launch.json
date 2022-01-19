@@ -8,6 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "ts $file",
+      "runtimeExecutable": "/opt/homebrew/bin/node",
       "args": [
         "-r",
         "ts-node/register/transpile-only",
