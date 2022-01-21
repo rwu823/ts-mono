@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const MarkdownBlockquote = styled.blockquote`
+  background: rgb(255 229 100 / 30%);
   border-left: 6px solid #ffe564;
-  background: rgba(255, 229, 100, 0.3);
-  padding: 1rem 0.5rem;
   color: #333;
+  padding: 1rem 0.5rem;
   padding-left: 1.5em;
 `

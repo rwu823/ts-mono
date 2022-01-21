@@ -13,5 +13,7 @@ module.exports = {
     'spaced-comment': [2, 'always', { markers: ['/'] }],
     'global-require': 0,
     'consistent-return': 0,
+    'no-shadow': 0,
+    '@typescript-eslint/no-shadow': [2, {}],
   },
 }
