@@ -1,7 +1,5 @@
 import { useMemo } from 'react'
 
-import { age } from '@ts-mono/dev-react/apollo/Query'
-
 import {
   ApolloClient,
   HttpLink,

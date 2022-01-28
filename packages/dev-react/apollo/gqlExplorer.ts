@@ -1,13 +1,11 @@
 import { NextApiHandler } from 'next'
 
-import { ApolloServer } from 'apollo-server-micro'
+import type { ApolloServer } from 'apollo-server-micro'
 
-export const gqlExplorer: (apolloServer: ApolloServer) => NextApiHandler = (
-  apolloServer,
-) => {
+export const gqlExplorer = (apolloServer: ApolloServer): NextApiHandler => {
   const startApolloServer = apolloServer.start()
 
-  return (req, res) => {
+  return async (req, res) => {
     const { method, url } = req
 
     res.setHeader('Access-Control-Allow-Credentials', 'true')
@@ -21,13 +19,15 @@ export const gqlExplorer: (apolloServer: ApolloServer) => NextApiHandler = (
     )
 
     if (method === 'OPTIONS') {
-      return res.end()
+      res.end()
+
+      return
     }
 
-    return startApolloServer.then(() =>
-      apolloServer.createHandler({
-        path: url,
-      })(req, res),
-    )
+    await startApolloServer
+
+    return apolloServer.createHandler({
+      path: url,
+    })(req, res)
   }
 }

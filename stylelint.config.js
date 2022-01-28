@@ -8,6 +8,8 @@ module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-styled-components'],
   plugins: ['stylelint-order', 'stylelint-no-unsupported-browser-features'],
   rules: {
+    // disable for prettier
+    indentation: null,
     'no-empty-first-line': null,
     'declaration-colon-newline-after': null,
     'no-eol-whitespace': null,
