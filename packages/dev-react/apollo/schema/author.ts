@@ -1,4 +1,4 @@
-import { createGraphQLSchema } from '@ts-mono/dev-react/apollo/utilsGraphQL'
+import { createGraphQLSchema } from '@ts-mono/dev-react/apollo/graphqlUtils'
 
 import { gql } from 'apollo-server-micro'
 

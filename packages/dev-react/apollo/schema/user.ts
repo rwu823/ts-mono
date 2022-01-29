@@ -1,7 +1,7 @@
 import {
   createDataLoader,
   createGraphQLSchema,
-} from '@ts-mono/dev-react/apollo/utilsGraphQL'
+} from '@ts-mono/dev-react/apollo/graphqlUtils'
 
 import { gql } from 'apollo-server-micro'
 
