@@ -40,11 +40,14 @@
     "next": "12.0.9",
     "prismjs": "1.26.0",
     "raw-loader": "4.0.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-intl": "5.24.4",
     "react-markdown": "8.0.0",
     "react-query": "3.34.12",
     "react-svg-loader": "3.0.3",
     "rxjs": "7.5.2",
+    "styled-components": "5.3.3",
     "use-immer": "0.6.0"
   },
   "scripts": {
@@ -53,7 +56,8 @@
     "build:cjs": "tsc -b tsconfig.cjs.json",
     "build:esm": "tsc -b tsconfig.esm.json",
     "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
-    "build": "rm -rf out && mkdir out && cp -R `ts-node -T scripts/build` out/"
+    "build": "rm -rf out && mkdir out && cp -R `ts-node -T scripts/build` out/",
+    "deploy": "yarn build && ts-node -T ../../scripts/deployDirBranch"
   },
   "resolutions": {
     "graphql": "16.3.0"
