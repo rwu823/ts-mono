@@ -2,7 +2,6 @@ import {
   $cacheControl,
   createGraphQLSchema,
 } from '@ts-mono/dev-react/apollo/graphqlUtils'
-import { fetch } from '@ts-mono/dev-react/utils/fetch'
 
 import { gql } from 'apollo-server-micro'
 
@@ -26,12 +25,7 @@ export default createGraphQLSchema(
   `,
   {
     Query: {
-      emojis: () => {
-        console.log('emoji')
-        return fetch(
-          'https://raw.githubusercontent.com/github/gemoji/master/db/emoji.json',
-        )
-      },
+      emojis: (_, _vars, { dataSources }) => dataSources.githubRaw.getEmojis(),
     },
   },
 )
