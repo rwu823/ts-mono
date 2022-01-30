@@ -8,7 +8,7 @@ export const gqlExplorer = (apolloServer: ApolloServer): NextApiHandler => {
   return async (req, res) => {
     const { method, url } = req
 
-    res.setHeader('apollo-federation-include-trace', 'ftv1')
+    // res.setHeader('apollo-federation-include-trace', 'ftv1')
     res.setHeader('Access-Control-Allow-Credentials', 'true')
     res.setHeader(
       'Access-Control-Allow-Origin',

@@ -11,9 +11,10 @@ export default createGraphQLSchema(
     Users's description
     """
     type User {
+      id: ID!
       name: String!
       "user's age"
-      age: Int
+      age: Int!
       friends: [User]
     }
 
@@ -25,10 +26,12 @@ export default createGraphQLSchema(
     Query: {
       users: () => [
         {
+          id: 1,
           name: 'Erin',
           age: 25,
         },
         {
+          id: 2,
           name: 'Rocky',
           age: 30,
         },
