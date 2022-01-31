@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import DataSourcesGitHubRaw from '@ts-mono/dev-react/apollo/DataSourcesGitHubRaw'
 import { gqlExplorer } from '@ts-mono/dev-react/apollo/gqlExplorer'
-import schema from '@ts-mono/dev-react/apollo/schema'
+import schema from '@ts-mono/dev-react/schema'
 
 import {
   ApolloServerPluginCacheControl,
