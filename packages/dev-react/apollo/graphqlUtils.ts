@@ -49,7 +49,7 @@ export const createGraphQLResolver =
     }
 
     const make = <Parent = unknown, Vars = unknown>(
-      batchLoadFn: (args: readonly Args<Parent, Vars>[]) => Promise<any[]>,
+      batchLoadFn: (args: readonly Args<Parent, Vars>[]) => Promise<any[]> | any[],
 
       { debug = false } = {},
     ) =>
@@ -64,7 +64,7 @@ export const createGraphQLResolver =
                 `load batch: ${keys.length} counts`,
               )
 
-            return batchLoadFn(keys)
+            return Promise.resolve(batchLoadFn(keys))
           },
         )
 

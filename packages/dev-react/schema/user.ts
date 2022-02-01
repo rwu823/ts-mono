@@ -45,7 +45,7 @@ export default makeGraphQLSchema(
 
     User: {
       friends: makeGraphQLResolver<{ name: string }>(
-        async (keys) => {
+        (keys) => {
           const res = []
 
           for (const k of keys) {
