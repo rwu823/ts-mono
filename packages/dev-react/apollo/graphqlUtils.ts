@@ -8,6 +8,35 @@ import type { BatchLoadFn } from 'dataloader'
 import DataLoader from 'dataloader'
 import type { DocumentNode, GraphQLResolveInfo } from 'graphql'
 
+const isFloat = (n: number) => n % 1 !== 0
+
+export const genGraphQLVariablesString = (vars: object) => {
+  let s = ''
+
+  const typeofMap = {
+    number: 'Int',
+    string: 'String',
+    float: 'Float',
+    arrayNumber: '[Int]',
+    arrayString: '[String]',
+    boolean: 'Boolean',
+  }
+
+  for (const [k, v] of Object.entries(vars)) {
+    let valueType = typeof v as keyof typeof typeofMap
+
+    if (valueType === 'number' && isFloat(v as number)) {
+      valueType = 'float'
+    } else if (Array.isArray(v)) {
+      valueType = typeof v[0] === 'string' ? 'arrayString' : 'arrayNumber'
+    }
+
+    s += `$${k}: ${typeofMap[valueType]},`
+  }
+
+  return s
+}
+
 export const createGraphQLResolver =
   // init
 
