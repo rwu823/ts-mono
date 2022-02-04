@@ -49,8 +49,9 @@ export const createGraphQLResolver =
     }
 
     const make = <Parent = unknown, Vars = unknown>(
-      batchLoadFn: (args: readonly Args<Parent, Vars>[]) => Promise<any[]> | any[],
-
+      batchLoadFn: (
+        args: readonly Args<Parent, Vars>[],
+      ) => Promise<any[]> | any[],
       { debug = false } = {},
     ) =>
       // resolver

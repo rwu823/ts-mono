@@ -45,7 +45,7 @@
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
-    "eslint-plugin-testing-library": "5.0.4",
+    "eslint-plugin-testing-library": "5.0.5",
     "eslint-plugin-unicorn": "40.1.0",
     "postcss-syntax": "0.36.2",
     "prettier": "2.5.1",
