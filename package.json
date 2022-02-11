@@ -9,7 +9,7 @@
     ]
   },
   "lint-staged": {
-    "*.{ts,tsx,js,mjs}": "eslint --cache --fix",
+    "*.{ts,tsx,js,mjs}": "yarn lint --fix",
     "*.{css,tsx,js,jsx}": "stylelint --fix"
   },
   "author": "Rocky Wu <rwu823@gmail.com>",
