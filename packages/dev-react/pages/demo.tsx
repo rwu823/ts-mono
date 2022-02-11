@@ -23,6 +23,15 @@ export const QUERY_SPACEX = gql`
   }
 `
 
+const useAbc = () => {
+  const a = useCallback(() => {}, [])
+  const b = useCallback(() => {}, [])
+  return {
+    a,
+    b,
+  }
+}
+
 type DemoProps = {
   spaceX: unknown
 }

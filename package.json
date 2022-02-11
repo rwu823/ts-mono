@@ -24,15 +24,16 @@
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
-    "deploy": "ts-node -T scripts/deploy"
+    "deploy": "ts-node -T scripts/deploy",
+    "prepare": "husky install"
   },
   "graphql": {
     "schema": "http://localhost:3000/api/gql"
   },
   "devDependencies": {
     "@stylelint/postcss-css-in-js": "0.37.2",
-    "@typescript-eslint/eslint-plugin": "5.10.2",
-    "@typescript-eslint/parser": "5.10.2",
+    "@typescript-eslint/eslint-plugin": "5.11.0",
+    "@typescript-eslint/parser": "5.11.0",
     "eslint": "8.8.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.3.0",
@@ -50,12 +51,12 @@
     "postcss-syntax": "0.36.2",
     "prettier": "2.5.1",
     "sh-exec": "2.1.0",
-    "stylelint": "14.3.0",
-    "stylelint-config-standard": "24.0.0",
+    "stylelint": "14.5.0",
+    "stylelint-config-standard": "25.0.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-no-unsupported-browser-features": "5.0.2",
     "stylelint-order": "5.0.0",
-    "type-fest": "2.11.1",
+    "type-fest": "2.11.2",
     "typehole": "1.7.0"
   }
 }

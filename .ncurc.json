@@ -1,5 +1,7 @@
 {
   "upgrade": true,
+  "timeout": 999999,
+  "deep": true,
   "reject": [
 
   ]

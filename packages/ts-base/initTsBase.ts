@@ -179,7 +179,7 @@ module.exports = {
     } else {
       exec(/* sh */ `
 git init
-SHELL=zsh npx husky install
+npx husky install
 npx husky add .husky/pre-commit "npx lint-staged"
 git br -M main
 `).stdout?.pipe(process.stdout)

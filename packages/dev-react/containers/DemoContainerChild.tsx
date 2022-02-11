@@ -9,14 +9,11 @@ export type Props = {}
 
 export const DemoContainerChild: React.FC<
   Props & React.DOMAttributes<HTMLDivElement>
-> = ({ children, ...props }) => {
-  console.info('DemoContainerChild render')
-
-  return (
-    <Div {...props}>
-      <h1>DemoContainerChild</h1>
-    </Div>
-  )
-}
+> = ({ children, ...props }) => (
+  <Div {...props}>
+    <h1>DemoContainerChild</h1>
+    {children}
+  </Div>
+)
 
 export default React.memo(DemoContainerChild)
