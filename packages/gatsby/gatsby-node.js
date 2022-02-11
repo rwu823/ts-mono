@@ -41,11 +41,11 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allMdx.edges
 
   // you'll call `createPage` for each result
-  posts.forEach(({ node }) => {
+  for (const { node } of posts) {
     createPage({
       path: path.join('/posts', node.fields.path),
       component: path.resolve('src/components/BlogPost.tsx'),
       context: { id: node.id },
     })
-  })
+  }
 }

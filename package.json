@@ -9,12 +9,8 @@
     ]
   },
   "lint-staged": {
-    "*.{ts,tsx,js,mjs}": [
-      "eslint --fix"
-    ],
-    "*.{tsx,js}": [
-      "stylelint --fix"
-    ]
+    "*.{ts,tsx,js,mjs}": "eslint --cache --fix",
+    "*.{css,tsx,js,jsx}": "stylelint --fix"
   },
   "author": "Rocky Wu <rwu823@gmail.com>",
   "repository": "git@github.com:rwu823/ts-mono.git",
@@ -23,7 +19,7 @@
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
-    "lint": "eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
+    "lint": "eslint --cache --cache-location node_modules/.cache/eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
     "deploy": "ts-node -T scripts/deploy",
     "prepare": "husky install"
   },

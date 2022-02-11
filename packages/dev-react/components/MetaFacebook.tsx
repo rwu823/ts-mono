@@ -9,8 +9,8 @@ type Props = {
 
 export const MetaFacebook: React.FC<Props> = ({ ogImg, ogImgWidth }) => (
   <Head>
-    <meta property="og:image" content={ogImg} />
-    <meta property="og:image:width" content={String(ogImgWidth)} />
+    <meta content={ogImg} property="og:image" />
+    <meta content={String(ogImgWidth)} property="og:image:width" />
   </Head>
 )
 

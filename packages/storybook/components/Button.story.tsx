@@ -32,7 +32,7 @@ normalText.args = {
 
 export const withSomeEmoji = () => (
   <Button>
-    <span role="img" aria-label="so cool">
+    <span aria-label="so cool" role="img">
       😀 😎 👍 💯
     </span>
   </Button>

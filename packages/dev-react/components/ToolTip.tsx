@@ -35,7 +35,7 @@ const ToolTip: React.FC<Props> = ({ children, tip }) => {
           position: 'absolute',
           top: y,
           left: x,
-          opacity: isMouseIn ? 1 : 0,
+          opacity: ismousein ? 1 : 0,
         }}
       >
         {tip}
@@ -56,7 +56,7 @@ const ToolTip: React.FC<Props> = ({ children, tip }) => {
   }, [onScroll])
 
   return (
-    <Div onMouseMove={mousemove} onMouseLeave={() => setMouseIn(false)}>
+    <Div onMouseLeave={() => setMouseIn(false)} onMouseMove={mousemove}>
       {isMouseIn && <Tip />}
       {children}
     </Div>

@@ -44,8 +44,6 @@ const Seo: React.FC<Props> = ({
       htmlAttributes={{
         lang: lang!,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -77,6 +75,8 @@ const Seo: React.FC<Props> = ({
         },
         ...meta,
       ]}
+      title={title}
+      titleTemplate={`%s | ${site.siteMetadata.title}`}
     />
   )
 }

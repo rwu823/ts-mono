@@ -8,9 +8,9 @@ import Layout from './Layout'
 const BlogPost: React.FC<{ data: GraphQLData }> = ({ data: { mdx } }) => (
   <Layout>
     <BlogPostTemplate
-      title={mdx.frontmatter.title}
-      tags={mdx.frontmatter.tags}
       body={mdx.body}
+      tags={mdx.frontmatter.tags}
+      title={mdx.frontmatter.title}
     />
   </Layout>
 )

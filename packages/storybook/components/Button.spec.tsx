@@ -1,4 +1,3 @@
-// import '@jest-env/env'
 import React from 'react'
 
 import { fireEvent } from '@testing-library/react'
@@ -6,19 +5,18 @@ import { fireEvent } from '@testing-library/react'
 import Button from './Button'
 
 describe('Test Button Spec:', () => {
-  beforeEach(() => {
-    render(<Button />)
-  })
-
   it('test fail', async () => {
+    render(<Button />)
     expect(1).toBe(1)
   })
 
   it('can render and update a counter', () => {
+    render(<Button />)
     expect(firstChild).toBeTruthy()
   })
 
   it('Button should have `btn` className', async () => {
+    render(<Button />)
     expect(firstChild).toHaveClass('btn')
   })
 
@@ -32,9 +30,7 @@ describe('Test Button Spec:', () => {
 
     expect(firstChild).toHaveTextContent('click me')
 
-    act(() => {
-      fireEvent.click(firstChild)
-    })
+    fireEvent.click(firstChild)
 
     expect(onClick).toBeCalled()
   })

@@ -8,6 +8,9 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 0,
     'react/require-default-props': 0,
+    'react/prop-types': 0,
+
+    'react/jsx-no-useless-fragment': [2, { allowExpressions: true }],
     'react/jsx-sort-props': [
       2,
       {
@@ -18,7 +21,6 @@ module.exports = {
         reservedFirst: ['key'],
       },
     ],
-    'react/prop-types': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-curly-brace-presence': 0,

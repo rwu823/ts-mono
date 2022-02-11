@@ -8,9 +8,9 @@ type Props = {
 
 export const MetaIcon: React.FC<Props> = ({ href }) => (
   <Head>
-    <link rel="icon" sizes="192x192" href={href} />
-    <link rel="apple-touch-icon" href={href} />
-    <link rel="mask-icon" href={href} />
+    <link href={href} rel="icon" sizes="192x192" />
+    <link href={href} rel="apple-touch-icon" />
+    <link href={href} rel="mask-icon" />
   </Head>
 )
 

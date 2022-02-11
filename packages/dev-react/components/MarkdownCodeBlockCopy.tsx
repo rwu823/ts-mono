@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 
 export const CopyIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
+    height="1em"
     style={{
       width: 20,
       height: 20,
@@ -11,7 +12,6 @@ export const CopyIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     }}
     viewBox="0 0 1024 1024"
     width="1em"
-    height="1em"
     {...props}
   >
     <path

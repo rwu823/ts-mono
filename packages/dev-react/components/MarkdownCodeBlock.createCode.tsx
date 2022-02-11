@@ -89,7 +89,7 @@ const ToolBar = styled.div`
     border-top-right-radius: 5px;
     color: #bbb;
     display: flex;
-    font: 0.8rem 'Menlo', monospace;
+    font: 0.8rem Menlo, monospace;
     justify-content: space-between;
     padding: 12px 20px;
   `}
@@ -208,9 +208,9 @@ export const markdownCreateCode = (
           <Source>
             {lines.map((line) => (
               <i
-                style={{ top: (line - 1) * 19 + 14 }}
                 key={line}
                 data-line={line}
+                style={{ top: (line - 1) * 19 + 14 }}
               />
             ))}
             <pre>

@@ -177,7 +177,7 @@ module.exports = {
     if (husky.length > 0) {
       console.log(`${c.cyan(husky[0])} is already exist.`)
     } else {
-      exec(/* sh */ `
+      exec(`
 git init
 npx husky install
 npx husky add .husky/pre-commit "npx lint-staged"
@@ -201,4 +201,4 @@ process.on('unhandledRejection', (r) => {
     console.error(r.stack)
   }
 })
-2
+1
