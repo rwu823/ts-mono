@@ -11,6 +11,7 @@
 
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
+    "noEmit": true,
 
     /* =Basic Options */
     "target": "ES6",
@@ -34,6 +35,20 @@
     /* =Additional Checks */
     "noUnusedLocals": false,
     "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+  },
+  "references": [
+    // {
+    //   "path": "./packages/ts-base"
+    // },
+    // {
+    //   "path": "./packages/storybook"
+    // },
+    {
+      "path": "./packages/dev-react",
+    },
+    // {
+    //   "path": "./packages/dev-pptr",
+    // },
+  ]
 }

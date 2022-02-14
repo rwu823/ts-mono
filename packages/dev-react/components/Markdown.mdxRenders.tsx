@@ -9,9 +9,9 @@ import { MarkdownCodeBlockMeta } from '@ts-mono/dev-react/components/MarkdownCod
 import { MarkdownHead } from '@ts-mono/dev-react/components/MarkdownHead'
 import { MarkdownLink } from '@ts-mono/dev-react/components/MarkdownLink'
 
-import { MDXProviderComponents } from '@mdx-js/react'
+import { MDXProvider } from '@mdx-js/react'
 
-export const mdxRenders: MDXProviderComponents = {
+export const mdxRenders: Parameters<typeof MDXProvider>[0]['components'] = {
   inlineCode: (props) => <MarkdownCode {...props} />,
   h1: ({ children }) => <MarkdownHead level={1} text={children as string} />,
   h2: ({ children }) => <MarkdownHead level={2} text={children as string} />,
@@ -30,7 +30,7 @@ export const mdxRenders: MDXProviderComponents = {
     }
 
     return (
-      <NextLink href={href}>
+      <NextLink href={href ?? '.'}>
         <MarkdownLink {...props} href={href}>
           {title}
         </MarkdownLink>
@@ -59,5 +59,5 @@ export const mdxRenders: MDXProviderComponents = {
     )
   },
 
-  blockquote: (props) => <MarkdownBlockquote {...props} />,
+  blockquote: MarkdownBlockquote,
 }

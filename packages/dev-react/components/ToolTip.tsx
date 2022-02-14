@@ -35,7 +35,8 @@ const ToolTip: React.FC<Props> = ({ children, tip }) => {
           position: 'absolute',
           top: y,
           left: x,
-          opacity: ismousein ? 1 : 0,
+          // stylelint-disable-next-line value-keyword-case
+          opacity: isMouseIn ? 1 : 0,
         }}
       >
         {tip}

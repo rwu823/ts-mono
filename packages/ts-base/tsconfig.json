@@ -5,6 +5,6 @@
   "compilerOptions": {
     "outDir": "out",
     "declaration": false,
-    "tsBuildInfoFile": "node_modules/.tsbuildinfo"
+    "composite": true,
   }
 }

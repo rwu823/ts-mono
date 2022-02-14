@@ -7,11 +7,11 @@ import DemoContainerChild from '@ts-mono/dev-react/containers/DemoContainerChild
 const Div = styled.div`
   ${() => css``}
 `
-export type Props = {
+export type Props = Partial<{
   n: number
   foo: string
   bar: number
-}
+}>
 
 export const DemoContainer: React.FC<
   Props & React.DOMAttributes<HTMLDivElement>

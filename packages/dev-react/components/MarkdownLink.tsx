@@ -37,7 +37,7 @@ const A = styled.a`
 `
 
 type Props = {
-  href: string
+  href?: string
   external?: boolean
 }
 

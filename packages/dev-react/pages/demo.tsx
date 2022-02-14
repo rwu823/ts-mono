@@ -36,7 +36,7 @@ const Drag = styled.div`
   `}
 `
 
-const Demo: React.FC<DemoProps> = ({ spaceX }) => {
+const Demo: React.FC<DemoProps> = () => {
   const { ref, style } = useDragAndDrop({
     paddingTop: 70,
     paddingRight: 20,
@@ -57,7 +57,7 @@ const Demo: React.FC<DemoProps> = ({ spaceX }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo()
 
   const spaceX = await apolloClient.query({

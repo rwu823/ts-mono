@@ -2,18 +2,20 @@
   "extends": "../../tsconfig",
   "compilerOptions": {
     "allowJs": true,
-    // "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": true,
+    "noEmit": false,
     "isolatedModules": true,
     "jsx": "preserve",
     "sourceMap": true,
+    "composite": true
   },
   "include": [
     "../../@types/global.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "../../graphql.config.ts"  ],
+    "**/*.tsx",
+    "**/*.json",
+    "../../graphql.config.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
