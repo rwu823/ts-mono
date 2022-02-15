@@ -12,7 +12,6 @@ import { MarkdownLink } from '@ts-mono/dev-react/components/MarkdownLink'
 import { MDXProvider } from '@mdx-js/react'
 
 export const mdxRenders: Parameters<typeof MDXProvider>[0]['components'] = {
-  inlineCode: (props) => <MarkdownCode {...props} />,
   h1: ({ children }) => <MarkdownHead level={1} text={children as string} />,
   h2: ({ children }) => <MarkdownHead level={2} text={children as string} />,
 
@@ -46,8 +45,12 @@ export const mdxRenders: Parameters<typeof MDXProvider>[0]['components'] = {
     let metaObj: MarkdownCodeBlockMeta | undefined
 
     if (meta) {
-      // eslint-disable-next-line no-new-func
-      metaObj = new Function(`return { ${meta} }`)()
+      try {
+        metaObj = JSON.parse(meta)
+      } catch (error) {
+        console.warn(error)
+        metaObj = {}
+      }
     }
 
     return (

@@ -10,7 +10,7 @@
     "strict": true,
 
     "incremental": true,
-    "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
+    // "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
     "noEmit": true,
 
     /* =Basic Options */
@@ -38,17 +38,17 @@
     "forceConsistentCasingInFileNames": true,
   },
   "references": [
-    // {
-    //   "path": "./packages/ts-base"
-    // },
-    // {
-    //   "path": "./packages/storybook"
-    // },
+    {
+      "path": "./packages/ts-base"
+    },
+    {
+      "path": "./packages/storybook"
+    },
     {
       "path": "./packages/dev-react",
     },
-    // {
-    //   "path": "./packages/dev-pptr",
-    // },
+    {
+      "path": "./packages/dev-pptr",
+    },
   ]
 }

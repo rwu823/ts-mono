@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "types": ["jquery", "jest", "jest-playwright-preset", "expect-playwright"],
+    "types": ["jquery", "jest-playwright-preset"],
     "lib": ["dom", "ESNext"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "outDir": "out"
   }
 }

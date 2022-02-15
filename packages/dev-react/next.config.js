@@ -40,7 +40,18 @@ module.exports = (phase, { defaultConfig }) => {
         },
         {
           test: /\.mdx$/,
-          use: [options.defaultLoaders.babel, '@mdx-js/loader'],
+          use: [
+            options.defaultLoaders.babel,
+            {
+              loader: '@mdx-js/loader',
+
+              /** @type {import('@mdx-js/loader').Options} */
+              options: {
+                format: 'mdx',
+                providerImportSource: '@mdx-js/react',
+              },
+            },
+          ],
         },
 
         {
