@@ -47,6 +47,8 @@ module.exports = (phase, { defaultConfig }) => {
 
               /** @type {import('@mdx-js/loader').Options} */
               options: {
+                rehypePlugins: [],
+                remarkPlugins: [],
                 format: 'mdx',
                 providerImportSource: '@mdx-js/react',
               },

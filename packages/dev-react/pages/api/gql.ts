@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { gqlExplorer } from '@ts-mono/dev-react/apollo/gqlExplorer'
 import schema from '@ts-mono/dev-react/schema'

@@ -5,7 +5,7 @@
     "init-dev-react": "bin/init-dev-react"
   },
   "dependencies": {
-    "@apollo/client": "3.5.8",
+    "@apollo/client": "3.5.9",
     "@apollo/react-ssr": "4.0.0",
     "@chakra-ui/react": "1.8.3",
     "@emotion/react": "11.7.1",
@@ -39,6 +39,7 @@
     "react-intl": "5.24.6",
     "react-markdown": "8.0.0",
     "react-svg-loader": "3.0.3",
+    "remark-mdx-code-meta": "1.0.0",
     "rxjs": "7.5.4",
     "styled-components": "5.3.3",
     "use-immer": "0.6.0"

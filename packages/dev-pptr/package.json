@@ -6,8 +6,9 @@
   },
   "dependencies": {
     "axios": "0.26.0",
+    "jest": "27.5.1",
     "jest-playwright-preset": "1.7.0",
-    "playwright": "1.19.0"
+    "playwright": "1.19.1"
   },
   "devDependencies": {
     "@types/jquery": "3.5.13"

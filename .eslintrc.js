@@ -24,7 +24,7 @@ module.exports = {
     '@ts-mono/eslint-config/rules/unicorn',
     '@ts-mono/eslint-config/rules/testing',
     '@ts-mono/eslint-config/rules/import',
-    // '@ts-mono/eslint-config/rules/typescript',
+    '@ts-mono/eslint-config/rules/typescript',
     '@ts-mono/eslint-config/rules/filenames',
     '@ts-mono/eslint-config/rules/a11y',
     '@ts-mono/eslint-config/rules/base',

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import styled, { css } from 'styled-components'
 
-import { GetStaticProps } from 'next'
+import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 
 import { initializeApollo } from '@ts-mono/dev-react/apollo/useApollo'

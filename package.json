@@ -1,13 +1,9 @@
 {
   "name": "ts-mono",
-  "version": "4.3.4-21.6.27",
+  "version": "4.5.5-22.2.16",
   "description": "The infrastructure of TypeScript project",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": ["packages/*"],
   "lint-staged": {
     "*.{ts,tsx,js,mjs}": "yarn lint --fix",
     "*.{css,tsx,js,jsx}": "stylelint --fix"
