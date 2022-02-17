@@ -1,9 +1,10 @@
+// @ts-ignore
+import rootPkg from '@ts-mono/package.json'
+
 import fg from 'fast-glob'
 import fs from 'fs'
 import path from 'path'
 
-// eslint-disable-next-line import/no-relative-packages
-import rootPkg from '../../../package.json'
 import pkg from '../package.json'
 
 const excludeSet = new Set([

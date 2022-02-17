@@ -15,9 +15,9 @@
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
-    "lint": "eslint --cache --cache-location node_modules/.cache/eslint --ignore-path .gitignore --ext .ts,.tsx,.js,.mjs",
+    "lint": "eslint --cache --cache-location node_modules/.cache/eslint --ext .ts,.tsx,.js,.mjs",
     "deploy": "ts-node -T scripts/deploy",
-    "prepare": "husky install"
+    "prepare": "husky install & browserslist --update-db"
   },
   "graphql": {
     "schema": "http://localhost:3000/api/gql"
@@ -39,11 +39,11 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "eslint-plugin-testing-library": "5.0.5",
-    "eslint-plugin-unicorn": "40.1.0",
+    "eslint-plugin-unicorn": "41.0.0",
     "postcss-syntax": "0.36.2",
     "prettier": "2.5.1",
     "sh-exec": "2.1.0",
-    "stylelint": "14.5.0",
+    "stylelint": "14.5.1",
     "stylelint-config-standard": "25.0.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-no-unsupported-browser-features": "5.0.2",

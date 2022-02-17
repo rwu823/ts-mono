@@ -1,6 +1,12 @@
 {
   "extends": "../../tsconfig",
   "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts"],
+  "include": [
+    "initTsBase.ts",
+    "package.json",
+    "scripts/**/*.ts",
+    "utils/**/*.ts"
+  ],
   "compilerOptions": {
     "outDir": "out",
     "declaration": true,
