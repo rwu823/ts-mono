@@ -1,10 +1,10 @@
-// @ts-ignore
-import rootPkg from '@ts-mono/package.json'
-
 import fg from 'fast-glob'
 import fs from 'fs'
 import path from 'path'
 
+// @ts-ignore
+// eslint-disable-next-line import/no-relative-packages
+import rootPkg from '../../../package.json'
 import pkg from '../package.json'
 
 const excludeSet = new Set([
@@ -22,6 +22,8 @@ const excludeSet = new Set([
   '.eslintignore',
   '.eslintrc',
   'algorithm',
+  'pnpm-lock.yaml',
+  'yarn-error.log',
 ])
 
 fs.writeFileSync(

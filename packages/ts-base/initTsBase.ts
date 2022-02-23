@@ -1,14 +1,17 @@
-import { exec } from 'child_process'
-import * as c from 'colorette'
+import { exec, spawn } from 'child_process'
+import { promisify } from 'node:util'
+import c from 'picocolors'
 
 import packageJSON from './package.json'
 import { readFile } from './utils/fs'
-import g from './utils/glob'
+import fg from './utils/glob'
 import { parseJSON, stringify } from './utils/json'
 import { mkDirCopyFiles } from './utils/mkDirCopyFiles'
 import write from './utils/write'
 
-const tsBasePath = `node_modules/${packageJSON.name}`
+const execPromisify = promisify(exec)
+
+const tsBasePath = __dirname
 
 const ESLINTRC = '.eslintrc'
 const PRETTIER = 'prettier'
@@ -24,20 +27,23 @@ const STYLE_LINT = 'stylelint'
 const TYPES = '@types'
 const BROWSER_LIST_RC = '.browserslistrc'
 
+const log = (string: string) =>
+  console.log(c.bgGreen(c.black(' init-ts-base '.toUpperCase())), string)
+
 Promise.all([
-  g(`${ESLINTRC}*`),
-  g(`*${PRETTIER}*`),
-  g(TSCONFIG),
-  g(`${VSCODE}/**`),
-  g(JEST_CONFIG),
-  g(`${CIRCLE_CI}/**`),
-  g(GIT_IGNORE),
-  g(GIT_ATTRIBUTES),
-  g(ENV),
-  g(HUSKY),
-  g(`*${STYLE_LINT}*`),
-  g(TYPES),
-  g(BROWSER_LIST_RC),
+  fg(`${ESLINTRC}*`),
+  fg(`*${PRETTIER}*`),
+  fg(TSCONFIG),
+  fg(`${VSCODE}/**`),
+  fg(JEST_CONFIG),
+  fg(`${CIRCLE_CI}/**`),
+  fg(GIT_IGNORE),
+  fg(GIT_ATTRIBUTES),
+  fg(ENV),
+  fg(HUSKY),
+  fg(`*${STYLE_LINT}*`),
+  fg(TYPES),
+  fg(BROWSER_LIST_RC),
 ]).then(
   async ([
     eslintrc,
@@ -45,7 +51,6 @@ Promise.all([
     tsconfigs,
     vscode,
     jestConf,
-    // @ts-expect-error
     circleCIConf,
     gitignore,
     gitattr,
@@ -55,6 +60,8 @@ Promise.all([
     globalTypes,
     browserslist,
   ]) => {
+    circleCIConf
+    log('Copy files.')
     if (browserslist.length > 0) {
       console.log(`${c.cyan(BROWSER_LIST_RC)} is already exist.`)
     } else {
@@ -136,6 +143,7 @@ module.exports = {
     /**
      * =package.json
      */
+    await execPromisify(`yarn init -y`)
     const pkg = parseJSON<{
       scripts: Record<string, string>
       'lint-staged': Record<string, JSON>
@@ -177,14 +185,36 @@ module.exports = {
     if (husky.length > 0) {
       console.log(`${c.cyan(husky[0])} is already exist.`)
     } else {
-      exec(`
+      log(`Init git repo and husky.`)
+      const { stdout } = await execPromisify(`
 git init
 npx husky install
 npx husky add .husky/pre-commit "npx lint-staged"
-git br -M main
-`).stdout?.pipe(process.stdout)
+`)
+      console.log(stdout)
     }
 
+    log(`Installing packages.`)
+    // install dev dependencies
+    spawn(
+      'pnpm',
+      [
+        'install',
+        '-WD',
+
+        // eslint-disable-next-line unicorn/no-useless-spread
+        ...[
+          'rwu823/ts-mono#pkg/eslint-config',
+          'rwu823/ts-mono#pkg/stylelint-config',
+          'husky',
+          'lint-staged',
+          'ts-node',
+          'typescript',
+          '@types/node',
+        ],
+      ],
+      { stdio: 'inherit' },
+    )
     /**
      * .circleci/config.yml
      */

@@ -10,9 +10,6 @@
     "jest-playwright-preset": "1.7.0",
     "playwright": "1.19.1"
   },
-  "devDependencies": {
-    "@types/jquery": "3.5.13"
-  },
   "scripts": {
     "dev": "ts-node .",
     "e2e": "jest --runInBand",

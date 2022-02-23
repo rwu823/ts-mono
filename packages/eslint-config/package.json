@@ -6,5 +6,5 @@
     "build": "ts-node -T scripts/build",
     "deploy": "yarn build && yarn ts-node ../../scripts/deployDirBranch"
   },
-  "dependencies": {}
+  "peerDependencies": {}
 }

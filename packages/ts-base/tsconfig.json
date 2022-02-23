@@ -11,5 +11,6 @@
     "outDir": "out",
     "declaration": true,
     "composite": true,
+    "noEmit": false
   }
 }

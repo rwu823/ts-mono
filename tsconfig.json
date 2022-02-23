@@ -10,11 +10,11 @@
     "strict": true,
 
     "incremental": true,
-    // "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
+    "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
     "noEmit": true,
 
     /* =Basic Options */
-    "target": "ES6",
+    "target": "ESNext",
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

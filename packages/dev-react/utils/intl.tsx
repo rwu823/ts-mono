@@ -1,10 +1,10 @@
 import React from 'react'
 import * as ReactIntl from 'react-intl'
 
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 
 import accepts from 'accepts'
-import { PrimitiveType } from 'intl-messageformat'
+import type { PrimitiveType } from 'intl-messageformat'
 
 export const DEFAULT_LANG = 'en'
 export const SUPPORTED_LANGS = [DEFAULT_LANG, 'zh']

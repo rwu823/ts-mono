@@ -1,11 +1,10 @@
-import * as c from 'colorette'
 import { copy, mkdirp } from 'fs-extra'
+import path from 'node:path'
+import c from 'picocolors'
 
-import packageJSON from '../package.json'
+const tsBasePath = path.resolve(__dirname, '../')
 
-const tsBasePath = `node_modules/${packageJSON.name}`
-
-export const mkDirCopyFiles = async (dir: string) =>
+export const mkDirCopyFiles = (dir: string) =>
   mkdirp(dir)
     .then(() => {
       console.log(

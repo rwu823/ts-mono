@@ -1,5 +1,5 @@
-import * as c from 'colorette'
 import { createWriteStream } from 'fs'
+import c from 'picocolors'
 
 class Write {
   private text: string
