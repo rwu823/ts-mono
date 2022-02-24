@@ -7,7 +7,6 @@ import Head from 'next/head'
 
 import { initializeApollo } from '@ts-mono/dev-react/apollo/useApollo'
 import { DemoContainer } from '@ts-mono/dev-react/containers/DemoContainer'
-import DemoContainerChild from '@ts-mono/dev-react/containers/DemoContainerChild'
 import { useDragAndDrop } from '@ts-mono/dev-react/hooks/useDragAndDrop'
 
 import { gql } from '@apollo/client'

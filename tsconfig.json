@@ -1,55 +1,30 @@
 {
-  "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts"],
   "compilerOptions": {
-    "baseUrl": "./",
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    /* Projects */
+    "incremental": true,                              /* Enable incremental compilation */
+    // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */
+    // "tsBuildInfoFile": "./",                          /* Specify the folder for .tsbuildinfo incremental compilation files. */
+    "target": "ESNext",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    /* Modules */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     "paths": {
       "@ts-mono/*": ["packages/*"]
-    },
-
-    /* =Strict Type-Checking Options */
-    "strict": true,
-
-    "incremental": true,
-    "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
-    "noEmit": true,
-    "noEmitOnError": true,
-
-    /* =Basic Options */
-    "target": "ESNext",
-    "lib": ["dom", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "removeComments": true,
-    // "jsx": "react-jsx",
-
-    /* =import .json */
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
-
-    "outDir": "out",
-    "module": "CommonJS",
-    "newLine": "lf",
-
-    /* =Additional Checks */
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-    "forceConsistentCasingInFileNames": true,
+    },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
+    "resolveJsonModule": true,                        /* Enable importing .json files */
+    "noEmit": true,                                   /* Disable emitting files from a compilation. */
+    "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
+    "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
+
   "references": [
     {
-      "path": "./packages/ts-base"
-    },
-    {
-      "path": "./packages/storybook"
-    },
-    {
       "path": "./packages/dev-react",
-    },
-    {
-      "path": "./packages/dev-pptr",
     },
   ]
 }

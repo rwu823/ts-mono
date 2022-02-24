@@ -1,6 +1,6 @@
 export const parseJSON = <T extends Record<string, unknown>>(
   stringLikeJSON = '',
-): Partial<{ [name in keyof T]: T[name] }> =>
+): T =>
   // eslint-disable-next-line no-new-func
   new Function(`return ${stringLikeJSON}`)()
 

@@ -1,4 +1,8 @@
-import { exec, spawn } from 'child_process'
+import write from '@ts-mono/ts-base/utils/write'
+
+import { exec, spawn } from 'node:child_process'
+// import write from './utils/write'
+import path from 'node:path'
 import { promisify } from 'node:util'
 import c from 'picocolors'
 
@@ -8,7 +12,6 @@ import { readFile } from './utils/fs'
 import fg from './utils/glob'
 import { parseJSON, stringify } from './utils/json'
 import { mkDirCopyFiles } from './utils/mkDirCopyFiles'
-import write from './utils/write'
 
 const execPromisify = promisify(exec)
 
@@ -96,14 +99,17 @@ Promise.all([
     if (tsconfigs.length > 0) {
       console.log(`${c.cyan('tsconfig.json')} is already exist.`)
     } else {
+      const tsconfig = parseJSON(
+        await readFile(path.resolve(__dirname, TSCONFIG)),
+      )
+
       await write(
-        stringify({
-          extends: `${packageJSON.name}/tsconfig`,
-          exclude: ['node_modules', 'out/**/*', '**/*.spec.ts', '**/*.test.ts'],
-          compilerOptions: {
-            outDir: 'out',
-          },
-        }),
+        stringify(
+          Object.assign(tsconfig, {
+            references: [],
+            paths: {},
+          }),
+        ),
       ).to(TSCONFIG)
     }
 
@@ -178,6 +184,8 @@ npx husky add .husky/pre-commit "npx lint-staged"
           'ts-node',
           'typescript',
           '@types/node',
+          'eslint',
+          'stylelint',
         ],
       ],
       { stdio: 'inherit' },

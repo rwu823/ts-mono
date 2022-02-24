@@ -47,5 +47,7 @@ import pkg from '../package.json'
   )
 
   // === clean all .d.ts
-  fg('out/**/*.d.ts').then((dts) => Promise.all(dts.map((d) => rm(d))))
+  fg(['out/**/*.d.ts', 'out/*tsbuildinfo']).then((dts) =>
+    Promise.all(dts.map((d) => rm(d))),
+  )
 })()

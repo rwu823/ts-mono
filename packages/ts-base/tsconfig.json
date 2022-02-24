@@ -4,6 +4,7 @@
   "include": [
     "./initTsBase.ts",
     "./package.json",
+    "./tsconfig.json",
     "./utils/**/*.ts"
   ],
   "compilerOptions": {
