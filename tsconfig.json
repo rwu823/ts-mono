@@ -12,6 +12,7 @@
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.cache/.tsbuildinfo",
     "noEmit": true,
+    "noEmitOnError": true,
 
     /* =Basic Options */
     "target": "ESNext",
@@ -26,7 +27,7 @@
     /* =import .json */
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
 
     "outDir": "out",
     "module": "CommonJS",

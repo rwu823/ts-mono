@@ -10,3 +10,5 @@ packages/gatsby/public
 .yarn
 
 *.pem
+.pnpm-debug.log
+.rollup.cache

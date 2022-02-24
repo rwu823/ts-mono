@@ -2,6 +2,7 @@ import { exec, spawn } from 'child_process'
 import { promisify } from 'node:util'
 import c from 'picocolors'
 
+// @ts-ignore
 import packageJSON from './package.json'
 import { readFile } from './utils/fs'
 import fg from './utils/glob'
@@ -17,15 +18,13 @@ const ESLINTRC = '.eslintrc'
 const PRETTIER = 'prettier'
 const TSCONFIG = 'tsconfig.json'
 const VSCODE = '.vscode'
-const JEST_CONFIG = 'jest.config.ts'
-const CIRCLE_CI = '.circleci'
+// const JEST_CONFIG = 'jest.config.ts'
+// const CIRCLE_CI = '.circleci'
 const GIT_IGNORE = '.gitignore'
-const GIT_ATTRIBUTES = '.gitattributes'
+
 const HUSKY = '.husky'
-const ENV = '.env.ts'
 const STYLE_LINT = 'stylelint'
 const TYPES = '@types'
-const BROWSER_LIST_RC = '.browserslistrc'
 
 const log = (string: string) =>
   console.log(c.bgGreen(c.black(' init-ts-base '.toUpperCase())), string)
@@ -35,40 +34,24 @@ Promise.all([
   fg(`*${PRETTIER}*`),
   fg(TSCONFIG),
   fg(`${VSCODE}/**`),
-  fg(JEST_CONFIG),
-  fg(`${CIRCLE_CI}/**`),
+  // fg(JEST_CONFIG),
   fg(GIT_IGNORE),
-  fg(GIT_ATTRIBUTES),
-  fg(ENV),
   fg(HUSKY),
   fg(`*${STYLE_LINT}*`),
   fg(TYPES),
-  fg(BROWSER_LIST_RC),
 ]).then(
   async ([
     eslintrc,
     prettiers,
     tsconfigs,
     vscode,
-    jestConf,
-    circleCIConf,
+    // jestConf,
     gitignore,
-    gitattr,
-    envTs,
     husky,
     styleLintConfigs,
     globalTypes,
-    browserslist,
   ]) => {
-    circleCIConf
     log('Copy files.')
-    if (browserslist.length > 0) {
-      console.log(`${c.cyan(BROWSER_LIST_RC)} is already exist.`)
-    } else {
-      await write(await readFile(`${tsBasePath}/${BROWSER_LIST_RC}`)).to(
-        BROWSER_LIST_RC,
-      )
-    }
 
     if (gitignore.length > 0) {
       console.log(`${c.cyan(GIT_IGNORE)} is already exist.`)
@@ -76,31 +59,15 @@ Promise.all([
       await write(await readFile(`${tsBasePath}/${GIT_IGNORE}`)).to(GIT_IGNORE)
     }
 
-    if (gitattr.length > 0) {
-      console.log(`${c.cyan(GIT_ATTRIBUTES)} is already exist.`)
-    } else {
-      await write(await readFile(`${tsBasePath}/${GIT_ATTRIBUTES}`)).to(
-        GIT_ATTRIBUTES,
-      )
-    }
-
-    if (envTs.length > 0) {
-      console.log(`${c.cyan(ENV)} is already exist.`)
-    } else {
-      await write('').to(ENV)
-    }
     /**
      * =prettier.config.js
      */
     if (prettiers.length > 0) {
       console.log(`${c.cyan(prettiers[0])} is already exist.`)
     } else {
-      await write(`const base = require('${packageJSON.name}/prettier.config')
-
-module.exports = {
-  ...base,
-}
-`).to(`${PRETTIER}.config.js`)
+      await write(await readFile(`${tsBasePath}/${PRETTIER}.config.js`)).to(
+        `${PRETTIER}.config.js`,
+      )
     }
 
     // = eslintrc
@@ -156,13 +123,13 @@ module.exports = {
 
     await write(stringify(pkg)).to('package.json')
 
-    if (jestConf.length > 0) {
-      console.log(`${c.cyan(JEST_CONFIG)} is already exist.`)
-    } else {
-      await write(await readFile(`${tsBasePath}/${JEST_CONFIG}`)).to(
-        JEST_CONFIG,
-      )
-    }
+    // if (jestConf.length > 0) {
+    //   console.log(`${c.cyan(JEST_CONFIG)} is already exist.`)
+    // } else {
+    //   await write(await readFile(`${tsBasePath}/${JEST_CONFIG}`)).to(
+    //     JEST_CONFIG,
+    //   )
+    // }
 
     /**
      * @types
