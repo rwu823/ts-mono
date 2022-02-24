@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import sh from 'sh-exec'
 
 import pkg from '../package.json'

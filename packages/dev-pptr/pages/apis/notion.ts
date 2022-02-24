@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import type { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 
 const notionAPI = axios.create({
   baseURL: `https://www.notion.so/api/v3`,

@@ -1,4 +1,5 @@
-import fg, { Options } from 'fast-glob'
+import type { Options } from 'fast-glob'
+import fg from 'fast-glob'
 
 export default (pattern: string | string[], opts?: Options) =>
   fg(pattern, {

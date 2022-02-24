@@ -5,11 +5,11 @@ import NextLink from 'next/link'
 import { MarkdownBlockquote } from '@ts-mono/dev-react/components/MarkdownBlockquote'
 import { MarkdownCode } from '@ts-mono/dev-react/components/MarkdownCode'
 import { MarkdownCodeBlock } from '@ts-mono/dev-react/components/MarkdownCodeBlock'
-import { MarkdownCodeBlockMeta } from '@ts-mono/dev-react/components/MarkdownCodeBlock.createCode'
+import type { MarkdownCodeBlockMeta } from '@ts-mono/dev-react/components/MarkdownCodeBlock.createCode'
 import { MarkdownHead } from '@ts-mono/dev-react/components/MarkdownHead'
 import { MarkdownLink } from '@ts-mono/dev-react/components/MarkdownLink'
 
-import { MDXProvider } from '@mdx-js/react'
+import type { MDXProvider } from '@mdx-js/react'
 
 export const mdxRenders: Parameters<typeof MDXProvider>[0]['components'] = {
   h1: ({ children }) => <MarkdownHead level={1} text={children as string} />,

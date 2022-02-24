@@ -1,4 +1,4 @@
-import { ChromiumBrowser } from 'playwright'
+import type { ChromiumBrowser } from 'playwright'
 
 declare const $: JQueryStatic
 

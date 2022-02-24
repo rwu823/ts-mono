@@ -1,4 +1,4 @@
-import { ApolloClientOptions } from '@apollo/client'
+import type { ApolloClientOptions } from '@apollo/client'
 
 export type Mutation<Variables extends Record<string, unknown>> = (
   root: unknown,

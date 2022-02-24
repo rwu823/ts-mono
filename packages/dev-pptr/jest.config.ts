@@ -1,5 +1,5 @@
-import { JestPlaywrightConfig } from 'jest-playwright-preset'
-import { InitialOptionsTsJest } from 'ts-jest/dist/types'
+import type { JestPlaywrightConfig } from 'jest-playwright-preset'
+import type { InitialOptionsTsJest } from 'ts-jest/dist/types'
 
 const isDebug = !!process.env.PWDEBUG
 

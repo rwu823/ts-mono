@@ -4,7 +4,7 @@ import 'modern-normalize/modern-normalize.css'
 import React, { useEffect } from 'react'
 
 // import styled, { css } from 'styled-components'
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 
 import { useApollo } from '@ts-mono/dev-react/apollo/useApollo'
 import { mdxRenders } from '@ts-mono/dev-react/components/Markdown.mdxRenders'
@@ -14,13 +14,8 @@ import Ga from '@ts-mono/dev-react/share/Ga'
 
 import { ApolloProvider } from '@apollo/client'
 
-import {
-  chakra,
-  ChakraProvider,
-  css,
-  extendTheme,
-  ThemeConfig,
-} from '@chakra-ui/react'
+import type { ThemeConfig } from '@chakra-ui/react'
+import { chakra, ChakraProvider, css, extendTheme } from '@chakra-ui/react'
 import { MDXProvider } from '@mdx-js/react'
 
 const config: ThemeConfig = {

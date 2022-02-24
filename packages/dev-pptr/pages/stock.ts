@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { ChromiumBrowser } from 'playwright'
+import type { ChromiumBrowser } from 'playwright'
 
 import * as api from './apis/notion'
 

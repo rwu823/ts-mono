@@ -1,4 +1,4 @@
-import { NextApiHandler } from 'next'
+import type { NextApiHandler } from 'next'
 
 import fetch from 'isomorphic-unfetch'
 

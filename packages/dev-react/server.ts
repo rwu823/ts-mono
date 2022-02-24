@@ -1,12 +1,12 @@
-import 'worker_threads'
+import 'node:worker_threads'
 
 import next from 'next'
 
-import child from 'child_process'
-import fs from 'fs'
-import { createServer } from 'https'
-import { parse } from 'url'
-import { promisify } from 'util'
+import child from 'node:child_process'
+import fs from 'node:fs'
+import { createServer } from 'node:https'
+import { parse } from 'node:url'
+import { promisify } from 'node:util'
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const handle = app.getRequestHandler()
@@ -25,8 +25,6 @@ const port = process.env.PORT ?? 3000
   `).catch((error) => {
     if (error) {
       console.error(error)
-
-      process.exit(1)
     }
   })
 

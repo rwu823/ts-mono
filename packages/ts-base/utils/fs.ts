@@ -1,6 +1,6 @@
-import type { PathLike } from 'fs'
-import fs from 'fs'
-import { promisify } from 'util'
+import type { PathLike } from 'node:fs'
+import fs from 'node:fs'
+import { promisify } from 'node:util'
 
 export const readFile = (
   path: PathLike,

@@ -1,4 +1,5 @@
-import { CSSProperties, useCallback, useEffect, useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import useWindowSize from '@ts-mono/dev-react/hooks/useWindowSize'
 

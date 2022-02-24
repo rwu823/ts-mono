@@ -1,7 +1,7 @@
 import fg from 'fast-glob'
-import fs from 'fs'
 import { copy, rm } from 'fs-extra'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 
 // @ts-ignore
 // eslint-disable-next-line import/no-relative-packages

@@ -1,4 +1,4 @@
-import { createWriteStream } from 'fs'
+import { createWriteStream } from 'node:fs'
 import c from 'picocolors'
 
 class Write {

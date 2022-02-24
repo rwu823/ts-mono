@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import type React from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs'
+import type { Observable } from 'rxjs'
+import { BehaviorSubject, Subject } from 'rxjs'
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 const useConst = <T>(anyObj: T) => useMemo<T>(() => anyObj, [])

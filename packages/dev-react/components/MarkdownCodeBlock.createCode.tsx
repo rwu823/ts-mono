@@ -10,7 +10,8 @@ import 'prismjs/components/prism-diff.min'
 // import 'prismjs/plugins/line-numbers/prism-line-numbers.min'
 import React, { useCallback, useMemo, useState } from 'react'
 
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components'
+import styled, { css } from 'styled-components'
+import type { FlattenSimpleInterpolation } from 'styled-components'
 
 import copy from '../share/copy'
 import { CopyIcon } from './MarkdownCodeBlockCopy'
