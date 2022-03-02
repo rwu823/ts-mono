@@ -15,7 +15,6 @@ import pkg from '../package.json'
   Promise.all(
     [
       'bin',
-      'scripts',
 
       path.resolve(root, 'prettier.config.js'),
       path.resolve(root, '.gitignore'),

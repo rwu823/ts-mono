@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig",
-  "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts"],
+  "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts", "**/__mocks__/*.ts"],
   "include": [
     "./initTsBase.ts",
     "./package.json",

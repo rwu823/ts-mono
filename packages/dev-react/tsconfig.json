@@ -7,7 +7,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "sourceMap": true,
-    "composite": true
+    "composite": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
   },
   "include": [
     "../../@types/global.d.ts",
