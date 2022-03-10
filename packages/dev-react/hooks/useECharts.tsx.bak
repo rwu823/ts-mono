@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
-import styled, { css } from 'styled-components'
+import styled, { css } from '@emotion/styled'
 
 import echarts from 'echarts'
 

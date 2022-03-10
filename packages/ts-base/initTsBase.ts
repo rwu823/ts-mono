@@ -6,7 +6,6 @@ import path from 'node:path'
 import { promisify } from 'node:util'
 import c from 'picocolors'
 
-// @ts-ignore
 import packageJSON from './package.json'
 import { readFile } from './utils/fs'
 import fg from './utils/glob'

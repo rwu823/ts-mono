@@ -3,7 +3,6 @@ import { copy, rm } from 'fs-extra'
 import fs from 'node:fs'
 import path from 'node:path'
 
-// @ts-ignore
 // eslint-disable-next-line import/no-relative-packages
 import rootPkg from '../../../package.json'
 import pkg from '../package.json'

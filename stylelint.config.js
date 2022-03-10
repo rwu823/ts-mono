@@ -5,11 +5,12 @@ module.exports = {
       customSyntax: '@stylelint/postcss-css-in-js',
     },
   ],
-  extends: ['stylelint-config-standard', 'stylelint-config-styled-components'],
+  extends: ['stylelint-config-standard'],
   plugins: ['stylelint-order', 'stylelint-no-unsupported-browser-features'],
   rules: {
     // disable for prettier
     indentation: null,
+    'string-quotes': null,
     'no-empty-first-line': null,
     'declaration-colon-newline-after': null,
     'no-eol-whitespace': null,

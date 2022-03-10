@@ -9,5 +9,5 @@ export const parseJSON = <T extends Record<string, unknown>>(
  * @param jsonObj
  * @param indent - default is  2
  */
-export const stringify = (jsonObj: Object, indent = 2) =>
+export const stringify = (jsonObj: object, indent = 2) =>
   JSON.stringify(jsonObj, null, indent)

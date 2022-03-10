@@ -1,7 +1,3 @@
-import React from 'react'
-
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
-
 import NextDocument, {
   DocumentContext,
   Head,
@@ -9,8 +5,6 @@ import NextDocument, {
   Main,
   NextScript,
 } from 'next/document'
-
-import { ColorModeScript } from '@chakra-ui/react'
 
 class Document extends NextDocument {
   // static async getInitialProps(ctx: DocumentContext) {
@@ -54,7 +48,6 @@ class Document extends NextDocument {
           />
         </Head>
         <body>
-          <ColorModeScript initialColorMode="light" />
           <Main />
           <NextScript />
         </body>

@@ -1,6 +1,7 @@
 import React from 'react'
 
-import styled, { css } from 'styled-components'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 const IconAnchor: React.FC = (props) => (
   <svg
@@ -30,7 +31,7 @@ const A = styled.a`
     text-decoration: none;
     text-decoration: none;
 
-    ${IconAnchorStyled} {
+    svg {
       position: absolute;
       top: 50%;
       left: -20px;
@@ -40,7 +41,8 @@ const A = styled.a`
     :hover {
       color: inherit;
       text-decoration: none;
-      ${IconAnchorStyled} {
+
+      svg {
         visibility: visible;
       }
     }

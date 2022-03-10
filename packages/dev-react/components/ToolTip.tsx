@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react'
 import { createPortal } from 'react-dom'
 
-import styled, { css } from 'styled-components'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 const Div = styled.div`
   ${() => css`

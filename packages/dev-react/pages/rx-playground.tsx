@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 
-import styled, { css } from 'styled-components'
-
 import { NextPage } from 'next'
+
+import styled from '@emotion/styled'
 
 import {
   animationFrameScheduler,
@@ -11,7 +11,6 @@ import {
   forkJoin,
   fromEvent,
   merge,
-  MonoTypeOperatorFunction,
   Observable,
   of,
   Subject,
@@ -33,13 +32,8 @@ import {
   mapTo,
   mergeAll,
   mergeMap,
-  multicast,
   observeOn,
-  publish,
-  publishReplay,
   reduce,
-  refCount,
-  retryWhen,
   share,
   shareReplay,
   switchMap,
@@ -50,18 +44,14 @@ import {
   withLatestFrom,
 } from 'rxjs/operators'
 
-const Div = styled.div`
-  ${() => css``}
-`
-
 type Props = React.DOMAttributes<HTMLDivElement>
 const RxPlayground: React.FC<Props> = ({ children, ...props }) => {
   const divRef = useRef<HTMLDivElement>(null)
 
   return (
-    <Div ref={divRef} {...props}>
+    <div ref={divRef} {...props}>
       <h1>RxJS Playground</h1>
-    </Div>
+    </div>
   )
 }
 

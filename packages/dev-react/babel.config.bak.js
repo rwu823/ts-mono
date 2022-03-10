@@ -19,6 +19,6 @@ module.exports = (api) => {
         },
       ],
     ],
-    plugins: [['styled-components', { displayName: isDev }]],
+    plugins: [['@emotion/styled', { displayName: isDev }]],
   }
 }

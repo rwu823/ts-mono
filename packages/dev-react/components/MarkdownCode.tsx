@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 export const MarkdownCode = styled.code`
   background-color: #f9f2f4;

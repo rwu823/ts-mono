@@ -1,23 +1,23 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: [
-    'prettier',
-    'react-hooks',
-    'simple-import-sort',
-    'import',
-    '@typescript-eslint',
-    'filenames',
-    'testing-library',
-    'jsx-a11y',
-  ],
+  parserOptions: {
+    sourceType: 'module',
+  },
+  plugins: ['simple-import-sort', 'filenames', 'testing-library'],
   extends: [
-    'airbnb',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:react-hooks/recommended',
     'plugin:compat/recommended',
     'plugin:unicorn/recommended',
+
+    'plugin:react/recommended',
     'plugin:jest-dom/recommended',
+    'plugin:testing-library/react',
+    'plugin:prettier/recommended',
+
     '@ts-mono/eslint-config/rules/react',
     '@ts-mono/eslint-config/rules/importSort',
     '@ts-mono/eslint-config/rules/compat',
@@ -26,19 +26,16 @@ module.exports = {
     '@ts-mono/eslint-config/rules/import',
     '@ts-mono/eslint-config/rules/typescript',
     '@ts-mono/eslint-config/rules/filenames',
-    '@ts-mono/eslint-config/rules/a11y',
+    // '@ts-mono/eslint-config/rules/a11y',
     '@ts-mono/eslint-config/rules/base',
-    'prettier',
   ],
   env: {
     browser: true,
+    node: true,
+    es2021: true,
     jest: true,
-    es6: true,
   },
   globals: {
     globalThis: 'readonly',
-  },
-  rules: {
-    'prettier/prettier': 2,
   },
 }

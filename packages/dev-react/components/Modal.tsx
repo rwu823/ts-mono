@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useReducer } from 'react'
 
-import styled, { createGlobalStyle, css } from 'styled-components'
+import { css, Global as GlobalStyles } from '@emotion/react'
+import styled from '@emotion/styled'
 
 import Portal from './Portal'
 
@@ -28,7 +29,7 @@ const ModalContent = styled.div<Pick<ModalProps, 'top'>>`
   `}
 `
 
-const ModalGlobalStyle = createGlobalStyle`
+const ModalGlobalStyle = `
   body {
     overflow: hidden;
   }

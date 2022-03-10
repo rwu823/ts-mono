@@ -1,11 +1,12 @@
-import * as React from 'react'
+import type { ButtonHTMLAttributes } from 'react'
+import React from 'react'
 
-import styled, { css } from 'styled-components'
+import styled, { css } from '@emotion/styled'
 
 const StyledButton = styled.button`
   ${() => css``}
 `
-type Props = {} & React.ButtonHTMLAttributes<HTMLButtonElement>
+type Props = {} & ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button: React.FC<Props> = ({ children, ...props }) => (
   <StyledButton className="btn" {...props}>

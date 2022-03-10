@@ -10,8 +10,9 @@ import 'prismjs/components/prism-diff.min'
 // import 'prismjs/plugins/line-numbers/prism-line-numbers.min'
 import React, { useCallback, useMemo, useState } from 'react'
 
-import styled, { css } from 'styled-components'
-import type { FlattenSimpleInterpolation } from 'styled-components'
+import type { SerializedStyles } from '@emotion/react'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 import copy from '../share/copy'
 import { CopyIcon } from './MarkdownCodeBlockCopy'
@@ -25,7 +26,7 @@ const Title = styled.div`
   `}
 `
 
-const languageTheme: { [key: string]: FlattenSimpleInterpolation } = {
+const languageTheme: { [key: string]: SerializedStyles } = {
   js: css`
     background: #e9d458;
     color: #000;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 export const MarkdownBlockquote = styled.blockquote`
   background: rgb(255 229 100 / 30%);

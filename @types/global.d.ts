@@ -1,7 +1,10 @@
-declare namespace NodeJS {
-  interface Global {}
+import '@emotion/react'
 
-  interface Process {}
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    NODE_ENV: 'development' | 'production' | 'test' | undefined
+  }
 }
 
 interface Window {}

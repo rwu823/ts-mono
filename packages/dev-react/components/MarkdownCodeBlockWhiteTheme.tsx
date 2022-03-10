@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 const MarkdownCodeBlockWhiteTheme = styled.div`
   /**
@@ -10,43 +10,43 @@ const MarkdownCodeBlockWhiteTheme = styled.div`
 
   i[data-line] {
     position: absolute;
-    background: rgba(39, 73, 144, 0.3);
-    width: 100%;
-    left: 0;
     top: 0;
+    left: 0;
+    width: 100%;
     height: 18px;
+    background: rgb(39 73 144 / 30%);
     pointer-events: none;
   }
 
   code,
   pre {
     color: #393a34;
-    font-family: 'Victor Mono', 'Menlo', monospace;
     direction: ltr;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
+    font-family: 'Victor Mono', Menlo, monospace;
     font-size: 0.8rem;
+    hyphens: none;
     line-height: 1.5em;
     tab-size: 4;
-    hyphens: none;
+    text-align: left;
+    white-space: pre;
+    word-break: normal;
+    word-spacing: normal;
   }
 
   /* Code blocks */
   pre {
-    padding: 1em;
     margin: 0;
     overflow: auto;
+    padding: 1em;
   }
 
   /* Inline code */
   :not(pre) > code {
-    padding: 0.2em;
-    padding-top: 1px;
-    padding-bottom: 1px;
     background: #f8f8f8;
     border: 1px solid #ddd;
+    padding: 0.2em;
+    padding-bottom: 1px;
+    padding-top: 1px;
   }
 
   .token.comment,
@@ -87,12 +87,13 @@ const MarkdownCodeBlockWhiteTheme = styled.div`
   .language-json .token.boolean,
   .language-json .token.number,
   code[class*='language-css'] {
-    color: #0000ff;
+    color: #00f;
   }
 
   .token.function {
     color: #393a34;
   }
+
   .token.deleted,
   .language-autohotkey .token.tag {
     color: #9a050f;
@@ -126,11 +127,11 @@ const MarkdownCodeBlockWhiteTheme = styled.div`
   .token.property,
   .token.regex,
   .token.entity {
-    color: #ff0000;
+    color: #f00;
   }
 
   .token.directive.tag .tag {
-    background: #ffff00;
+    background: #ff0;
     color: #393a34;
   }
 
@@ -141,7 +142,7 @@ const MarkdownCodeBlockWhiteTheme = styled.div`
     border-right-color: #a5a5a5;
   }
 
-  .line-numbers-rows > span:before {
+  .line-numbers-rows > span::before {
     color: #2b91af;
   }
 
@@ -149,16 +150,16 @@ const MarkdownCodeBlockWhiteTheme = styled.div`
 * http://prismjs.com/plugins/line-highlight/
 */
   .line-highlight {
-    background: rgba(193, 222, 241, 0.2);
-    background: -webkit-linear-gradient(
+    background: rgb(193 222 241 / 20%);
+    background: linear-gradient(
       left,
-      rgba(193, 222, 241, 0.2) 70%,
-      rgba(221, 222, 241, 0)
+      rgb(193 222 241 / 20%) 70%,
+      rgb(221 222 241 / 0%)
     );
     background: linear-gradient(
       to right,
-      rgba(193, 222, 241, 0.2) 70%,
-      rgba(221, 222, 241, 0)
+      rgb(193 222 241 / 20%) 70%,
+      rgb(221 222 241 / 0%)
     );
   }
 `

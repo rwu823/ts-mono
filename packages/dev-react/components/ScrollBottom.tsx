@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 
-import styled, { css } from 'styled-components'
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
 
 const Div = styled.div`
   ${() => css`
@@ -13,9 +14,9 @@ const IntersectionFlag = styled.div<Pick<Props, 'bottomRatio'>>`
     position: absolute;
     bottom: ${bottomRatio};
     left: 0;
+    width: 1px;
     opacity: 0;
     pointer-events: none;
-    width: 1px;
   `}
 `
 

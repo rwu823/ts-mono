@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { createGlobalStyle, css } from '@emotion/styled'
 
 export const globalCSS = css`
   :root {
@@ -28,11 +28,11 @@ export const globalCSS = css`
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    --font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI',
+      roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
       'Noto Color Emoji';
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    --font-family-monospace: sfmono-regular, menlo, monaco, consolas,
       'Liberation Mono', 'Courier New', monospace;
   }
 
@@ -44,8 +44,8 @@ export const globalCSS = css`
 
   html {
     line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+    text-size-adjust: 100%;
   }
 
   article,
@@ -62,16 +62,16 @@ export const globalCSS = css`
   }
 
   body {
-    margin: 0;
+    background-color: #fff;
+    color: #212529;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
       'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    margin: 0;
     text-align: left;
-    background-color: #fff;
   }
 
   [tabindex='-1']:focus {
@@ -79,31 +79,31 @@ export const globalCSS = css`
   }
 
   hr {
-    box-sizing: content-box;
     height: 0;
+    box-sizing: content-box;
     overflow: visible;
   }
 
   p {
-    margin-top: 0;
     margin-bottom: 1rem;
+    margin-top: 0;
   }
 
   abbr[title],
   abbr[data-original-title] {
-    text-decoration: underline;
-    -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
-    cursor: help;
     border-bottom: 0;
-    -webkit-text-decoration-skip-ink: none;
+    cursor: help;
+    text-decoration: underline dotted;
+    text-decoration: underline;
+    text-decoration: underline dotted;
+    text-decoration-skip-ink: none;
     text-decoration-skip-ink: none;
   }
 
   address {
-    margin-bottom: 1rem;
     font-style: normal;
     line-height: inherit;
+    margin-bottom: 1rem;
   }
 
   menu {
@@ -115,8 +115,8 @@ export const globalCSS = css`
   ol,
   ul,
   dl {
-    margin-top: 0;
     margin-bottom: 1rem;
+    margin-top: 0;
   }
 
   ol ol,
@@ -170,9 +170,9 @@ export const globalCSS = css`
   }
 
   a {
+    background-color: transparent;
     color: #007bff;
     text-decoration: none;
-    background-color: transparent;
   }
 
   a:hover {
@@ -205,8 +205,8 @@ export const globalCSS = css`
   }
 
   pre {
-    margin-top: 0;
     margin-bottom: 1rem;
+    margin-top: 0;
     overflow: auto;
   }
 
@@ -215,8 +215,8 @@ export const globalCSS = css`
   }
 
   img {
-    vertical-align: middle;
     border-style: none;
+    vertical-align: middle;
   }
 
   svg {
@@ -229,11 +229,11 @@ export const globalCSS = css`
   }
 
   caption {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    color: #6c757d;
-    text-align: left;
     caption-side: bottom;
+    color: #6c757d;
+    padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
+    text-align: left;
   }
 
   th {
@@ -259,10 +259,10 @@ export const globalCSS = css`
   select,
   optgroup,
   textarea {
-    margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    margin: 0;
   }
 
   button,
@@ -283,7 +283,7 @@ export const globalCSS = css`
   [type='button'],
   [type='reset'],
   [type='submit'] {
-    -webkit-appearance: button;
+    appearance: button;
   }
 
   button:not(:disabled),
@@ -297,8 +297,8 @@ export const globalCSS = css`
   [type='button']::-moz-focus-inner,
   [type='reset']::-moz-focus-inner,
   [type='submit']::-moz-focus-inner {
-    padding: 0;
     border-style: none;
+    padding: 0;
   }
 
   input[type='radio'],
@@ -311,7 +311,7 @@ export const globalCSS = css`
   input[type='time'],
   input[type='datetime-local'],
   input[type='month'] {
-    -webkit-appearance: listbox;
+    appearance: listbox;
   }
 
   textarea {
@@ -320,21 +320,21 @@ export const globalCSS = css`
   }
 
   fieldset {
+    border: 0;
+    margin: 0;
     min-width: 0;
     padding: 0;
-    margin: 0;
-    border: 0;
   }
 
   legend {
-    display: block;
     width: 100%;
-    max-width: 100%;
-    padding: 0;
-    margin-bottom: 0.5rem;
+    color: inherit;
+    display: block;
     font-size: 1.5rem;
     line-height: inherit;
-    color: inherit;
+    margin-bottom: 0.5rem;
+    max-width: 100%;
+    padding: 0;
     white-space: normal;
   }
 
@@ -348,17 +348,17 @@ export const globalCSS = css`
   }
 
   [type='search'] {
+    appearance: none;
     outline-offset: -2px;
-    -webkit-appearance: none;
   }
 
   [type='search']::-webkit-search-decoration {
-    -webkit-appearance: none;
+    appearance: none;
   }
 
   ::-webkit-file-upload-button {
+    appearance: button;
     font: inherit;
-    -webkit-appearance: button;
   }
 
   output {
@@ -366,8 +366,8 @@ export const globalCSS = css`
   }
 
   summary {
-    display: list-item;
     cursor: pointer;
+    display: list-item;
   }
 
   template {
@@ -426,10 +426,10 @@ export const globalCSS = css`
   }
 
   hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     border: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgb(0 0 0 / 10%);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 
   small {
@@ -438,16 +438,16 @@ export const globalCSS = css`
   }
 
   mark {
-    padding: 0.2em;
     background-color: #fcf8e3;
+    padding: 0.2em;
   }
 
   @media print {
     *,
     *::before,
     *::after {
-      text-shadow: none !important;
       box-shadow: none !important;
+      text-shadow: none !important;
     }
   }
 `

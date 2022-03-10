@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
-import styled, { css } from 'styled-components'
-
+// import styled, { css } from '@emotion/styled'
 import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 
@@ -11,7 +10,8 @@ import { useDragAndDrop } from '@ts-mono/dev-react/hooks/useDragAndDrop'
 
 import { gql } from '@apollo/client'
 
-import { Box } from '@chakra-ui/react'
+import { css, useTheme } from '@emotion/react'
+import styled from '@emotion/styled'
 
 export const QUERY_SPACEX = gql`
   query Emojis {
@@ -22,12 +22,24 @@ export const QUERY_SPACEX = gql`
   }
 `
 
+const Box = styled.div`
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+`
+const Flex = styled(Box)`
+  display: flex;
+`
+
 type DemoProps = {
   spaceX: unknown
 }
-
 const Drag = styled.div`
-  ${() => css`
+  ${(props) => css`
     position: fixed;
     background-color: red;
     cursor: move;
@@ -42,33 +54,40 @@ const Demo: React.FC<DemoProps> = () => {
     paddingBottom: 20,
     paddingLeft: 20,
   })
+  console.log('redner demo')
+
+  const theme = useTheme()
 
   return (
-    <Box bg={'red'} p={20}>
+    <div>
       <Head>
         <title>Demo - Page</title>
       </Head>
-      <DemoContainer />
-      <Drag ref={ref} style={style}>
-        hello drag
-      </Drag>
-    </Box>
+
+      <Flex
+        css={css`
+          color: yellow;
+        `}
+      >
+        <Drag>drag me</Drag>
+      </Flex>
+    </div>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const apolloClient = initializeApollo()
+// export const getStaticProps: GetStaticProps = async () => {
+//   const apolloClient = initializeApollo()
 
-  const spaceX = await apolloClient.query({
-    query: QUERY_SPACEX,
-    variables: {},
-  })
+//   const spaceX = await apolloClient.query({
+//     query: QUERY_SPACEX,
+//     variables: {},
+//   })
 
-  return {
-    props: {
-      spaceX,
-    },
-  }
-}
+//   return {
+//     props: {
+//       spaceX,
+//     },
+//   }
+// }
 
 export default Demo

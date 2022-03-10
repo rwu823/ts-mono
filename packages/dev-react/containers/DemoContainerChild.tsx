@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import styled, { css } from 'styled-components'
+import styled, { css } from '@emotion/styled'
 
 const Div = styled.div`
   ${() => css``}

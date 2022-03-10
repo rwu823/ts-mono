@@ -1,7 +1,5 @@
 import React from 'react'
 
-import styled, { css } from 'styled-components'
-
 export const CopyIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg
     height="1em"

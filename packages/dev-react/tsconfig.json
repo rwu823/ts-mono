@@ -5,24 +5,33 @@
     "moduleResolution": "node",
     "noEmit": false,
     "isolatedModules": true,
-    "jsx": "preserve",
     "sourceMap": true,
     "composite": true,
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
-    ]
+    ],
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react"
   },
   "include": [
-    "../../@types/global.d.ts",
+    "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "**/*.json",
-    "../../graphql.config.ts"
+    "**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "out"
+    "node_modules"
   ]
+  // "include": [
+  //   "../../@types/global.d.ts",
+  //   "**/*.ts",
+  //   "**/*.tsx",
+  //   "**/*.json",
+  //   "../../graphql.config.ts"
+  // ],
+  // "exclude": [
+  //   "node_modules",
+  //   "out"
+  // ]
 }

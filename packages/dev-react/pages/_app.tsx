@@ -1,9 +1,8 @@
-import 'core-js/modules/es.global-this'
 import 'modern-normalize/modern-normalize.css'
 
 import React, { useEffect } from 'react'
 
-// import styled, { css } from 'styled-components'
+// import styled, { css } from '@emotion/styled'
 import type { AppProps } from 'next/app'
 
 import { useApollo } from '@ts-mono/dev-react/apollo/useApollo'
@@ -14,27 +13,13 @@ import Ga from '@ts-mono/dev-react/share/Ga'
 
 import { ApolloProvider } from '@apollo/client'
 
-import type { ThemeConfig } from '@chakra-ui/react'
-import { chakra, ChakraProvider, css, extendTheme } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { MDXProvider } from '@mdx-js/react'
 
-const config: ThemeConfig = {
-  initialColorMode: 'light',
-  useSystemColorMode: false,
-}
-
-const theme = extendTheme({ config })
-
-const Max800 = chakra('div', {
-  baseStyle: {
-    p: '0 1em',
-    m: '0 auto',
-    maxW: 800,
-    // margin: 0 auto;
-    // max-width: 800px;
-    // padding: 0 1em;
-  },
-})
+const Max800 = styled.div`
+  margin: 0 auto;
+  max-width: 800px;
+`
 
 const ga = new Ga('UA-4476856-23', { debug: true })
 
@@ -50,11 +35,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       {/* <TheGlobalStyles /> */}
       <ModalProvider>
         <ApolloProvider client={apolloClient}>
-          <ChakraProvider resetCSS={false} theme={theme}>
-            <Max800>
-              <Component {...pageProps} />
-            </Max800>
-          </ChakraProvider>
+          <Max800>
+            <Component {...pageProps} />
+          </Max800>
         </ApolloProvider>
       </ModalProvider>
     </MDXProvider>

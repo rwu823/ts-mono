@@ -2,7 +2,6 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.tsx?'],
-      extends: ['plugin:@typescript-eslint/recommended'],
     },
   ],
 
@@ -10,6 +9,13 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': [
       2,
       { prefer: 'type-imports' },
+    ],
+
+    '@typescript-eslint/ban-ts-comment': [
+      2,
+      {
+        'ts-expect-error': 'allow-with-description',
+      },
     ],
   },
 }
