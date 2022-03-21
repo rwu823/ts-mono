@@ -17,7 +17,7 @@ jobs:
       - run: |
           yarn vitest run packages/ts-base --coverage
           ls -al .
-          ls  $GITHUB_WORKSPACE/coverage/coverage-final.json
+          ls -al coverage
       - uses: codecov/codecov-action@v2.1.0
         with:
           files: '$GITHUB_WORKSPACE/coverage/coverage-final.json'
