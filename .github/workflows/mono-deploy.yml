@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rwu823/actions/node-pnpm@latest
-      - run: yarn test:ci
-      - run: bash <(curl -s https://codecov.io/bash)
+      - run: yarn vitest run packages/ts-base --coverage
+      - uses: codecov/codecov-action@v2.1.0
   e2e:
     runs-on: ubuntu-latest
     steps:
