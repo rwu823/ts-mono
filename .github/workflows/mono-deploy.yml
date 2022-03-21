@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+
+env:
+  - GITHUB_WORKSPACE: ${{ GITHUB_WORKSPACE }}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -16,10 +20,10 @@ jobs:
       - uses: rwu823/actions/node-pnpm@latest
       - run: |
           yarn vitest run packages/ts-base --coverage
-          ls  ${{ GITHUB_WORKSPACE }}coverage/coverage-final.json
+          ls  $GITHUB_WORKSPACEcoverage/coverage-final.json
       - uses: codecov/codecov-action@v2.1.0
         with:
-          files: '${{ GITHUB_WORKSPACE }}coverage/coverage-final.json'
+          files: '$GITHUB_WORKSPACEcoverage/coverage-final.json'
   e2e:
     runs-on: ubuntu-latest
     steps:
