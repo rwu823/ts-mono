@@ -8,5 +8,8 @@ export default defineConfig({
       '**/{node_modules,dist,cypress,out}/**',
       '**/.{idea,git,cache,output,temp}/**',
     ],
+    coverage: {
+      reporter: ['json', 'html'],
+    },
   },
 })
