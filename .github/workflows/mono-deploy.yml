@@ -16,10 +16,11 @@ jobs:
       - uses: rwu823/actions/node-pnpm@latest
       - run: |
           yarn vitest run packages/ts-base --coverage
-          ls  $GITHUB_WORKSPACEcoverage/coverage-final.json
+          echo $GITHUB_WORKSPACE
+          ls  $GITHUB_WORKSPACE/coverage/coverage-final.json
       - uses: codecov/codecov-action@v2.1.0
         with:
-          files: '$GITHUB_WORKSPACEcoverage/coverage-final.json'
+          files: '$GITHUB_WORKSPACE/coverage/coverage-final.json'
   e2e:
     runs-on: ubuntu-latest
     steps:
