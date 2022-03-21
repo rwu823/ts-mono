@@ -13,13 +13,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: rwu823/actions/node-yarn@latest
+      - uses: rwu823/actions/node-pnpm@latest
       - run: yarn test:ci
       - run: bash <(curl -s https://codecov.io/bash)
   e2e:
     runs-on: ubuntu-latest
     steps:
-      - uses: rwu823/actions/node-yarn@latest
+      - uses: rwu823/actions/node-pnpm@latest
       - run: npx playwright install-deps
       - run: yarn workspace @ts-mono/dev-pptr e2e
   mono-deploy:
@@ -28,5 +28,5 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: rwu823/actions/node-yarn@latest
+      - uses: rwu823/actions/node-pnpm@latest
       - run: npx ts-node scripts/monoDeploy
