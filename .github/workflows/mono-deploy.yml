@@ -9,9 +9,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: rwu823/actions/node-yarn@latest
-      - name: Run ESLint only on modified files.
-        run: npx eslint $(git diff --diff-filter=d origin/HEAD --name-only --cached '*.ts' '*.tsx' '*.js')
+      - uses: rwu823/actions/eslint@latest
   test:
     runs-on: ubuntu-latest
     steps:
