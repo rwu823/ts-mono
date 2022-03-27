@@ -41,12 +41,7 @@ class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          <link
-            href="https://cdn.jsdelivr.net/npm/victormono@latest/dist/index.min.css"
-            rel="stylesheet"
-          />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

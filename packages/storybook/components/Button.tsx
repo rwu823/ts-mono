@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from 'react'
 import React from 'react'
 
-import styled, { css } from '@emotion/styled'
+import styled from '@emotion/styled'
 
 const StyledButton = styled.button`
   ${() => css``}

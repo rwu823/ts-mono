@@ -5,7 +5,7 @@ module.exports = {
       {
         groups: [
           // Side effect imports.
-          ['^prismjs$', '^prismjs', '^\\u0000'],
+          ['^\\u0000'],
           ['^react', '^redux'],
           ['^styled-components$', '^styled-'],
           ['^use-'],

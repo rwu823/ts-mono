@@ -1,13 +1,20 @@
-/* eslint-disable unicorn/prefer-module, filenames/match-exported */
+/* eslint-disable filenames/match-exported */
 
-const {
+import {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
-} = require('next/constants')
+} from 'next/constants.js'
 
-module.exports = (phase, { defaultConfig }) => {
+import { visit } from 'unist-util-visit'
+
+export default (phase, { defaultConfig }) => {
   const nextConfig = {
-    // swcMinify: true,
+    experimental: {
+      emotion: true,
+      concurrentFeatures: true,
+    },
+
+    swcMinify: true,
 
     productionBrowserSourceMaps: true,
 
@@ -33,11 +40,11 @@ module.exports = (phase, { defaultConfig }) => {
           test: /\.md$/,
           use: 'raw-loader',
         },
-        {
-          test: /\.tsx?$/,
-          include: undefined,
-          use: [options.defaultLoaders.babel],
-        },
+        // {
+        //   test: /\.tsx?$/,
+        //   include: undefined,
+        //   use: [options.defaultLoaders.babel],
+        // },
         {
           test: /\.mdx$/,
           use: [
@@ -47,26 +54,11 @@ module.exports = (phase, { defaultConfig }) => {
 
               /** @type {import('@mdx-js/loader').Options} */
               options: {
-                rehypePlugins: [],
+                rehypePlugins: [rehypeMetaAsAttributes],
                 remarkPlugins: [],
                 format: 'mdx',
+                jsx: true,
                 providerImportSource: '@mdx-js/react',
-              },
-            },
-          ],
-        },
-
-        {
-          test: /\.svg$/,
-          use: [
-            {
-              loader: 'babel-loader',
-            },
-            {
-              loader: 'react-svg-loader',
-              options: {
-                svgo: {},
-                jsx: true, // true outputs JSX tags
               },
             },
           ],
@@ -76,4 +68,19 @@ module.exports = (phase, { defaultConfig }) => {
     },
   }
   return nextConfig
+}
+
+/** @type {import('unified').Plugin<Array<void>, import('hast').Root>} */
+function rehypeMetaAsAttributes() {
+  return (tree) => {
+    visit(tree, 'element', (node) => {
+      if (node.tagName === 'code' && node.data?.meta) {
+        for (const match of node.data.meta.split(' ')) {
+          const [key, value] = match.split('=')
+
+          node.properties[key] = eval(value)
+        }
+      }
+    })
+  }
 }

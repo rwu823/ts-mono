@@ -1,5 +1,8 @@
 export default {
-  addons: ['@storybook/addon-essentials'],
+  addons: [
+    '@storybook/addon-essentials',
+    '@storybook/addon-links'
+  ],
 
   stories: ['../components/*.story.tsx'],
 
@@ -7,6 +10,7 @@ export default {
   //   ...options,
   //   plugins: ['macros', ...options.plugins],
   // }),
+
 
   typescript: {
     check: false,

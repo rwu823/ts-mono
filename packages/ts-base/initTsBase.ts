@@ -180,7 +180,7 @@ npx husky add .husky/pre-commit "npx lint-staged"
           'rwu823/ts-mono#pkg/stylelint-config',
           'husky',
           'lint-staged',
-          'ts-node',
+          'esno',
           'typescript',
           '@types/node',
           'eslint',

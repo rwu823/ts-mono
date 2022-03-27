@@ -8,11 +8,12 @@ import type { AppProps } from 'next/app'
 import { useApollo } from '@ts-mono/dev-react/apollo/useApollo'
 import { mdxRenders } from '@ts-mono/dev-react/components/Markdown.mdxRenders'
 import { ModalProvider } from '@ts-mono/dev-react/components/Modal'
-import { TheGlobalStyles } from '@ts-mono/dev-react/components/TheGlobalStyles'
 import Ga from '@ts-mono/dev-react/share/Ga'
+import theme from '@ts-mono/dev-react/theme/theme'
 
 import { ApolloProvider } from '@apollo/client'
 
+import { ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 import { MDXProvider } from '@mdx-js/react'
 
@@ -32,11 +33,12 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <MDXProvider components={mdxRenders}>
-      {/* <TheGlobalStyles /> */}
       <ModalProvider>
         <ApolloProvider client={apolloClient}>
           <Max800>
-            <Component {...pageProps} />
+            <ThemeProvider theme={theme}>
+              <Component {...pageProps} />
+            </ThemeProvider>
           </Max800>
         </ApolloProvider>
       </ModalProvider>

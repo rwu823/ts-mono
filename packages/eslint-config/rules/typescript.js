@@ -1,10 +1,12 @@
 module.exports = {
   overrides: [
     {
-      files: ['**/*.tsx?'],
+      files: ['**/*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 0,
+      },
     },
   ],
-
   rules: {
     '@typescript-eslint/consistent-type-imports': [
       2,

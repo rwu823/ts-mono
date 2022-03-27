@@ -10,10 +10,7 @@
       "name": "ts $file",
       "runtimeExecutable": "yarn",
       "args": [
-        "ts-node",
-        "-r",
-        "tsconfig-paths/register",
-        "-T",
+        "esno",
         "${relativeFile}"
       ]
     },

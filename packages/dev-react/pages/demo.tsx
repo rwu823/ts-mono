@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-// import styled, { css } from '@emotion/styled'
-import type { GetStaticProps } from 'next'
 import Head from 'next/head'
 
-import { initializeApollo } from '@ts-mono/dev-react/apollo/useApollo'
-import { DemoContainer } from '@ts-mono/dev-react/containers/DemoContainer'
-import { useDragAndDrop } from '@ts-mono/dev-react/hooks/useDragAndDrop'
+import { Box, Flex, FlexCol } from '@ts-mono/dev-react/components/Box'
+import { FileUploadIcon } from '@ts-mono/dev-react/components/icons/FileUpload.icon'
+import { FitScreenIcon } from '@ts-mono/dev-react/components/icons/ReadMore.icon'
 
 import { gql } from '@apollo/client'
 
@@ -22,41 +20,21 @@ export const QUERY_SPACEX = gql`
   }
 `
 
-const Box = styled.div`
-  box-sizing: border-box;
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-`
-const Flex = styled(Box)`
-  display: flex;
-`
-
 type DemoProps = {
   spaceX: unknown
 }
-const Drag = styled.div`
-  ${(props) => css`
-    position: fixed;
+
+const Title = styled.div(
+  ({ theme }) => css`
     background-color: red;
-    cursor: move;
-    display: inline-block;
-  `}
-`
+    color: blue;
+    font-size: ${theme.text.xs};
+  `,
+)
 
 const Demo: React.FC<DemoProps> = () => {
-  const { ref, style } = useDragAndDrop({
-    paddingTop: 70,
-    paddingRight: 20,
-    paddingBottom: 20,
-    paddingLeft: 20,
-  })
-  console.log('redner demo')
-
   const theme = useTheme()
+  const svgRef = useRef<SVGSVGElement>(null)
 
   return (
     <div>
@@ -64,13 +42,14 @@ const Demo: React.FC<DemoProps> = () => {
         <title>Demo - Page</title>
       </Head>
 
-      <Flex
-        css={css`
-          color: yellow;
-        `}
-      >
-        <Drag>drag me</Drag>
-      </Flex>
+      <Title>Hello title !!!</Title>
+      <FileUploadIcon fill={'yellow'} width={90} />
+      <FitScreenIcon color={'green'} width={50} />
+
+      <FlexCol>
+        <Box>Hello Flex1</Box>
+        <Box>Hello Flex2</Box>
+      </FlexCol>
     </div>
   )
 }

@@ -12,8 +12,8 @@
     "picocolors": "1.0.0"
   },
   "scripts": {
-    "build": "rm -rf out && tsc -b --force && ts-node -T scripts/build",
-    "deploy": "yarn build && yarn ts-node ../../scripts/deployDirBranch",
+    "build": "rm -rf out && tsc -b --force && esno scripts/build.ts",
+    "deploy": "yarn build && esmo ../../scripts/deployDirBranch.ts",
     "prepare": ""
   }
 }

@@ -13,3 +13,4 @@ packages/gatsby/public
 .pnpm-debug.log
 .rollup.cache
 tsconfig.tsbuildinfo
+storybook-static

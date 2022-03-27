@@ -22,7 +22,6 @@ const ModalContent = styled.div<Pick<ModalProps, 'top'>>`
   ${(p) => css`
     position: relative;
     left: 50%;
-    display: inline-block;
     display: inline-flex;
     margin-top: ${p.top ?? 0}vh;
     transform: translateX(-50%);
