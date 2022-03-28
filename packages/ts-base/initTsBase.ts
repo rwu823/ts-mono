@@ -71,7 +71,7 @@ Promise.all([
       console.log(`${c.cyan(prettiers[0])} is already exist.`)
     } else {
       await write(await readFile(`${tsBasePath}/${PRETTIER}.config.cjs`)).to(
-        `${PRETTIER}.config.js`,
+        `${PRETTIER}.config.cjs`,
       )
     }
 
@@ -84,14 +84,14 @@ Promise.all([
           root: true,
           extends: [`@ts-mono`],
         })}`,
-      ).to(ESLINTRC)
+      ).to(`${ESLINTRC}.cjs`)
     }
 
     if (styleLintConfigs.length > 0) {
       console.log(`${c.cyan(styleLintConfigs[0])} is already exist.`)
     } else {
       write(`module.exports = { extends: ['@ts-mono/stylelint-config'] }`).to(
-        `${STYLE_LINT}.config.js`,
+        `${STYLE_LINT}.config.cjs`,
       )
     }
 
