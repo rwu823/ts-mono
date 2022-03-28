@@ -4,10 +4,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { BiCopyAlt } from 'react-icons/bi'
 
 import { css, Global, useTheme } from '@emotion/react'
-
-import hl from 'highlight.js/lib/common'
 import { Box } from '@ts-mono/dev-react/components/Box'
 
+import hl from 'highlight.js/lib/common'
 
 export interface MarkdownCodeBlockProps {
   src: string

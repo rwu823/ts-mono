@@ -1,12 +1,12 @@
 import 'node:worker_threads'
 
-import next from 'next'
-
 import child from 'node:child_process'
 import fs from 'node:fs'
 import { createServer } from 'node:https'
 import { parse } from 'node:url'
 import { promisify } from 'node:util'
+
+import next from 'next'
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const handle = app.getRequestHandler()

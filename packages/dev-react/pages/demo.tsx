@@ -2,14 +2,13 @@ import React, { useEffect, useRef } from 'react'
 
 import Head from 'next/head'
 
-import { Box, Flex, FlexCol } from '@ts-mono/dev-react/components/Box'
-import { FileUploadIcon } from '@ts-mono/dev-react/components/icons/FileUpload.icon'
-import { FitScreenIcon } from '@ts-mono/dev-react/components/icons/ReadMore.icon'
-
 import { gql } from '@apollo/client'
 
 import { css, useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
+import { Box, Flex, FlexCol } from '@ts-mono/dev-react/components/Box'
+import { FileUploadIcon } from '@ts-mono/dev-react/components/icons/FileUpload.icon'
+import { FitScreenIcon } from '@ts-mono/dev-react/components/icons/ReadMore.icon'
 
 export const QUERY_SPACEX = gql`
   query Emojis {

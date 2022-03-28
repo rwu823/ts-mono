@@ -2,13 +2,12 @@ import React from 'react'
 
 import NextLink from 'next/link'
 
+import type { MDXProvider } from '@mdx-js/react'
 import { MarkdownBlockquote } from '@ts-mono/dev-react/components/MarkdownBlockquote'
 import { MarkdownCode } from '@ts-mono/dev-react/components/MarkdownCode'
 import { MarkdownCodeBlock } from '@ts-mono/dev-react/components/MarkdownCodeBlock'
 import { MarkdownHead } from '@ts-mono/dev-react/components/MarkdownHead'
 import { MarkdownLink } from '@ts-mono/dev-react/components/MarkdownLink'
-
-import type { MDXProvider } from '@mdx-js/react'
 
 export const mdxRenders: React.ComponentProps<
   typeof MDXProvider

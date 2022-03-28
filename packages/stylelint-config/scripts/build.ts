@@ -1,7 +1,6 @@
 import { stringify } from '@ts-mono/ts-base/utils/json'
 import write from '@ts-mono/ts-base/utils/write'
 
-// eslint-disable-next-line import/no-relative-packages
 import rootPkgJSON from '../../../package.json'
 import originalPkgJSON from '../package.json'
 

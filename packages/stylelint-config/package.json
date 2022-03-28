@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "stylelint.config.js",
   "scripts": {
-    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.js out && esno scripts/build.ts",
+    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.cjs out && esno scripts/build.ts",
     "deploy": "yarn build && esmo ../../scripts/deployDirBranch.ts"
   },
   "dependencies": {}
