@@ -6,11 +6,11 @@ module.exports = {
         groups: [
           // Side effect imports.
           ['^\\u0000'],
+          ['^node:'],
           ['^react', '^redux'],
           ['^styled-components$', '^styled-'],
           ['^use-'],
           ['^next', '^next/'],
-          ['^@ts-mono'],
           ['^@apollo'],
           ['^@storybook/react$', '^@storybook'],
           ['^@'],

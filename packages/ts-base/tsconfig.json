@@ -1,12 +1,12 @@
 {
   "extends": "../../tsconfig",
   "exclude": ["node_modules", "out/**/*", "**/*.spec.ts", "**/*.test.ts", "**/__mocks__/*.ts"],
-  "include": [
-    "./initTsBase.ts",
-    "./package.json",
-    "./tsconfig.json",
-    "./utils/**/*.ts"
-  ],
+  // "include": [
+  //   "./initTsBase.ts",
+  //   "./package.json",
+  //   "./tsconfig.json",
+  //   "./utils/**/*.ts"
+  // ],
   "compilerOptions": {
     "outDir": "out",
     "declaration": true,

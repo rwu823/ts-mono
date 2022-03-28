@@ -17,6 +17,9 @@ module.exports = {
       2,
       {
         'ts-expect-error': 'allow-with-description',
+        'ts-ignore': 'allow-with-description',
+        'ts-nocheck': true,
+        'ts-check': true,
       },
     ],
   },

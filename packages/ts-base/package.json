@@ -2,8 +2,9 @@
   "name": "@ts-mono/ts-base",
   "version": "0.0.0",
   "bin": {
-    "init-ts-base": "bin/initTSBase"
+    "init-ts-base": "bin/initTSBase.mjs"
   },
+  "type": "module",
   "main": "index.js",
   "lint-staged": {},
   "dependencies": {
@@ -12,7 +13,7 @@
     "picocolors": "1.0.0"
   },
   "scripts": {
-    "build": "rm -rf out && tsc -b --force && esno scripts/build.ts",
+    "build": "rm -rf out && tsc -b --force && esmo scripts/build.ts",
     "deploy": "yarn build && esmo ../../scripts/deployDirBranch.ts",
     "prepare": ""
   }

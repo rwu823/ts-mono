@@ -7,5 +7,6 @@ module.exports = {
     'import/no-extraneous-dependencies': [0, { optionalDependencies: true }],
     // 'import/no-duplicates': 2,
     // 'import/no-dynamic-require': 0,
+    'import/first': 2,
   },
 }

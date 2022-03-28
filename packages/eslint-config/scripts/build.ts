@@ -4,7 +4,6 @@ import write from '@ts-mono/ts-base/utils/write'
 import fg from 'fast-glob'
 import fse from 'fs-extra'
 
-// eslint-disable-next-line import/no-relative-packages
 import rootPkgJSON from '../../../package.json'
 import originalPkgJSON from '../package.json'
 
@@ -20,7 +19,7 @@ for (const [pkgName, v] of Object.entries(rootPkgJSON.devDependencies)) {
 
 Promise.all([
   fse.copy('rules', 'out/rules'),
-  fse.copy('../../.eslintrc.js', 'out/.eslintrc.js'),
+  fse.copy('../../.eslintrc.cjs', 'out/.eslintrc.cjs'),
   ...fg.sync('./*').map((file) => fse.copy(file, `out/${file}`)),
 ])
   .then(() => {

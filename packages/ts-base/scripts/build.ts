@@ -1,13 +1,17 @@
-import fg from 'fast-glob'
-import { copy, rm } from 'fs-extra'
 import fs from 'node:fs'
+import { createRequire } from 'node:module'
 import path from 'node:path'
 
-// eslint-disable-next-line import/no-relative-packages
+import fg from 'fast-glob'
+
+// @ts-ignore package.json
 import rootPkg from '../../../package.json'
+// @ts-ignore package.json
 import pkg from '../package.json'
 
-1
+const require = createRequire(import.meta.url)
+const { copy, rm } = require('fs-extra')
+
 ;(async () => {
   // === copy file
   const root = '../..'
@@ -15,7 +19,7 @@ import pkg from '../package.json'
     [
       'bin',
 
-      path.resolve(root, 'prettier.config.js'),
+      path.resolve(root, 'prettier.config.cjs'),
       path.resolve(root, '.gitignore'),
       path.resolve(root, 'tsconfig.json'),
       path.resolve(root, '@types'),

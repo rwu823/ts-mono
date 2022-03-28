@@ -1,20 +1,23 @@
-import write from '@ts-mono/ts-base/utils/write'
-
 import { exec, spawn } from 'node:child_process'
-// import write from './utils/write'
+import { createRequire } from 'node:module'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
+
 import c from 'picocolors'
 
-import packageJSON from './package.json'
-import { readFile } from './utils/fs'
-import fg from './utils/glob'
-import { parseJSON, stringify } from './utils/json'
-import { mkDirCopyFiles } from './utils/mkDirCopyFiles'
+import { readFile } from './utils/fs.js'
+import fg from './utils/glob.js'
+import { parseJSON, stringify } from './utils/json.js'
+import { mkDirCopyFiles } from './utils/mkDirCopyFiles.js'
+import write from './utils/write.js'
 
+const require = createRequire(import.meta.url)
+
+const packageJSON = require('./package.json')
 const execPromisify = promisify(exec)
 
-const tsBasePath = __dirname
+const tsBasePath = path.dirname(fileURLToPath(import.meta.url))
 
 const ESLINTRC = '.eslintrc'
 const PRETTIER = 'prettier'
@@ -99,7 +102,7 @@ Promise.all([
       console.log(`${c.cyan('tsconfig.json')} is already exist.`)
     } else {
       const tsconfig = parseJSON(
-        await readFile(path.resolve(__dirname, TSCONFIG)),
+        await readFile(path.resolve(tsBasePath, TSCONFIG)),
       )
 
       await write(
@@ -180,7 +183,6 @@ npx husky add .husky/pre-commit "npx lint-staged"
           'rwu823/ts-mono#pkg/stylelint-config',
           'husky',
           'lint-staged',
-          'esno',
           'typescript',
           '@types/node',
           'eslint',
