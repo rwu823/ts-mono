@@ -70,7 +70,7 @@ Promise.all([
     if (prettiers.length > 0) {
       console.log(`${c.cyan(prettiers[0])} is already exist.`)
     } else {
-      await write(await readFile(`${tsBasePath}/${PRETTIER}.config.js`)).to(
+      await write(await readFile(`${tsBasePath}/${PRETTIER}.config.cjs`)).to(
         `${PRETTIER}.config.js`,
       )
     }

@@ -1,6 +1,7 @@
-import { copy, mkdirp } from 'fs-extra'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { copy, mkdirp } from 'fs-extra'
 import c from 'picocolors'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
