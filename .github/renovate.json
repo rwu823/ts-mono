@@ -1,0 +1,13 @@
+{
+  "schedule": [
+    "before 10am"
+  ],
+  "packageRules": [
+    {
+      "matchDepTypes": [
+        "dependencies", "devDependencies"
+      ],
+      "allowedVersions": "*"
+    }
+  ]
+}
