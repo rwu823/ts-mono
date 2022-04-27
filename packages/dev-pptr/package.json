@@ -5,7 +5,7 @@
     "init-dev-pptr": "bin/init-dev-pptr"
   },
   "dependencies": {
-    "axios": "0.26.1",
+    "axios": "0.27.2",
     "playwright": "1.20.1"
   },
   "scripts": {
