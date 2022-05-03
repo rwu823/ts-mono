@@ -34,7 +34,7 @@
     "schema": "http://localhost:3000/api/gql"
   },
   "devDependencies": {
-    "@stylelint/postcss-css-in-js": "0.37.2",
+    "@stylelint/postcss-css-in-js": "0.38.0",
     "@ts-mono/dev-react": "workspace:./packages/dev-react",
     "@ts-mono/eslint-config": "workspace:./packages/eslint-config",
     "@ts-mono/ts-base": "workspace:./packages/ts-base",
