@@ -64,7 +64,7 @@
     "prettier": "2.6.1",
     "sh-exec": "2.1.0",
     "stylelint": "14.6.1",
-    "stylelint-config-standard": "25.0.0",
+    "stylelint-config-standard": "26.0.0",
     "stylelint-no-unsupported-browser-features": "5.0.3",
     "stylelint-order": "5.0.0",
     "typehole": "1.7.0",
