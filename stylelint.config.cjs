@@ -10,6 +10,7 @@ module.exports = {
   rules: {
     // disable for prettier
     indentation: null,
+    'value-keyword-case': null,
     'string-quotes': null,
     'no-empty-first-line': null,
     'declaration-colon-newline-after': null,
