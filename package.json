@@ -42,7 +42,7 @@
     "@typescript-eslint/eslint-plugin": "5.16.0",
     "@typescript-eslint/parser": "5.16.0",
     "@vitest/ui": "0.7.12",
-    "browserslist": "4.20.2",
+    "browserslist": "4.21.3",
     "eslint": "8.12.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-compat": "4.0.2",
