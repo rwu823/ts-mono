@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-DIST=./node_modules/@ts-mono/storybook
-
-cp -r $DIST/.storybook .storybook
