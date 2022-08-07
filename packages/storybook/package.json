@@ -5,7 +5,7 @@
     "init-storybook": "bin/init-storybook"
   },
   "dependencies": {
-    "@storybook/addon-essentials": "6.4.19",
+    "@storybook/addon-essentials": "6.5.10",
     "@storybook/addon-links": "6.4.19",
     "@storybook/react": "6.4.19"
   },
