@@ -5,6 +5,7 @@ module.exports = {
     'unicorn/no-array-reduce': 0,
     'unicorn/new-for-builtins': 0,
     'unicorn/no-null': 0,
+    'unicorn/prefer-top-level-await': 0,
     'unicorn/import-index': 2,
     'unicorn/filename-case': [
       2,

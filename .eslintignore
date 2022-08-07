@@ -1,4 +1,6 @@
 node_modules
 out
-
+!.*
+bin
 # next-env.d.ts
+.next

@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "main": "browser",
   "scripts": {
-    "build": "esno scripts/build.ts",
-    "deploy": "yarn build && esmo ../../scripts/deployDirBranch.ts"
+    "build": "tsx scripts/build.ts",
+    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts"
   },
+  "dependencies": {},
   "peerDependencies": {}
 }

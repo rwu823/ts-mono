@@ -1,3 +1,7 @@
+const NONE = 0
+const WARN = 1
+const ERROR = 2
+
 module.exports = {
   rules: {
     // eslint
@@ -16,6 +20,6 @@ module.exports = {
     // 'no-shadow': 0,
     // '@typescript-eslint/no-shadow': [2, {}],
 
-    'prefer-template': 2,
+    'prefer-template': ERROR,
   },
 }

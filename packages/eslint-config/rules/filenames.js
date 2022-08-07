@@ -1,4 +1,5 @@
 module.exports = {
+  plugins: ['filenames'],
   rules: {
     'filenames/match-exported': 2,
     'filenames/no-index': 2,
