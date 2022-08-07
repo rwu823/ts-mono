@@ -25,8 +25,7 @@
     "rm-pkg": "rm -rf node_modules packages/*/node_modules yarn.lock",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint --ext .ts,.tsx,.js,.mjs,.cjs",
-    "deploy": "esmo scripts/deploy",
-    "deploy:pkg": "pnpm -F ts-base -F *-config -F dev-react deploy",
+    "deploy": "pnpm run -F ts-base -F *-config -F dev-react -F graphql deploy",
     "postinstall": "husky install & browserslist --update-db",
     "svgr": "npx @svgr/cli svgr -d svgr/out --no-index"
   },
