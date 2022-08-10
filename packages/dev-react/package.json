@@ -20,7 +20,7 @@
     "apollo-server-core": "3.6.6",
     "apollo-server-micro": "3.6.6",
     "apollo-server-plugin-response-cache": "3.5.2",
-    "dataloader": "2.0.0",
+    "dataloader": "2.1.0",
     "deepmerge": "4.2.2",
     "graphql": "16.3.0",
     "highlight.js": "11.5.0",
