@@ -1,0 +1,37 @@
+{
+  "version": "0.0.1",
+  "name": "@ts-mono/graphql",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./cjs/index.js"
+    },
+    "./directives": {
+      "import": "./directives/index.js",
+      "require": "./csj/directives/index.js"
+    },
+    "./directives/*": {
+      "import": "./directives/*.js",
+      "require": "./cjs/directives/*.js"
+    }
+  },
+  "main": "cjs/index.js",
+  "scripts": {
+    "build:esm": "tsc -b --force tsconfig.esm.json",
+    "build:cjs": "tsc -b --force tsconfig.cjs.json",
+    "build": "rm -rf out && concurrently npm:build:* && cp package.json out",
+    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts"
+  },
+  "peerDependencies": {
+    "graphql": "16.5.0"
+  },
+  "dependencies": {
+    "@graphql-tools/utils": "8.9.1",
+    "dataloader": "2.1.0",
+    "deepmerge": "4.2.2"
+  },
+  "devDependencies": {
+    "graphql": "16.5.0"
+  }
+}
