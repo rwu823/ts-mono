@@ -9,7 +9,7 @@
   "lint-staged": {},
   "dependencies": {
     "fast-glob": "3.2.11",
-    "fs-extra": "10.0.1",
+    "fs-extra": "10.1.0",
     "picocolors": "1.0.0"
   },
   "scripts": {
