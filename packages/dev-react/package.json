@@ -36,7 +36,7 @@
     "react-intl": "5.24.8",
     "react-markdown": "8.0.1",
     "rxjs": "7.5.5",
-    "unist-util-visit": "4.1.0"
+    "unist-util-visit": "4.1.1"
   },
   "scripts": {
     "dev": "NEXT_TELEMETRY_DISABLED=1 NODE_OPTIONS='--inspect'",
