@@ -44,7 +44,7 @@
     "@unocss/preset-icons": "0.45.6",
     "@unocss/preset-uno": "0.45.6",
     "@vitest/ui": "0.21.1",
-    "browserslist": "4.21.3",
+    "browserslist": "4.21.4",
     "concurrently": "7.3.0",
     "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
