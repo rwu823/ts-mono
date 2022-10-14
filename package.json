@@ -43,7 +43,7 @@
     "@unocss/cli": "0.45.6",
     "@unocss/preset-icons": "0.45.6",
     "@unocss/preset-uno": "0.45.6",
-    "@vitest/ui": "0.21.1",
+    "@vitest/ui": "0.24.3",
     "browserslist": "4.21.3",
     "concurrently": "7.3.0",
     "eslint": "8.21.0",
