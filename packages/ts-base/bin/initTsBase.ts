@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { exec, spawn } from 'node:child_process'
 import { createRequire } from 'node:module'
 import path from 'node:path'
@@ -6,18 +8,21 @@ import { promisify } from 'node:util'
 
 import c from 'picocolors'
 
-import { readFile } from './utils/fs.js'
-import fg from './utils/glob.js'
-import { parseJSON, stringify } from './utils/json.js'
-import { mkDirCopyFiles } from './utils/mkDirCopyFiles.js'
-import write from './utils/write.js'
+import { readFile } from '../utils/fs.js'
+import fg from '../utils/glob.js'
+import { parseJSON, stringify } from '../utils/json.js'
+import { mkDirCopyFiles } from '../utils/mkDirCopyFiles.js'
+import write from '../utils/write.js'
 
 const require = createRequire(import.meta.url)
 
-const packageJSON = require('./package.json')
+const packageJSON = require('../package.json')
 const execPromisify = promisify(exec)
 
-const tsBasePath = path.dirname(fileURLToPath(import.meta.url))
+const tsBasePath = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '..',
+)
 
 const ESLINTRC = '.eslintrc'
 const PRETTIER = 'prettier'
@@ -32,9 +37,9 @@ const STYLE_LINT = 'stylelint'
 const TYPES = '@types'
 
 const log = (string: string) =>
-  console.log(c.bgGreen(c.black(' init-ts-base '.toUpperCase())), string)
+  console.log(c.bgGreen(c.black(` ${packageJSON.name} `.toUpperCase())), string)
 
-Promise.all([
+await Promise.all([
   fg(`${ESLINTRC}*`),
   fg(`*${PRETTIER}*`),
   fg(TSCONFIG),
@@ -80,7 +85,7 @@ Promise.all([
       console.log(`${c.cyan(eslintrc[0])} is already exist.`)
     } else {
       await write(
-        `${stringify({
+        `module.exports = ${stringify({
           root: true,
           extends: [`@ts-mono`],
         })}`,
@@ -125,8 +130,12 @@ Promise.all([
     }>(await readFile('package.json'))
 
     Object.assign(pkg, {
+      type: 'module',
       'lint-staged': packageJSON['lint-staged'],
-      scripts: packageJSON.scripts,
+      scripts: {
+        ...pkg.scripts,
+        ...packageJSON.scripts,
+      },
     })
 
     await write(stringify(pkg)).to('package.json')
@@ -164,23 +173,28 @@ Promise.all([
       const { stdout } = await execPromisify(`
 git init
 npx husky install
-npx husky add .husky/pre-commit "npx lint-staged"
+npx husky add .husky/pre-commit "npx lint-staged -c package.json"
 `)
       console.log(stdout)
     }
 
     log(`Installing packages.`)
     // install dev dependencies
+
+    await write(
+      await readFile(path.resolve(tsBasePath, 'pnpm-workspace.yaml')),
+    ).to('pnpm-workspace.yaml')
+
     spawn(
       'pnpm',
       [
         'install',
-        '-WD',
+        '-wD',
 
         // eslint-disable-next-line unicorn/no-useless-spread
         ...[
           'rwu823/ts-mono#pkg/eslint-config',
-          'rwu823/ts-mono#pkg/stylelint-config',
+          // 'rwu823/ts-mono#pkg/stylelint-config',
           'husky',
           'lint-staged',
           'typescript',

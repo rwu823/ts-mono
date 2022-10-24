@@ -2,19 +2,19 @@
   "name": "@ts-mono/ts-base",
   "version": "0.0.0",
   "bin": {
-    "init-ts-base": "bin/initTSBase.mjs"
+    "init-ts-base": "bin/initTSBase.js"
   },
   "type": "module",
   "main": "index.js",
   "lint-staged": {},
   "dependencies": {
-    "fast-glob": "3.2.11",
-    "fs-extra": "10.0.1",
+    "fast-glob": "3.2.12",
+    "fs-extra": "10.1.0",
     "picocolors": "1.0.0"
   },
   "scripts": {
-    "build": "rm -rf out && tsc -b --force && esmo scripts/build.ts",
-    "deploy": "yarn build && esmo ../../scripts/deployDirBranch.ts",
+    "build": "rm -rf out && tsc -b --force tsconfig.esm.json && tsx scripts/build.ts",
+    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts",
     "prepare": ""
   }
 }

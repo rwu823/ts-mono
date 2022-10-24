@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.esm.json",
+  "compilerOptions": {
+    "outDir": "out",
+    "noEmit": false,
+    "rootDir": "."
+  },
+  "include": [
+    "bin",
+    "utils",
+  ]
+}

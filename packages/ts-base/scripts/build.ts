@@ -12,18 +12,17 @@ import pkg from '../package.json'
 const require = createRequire(import.meta.url)
 const { copy, rm } = require('fs-extra')
 
-;(async () => {
+;(() => {
   // === copy file
   const root = '../..'
   Promise.all(
     [
-      'bin',
-
       path.resolve(root, 'prettier.config.cjs'),
       path.resolve(root, '.gitignore'),
       path.resolve(root, 'tsconfig.json'),
       path.resolve(root, '@types'),
       path.resolve(root, '.vscode'),
+      path.resolve(root, 'pnpm-workspace.yaml'),
     ].map((from) => {
       const base = path.basename(from)
       return copy(from, `out/${base}`)
