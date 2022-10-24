@@ -13,7 +13,7 @@ fse.mkdirSync('out')
 const pickEslintPackages: Record<string, string> = {}
 
 for (const [pkgName, v] of Object.entries(rootPkgJSON.devDependencies)) {
-  if (/(^prettier$|^eslint|^@typescript-eslint)/.test(pkgName)) {
+  if (/(^prettier|^eslint|^@typescript-eslint)/.test(pkgName)) {
     Object.assign(pickEslintPackages, { [pkgName]: v })
   }
 }
@@ -23,7 +23,7 @@ Promise.all([
   fse.copy('../../.eslintrc.cjs', 'out/.eslintrc.cjs'),
   ...fg.sync('./*').map((file) => fse.copy(file, `out/${file}`)),
 ]).then(() => {
-  originalPkgJSON.dependencies = pickEslintPackages
+  Object.assign(originalPkgJSON.dependencies, pickEslintPackages)
 
   write(stringify(originalPkgJSON)).to('out/package.json')
 })

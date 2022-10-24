@@ -3,8 +3,15 @@
   "version": "0.0.1",
   "main": "stylelint.config.js",
   "scripts": {
-    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.cjs out && esno scripts/build.ts",
-    "deploy": "yarn build && esmo ../../scripts/deployDirBranch.ts"
+    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.cjs out && tsx scripts/build.ts",
+    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@stylelint/postcss-css-in-js": "0.38.0",
+    "postcss-syntax": "0.36.2",
+    "stylelint": "14.14.0",
+    "stylelint-config-standard": "29.0.0",
+    "stylelint-no-unsupported-browser-features": "6.0.1",
+    "stylelint-order": "5.0.0"
+  }
 }

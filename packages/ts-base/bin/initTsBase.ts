@@ -193,14 +193,14 @@ npx husky add .husky/pre-commit "npx lint-staged -c package.json"
 
         // eslint-disable-next-line unicorn/no-useless-spread
         ...[
-          'rwu823/ts-mono#pkg/eslint-config',
           // 'rwu823/ts-mono#pkg/stylelint-config',
+          // 'stylelint',
+          'rwu823/ts-mono#pkg/eslint-config',
           'husky',
           'lint-staged',
           'typescript',
           '@types/node',
           'eslint',
-          'stylelint',
         ],
       ],
       { stdio: 'inherit' },

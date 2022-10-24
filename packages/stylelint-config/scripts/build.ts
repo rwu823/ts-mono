@@ -7,16 +7,11 @@ import originalPkgJSON from '../package.json'
 const pickStyleLintPackages: Record<string, string> = {}
 
 for (const [key, version] of Object.entries(rootPkgJSON.devDependencies)) {
-  if (/(^stylelint$|^stylelint-|^@stylelint|^postcss-)/.test(key)) {
+  if (/(^stylelint|^postcss-)/.test(key)) {
     pickStyleLintPackages[key] = version
   }
 }
 
-Promise.resolve()
-  .then(() => {
-    originalPkgJSON.dependencies = pickStyleLintPackages
+Object.assign(originalPkgJSON.dependencies, pickStyleLintPackages)
 
-    return originalPkgJSON
-  })
-
-  .then(() => write(stringify(originalPkgJSON)).to('out/package.json'))
+write(stringify(originalPkgJSON)).to('out/package.json')
