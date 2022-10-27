@@ -8,7 +8,7 @@
   "dependencies": {
     "@apollo/client": "3.5.10",
     "@apollo/react-ssr": "4.0.0",
-    "@emotion/react": "11.8.2",
+    "@emotion/react": "11.10.5",
     "@emotion/styled": "11.8.1",
     "@mdx-js/loader": "2.1.0",
     "@mdx-js/react": "2.1.0",
