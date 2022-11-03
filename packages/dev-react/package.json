@@ -19,7 +19,7 @@
     "apollo": "2.33.9",
     "apollo-server-core": "3.6.6",
     "apollo-server-micro": "3.6.6",
-    "apollo-server-plugin-response-cache": "3.5.2",
+    "apollo-server-plugin-response-cache": "3.8.1",
     "dataloader": "2.0.0",
     "deepmerge": "4.2.2",
     "graphql": "16.3.0",
