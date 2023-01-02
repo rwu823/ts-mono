@@ -6,7 +6,7 @@ import type { ResolverContext } from '../types.js'
 
 export const makeSchema = (
   typeDef: DocumentNode | string,
-  resolver?: IResolvers<unknown, ResolverContext>,
+  resolver?: IResolvers<any, ResolverContext>,
 ) => {
   return {
     typeDefs: [typeDef],
