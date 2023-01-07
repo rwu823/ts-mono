@@ -1,6 +1,7 @@
+import type { PropsWithChildren } from 'react'
 import React from 'react'
-import { BiLinkExternal } from 'react-icons/bi'
 
+// import { BiLinkExternal } from 'react-icons/bi'
 import styled from '@emotion/styled'
 
 const A = styled.a`
@@ -26,20 +27,20 @@ type Props = {
   external?: boolean
 }
 
-export const MarkdownLink: React.FC<Props> = React.forwardRef<
+export const MarkdownLink = React.forwardRef<
   HTMLAnchorElement,
-  Props
->(({ children, external = false, ...props }, ref) => {
+  PropsWithChildren<Props>
+>(({ children, external, ...props }, ref) => {
   if (external)
     return (
-      <A ref={ref} {...props} target="_new">
+      <A {...props} ref={ref} target="_new">
         {children}
-        <BiLinkExternal />
+        <i className="bx:link-external" />
       </A>
     )
 
   return (
-    <A ref={ref} {...props}>
+    <A {...props} ref={ref}>
       {children}
     </A>
   )

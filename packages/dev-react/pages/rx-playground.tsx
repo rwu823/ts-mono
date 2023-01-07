@@ -2,13 +2,12 @@ import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 
 import { NextPage } from 'next'
 
-import styled from '@emotion/styled'
-
 import {
   animationFrameScheduler,
   concat,
   EMPTY,
   forkJoin,
+  from,
   fromEvent,
   merge,
   Observable,
@@ -16,7 +15,6 @@ import {
   Subject,
   timer,
 } from 'rxjs'
-import { ajax } from 'rxjs/ajax'
 import {
   bufferTime,
   catchError,
@@ -45,7 +43,8 @@ import {
 } from 'rxjs/operators'
 
 type Props = React.DOMAttributes<HTMLDivElement>
-const RxPlayground: React.FC<Props> = ({ children, ...props }) => {
+
+const RxPlayground = ({ children, ...props }: Props) => {
   const divRef = useRef<HTMLDivElement>(null)
 
   return (

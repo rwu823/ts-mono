@@ -1,0 +1,66 @@
+import React, { ChangeEvent } from 'react'
+
+import type { AtomicStyle } from '~styles/style.css'
+import { s as sprinkles } from '~styles/style.css'
+
+const propertiesSet: Set<string> = sprinkles.properties
+
+type As = keyof JSX.IntrinsicElements
+
+type OmitCommonProps<Target, OmitAdditionalProps extends object> = Omit<
+  Target,
+  'transition' | 'color' | 'as' | 'ref' | keyof OmitAdditionalProps
+>
+
+type JoinProps<
+  SourceProps extends object,
+  OverrideProps extends object,
+> = OmitCommonProps<SourceProps, OverrideProps> & OverrideProps
+
+export type ComponentWithAs<
+  Props extends object = Record<string, unknown>,
+  Component extends As = 'div',
+> = {
+  <AsComponent extends As>(
+    props: JoinProps<React.ComponentProps<AsComponent>, Props> &
+      JoinProps<React.ComponentProps<Component>, Props> & {
+        as?: AsComponent
+        ref?: React.Ref<HTMLElement>
+      },
+  ): JSX.Element
+
+  displayName?: string
+}
+
+
+
+export const Box = React.forwardRef(
+  ({ as = 'div', children, className, ...restProps }, ref) => {
+    const sprinklesProps: Record<string, unknown> = {}
+    const props: Record<string, unknown> = {}
+
+    for (const [k, v] of Object.entries(restProps)) {
+      if (propertiesSet.has(k)) {
+        sprinklesProps[k] = v
+      } else {
+        props[k] = v
+      }
+    }
+
+    const el = React.createElement(
+      as,
+      {
+        ...props,
+        ref,
+        className: [sprinkles(sprinklesProps), className]
+          .filter(Boolean)
+          .join(' '),
+      },
+      children,
+    )
+
+    return el
+  },
+) as ComponentWithAs<AtomicStyle>
+
+Box.displayName = 'Box'

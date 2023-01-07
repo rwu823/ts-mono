@@ -1,44 +1,25 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { gql } from '@apollo/client'
+import { ApolloServer } from '@apollo/server'
 
-import { gqlExplorer } from '@ts-mono/dev-react/apollo/gqlExplorer'
-import schema from '@ts-mono/dev-react/schema'
-
-import {
-  ApolloServerPluginCacheControl,
-  ApolloServerPluginLandingPageGraphQLPlayground,
-  AuthenticationError,
-} from 'apollo-server-core'
-import { ApolloServer } from 'apollo-server-micro'
-import responseCachePlugin from 'apollo-server-plugin-response-cache'
+import { startServerAndCreateNextHandler } from '@as-integrations/next'
 
 const apolloServer = new ApolloServer({
-  plugins: [
-    ApolloServerPluginLandingPageGraphQLPlayground({
-      settings: {
-        // 'tracing.hideTracingResponse': false,
-      },
-    }),
-    ApolloServerPluginCacheControl({ defaultMaxAge: 5 }),
-
-    responseCachePlugin({
-      sessionId: (requestContext) =>
-        requestContext.request.http?.headers.get('session-id') ?? null,
-    }),
+  plugins: [],
+  typeDefs: [
+    gql`
+      type Query {
+        ok: Boolean!
+      }
+    `,
   ],
-
-  context: ({ req }: { req: NextApiRequest; res: NextApiResponse }) => {
-    if (req.headers.authorization !== '123456')
-      throw new AuthenticationError('Authentication Error')
+  resolvers: {
+    Query: {
+      ok: () => true,
+    },
   },
-
   introspection: true,
-  ...schema,
 })
 
-export default gqlExplorer(apolloServer)
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
+export default startServerAndCreateNextHandler(apolloServer, {
+  context: async (rea, res) => {},
+})

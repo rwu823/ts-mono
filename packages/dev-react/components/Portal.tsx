@@ -1,13 +1,15 @@
+import type { PropsWithChildren } from 'react'
 import React from 'react'
 import { createPortal } from 'react-dom'
 
 type Props = {
-  element?: HTMLElement | null
+  element?: Element | HTMLElement | null
 }
 
-const Portal: React.FC<Props> = ({
+const Portal = ({
   children,
   element = globalThis.document?.fullscreenElement ?? globalThis.document?.body,
-}) => (element ? createPortal(children, element) : <>{children}</>)
+}: PropsWithChildren<Props>) =>
+  element ? createPortal(children, element) : <>{children}</>
 
 export default Portal

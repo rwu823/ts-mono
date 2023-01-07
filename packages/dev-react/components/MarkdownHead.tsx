@@ -49,11 +49,12 @@ const A = styled.a`
   `}
 `
 
-type HeadLevel = 1 | 2 | 3 | 4 | 5 | 6
-export const MarkdownHead: React.FC<{
+type MarkdownHeadProps = {
   level: HeadLevel
   text?: string
-}> = ({ level, text }) =>
+}
+type HeadLevel = 1 | 2 | 3 | 4 | 5 | 6
+export const MarkdownHead = ({ level, text }: MarkdownHeadProps) =>
   React.createElement(
     `h${level}`,
     {},

@@ -1,47 +1,31 @@
-import NextDocument, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document'
+import type { DocumentContext } from 'next/document'
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document'
 
-class Document extends NextDocument {
-  // static async getInitialProps(ctx: DocumentContext) {
-  //   const sheet = new ServerStyleSheet()
-  //   const originalRenderPage = ctx.renderPage
+import type { NormalizedCacheObject } from '@apollo/client'
+import { getDataFromTree } from '@apollo/client/react/ssr'
 
-  //   try {
-  //     ctx.renderPage = () =>
-  //       originalRenderPage({
-  //         enhanceApp: (App) => (props) =>
-  //           sheet.collectStyles(
-  //             <StyleSheetManager>
-  //               <App {...props} />
-  //             </StyleSheetManager>,
-  //           ),
-  //       })
+import { apolloClient } from '~apollo/client'
 
-  //     const initialProps = await NextDocument.getInitialProps(ctx)
+class Document extends NextDocument<{ apolloState: NormalizedCacheObject }> {
+  static async getInitialProps(ctx: DocumentContext) {
+    await getDataFromTree(<ctx.AppTree pageProps={{}} />)
+    const initialProps = await NextDocument.getInitialProps(ctx)
 
-  //     return {
-  //       ...initialProps,
-  //       styles: (
-  //         <>
-  //           {initialProps.styles}
-  //           {sheet.getStyleElement()}
-  //         </>
-  //       ),
-  //     }
-  //   } finally {
-  //     sheet.seal()
-  //   }
-  // }
+    return { ...initialProps, apolloState: apolloClient.extract() }
+  }
 
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+    window.__APOLLO_STATE__ = ${JSON.stringify(apolloClient.extract())}
+          `,
+            }}
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

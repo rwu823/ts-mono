@@ -8,11 +8,7 @@ module.exports = {
     },
   ],
   rules: {
-    '@typescript-eslint/consistent-type-imports': [
-      2,
-      { prefer: 'type-imports' },
-    ],
-
+    '@typescript-eslint/consistent-type-imports': 2,
     '@typescript-eslint/ban-ts-comment': [
       2,
       {

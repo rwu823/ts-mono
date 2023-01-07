@@ -1,19 +1,29 @@
 {
-  "extends": "../../tsconfig",
   "compilerOptions": {
-    "allowJs": true,
-    "moduleResolution": "node",
-    "noEmit": false,
-    "isolatedModules": true,
-    "sourceMap": true,
-    "composite": true,
+    "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react"
+    "baseUrl": ".",
+    "paths": {
+      "~*": [
+        "./*"
+      ]
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -23,15 +33,4 @@
   "exclude": [
     "node_modules"
   ]
-  // "include": [
-  //   "../../@types/global.d.ts",
-  //   "**/*.ts",
-  //   "**/*.tsx",
-  //   "**/*.json",
-  //   "../../graphql.config.ts"
-  // ],
-  // "exclude": [
-  //   "node_modules",
-  //   "out"
-  // ]
 }

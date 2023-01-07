@@ -4,6 +4,8 @@ declare namespace NodeJS {
   }
 }
 
-interface Window {}
+interface Window {
+  //
+}
 
 type OmitType<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

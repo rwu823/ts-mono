@@ -1,44 +1,73 @@
-import type { CSSProperties } from 'react'
+import React from 'react'
 
-import type { SerializedStyles } from '@emotion/react'
-import { useTheme } from '@emotion/react'
-import styled from '@emotion/styled'
+import type { AtomicStyle } from '~styles/style.css'
+import { s as sprinkles } from '~styles/style.css'
 
-const BoxBase = styled('div')()
+import { htmlTags } from './Box.types'
 
-export type BoxProps = {
-  debug?: boolean | string
-  cx?: SerializedStyles
+type OmitProps<A extends object, B extends object> = Omit<
+  A,
+  'transition' | 'color' | 'ref' | keyof B
+>
+
+type JoinProps<A extends object, B extends object> = OmitProps<A, B> & B
+
+type BoxProps = {
+  children?: React.ReactNode
+  className?: string
+  ref?: React.Ref<unknown>
 }
 
-export const Box: React.FC<BoxProps & React.ComponentProps<typeof BoxBase>> = ({
-  children,
-  cx,
-  debug,
-  ...props
-}) => {
-  const theme = useTheme()
-  const style: CSSProperties = debug
-    ? {
-        outline: `1px dashed ${theme.colors.gray['500']}`,
+const propertiesSet: Set<string> = sprinkles.properties
+
+export const createBox = (tag: keyof JSX.IntrinsicElements) => {
+  const Box = React.forwardRef(
+    ({ children, className, ...restProps }: BoxProps, ref) => {
+      const sprinklesProps: Record<string, unknown> = {}
+      const props: Record<string, unknown> = {}
+
+      for (const [k, v] of Object.entries(restProps)) {
+        if (propertiesSet.has(k)) {
+          sprinklesProps[k] = v
+        } else {
+          props[k] = v
+        }
       }
-    : {}
 
-  return (
-    <BoxBase style={style} {...props}>
-      {children}
-    </BoxBase>
+      return React.createElement(
+        tag,
+        {
+          ...props,
+          ref,
+          className: [sprinkles(sprinklesProps), className]
+            .filter(Boolean)
+            .join(' ')
+            .trim(),
+        },
+        children,
+      )
+    },
   )
+
+  Box.displayName = `Box.${tag}`
+
+  return Box
 }
 
-export const Flex = styled(Box)`
-  display: flex;
-`
+type BoxComponent = React.ForwardRefExoticComponent<
+  JoinProps<React.ComponentPropsWithoutRef<'div'>, AtomicStyle & BoxProps>
+> &
+  Omit<
+    {
+      [tag in keyof JSX.IntrinsicElements]: React.ForwardRefExoticComponent<
+        JoinProps<React.ComponentPropsWithoutRef<tag>, AtomicStyle & BoxProps>
+      >
+    },
+    'div'
+  >
 
-export const FlexCol = styled(Flex)`
-  flex-direction: column;
-`
+export const Box = createBox('div') as BoxComponent
 
-export const Grid = styled(Box)`
-  display: grid;
-`
+for (const t of htmlTags) {
+  Box[t] = createBox(t)
+}

@@ -1,12 +1,12 @@
 import 'highlight.js/styles/night-owl.css'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { BiCopyAlt } from 'react-icons/bi'
 
-import { css, Global, useTheme } from '@emotion/react'
-import { Box } from '@ts-mono/dev-react/components/Box'
+import { css, Global } from '@emotion/react'
 
 import hl from 'highlight.js/lib/common'
+
+import { Box } from './Box'
 
 export interface MarkdownCodeBlockProps {
   src: string
@@ -19,11 +19,11 @@ export interface MarkdownCodeBlockProps {
 
 let renderedGlobalStyles = false
 
-export const MarkdownCodeBlock: React.FC<MarkdownCodeBlockProps> = ({
+export const MarkdownCodeBlock = ({
   language = 'plaintext',
   file,
   src,
-}) => {
+}: MarkdownCodeBlockProps) => {
   const codeRef = useRef<HTMLElement>(null)
   const code = useMemo(() => {
     try {
@@ -37,8 +37,6 @@ export const MarkdownCodeBlock: React.FC<MarkdownCodeBlockProps> = ({
     renderedGlobalStyles = true
   }, [])
 
-  const theme = useTheme()
-
   const [copy, setCopy] = useState(false)
 
   useEffect(() => {
@@ -51,7 +49,7 @@ export const MarkdownCodeBlock: React.FC<MarkdownCodeBlockProps> = ({
 
   return (
     <div
-      className={'hljs'}
+      className={'hljs rounded'}
       css={css`
         position: relative;
         padding: 1em;
@@ -81,25 +79,14 @@ export const MarkdownCodeBlock: React.FC<MarkdownCodeBlockProps> = ({
         data-id="copy"
       >
         {copy ? (
-          <span
-            css={css`
-              color: ${theme.colors.gray[400]};
-              font-size: 10px;
-            `}
-          >
+          <span className={`text-10px cursor-default text-gray-400`}>
             Copied
           </span>
         ) : (
-          <BiCopyAlt
-            css={css`
-              color: ${theme.colors.gray[400]};
-
-              :hover {
-                color: ${theme.colors.gray[300]};
-                cursor: pointer;
-              }
-            `}
-            size={20}
+          <i
+            className={
+              'bx:copy-alt cursor-pointer text-xl text-gray-400 hover:text-gray-300'
+            }
             onClick={() => {
               setCopy(true)
             }}
@@ -112,22 +99,9 @@ export const MarkdownCodeBlock: React.FC<MarkdownCodeBlockProps> = ({
           font-family: 'Victor Mono', monospace;
         `}
       >
-        {file && (
-          <div
-            css={css`
-              color: ${theme.colors.gray[400]};
-              font-size: 12px;
-              margin-bottom: ${theme.spacing[2]};
-            `}
-          >
-            {file}
-          </div>
-        )}
+        {file && <div className="mb-3 text-xs text-gray-400">{file}</div>}
         <code
-          className={`language-${language}`}
-          css={css`
-            font-size: 14px;
-          `}
+          className={`language-${language} text-sm`}
           dangerouslySetInnerHTML={{ __html: code }}
           ref={codeRef}
         />

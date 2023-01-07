@@ -1,6 +1,7 @@
+import type { PropsWithChildren } from 'react'
 import React, { useCallback, useContext, useEffect, useReducer } from 'react'
 
-import { css, Global as GlobalStyles } from '@emotion/react'
+import { css, Global } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import Portal from './Portal'
@@ -46,14 +47,14 @@ export type ModalProps = {
   top?: number
 }
 
-const Modal: React.FC<ModalProps> = ({
+const Modal = ({
   isOpened,
   onESC,
   onClickMask,
   children,
   top = 10,
   ...props
-}) => {
+}: PropsWithChildren<ModalProps>) => {
   useEffect(() => {
     if (onESC) {
       const handleEsc = (e: KeyboardEvent) => {
@@ -79,7 +80,13 @@ const Modal: React.FC<ModalProps> = ({
 
   return isOpened ? (
     <Portal>
-      <ModalGlobalStyle />
+      <Global
+        styles={css`
+          body {
+            overflow: hidden;
+          }
+        `}
+      />
       <ModalBox {...props} onClick={onClickMask}>
         <ModalContent top={top} onClick={stopPropagation}>
           {children}
@@ -91,13 +98,13 @@ const Modal: React.FC<ModalProps> = ({
 
 const ModalContext = React.createContext<React.Dispatch<Action>>(() => null)
 
-export const useModal = (modalProps: OmitType<ModalProps, 'isOpened'> = {}) => {
+export const useModal = (modalProps: Omit<ModalProps, 'isOpened'> = {}) => {
   const dispatch = useContext(ModalContext)
 
   const open = useCallback(
     (
       children: React.ReactNode,
-      replaceProps: OmitType<ModalProps, 'isOpened'> = {},
+      replaceProps: Omit<ModalProps, 'isOpened'> = {},
     ) => {
       dispatch({
         type: ActionType.OPEN_MODAL,
@@ -153,9 +160,12 @@ const reducer: React.Reducer<InitState, Action> = (
   return { ...state, ...newState }
 }
 
-export const ModalProvider: React.FC<{
+export const ModalProvider = ({
+  children,
+  defaultProps = { isOpened: false },
+}: PropsWithChildren<{
   defaultProps?: ModalProps
-}> = ({ children, defaultProps = { isOpened: false } }) => {
+}>) => {
   const [state, dispatch] = useReducer(reducer, initState)
 
   return (

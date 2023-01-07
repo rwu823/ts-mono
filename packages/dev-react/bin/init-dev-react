@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-DIST=./node_modules/@ts-mono/dev-react
-
-cp -r $DIST/pages pages
-
-cp $DIST/next.config.js $DIST/server.ts .

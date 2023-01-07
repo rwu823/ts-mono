@@ -1,5 +1,7 @@
+const ERROR = 2
 module.exports = {
   rules: {
+    'react/no-unknown-property': [ERROR, { ignore: ['css'] }],
     'react/function-component-definition': [
       2,
       {

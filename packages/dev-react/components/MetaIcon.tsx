@@ -6,7 +6,7 @@ type Props = {
   href: string
 }
 
-export const MetaIcon: React.FC<Props> = ({ href }) => (
+export const MetaIcon = ({ href }: Props) => (
   <Head>
     <link href={href} rel="icon" sizes="192x192" />
     <link href={href} rel="apple-touch-icon" />

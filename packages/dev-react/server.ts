@@ -16,6 +16,7 @@ const exec = promisify(child.exec)
 
 const port = process.env.PORT ?? 3000
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 ;(async () => {
   await app.prepare()
 
