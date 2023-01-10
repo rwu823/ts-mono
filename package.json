@@ -33,7 +33,7 @@
     "@ts-mono/dev-react": "workspace:*",
     "@ts-mono/eslint-config": "workspace:*",
     "@ts-mono/ts-base": "workspace:*",
-    "@types/fs-extra": "9.0.13",
+    "@types/fs-extra": "11.0.1",
     "@types/node": "18.11.18",
     "@vitest/ui": "0.26.3",
     "browserslist": "4.21.4",
