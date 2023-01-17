@@ -104,7 +104,7 @@ importers:
       eslint-plugin-prettier: 4.2.1
       eslint-plugin-react: 7.31.11
       eslint-plugin-react-hooks: 4.6.0
-      eslint-plugin-simple-import-sort: 8.0.0
+      eslint-plugin-simple-import-sort: 9.0.0
       eslint-plugin-testing-library: 5.9.1
       eslint-plugin-unicorn: 45.0.2
       prettier: 2.8.2
@@ -121,7 +121,7 @@ importers:
       eslint-plugin-prettier: 4.2.1_d3eaczqtcm6x5na45dviosxtl4
       eslint-plugin-react: 7.31.11
       eslint-plugin-react-hooks: 4.6.0
-      eslint-plugin-simple-import-sort: 8.0.0
+      eslint-plugin-simple-import-sort: 9.0.0
       eslint-plugin-testing-library: 5.9.1
       eslint-plugin-unicorn: 45.0.2
       prettier: 2.8.2
@@ -6416,6 +6416,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -8551,8 +8552,8 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: false
 
-  /eslint-plugin-simple-import-sort/8.0.0:
-    resolution: {integrity: sha512-bXgJQ+lqhtQBCuWY/FUWdB27j4+lqcvXv5rUARkzbeWLwea+S5eBZEQrhnO+WgX3ZoJHVj0cn943iyXwByHHQw==}
+  /eslint-plugin-simple-import-sort/9.0.0:
+    resolution: {integrity: sha512-PtrLjyXP8kjRneWT1n0b99y/2Fyup37we7FVoWsI61/O7x4ztLohzhep/pxI/cYlECr/cQ2j6utckdvWpVwXNA==}
     peerDependencies:
       eslint: '>=5.0.0'
     dev: false
@@ -9024,6 +9025,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11814,6 +11816,7 @@ packages:
 
   /nan/2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
