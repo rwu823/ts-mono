@@ -147,14 +147,14 @@ importers:
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0
       stylelint-no-unsupported-browser-features: 6.0.1
-      stylelint-order: 6.0.1
+      stylelint-order: 6.0.2
     dependencies:
       '@stylelint/postcss-css-in-js': 0.38.0_postcss-syntax@0.36.2
       postcss-syntax: 0.36.2
       stylelint: 14.16.1
       stylelint-config-standard: 29.0.0_stylelint@14.16.1
       stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.16.1
-      stylelint-order: 6.0.1_stylelint@14.16.1
+      stylelint-order: 6.0.2_stylelint@14.16.1
 
   packages/ts-base:
     specifiers:
@@ -6416,6 +6416,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -9024,6 +9025,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11814,6 +11816,7 @@ packages:
 
   /nan/2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -14550,10 +14553,10 @@ packages:
       stylelint: 14.16.1
     dev: false
 
-  /stylelint-order/6.0.1_stylelint@14.16.1:
-    resolution: {integrity: sha512-C9gJDZArRBZvn+4MPgggwYTp7dK49WPnYa5+6tBEkZnW/YWj4xBVNJdQjIik14w5orlF9RqFpYDHN0FPWIFOSQ==}
+  /stylelint-order/6.0.2_stylelint@14.16.1:
+    resolution: {integrity: sha512-yuac0BE6toHd27wUPvYVVQicAJthKFIv1HPQFH3Q0dExiO3Z6Uam7geoO0tUd5Z9ddsATYK++1qWNDX4RxMH5Q==}
     peerDependencies:
-      stylelint: ^14.0.0
+      stylelint: ^14.0.0 || ^15.0.0
     dependencies:
       postcss: 8.4.21
       postcss-sorting: 8.0.1_postcss@8.4.21
