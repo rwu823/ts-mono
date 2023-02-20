@@ -42,7 +42,7 @@ importers:
 
   packages/dev-react:
     specifiers:
-      '@apollo/client': 3.7.3
+      '@apollo/client': 3.7.9
       '@apollo/server': 4.3.0
       '@as-integrations/next': 1.2.0
       '@storybook/addon-essentials': 6.5.15
@@ -71,7 +71,7 @@ importers:
       execa: 6.1.0
       picocolors: 1.0.0
     devDependencies:
-      '@apollo/client': 3.7.3_biqbaboplfbrettd7655fr4n2y
+      '@apollo/client': 3.7.9_biqbaboplfbrettd7655fr4n2y
       '@apollo/server': 4.3.0
       '@as-integrations/next': 1.2.0_cnigt2tbzejtorbjssaeavpcfe
       '@storybook/addon-essentials': 6.5.15_biqbaboplfbrettd7655fr4n2y
@@ -196,8 +196,8 @@ packages:
       graphql: 14.x || 15.x || 16.x
     dev: true
 
-  /@apollo/client/3.7.3_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-nzZ6d6a4flLpm3pZOGpuAUxLlp9heob7QcCkyIqZlCLvciUibgufRfYTwfkWCc4NaGHGSZyodzvfr79H6oUwGQ==}
+  /@apollo/client/3.7.9_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-YnJvrJOVWrp4y/zdNvUaM8q4GuSHCEIecsRDTJhK/veT33P/B7lfqGJ24NeLdKMj8tDEuXYF7V0t+th4+rgC+Q==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -6416,6 +6416,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -9024,6 +9025,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11814,6 +11816,7 @@ packages:
 
   /nan/2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    requiresBuild: true
     dev: true
     optional: true
 

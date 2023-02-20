@@ -6,7 +6,7 @@
     "init-dev-react": "bin/initDevReact.js"
   },
   "devDependencies": {
-    "@apollo/client": "3.7.3",
+    "@apollo/client": "3.7.9",
     "@apollo/server": "4.3.0",
     "@as-integrations/next": "1.2.0",
     "@storybook/addon-essentials": "6.5.15",
