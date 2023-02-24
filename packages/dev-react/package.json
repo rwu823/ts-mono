@@ -24,7 +24,7 @@
     "react-dom": "18.2.0",
     "rxjs": "7.8.0",
     "unist-util-visit": "4.1.1",
-    "unocss": "0.48.2"
+    "unocss": "0.50.1"
   },
   "dependencies": {
     "cac": "6.7.14",
