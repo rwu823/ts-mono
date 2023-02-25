@@ -24,11 +24,19 @@ const Demo = ({
     },
   })
 
+  console.log({ fishes, bears })
+
   return (
-    <div {...props}>
-      <div key={'a'} className="text-veryCool">
-        hello 2
-      </div>
+    <div
+      {...props}
+      className={`
+        flex h-[200px] items-center justify-center text-red-300
+      `}
+      onClick={(ev) => {
+        addBear()
+      }}
+    >
+      123
     </div>
   )
 }

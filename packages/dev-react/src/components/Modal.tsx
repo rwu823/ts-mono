@@ -145,16 +145,19 @@ const reducer: React.Reducer<InitState, Action> = (
 ) => {
   let newState = {} as Partial<InitState>
   switch (type) {
-    case ActionType.OPEN_MODAL:
+    case ActionType.OPEN_MODAL: {
       newState = { isOpened: true, ...payload }
       break
+    }
 
-    case ActionType.CLOSE_MODAL:
+    case ActionType.CLOSE_MODAL: {
       newState = { isOpened: false }
       break
+    }
 
-    default:
+    default: {
       return state
+    }
   }
 
   return { ...state, ...newState }

@@ -1,15 +1,3 @@
-/* eslint-disable prettier/prettier */
-export const stockYield = ({
-  cashDividend,
-  stockDividend,
-  cashRatio,
-}: {
-  cashDividend: number
-  stockDividend: number
-  cashRatio: number
-}) => {
-  const price = (cashDividend / cashRatio) * 100
-  const stockExchangeToCash = price * stockDividend * 100
+import '@total-typescript/ts-reset'
 
-  return ((cashDividend + stockExchangeToCash / 1000) / price) * 100
-}
+const users = ['matt', 'sofia', 'waqas'] as const

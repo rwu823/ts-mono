@@ -1,15 +1,11 @@
-import type { IResolvers } from '@graphql-tools/utils'
-
 import type { DocumentNode } from 'graphql'
 
-import type { ResolverContext } from '../types.js'
-
-export const makeSchema = (
+export const makeSchema = <Resolvers extends Record<string, any>>(
   typeDef: DocumentNode | string,
-  resolver?: IResolvers<any, ResolverContext>,
+  resolvers?: Resolvers,
 ) => {
   return {
     typeDefs: [typeDef],
-    resolvers: resolver ?? {},
+    resolvers: resolvers ?? {},
   }
 }

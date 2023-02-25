@@ -2,6 +2,5 @@
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "unocss.root": "packages/dev-react",
   "references.preferredLocation": "view"
 }
