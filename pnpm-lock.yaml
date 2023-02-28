@@ -10,7 +10,7 @@ importers:
       '@ts-mono/ts-base': workspace:*
       '@types/fs-extra': 11.0.1
       '@types/node': 18.14.1
-      '@vitest/ui': 0.28.5
+      '@vitest/ui': 0.29.2
       browserslist: 4.21.5
       concurrently: 7.6.0
       eslint: 8.34.0
@@ -29,7 +29,7 @@ importers:
       '@ts-mono/ts-base': link:packages/ts-base
       '@types/fs-extra': 11.0.1
       '@types/node': 18.14.1
-      '@vitest/ui': 0.28.5
+      '@vitest/ui': 0.29.2
       browserslist: 4.21.5
       concurrently: 7.6.0
       eslint: 8.34.0
@@ -40,7 +40,7 @@ importers:
       sh-exec: 2.1.0
       tsx: 3.12.3
       typescript: 4.9.5
-      vitest: 0.28.5_@vitest+ui@0.28.5
+      vitest: 0.28.5_@vitest+ui@0.29.2
 
   packages/dev-react:
     specifiers:
@@ -5360,8 +5360,8 @@ packages:
       tinyspy: 1.0.2
     dev: true
 
-  /@vitest/ui/0.28.5:
-    resolution: {integrity: sha512-hzzZzv38mH/LMFh54QEJpWFuGixZZBOD+C0fHU81d1lsvochPwNZhWJbuRJQNyZLSMZYCYW4hF6PpNQJXDHDmg==}
+  /@vitest/ui/0.29.2:
+    resolution: {integrity: sha512-GpCExCMptrS1z3Xf6kz35Xdvjc2eTBy9OIIwW3HjePVxw9Q++ZoEaIBVimRTTGzSe40XiAI/ZyR0H0Ya9brqLA==}
     dependencies:
       fast-glob: 3.2.12
       flatted: 3.2.7
@@ -6398,6 +6398,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -9040,6 +9041,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11806,6 +11808,7 @@ packages:
 
   /nan/2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -15686,7 +15689,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.28.5_@vitest+ui@0.28.5:
+  /vitest/0.28.5_@vitest+ui@0.29.2:
     resolution: {integrity: sha512-pyCQ+wcAOX7mKMcBNkzDwEHRGqQvHUl0XnoHR+3Pb1hytAHISgSxv9h0gUiSiYtISXUU3rMrKiKzFYDrI6ZIHA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -15714,7 +15717,7 @@ packages:
       '@vitest/expect': 0.28.5
       '@vitest/runner': 0.28.5
       '@vitest/spy': 0.28.5
-      '@vitest/ui': 0.28.5
+      '@vitest/ui': 0.29.2
       '@vitest/utils': 0.28.5
       acorn: 8.8.1
       acorn-walk: 8.2.0
