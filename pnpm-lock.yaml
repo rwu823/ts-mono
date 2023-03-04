@@ -106,7 +106,7 @@ importers:
       eslint-plugin-react-hooks: 4.6.0
       eslint-plugin-simple-import-sort: 10.0.0
       eslint-plugin-testing-library: 5.10.2
-      eslint-plugin-unicorn: 45.0.2
+      eslint-plugin-unicorn: 46.0.0
       prettier: 2.8.4
       prettier-plugin-tailwindcss: 0.2.3
     dependencies:
@@ -123,7 +123,7 @@ importers:
       eslint-plugin-react-hooks: 4.6.0
       eslint-plugin-simple-import-sort: 10.0.0
       eslint-plugin-testing-library: 5.10.2
-      eslint-plugin-unicorn: 45.0.2
+      eslint-plugin-unicorn: 46.0.0
       prettier: 2.8.4
       prettier-plugin-tailwindcss: 0.2.3_prettier@2.8.4
 
@@ -6398,6 +6398,7 @@ packages:
 
   /bindings/1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
+    requiresBuild: true
     dependencies:
       file-uri-to-path: 1.0.0
     dev: true
@@ -8573,8 +8574,8 @@ packages:
       - typescript
     dev: false
 
-  /eslint-plugin-unicorn/45.0.2:
-    resolution: {integrity: sha512-Y0WUDXRyGDMcKLiwgL3zSMpHrXI00xmdyixEGIg90gHnj0PcHY4moNv3Ppje/kDivdAy5vUeUr7z211ImPv2gw==}
+  /eslint-plugin-unicorn/46.0.0:
+    resolution: {integrity: sha512-j07WkC+PFZwk8J33LYp6JMoHa1lXc1u6R45pbSAipjpfpb7KIGr17VE2D685zCxR5VL4cjrl65kTJflziQWMDA==}
     engines: {node: '>=14.18'}
     peerDependencies:
       eslint: '>=8.28.0'
@@ -9040,6 +9041,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -11806,6 +11808,7 @@ packages:
 
   /nan/2.17.0:
     resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
