@@ -1,0 +1,26 @@
+{
+  "name": "@ts-mono/dev-react",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": {
+    "init-dev-react": "bin/initDevReact.js"
+  },
+  "dependencies": {
+    "cac": "6.7.14",
+    "cpy": "9.0.1",
+    "execa": "7.0.0",
+    "picocolors": "1.0.0"
+  },
+  "scripts": {
+    "sb": "start-storybook -p 9090",
+    "dev:next": "NEXT_TELEMETRY_DISABLED=1 next dev",
+    "dev:css": "tailwindcss -i ./src/styles/tw.css -o ./src/styles/output.css --watch",
+    "dev": "concurrently npm:dev:* --raw",
+    "dev-ssl": "yarn dev tsx server.ts",
+    "build:page": "rm -rf .next gh-pages && next build && next export -o gh-pages && touch gh-pages/.nojekyll",
+    "build": "rm -rf out && mkdir out && tsx scripts/build.ts && tsc -b --force tsconfig.build.json ",
+    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts",
+    "i18n": "NODE_ENV=development yarn lingui extract --clean --config lingui.config.cjs",
+    "export": "yarn i18n && next build && next export"
+  }
+}
