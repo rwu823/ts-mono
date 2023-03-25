@@ -28,6 +28,7 @@ module.exports = {
     // '@ts-mono/eslint-config/rules/a11y',
     '@ts-mono/eslint-config/rules/typescript',
     '@ts-mono/eslint-config/rules/deprecation',
+    '@ts-mono/eslint-config/rules/tailwind',
   ],
   env: {
     browser: true,
