@@ -12,3 +12,11 @@ export const stockYield = ({
 
   return ((cashDividend + stockExchangeToCash / 1000) / price) * 100
 }
+
+console.log(
+  stockYield({
+    stockDividend: 0.5,
+    cashDividend: 0.5,
+    cashRatio: 2.87,
+  }),
+)
