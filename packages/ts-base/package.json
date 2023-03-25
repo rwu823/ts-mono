@@ -2,14 +2,14 @@
   "name": "@ts-mono/ts-base",
   "version": "0.0.0",
   "bin": {
-    "init-ts-base": "bin/initTSBase.js"
+    "create-ts-base": "bin/createTsBase.js"
   },
   "type": "module",
-  "main": "index.js",
+  "main": "bin/createTsBase.js",
   "lint-staged": {},
   "dependencies": {
-    "fast-glob": "3.2.12",
-    "fs-extra": "11.1.0",
+    "@clack/prompts": "0.6.3",
+    "fs-extra": "11.1.1",
     "picocolors": "1.0.0"
   },
   "scripts": {

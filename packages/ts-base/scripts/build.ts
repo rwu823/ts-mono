@@ -4,9 +4,8 @@ import path from 'node:path'
 
 import fg from 'fast-glob'
 
-// @ts-ignore package.json
 import rootPkg from '../../../package.json'
-// @ts-ignore package.json
+import { copyList } from '../bin/share.js'
 import pkg from '../package.json'
 
 const require = createRequire(import.meta.url)
@@ -15,19 +14,7 @@ const { copy, rm } = require('fs-extra')
 ;(() => {
   // === copy file
   const root = '../..'
-  Promise.all(
-    [
-      path.resolve(root, 'prettier.config.cjs'),
-      path.resolve(root, '.gitignore'),
-      path.resolve(root, 'tsconfig.json'),
-      path.resolve(root, '@types'),
-      path.resolve(root, '.vscode'),
-      path.resolve(root, 'pnpm-workspace.yaml'),
-    ].map((from) => {
-      const base = path.basename(from)
-      return copy(from, `out/${base}`)
-    }),
-  )
+  Promise.all(copyList.map((src) => copy(path.join(root, src), `out/${src}`)))
 
   // === extend package.json
   fs.writeFileSync(
@@ -39,7 +26,7 @@ const { copy, rm } = require('fs-extra')
         browserslist: rootPkg.browserslist,
         scripts: {
           lint: rootPkg.scripts.lint,
-          'rm-pkg': rootPkg.scripts['rm-pkg'],
+          'rm:pkg': rootPkg.scripts['rm:pkg'],
         },
       }),
       null,
