@@ -1,0 +1,17 @@
+{
+  "name": "@ts-mono/stylelint-config",
+  "version": "5.0.2-23.3.25",
+  "main": "stylelint.config.js",
+  "scripts": {
+    "build": "rm -rf out && mkdir out && cp ./*.* ../../stylelint.config.cjs out && tsx scripts/build.ts",
+    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts"
+  },
+  "dependencies": {
+    "@stylelint/postcss-css-in-js": "0.38.0",
+    "postcss-syntax": "0.36.2",
+    "stylelint": "15.10.1",
+    "stylelint-config-standard": "34.0.0",
+    "stylelint-no-unsupported-browser-features": "7.0.0",
+    "stylelint-order": "6.0.3"
+  }
+}
