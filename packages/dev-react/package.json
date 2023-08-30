@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@apollo/client": "3.7.9",
-    "@apollo/server": "4.4.0",
+    "@apollo/server": "4.9.3",
     "@as-integrations/next": "1.2.0",
     "@storybook/addon-essentials": "6.5.16",
     "@storybook/addon-links": "6.5.16",
