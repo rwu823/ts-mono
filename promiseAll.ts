@@ -6,7 +6,7 @@ export function promiseAll(promises: Promise<any>[]): Promise<any[]> {
     for (let i = 0; i < promises.length; i++) {
       promises[i].then((result) => {
         counter++
-        results[i] = result
+        results.push(result)
         if (counter === promises.length) {
           resolve(results)
         }
