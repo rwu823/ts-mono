@@ -2,10 +2,10 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaVersion: 2020,
     sourceType: 'module',
     project: './tsconfig.json',
   },
-
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -16,6 +16,7 @@ module.exports = {
     'plugin:jest-dom/recommended',
     'plugin:testing-library/react',
     'plugin:prettier/recommended',
+    'plugin:deprecation/recommended',
 
     '@ts-mono/eslint-config/rules/base',
     '@ts-mono/eslint-config/rules/react',
@@ -27,7 +28,6 @@ module.exports = {
     '@ts-mono/eslint-config/rules/filenames',
     // '@ts-mono/eslint-config/rules/a11y',
     '@ts-mono/eslint-config/rules/typescript',
-    '@ts-mono/eslint-config/rules/deprecation',
     '@ts-mono/eslint-config/rules/tailwind',
   ],
   env: {
