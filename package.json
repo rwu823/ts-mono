@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@appier/design-system-icons": "workspace:*",
-    "@total-typescript/ts-reset": "0.4.2",
+    "@total-typescript/ts-reset": "0.5.1",
     "@ts-mono/dev-react": "workspace:*",
     "@ts-mono/eslint-config": "workspace:*",
     "@ts-mono/ts-base": "workspace:*",
