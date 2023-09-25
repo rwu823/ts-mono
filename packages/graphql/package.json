@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "5.0.2-23.3.25",
   "name": "@ts-mono/graphql",
   "type": "module",
   "exports": {
@@ -18,9 +18,7 @@
   },
   "main": "cjs/index.js",
   "scripts": {
-    "build:esm": "tsc -b --force tsconfig.esm.json",
-    "build:cjs": "tsc -b --force tsconfig.cjs.json",
-    "build": "rm -rf out && concurrently npm:build:* && cp package.json out",
+    "build": "rm -rf out && tsc -b --force tsconfig.esm.json tsconfig.cjs.json && cp package.json out",
     "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts"
   },
   "peerDependencies": {
@@ -30,6 +28,6 @@
     "deepmerge": "4.3.1"
   },
   "devDependencies": {
-    "graphql": "16.6.0"
+    "graphql": "16.8.1"
   }
 }
