@@ -45,7 +45,7 @@
     "lint-staged": "13.2.0",
     "sh-exec": "2.1.0",
     "simple-git-hooks": "2.8.1",
-    "tsx": "3.12.6",
+    "tsx": "3.14.0",
     "typescript": "5.0.2",
     "vitest": "0.29.7",
     "yarnhook": "0.6.0"
