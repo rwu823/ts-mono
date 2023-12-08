@@ -35,7 +35,7 @@
     "@ts-mono/eslint-config": "workspace:*",
     "@ts-mono/ts-base": "workspace:*",
     "@types/fs-extra": "11.0.1",
-    "@types/node": "18.15.6",
+    "@types/node": "18.19.3",
     "@vitest/ui": "0.29.7",
     "browserslist": "4.21.5",
     "concurrently": "7.6.0",
