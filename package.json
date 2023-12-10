@@ -1,0 +1,37 @@
+{
+  "name": "@ts-mono/ts-base",
+  "version": "5.0.3-23.12.9",
+  "bin": {
+    "create-ts-base": "bin/createTsBase.js"
+  },
+  "type": "module",
+  "lint-staged": {
+    "(*.{ts,tsx,js,mjs,cjs}|package.json)": "bun lint --fix",
+    "*.{ts,tsx,json}": "bash -c tsc"
+  },
+  "dependencies": {
+    "@clack/prompts": "0.7.0",
+    "fs-extra": "11.2.0",
+    "picocolors": "1.0.0"
+  },
+  "scripts": {
+    "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
+    "rm:pkg": "rm -rf node_modules packages/*/node_modules bun.lockb yarn.lock pnpm-lock.yaml",
+    "rm:dist": "rm -rf dist packages/*/dist",
+    "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
+    "lint": "eslint --cache --cache-location node_modules/.cache/eslint",
+    "deploy": "bun scripts/deployTsBase.ts"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged -c package.json",
+    "post-checkout": "npx yarnhook",
+    "post-merge": "npx yarnhook",
+    "post-rewrite": "npx yarnhook",
+    "preserveUnused": true
+  },
+  "browserslist": [
+    "defaults",
+    "last 2 versions",
+    "not < 1.2%"
+  ]
+}
