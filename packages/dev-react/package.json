@@ -1,6 +1,6 @@
 {
   "name": "@ts-mono/dev-react",
-  "version": "0.0.0",
+  "version": "5.0.3-23.12.9",
   "type": "module",
   "bin": {
     "init-dev-react": "bin/initDevReact.js"
