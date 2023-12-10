@@ -99,7 +99,7 @@ await cli.group(
     // packageManager: async () => {
     //   const pkgManager = await cli.select({
     //     message: 'Package manager?',
-    //     options: ['npm', 'yarn', 'pnpm'].map((label) => ({
+    //     options: ['npm', 'yarn', 'pnpm', 'bun'].map((label) => ({
     //       label,
     //       value: label,
     //     })),
@@ -179,7 +179,11 @@ await cli.group(
 
       spinner.start('Installing')
 
-      await Bun.spawnSync(
+      Bun.spawnSync(['bun', 'add', '-D', 'rwu823/ts-mono#pkg/eslint-config'], {
+        cwd: dir.dest,
+        // stdout: 'inherit',
+      })
+      Bun.spawnSync(
         [
           'bun',
           'add',
@@ -193,31 +197,20 @@ await cli.group(
         ],
         {
           cwd: dir.dest,
-        },
-      )
-
-      await Bun.spawnSync(
-        ['bun', 'add', '-D', 'rwu823/ts-mono#pkg/eslint-config'],
-        {
-          cwd: dir.dest,
+          stdout: 'inherit',
         },
       )
 
       spinner.stop(`Installed packages`)
     },
 
-    initGitHooks: async ({ results: { dir } }) => {
-      if (!checkDirTypes(dir)) return
-
-      const spinner = cli.spinner()
-
-      spinner.start('Init git hooks')
-      const { stdout } = await Bun.spawn(['npx', 'simple-git-hooks'], {
-        cwd: dir.dest,
-      })
-
-      spinner.stop(`git hooks:\n${await new Response(stdout).text()}`)
-    },
+    // initGitHooks: async ({ results: { dir } }) => {
+    //   if (!checkDirTypes(dir)) return
+    //   Bun.spawn(['bunx', 'simple-git-hooks'], {
+    //     cwd: dir.dest,
+    //     stdout: 'inherit',
+    //   })
+    // },
 
     end: () => cli.outro(`✨You're all done!`),
   },

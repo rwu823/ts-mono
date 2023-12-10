@@ -25,7 +25,8 @@
     "rm:dist": "rm -rf dist packages/*/dist",
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "deploy": "bun scripts/deployTsBase.ts"
   },
   "devDependencies": {
     "@pandacss/dev": "0.20.1",
