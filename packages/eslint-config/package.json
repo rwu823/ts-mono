@@ -3,8 +3,8 @@
   "version": "5.0.3-23.12.9",
   "main": "browser",
   "scripts": {
-    "build": "tsx scripts/build.ts",
-    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts"
+    "build": "bun scripts/build.mts",
+    "deploy": "bun run build && bun ../../scripts/deployDirBranch.ts"
   },
   "peerDependencies": {
     "eslint": "^8.26.0"

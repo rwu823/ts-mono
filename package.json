@@ -13,7 +13,7 @@
     "not < 1.2%"
   ],
   "lint-staged": {
-    "(*.{ts,tsx,js,mjs,cjs}|package.json)": "yarn lint --fix",
+    "(*.{ts,tsx,js,mjs,cjs}|package.json)": "bun lint --fix",
     "*.{ts,tsx,json}": "bash -c tsc"
   },
   "author": "Rocky Wu <rwu823@gmail.com>",

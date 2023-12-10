@@ -49,6 +49,7 @@ export default defineConfig({
       'out/package.json',
       JSON.stringify(
         Object.assign(pkg, {
+          main: undefined,
           version: rootPkg.version,
           'lint-staged': rootPkg['lint-staged'],
           'simple-git-hooks': rootPkg['simple-git-hooks'],

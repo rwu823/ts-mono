@@ -1,14 +1,14 @@
-import { stringify } from '@ts-mono/ts-base/utils/json'
-import write from '@ts-mono/ts-base/utils/write'
+import { stringify } from '@ts-mono/ts-base/src/json.js'
+import write from '@ts-mono/ts-base/src/write.js'
 
 import fg from 'fast-glob'
-import fse from 'fs-extra'
+import fs from 'fs-extra'
 
 import rootPkgJSON from '../../../package.json'
 import originalPkgJSON from '../package.json'
 
-fse.removeSync('out')
-fse.mkdirSync('out')
+fs.removeSync('out')
+fs.mkdirSync('out')
 
 const pickEslintPackages: Record<string, string> = {}
 
@@ -18,10 +18,10 @@ for (const [pkgName, v] of Object.entries(rootPkgJSON.devDependencies)) {
   }
 }
 
-Promise.all([
-  fse.copy('rules', 'out/rules'),
-  fse.copy('../../.eslintrc.cjs', 'out/.eslintrc.cjs'),
-  ...fg.sync('./*').map((file) => fse.copy(file, `out/${file}`)),
+await Promise.all([
+  fs.copy('rules', 'out/rules'),
+  fs.copy('../../.eslintrc.cjs', 'out/.eslintrc.cjs'),
+  ...fg.sync('./*').map((file) => fs.copy(file, `out/${file}`)),
 ]).then(() => {
   Object.assign(originalPkgJSON.dependencies, pickEslintPackages)
 
