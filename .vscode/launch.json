@@ -8,9 +8,9 @@
       "type": "node",
       "request": "launch",
       "name": "ts $file",
-      "runtimeExecutable": "yarn",
+      "runtimeExecutable": "${env:HOME}/.bun/bin/bunx",
       "args": [
-        "esno",
+        "tsx",
         "${relativeFile}"
       ]
     },

@@ -1,11 +1,8 @@
 /* eslint-disable unicorn/filename-case */
 
 import fs from 'node:fs/promises'
-import { createRequire } from 'node:module'
-import path from 'node:path'
 
-const rootRequire = createRequire(path.join(import.meta.url, '..'))
-const rootPkgJson = rootRequire('./package.json')
+import rootPkgJson from '../package.json'
 
 await fs.readdir('packages').then((packages) =>
   Promise.all(packages.map((pkg) => fs.stat(`packages/${pkg}`))).then(
@@ -13,20 +10,22 @@ await fs.readdir('packages').then((packages) =>
       for (const [i, pkg] of packages.entries()) {
         if (!packagesStat[i]?.isDirectory()) continue
 
-        const pkgJson = rootRequire(`./packages/${pkg}/package.json`)
+        import(`../packages/${pkg}/package.json`).then(
+          ({ default: pkgJson }) => {
+            pkgJson.version = rootPkgJson.version
 
-        pkgJson.version = rootPkgJson.version
-
-        fs.writeFile(
-          `packages/${pkg}/package.json`,
-          `${JSON.stringify(
-            {
-              ...pkgJson,
-              version: rootPkgJson.version,
-            },
-            undefined,
-            2,
-          )}\n`,
+            fs.writeFile(
+              `packages/${pkg}/package.json`,
+              `${JSON.stringify(
+                {
+                  ...pkgJson,
+                  version: rootPkgJson.version,
+                },
+                undefined,
+                2,
+              )}\n`,
+            )
+          },
         )
       }
     },
