@@ -3,7 +3,7 @@ export const pipe = function (...fns) {
 
   return function (...args) {
     for (const fn of fns) {
-      res = res ? fn.call(this, res) : fn.apply(this, args)
+      res = fn.apply(this, res ? [res] : args)
     }
     return res
   }

@@ -1,12 +1,11 @@
 import { vi as jest } from 'vitest'
 
-import retry from './retry2.js'
+import retry from './retry.js'
 
 it('retry sum', async () => {
   let attempts = 3
   const sum = (a, b) => {
     attempts -= 1
-
     return new Promise((resolve, reject) => {
       if (attempts > 0) {
         reject()

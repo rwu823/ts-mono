@@ -1,12 +1,12 @@
-import { pipe } from './pipe'
+import { pipe } from './pipe.js'
 
-function add1(n) {
+function add1(n: number) {
   return n + 1
 }
-function double(n) {
+function double(n: number) {
   return n * 2
 }
-function add(a, b) {
+function add(a: string, b: string) {
   return a + b
 }
 
