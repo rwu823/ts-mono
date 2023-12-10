@@ -184,6 +184,7 @@ await cli.group(
           'bun',
           'add',
           '-D',
+          '--exact',
           '@rwu823/eslint-config',
           'simple-git-hooks',
           'eslint',

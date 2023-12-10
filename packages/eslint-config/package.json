@@ -1,10 +1,10 @@
 {
   "name": "@rwu823/eslint-config",
-  "version": "5.0.3-23.12.9",
+  "version": "5.0.3-23.12.10.2",
   "main": "browser",
   "scripts": {
     "build": "bun scripts/build.mts",
-    "deploy": "bun run build && bun ../../scripts/deployDirBranch.ts"
+    "deploy": "bun run build && cd out && npm publish"
   },
   "peerDependencies": {
     "eslint": "^8.26.0"

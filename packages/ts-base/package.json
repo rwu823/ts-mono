@@ -1,6 +1,6 @@
 {
   "name": "@rwu823/ts-base",
-  "version": "5.0.3-23.12.9",
+  "version": "5.0.3-23.12.10.2",
   "bin": {
     "create-ts-base": "bin/createTsBase.js"
   },
