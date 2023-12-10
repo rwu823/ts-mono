@@ -13,7 +13,7 @@
     "picocolors": "1.0.0"
   },
   "scripts": {
-    "build": "tsup --minify",
+    "build": "rm -rf out && tsup --minify",
     "deploy": "bun run build && bun ../../scripts/deployDirBranch.ts",
     "prepare": ""
   }

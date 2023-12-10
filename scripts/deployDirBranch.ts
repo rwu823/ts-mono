@@ -2,7 +2,7 @@ import path from 'node:path'
 
 import sh from 'sh-exec'
 
-import pkg from '../package.json'
+import rootPkg from '../package.json'
 
 const { DIR = 'out', BRANCH = path.basename(process.cwd()) } = process.env
 
@@ -12,5 +12,5 @@ sh`
   git init
   git add .
   git commit -nm update
-  git push ${pkg.repository} HEAD:pkg/${BRANCH} -f
+  git push ${rootPkg.repository} HEAD:pkg/${BRANCH} -f
 `
