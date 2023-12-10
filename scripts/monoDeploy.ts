@@ -2,7 +2,7 @@ import { readdirSync } from 'node:fs'
 
 import sh from 'sh-exec'
 
-const { GITHUB_TOKEN, GITHUB_REPOSITORY, GITHUB_JOB } = process.env
+const { GITHUB_TOKEN, GITHUB_REPOSITORY } = process.env
 
 const deploymentPackagesSet = new Set(
   readdirSync('packages').filter((dir) => dir !== 'share'),
