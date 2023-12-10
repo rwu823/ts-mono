@@ -164,7 +164,7 @@ await cli.group(
             path.join(dir.dest, '.eslintrc.cjs'),
             `module.exports = {
       root: true,
-      extends: ['@ts-mono'],
+      extends: ['@rwu823'],
     }`,
           )
           .then(() => '.eslintrc.cjs'),
@@ -179,15 +179,12 @@ await cli.group(
 
       spinner.start('Installing')
 
-      Bun.spawnSync(['bun', 'add', '-D', 'rwu823/ts-mono#pkg/eslint-config'], {
-        cwd: dir.dest,
-        // stdout: 'inherit',
-      })
-      Bun.spawnSync(
+      await Bun.spawnSync(
         [
           'bun',
           'add',
           '-D',
+          '@rwu823/eslint-config',
           'simple-git-hooks',
           'eslint',
           'lint-staged',

@@ -1,5 +1,5 @@
 {
-  "name": "@ts-mono/ts-base",
+  "name": "@rwu823/ts-base",
   "version": "5.0.3-23.12.9",
   "bin": {
     "create-ts-base": "bin/createTsBase.js"
@@ -14,7 +14,10 @@
   },
   "scripts": {
     "build": "rm -rf out && tsup --minify",
-    "deploy": "bun run build && bun ../../scripts/deployDirBranch.ts",
+    "deploy": "bun run build && cd out && npm publish",
     "prepare": ""
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

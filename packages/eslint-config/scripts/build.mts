@@ -1,5 +1,5 @@
-import { stringify } from '@ts-mono/ts-base/src/json.js'
-import write from '@ts-mono/ts-base/src/write.js'
+import { stringify } from '@rwu823/ts-base/src/json.js'
+import write from '@rwu823/ts-base/src/write.js'
 
 import fg from 'fast-glob'
 import fs from 'fs-extra'

@@ -1,6 +1,6 @@
 {
   "version": "5.0.3-23.12.9",
-  "name": "@ts-mono/graphql",
+  "name": "@rwu823/graphql",
   "type": "module",
   "exports": {
     ".": {
@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "graphql": "16.8.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

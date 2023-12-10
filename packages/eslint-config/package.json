@@ -1,5 +1,5 @@
 {
-  "name": "@ts-mono/eslint-config",
+  "name": "@rwu823/eslint-config",
   "version": "5.0.3-23.12.9",
   "main": "browser",
   "scripts": {
@@ -26,5 +26,8 @@
     "eslint-plugin-testing-library": "6.2.0",
     "eslint-plugin-unicorn": "49.0.0",
     "prettier": "3.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

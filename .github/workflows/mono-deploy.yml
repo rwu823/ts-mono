@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: rwu823/actions/node-pnpm@latest
       - run: npx playwright install-deps
-      - run: yarn workspace @ts-mono/dev-pptr e2e
+      - run: yarn workspace @rwu823/dev-pptr e2e
   mono-deploy:
     needs: [test, lint]
     runs-on: ubuntu-latest

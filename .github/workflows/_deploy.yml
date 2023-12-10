@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rwu823/actions@yarn-install-with-cache
-      - run: yarn workspace @ts-mono/${{ inputs.pkg }} build
+      - run: yarn workspace @rwu823/${{ inputs.pkg }} build
         if: ${{ inputs.is_build }}
       - uses: s0/git-publish-subdir-action@develop
         env:

@@ -18,6 +18,9 @@
   },
   "author": "Rocky Wu <rwu823@gmail.com>",
   "repository": "git@github.com:rwu823/ts-mono.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "license": "MIT",
   "scripts": {
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
