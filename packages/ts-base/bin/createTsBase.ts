@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { exec } from 'node:child_process'
 import fs from 'node:fs/promises'
@@ -12,15 +12,15 @@ import * as cli from '@clack/prompts'
 import { copy } from 'fs-extra'
 import c from 'picocolors'
 
-import { copyList } from './share.js'
+import { copyList } from '../src/share.js'
 
 const execPromisify = promisify(exec)
 
 const require = createRequire(import.meta.url)
 
-const packageJSON = require(process.env.DEV
-  ? '../out/package.json'
-  : '../package.json')
+const packageJSON = require(
+  process.env.DEV ? '../out/package.json' : '../package.json',
+)
 
 const cliBaseDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -33,10 +33,10 @@ const mkDir = async (dir: string) => {
 }
 
 const checkDirTypes = (
-  dir: any,
+  dir: unknown,
 ): dir is { appName: string; dest: string; isExists: boolean } => {
   return (
-    dir &&
+    !!dir &&
     typeof dir === 'object' &&
     'appName' in dir &&
     'dest' in dir &&
@@ -44,17 +44,17 @@ const checkDirTypes = (
   )
 }
 
+const initAppName = process.argv.length > 2 ? process.argv.at(-1) : undefined
+
 await cli.group(
   {
     start: () => cli.intro(c.bgCyan(` ${packageJSON.name} `.toUpperCase())),
     appName: () => {
-      const initialValue =
-        process.argv.length > 2 ? process.argv.at(-1) : undefined
+      if (initAppName) return Promise.resolve(initAppName)
 
       return cli.text({
         message: 'App name?',
         placeholder: 'ts-base-app',
-        initialValue,
         validate(value) {
           if (value.length === 0) return `required`
         },
@@ -108,11 +108,22 @@ await cli.group(
     //   return pkgManager
     // },
 
+    initGit: async ({ results: { dir } }) => {
+      if (!checkDirTypes(dir)) return
+
+      const spinner = cli.spinner()
+
+      spinner.start('Init git')
+      const { stdout } = await execPromisify(`git init`, { cwd: dir.dest })
+
+      spinner.stop(stdout)
+    },
+
     install: async ({ results: { dir } }) => {
       if (!checkDirTypes(dir)) return
 
       const spinner = cli.spinner()
-      console.log(dir.dest)
+
       await Promise.all([
         ...copyList.map((src) =>
           copy(path.join(cliBaseDir, src), `${dir.dest}/${src}`).then(
@@ -130,6 +141,10 @@ await cli.group(
                 version: '0.0.1',
                 bin: {},
                 dependencies: {},
+                scripts: {
+                  ...packageJSON.scripts,
+                  prepare: 'simple-git-hooks',
+                },
               },
               null,
               2,
@@ -164,41 +179,44 @@ await cli.group(
 
       spinner.start('Installing')
 
-      const { stdout } = await execPromisify(
-        `pnpm install -wD ${[
-          'rwu823/ts-mono#pkg/eslint-config',
-          'husky',
+      await Bun.spawnSync(
+        [
+          'bun',
+          'add',
+          '-D',
+          'simple-git-hooks',
           'eslint',
           'lint-staged',
           'yarnhook',
           'typescript',
           '@types/node',
-        ].join(' ')}
-          `,
-        { cwd: dir.dest },
+        ],
+        {
+          cwd: dir.dest,
+        },
       )
 
-      spinner.stop(stdout)
+      await Bun.spawnSync(
+        ['bun', 'add', '-D', 'rwu823/ts-mono#pkg/eslint-config'],
+        {
+          cwd: dir.dest,
+        },
+      )
+
+      spinner.stop(`Installed packages`)
     },
 
-    initGit: async ({ results: { dir } }) => {
+    initGitHooks: async ({ results: { dir } }) => {
       if (!checkDirTypes(dir)) return
 
       const spinner = cli.spinner()
 
-      spinner.start('Init git and husky')
-      const { stdout } = await execPromisify(
-        `git init
-      npx husky install
-      npx husky add .husky/pre-commit "npx lint-staged -c package.json"
-      ${['checkout', 'merge', 'rewrite']
-        .map((hook) => `npx husky add .husky/post-${hook} "npx yarnhook"`)
-        .join('\n')}
-      `,
-        { cwd: dir.dest },
-      )
+      spinner.start('Init git hooks')
+      const { stdout } = await Bun.spawn(['npx', 'simple-git-hooks'], {
+        cwd: dir.dest,
+      })
 
-      spinner.stop(stdout)
+      spinner.stop(`git hooks:\n${await new Response(stdout).text()}`)
     },
 
     end: () => cli.outro(`✨You're all done!`),

@@ -1,6 +1,6 @@
 {
   "name": "@ts-mono/ts-base",
-  "version": "0.0.0",
+  "version": "5.0.2-23.3.25",
   "bin": {
     "create-ts-base": "bin/createTsBase.js"
   },
@@ -8,13 +8,13 @@
   "main": "bin/createTsBase.js",
   "lint-staged": {},
   "dependencies": {
-    "@clack/prompts": "0.6.3",
-    "fs-extra": "11.1.1",
+    "@clack/prompts": "0.7.0",
+    "fs-extra": "11.2.0",
     "picocolors": "1.0.0"
   },
   "scripts": {
-    "build": "rm -rf out && tsc -b --force tsconfig.esm.json && tsx scripts/build.ts",
-    "deploy": "yarn build && tsx ../../scripts/deployDirBranch.ts",
+    "build": "tsup --minify",
+    "deploy": "bun run build && bun ../../scripts/deployDirBranch.ts",
     "prepare": ""
   }
 }

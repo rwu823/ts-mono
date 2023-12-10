@@ -1,7 +1,7 @@
 export const copyList = [
   '@types',
   '.vscode',
-  'prettier.config.cjs',
+  'prettier.config.js',
   'tsconfig.json',
-  'pnpm-workspace.yaml',
+  // 'pnpm-workspace.yaml',
 ]

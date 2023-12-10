@@ -3,3 +3,5 @@ out
 !.*
 # next-env.d.ts
 .next
+
+styled-system

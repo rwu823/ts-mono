@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "out",
     "noEmit": false,
+    "declaration": false,
     "rootDir": "."
   },
   "include": [

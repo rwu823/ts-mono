@@ -14,3 +14,8 @@ packages/gatsby/public
 .rollup.cache
 *.tsbuildinfo
 storybook-static
+
+styled-system
+yarn.lock
+pnpm-lock.yaml
+package-lock.json

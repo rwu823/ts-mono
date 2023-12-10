@@ -1,14 +1,8 @@
 {
+  "extends": "./tsconfig",
   "compilerOptions": {
-    "noEmitOnError": true,
-    "noImplicitUseStrict": true,
-    "module": "ESNext",
-    "target": "ESNext",
+    "noEmit": false,
     "declaration": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "sourceMap": false,
   }
 }
