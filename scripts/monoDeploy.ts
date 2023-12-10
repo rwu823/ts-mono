@@ -42,7 +42,7 @@ const isBuildedPackagesSet = new Set([
       console.log(`Start to deploy ${pkg}`)
 
       sh`
-        yarn workspace @ts-mono/${pkg} build
+        yarn workspace @rwu823/${pkg} build
         cd packages/${pkg}/out
         git init
         git add .

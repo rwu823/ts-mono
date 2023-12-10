@@ -20,6 +20,7 @@ await fs.readdir('packages').then((packages) =>
                 {
                   ...pkgJson,
                   version: rootPkgJson.version,
+                  publishConfig: rootPkgJson.publishConfig,
                 },
                 undefined,
                 2,
