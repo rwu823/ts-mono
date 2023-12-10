@@ -1,3 +1,20 @@
 {
-  "version": "5.0.3-23.12.9"
+  "name": "@ts-mono/ts-base",
+  "version": "5.0.3-23.12.9",
+  "bin": {
+    "create-ts-base": "bin/createTsBase.js"
+  },
+  "type": "module",
+  "main": "bin/createTsBase.js",
+  "lint-staged": {},
+  "dependencies": {
+    "@clack/prompts": "0.7.0",
+    "fs-extra": "11.2.0",
+    "picocolors": "1.0.0"
+  },
+  "scripts": {
+    "build": "tsup --minify",
+    "deploy": "bun run build && bun ../../scripts/deployDirBranch.ts",
+    "prepare": ""
+  }
 }
