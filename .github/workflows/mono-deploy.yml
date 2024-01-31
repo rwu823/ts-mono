@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: rwu823/actions/node-pnpm@latest
       - run: yarn vitest run packages/ts-base --coverage
-      - uses: codecov/codecov-action@v2.1.0
+      - uses: codecov/codecov-action@v3.1.6
         with:
           files: 'coverage/coverage-final.json'
       - uses: actions/upload-artifact@v3
