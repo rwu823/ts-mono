@@ -7,7 +7,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/pages/**', 'capacitor.config.ts'],
+      files: ['**/pages/**', '**/app/**', 'capacitor.config.ts'],
       rules: {
         'filenames/no-index': 0,
         'filenames/match-exported': 0,
