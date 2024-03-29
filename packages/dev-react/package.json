@@ -15,7 +15,7 @@
     "@storybook/react": "6.5.16",
     "@storybook/theming": "6.5.16",
     "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@types/react-dom": "18.2.23",
     "modern-normalize": "1.1.0",
     "next": "13.2.1",
     "react": "18.2.0",
