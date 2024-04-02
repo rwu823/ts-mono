@@ -1,6 +1,6 @@
 {
   "name": "ts-mono",
-  "version": "5.3.3-24.3.3",
+  "version": "5.4.3-24.4.2",
   "description": "The infrastructure of TypeScript project",
   "type": "module",
   "private": true,
