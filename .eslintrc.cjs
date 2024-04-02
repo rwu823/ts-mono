@@ -39,4 +39,9 @@ module.exports = {
   globals: {
     globalThis: 'readonly',
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 }

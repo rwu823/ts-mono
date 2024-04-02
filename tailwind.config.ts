@@ -4,6 +4,10 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin.js'
 
 export default {
+  corePlugins: {
+    preflight: false,
+  },
+  prefix: 'appier-ds-',
   content: [path.resolve('src/**/*.tsx')],
   theme: {
     extend: {},
