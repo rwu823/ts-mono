@@ -34,7 +34,7 @@
   "devDependencies": {
     "@total-typescript/ts-reset": "0.5.1",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "20.12.2",
+    "@types/node": "20.12.11",
     "browserslist": "4.23.0",
     "bun-types": "^1.1.0",
     "concurrently": "8.2.2",
