@@ -7,4 +7,5 @@ const bunDeploy = (pkgDirName: 'ts-base' | 'eslint-config') =>
   })
 
 Bun.spawnSync(['bun', 'run', 'scripts/sync-versions.ts'])
+
 await Promise.all([bunDeploy('ts-base'), bunDeploy('eslint-config')])

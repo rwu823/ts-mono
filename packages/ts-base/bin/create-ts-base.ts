@@ -1,6 +1,6 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { exec } from 'node:child_process'
+import { exec, spawnSync } from 'node:child_process'
 import fs from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import path from 'node:path'
@@ -8,7 +8,6 @@ import { fileURLToPath } from 'node:url'
 import { promisify } from 'node:util'
 
 import * as cli from '@clack/prompts'
-
 import { copy } from 'fs-extra'
 import c from 'picocolors'
 
@@ -18,7 +17,7 @@ const execPromisify = promisify(exec)
 
 const require = createRequire(import.meta.url)
 
-const packageJSON = require(
+const packageJSON: { name: string; scripts: Record<string, string> } = require(
   process.env.DEV ? '../out/package.json' : '../package.json',
 )
 
@@ -146,7 +145,7 @@ await cli.group(
                   prepare: 'simple-git-hooks',
                 },
               },
-              null,
+              undefined,
               2,
             ),
           )
@@ -161,13 +160,16 @@ await cli.group(
 
         fs
           .writeFile(
-            path.join(dir.dest, '.eslintrc.cjs'),
-            `module.exports = {
-      root: true,
-      extends: ['@rwu823'],
-    }`,
+            path.join(dir.dest, 'eslint.config.js'),
+            `import configs from '@rwu823/eslint-config'
+
+export default [
+  ...configs,
+  {}
+]
+            `,
           )
-          .then(() => '.eslintrc.cjs'),
+          .then(() => 'eslint.config.js'),
       ]).then((files) => {
         cli.log.success(
           `Created files:\n${files
@@ -179,9 +181,9 @@ await cli.group(
 
       spinner.start('Installing')
 
-      await Bun.spawnSync(
+      spawnSync(
+        'bun',
         [
-          'bun',
           'add',
           '-D',
           '--exact',
@@ -195,7 +197,7 @@ await cli.group(
         ],
         {
           cwd: dir.dest,
-          stdout: 'inherit',
+          stdio: 'inherit',
         },
       )
 

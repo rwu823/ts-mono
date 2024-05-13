@@ -7,8 +7,15 @@ import rootPkg from '../../package.json'
 import pkg from './package.json'
 import { copyList } from './src/share.js'
 
+const parseJsonc = async <T extends Record<string, unknown>>(
+  filePath: string,
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval
+  return new Function(`return ${await fs.readFile(filePath, 'utf8')}`)() as T
+}
+
 export default defineConfig({
-  entry: ['bin/createTsBase.ts', 'src/share.ts'],
+  entry: ['bin/create-ts-base.ts', 'src/share.ts'],
   outDir: 'out',
   // treeshake: true,
   format: ['esm'],
@@ -30,9 +37,11 @@ export default defineConfig({
       }),
     )
 
-    const tsConfig = new Function(
-      `return ${await fs.readFile('out/tsconfig.json', 'utf8')}`,
-    )()
+    const tsConfig = await parseJsonc<{
+      compilerOptions?: {
+        types?: string[]
+      }
+    }>('out/tsconfig.json')
 
     const omitScriptsFieldsSet = new Set(['prepare', 'postinstall'])
     if (tsConfig?.compilerOptions?.types) {
@@ -60,7 +69,7 @@ export default defineConfig({
             }),
           ),
         }),
-        null,
+        undefined,
         2,
       ),
     )

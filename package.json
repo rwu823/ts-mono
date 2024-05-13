@@ -1,6 +1,6 @@
 {
   "name": "ts-mono",
-  "version": "5.4.3-24.4.2",
+  "version": "5.4.5-24.5.13",
   "description": "The infrastructure of TypeScript project",
   "type": "module",
   "private": true,
@@ -29,26 +29,34 @@
     "transcrypt": "curl -s https://raw.githubusercontent.com/elasticdog/transcrypt/master/transcrypt | bash -s --",
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint",
     "prepare": "simple-git-hooks",
-    "deploy": "bun scripts/deployTsBase.ts"
+    "deploy": "bun scripts/deploy-ts-base.ts"
   },
   "devDependencies": {
     "@total-typescript/ts-reset": "0.5.1",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "20.12.2",
+    "@types/node": "20.12.11",
+    "@types/react": "18.3.2",
+    "@types/react-dom": "18.3.0",
     "browserslist": "4.23.0",
-    "bun-types": "^1.1.0",
+    "bun-types": "^1.1.8",
     "concurrently": "8.2.2",
-    "eslint": "8.57.0",
+    "eslint": "9.2.0",
     "fast-glob": "3.3.2",
     "fs-extra": "11.2.0",
     "lint-staged": "15.2.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "sh-exec": "2.1.0",
     "simple-git-hooks": "2.11.1",
     "tsup": "^8.0.2",
-    "tsx": "^4.7.1",
-    "typescript": "5.4.3",
-    "vitest": "1.4.0",
+    "tsx": "^4.10.2",
+    "typescript": "5.4.5",
+    "vitest": "1.6.0",
     "yarnhook": "0.6.2"
+  },
+  "overrides": {
+    "@types/react": "18.3.2",
+    "@types/react-dom": "18.3.0"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged -c package.json",
