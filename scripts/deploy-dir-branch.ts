@@ -6,7 +6,7 @@ import rootPkg from '../package.json'
 
 const { DIR = 'out', BRANCH = path.basename(process.cwd()) } = process.env
 
-sh`
+await sh`
   cd ${DIR}
 
   git init
