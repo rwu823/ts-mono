@@ -1,33 +1,33 @@
 {
   "name": "@rwu823/eslint-config",
   "version": "5.4.3-24.4.2",
-  "main": "browser",
-  "scripts": {
-    "build": "bun scripts/build.mts",
-    "deploy": "bun run build && cd out && npm publish"
-  },
-  "peerDependencies": {
-    "eslint": "^8.26.0"
-  },
+  "type": "module",
+  "main": "eslint.config.js",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "7.5.0",
-    "@typescript-eslint/parser": "7.5.0",
+    "@eslint/js": "9.2.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-formatter-summary": "1.1.0",
     "eslint-plugin-compat": "4.2.0",
     "eslint-plugin-deprecation": "2.0.0",
-    "eslint-plugin-filenames": "1.3.2",
-    "eslint-plugin-jest-dom": "^5.2.0",
     "eslint-plugin-prettier": "5.1.3",
     "eslint-plugin-react": "7.34.1",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-simple-import-sort": "12.0.0",
+    "eslint-plugin-react-hooks": "next",
+    "eslint-plugin-regexp": "2.5.0",
+    "eslint-plugin-simple-import-sort": "12.1.0",
     "eslint-plugin-tailwindcss": "3.15.1",
-    "eslint-plugin-testing-library": "6.2.0",
-    "eslint-plugin-unicorn": "51.0.1",
-    "prettier": "3.2.5"
+    "eslint-plugin-unicorn": "53.0.0",
+    "globals": "15.2.0",
+    "prettier": "3.2.5",
+    "typescript-eslint": "7.8.0"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
+  },
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "deploy": "bun run build && cd out && npm publish"
   }
 }
