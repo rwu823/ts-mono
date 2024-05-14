@@ -1,6 +1,6 @@
 {
   "name": "@rwu823/ts-base",
-  "version": "5.4.5-24.5.13",
+  "version": "5.4.5-24.5.14.fix1",
   "bin": {
     "create-ts-base": "bin/create-ts-base.js"
   },
@@ -9,11 +9,12 @@
   "lint-staged": {},
   "dependencies": {
     "@clack/prompts": "0.7.0",
-    "fs-extra": "11.2.0",
     "picocolors": "1.0.0"
   },
   "scripts": {
-    "build": "tsup --minify --clean",
+    "prebuild": "rm -rf out",
+    "build": "tsc -b tsconfig.build.json && bun run scripts/build.ts",
+    "build:tsup": "tsup --minify --clean",
     "deploy": "bun run build && cd out && npm publish",
     "prepare": ""
   },

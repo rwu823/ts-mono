@@ -1,6 +1,6 @@
 {
   "name": "ts-mono",
-  "version": "5.4.5-24.5.13",
+  "version": "5.4.5-24.5.14.fix1",
   "description": "The infrastructure of TypeScript project",
   "type": "module",
   "private": true,
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@total-typescript/ts-reset": "0.5.1",
+    "@total-typescript/tsconfig": "1.0.2",
     "@types/fs-extra": "11.0.4",
     "@types/node": "20.12.11",
     "@types/react": "18.3.2",

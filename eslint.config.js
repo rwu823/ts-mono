@@ -17,10 +17,14 @@ import tsEslint from 'typescript-eslint'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const ERROR = 'error'
-const OFF = 'off'
+export const ERROR = 'error'
+export const OFF = 'off'
+export const WARN = 'warn'
 
-const config = tsEslint.config(
+/**
+ * @type {ReturnType<import('typescript-eslint').config>}
+ */
+const baseConfigs = tsEslint.config(
   eslint.configs.recommended,
   ...tsEslint.configs.recommendedTypeChecked,
 
@@ -93,6 +97,7 @@ const config = tsEslint.config(
 
       'unicorn/prevent-abbreviations': OFF,
       'unicorn/filename-case': OFF,
+      'unicorn/no-null': OFF,
     },
   },
 
@@ -101,4 +106,12 @@ const config = tsEslint.config(
   },
 )
 
-export default config
+export default baseConfigs
+
+/**
+ *
+ * @param  {import('typescript-eslint').ConfigWithExtends[]} configs
+ * @returns {ReturnType<import('typescript-eslint').config>}
+ */
+export const defineConfig = (...configs) =>
+  tsEslint.config(...baseConfigs, ...configs)

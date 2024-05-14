@@ -161,12 +161,9 @@ await cli.group(
         fs
           .writeFile(
             path.join(dir.dest, 'eslint.config.js'),
-            `import configs from '@rwu823/eslint-config'
+            `import { defineConfig } from '@rwu823/eslint-config'
 
-export default [
-  ...configs,
-  {}
-]
+export default defineConfig({})
             `,
           )
           .then(() => 'eslint.config.js'),
@@ -194,6 +191,7 @@ export default [
           'yarnhook',
           'typescript',
           '@types/node',
+          '@total-typescript/tsconfig',
         ],
         {
           cwd: dir.dest,

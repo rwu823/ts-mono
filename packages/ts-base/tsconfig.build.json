@@ -1,13 +1,11 @@
 {
-  "extends": "../../tsconfig.esm.json",
+  "extends": "@total-typescript/tsconfig/tsc/no-dom/library",
   "compilerOptions": {
     "outDir": "out",
-    "noEmit": false,
+    "sourceMap": false,
     "declaration": false,
-    "rootDir": "."
   },
   "include": [
     "bin",
-    "utils",
   ]
 }
