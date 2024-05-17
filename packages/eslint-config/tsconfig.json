@@ -1,9 +1,0 @@
-{
-  "include": ["out/eslint.config.js"],
-  "compilerOptions": {
-    "declaration": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "emitDeclarationOnly": true
-  }
-}

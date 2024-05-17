@@ -2,5 +2,5 @@
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "references.preferredLocation": "view"
+  "typescript.enablePromptUseWorkspaceTsdk": true,
 }
