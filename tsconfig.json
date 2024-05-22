@@ -1,5 +1,6 @@
 {
   "extends": "@total-typescript/tsconfig/tsc/dom/library-monorepo",
   "compilerOptions": {
+    "types": ["@total-typescript/ts-reset"]
   }
 }

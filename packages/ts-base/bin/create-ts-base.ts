@@ -192,6 +192,7 @@ export default defineConfig({})
           'typescript',
           '@types/node',
           '@total-typescript/tsconfig',
+          '@total-typescript/ts-reset',
         ],
         {
           cwd: dir.dest,
