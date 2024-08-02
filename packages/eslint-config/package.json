@@ -13,7 +13,7 @@
     "eslint-plugin-regexp": "2.6.0",
     "eslint-plugin-simple-import-sort": "12.1.0",
     "eslint-plugin-unicorn": "53.0.0",
-    "globals": "15.3.0",
+    "globals": "15.9.0",
     "prettier": "3.2.5",
     "typescript-eslint": "7.10.0"
   },
