@@ -1,6 +1,7 @@
 {
   "extends": "@total-typescript/tsconfig/tsc/dom/library-monorepo",
   "compilerOptions": {
-    "types": ["@total-typescript/ts-reset"]
+    "types": ["@total-typescript/ts-reset", "@types/bun"],
+    "jsx": "react-jsx"
   }
 }

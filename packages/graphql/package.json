@@ -1,5 +1,5 @@
 {
-  "version": "5.4.5-24.5.22",
+  "version": "5.5.4-24.8.2",
   "name": "@rwu823/graphql",
   "type": "module",
   "exports": {
@@ -28,7 +28,7 @@
     "deepmerge": "4.3.1"
   },
   "devDependencies": {
-    "graphql": "16.8.1"
+    "graphql": "16.9.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

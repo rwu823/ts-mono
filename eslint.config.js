@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-
 import process from 'node:process'
 
 import eslint from '@eslint/js'
@@ -17,21 +14,43 @@ export const ERROR = 'error'
 export const OFF = 'off'
 export const WARN = 'warn'
 
+export const reactFiles = '**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'
+
 /**
  * @type {ReturnType<import('typescript-eslint').config>}
  */
 const baseConfigs = tsEslint.config(
   eslint.configs.recommended,
-  ...tsEslint.configs.recommendedTypeChecked,
+  ...tsEslint.configs.strictTypeChecked,
+  ...tsEslint.configs.stylisticTypeChecked,
+
+  {
+    files: ['**/*.js'],
+    ...tsEslint.configs.disableTypeChecked,
+  },
+
+  {
+    languageOptions: {
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+  },
 
   unicorn.configs['flat/recommended'],
   regexpPlugin.configs['flat/recommended'],
 
   {
-    files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+    files: [reactFiles],
     plugins: {
       react,
       'react-hooks': reactHooks,
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
     },
     languageOptions: {
       parserOptions: {
@@ -45,27 +64,11 @@ const baseConfigs = tsEslint.config(
     },
 
     rules: {
+      ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
     },
   },
 
-  // reactHooks.configs.recommended,
-
-  // ...compat.config({
-  //   extends: ['plugin:deprecation/recommended'],
-  //   parser: '@typescript-eslint/parser',
-  //   parserOptions: {
-  //     ecmaVersion: 2020,
-  //     sourceType: 'module',
-  //     project: './tsconfig.json', // <-- Point to your project's "tsconfig.json" or create a new one.
-  //   },
-  // }),
-  // {
-  //   plugins: {
-  //     'react-hooks': reactHooks,
-  //   },
-  //   rules: reactHooks.configs.recommended.rules,
-  // },
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
@@ -76,14 +79,6 @@ const baseConfigs = tsEslint.config(
     },
   },
 
-  {
-    languageOptions: {
-      parserOptions: {
-        project: true,
-        tsconfigRootDir: process.cwd(),
-      },
-    },
-  },
   prettierRecommended,
 
   {
