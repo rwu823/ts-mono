@@ -4,7 +4,7 @@
   "type": "module",
   "main": "eslint.config.js",
   "dependencies": {
-    "@eslint/js": "9.8.0",
+    "@eslint/js": "9.13.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-formatter-summary": "1.1.0",
     "eslint-plugin-prettier": "5.2.1",
