@@ -59,6 +59,7 @@ const baseConfigs = tsEslint.config(
         },
       },
       globals: {
+        ...globals.serviceworker,
         ...globals.browser,
       },
     },

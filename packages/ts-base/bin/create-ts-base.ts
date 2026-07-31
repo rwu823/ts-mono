@@ -47,7 +47,11 @@ const initAppName = process.argv.length > 2 ? process.argv.at(-1) : undefined
 
 await cli.group(
   {
-    start: () => cli.intro(c.bgCyan(` ${packageJSON.name} `.toUpperCase())),
+    start: () => {
+      cli.intro(c.bgCyan(` ${packageJSON.name} `.toUpperCase()))
+
+      return Promise.resolve()
+    },
     appName: () => {
       if (initAppName) return Promise.resolve(initAppName)
 
@@ -211,7 +215,10 @@ export default defineConfig({})
     //   })
     // },
 
-    end: () => cli.outro(`✨You're all done!`),
+    end: () => {
+      cli.outro(`✨You're all done!`)
+      return Promise.resolve()
+    },
   },
   {
     onCancel() {

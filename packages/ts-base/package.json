@@ -1,6 +1,6 @@
 {
   "name": "@rwu823/ts-base",
-  "version": "5.5.4-24.8.2",
+  "version": "5.7.3-25.1.9",
   "bin": {
     "create-ts-base": "bin/create-ts-base.js"
   },
@@ -8,8 +8,8 @@
   "main": "bin/create-ts-base.js",
   "lint-staged": {},
   "dependencies": {
-    "@clack/prompts": "0.7.0",
-    "picocolors": "1.0.1"
+    "@clack/prompts": "0.9.1",
+    "picocolors": "1.1.1"
   },
   "scripts": {
     "prebuild": "rm -rf out",

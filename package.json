@@ -1,27 +1,51 @@
 {
   "name": "ts-mono",
-  "version": "5.5.4-24.8.2",
-  "description": "The infrastructure of TypeScript project",
-  "type": "module",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "version": "5.7.3-25.1.9",
+  "author": "Rocky Wu <rwu823@gmail.com>",
+  "repository": "git@github.com:rwu823/ts-mono.git",
+  "devDependencies": {
+    "@total-typescript/ts-reset": "0.6.1",
+    "@total-typescript/tsconfig": "1.0.4",
+    "@types/bun": "1.1.16",
+    "@types/fs-extra": "11.0.4",
+    "@types/node": "22.10.5",
+    "@types/react": "19.0.4",
+    "@types/react-dom": "19.0.2",
+    "browserslist": "4.24.4",
+    "concurrently": "9.1.2",
+    "eslint": "9.17.0",
+    "fast-glob": "3.3.3",
+    "fs-extra": "11.2.0",
+    "lint-staged": "15.3.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "sh-exec": "2.1.0",
+    "simple-git-hooks": "2.11.1",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "5.7.3",
+    "vitest": "2.1.8",
+    "yarnhook": "0.6.2"
+  },
   "browserslist": [
     "defaults",
     "last 2 versions",
     "not < 1.2%"
   ],
+  "description": "The infrastructure of TypeScript project",
+  "license": "MIT",
   "lint-staged": {
     "(*.{ts,tsx,js,mjs,cjs}|package.json)": "bun lint --fix",
     "*.{ts,tsx,json}": "bash -c tsc"
   },
-  "author": "Rocky Wu <rwu823@gmail.com>",
-  "repository": "git@github.com:rwu823/ts-mono.git",
+  "overrides": {
+    "@types/react": "19.0.4",
+    "@types/react-dom": "19.0.2"
+  },
+  "private": true,
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "license": "MIT",
   "scripts": {
     "test:ci": "jest --ci --no-cache --bail --changedSince=origin/main --maxWorkers=4",
     "rm:pkg": "rm -rf node_modules packages/*/node_modules bun.lockb yarn.lock pnpm-lock.yaml",
@@ -31,39 +55,18 @@
     "prepare": "simple-git-hooks",
     "deploy": "bun scripts/deploy-ts-base.ts"
   },
-  "devDependencies": {
-    "@total-typescript/ts-reset": "0.5.1",
-    "@total-typescript/tsconfig": "1.0.4",
-    "@types/bun": "1.1.6",
-    "@types/fs-extra": "11.0.4",
-    "@types/node": "22.1.0",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "browserslist": "4.23.3",
-    "concurrently": "8.2.2",
-    "eslint": "9.8.0",
-    "fast-glob": "3.3.2",
-    "fs-extra": "11.2.0",
-    "lint-staged": "15.2.7",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "sh-exec": "2.1.0",
-    "simple-git-hooks": "2.11.1",
-    "tsup": "^8.2.4",
-    "tsx": "^4.16.5",
-    "typescript": "5.5.4",
-    "vitest": "2.0.5",
-    "yarnhook": "0.6.2"
-  },
-  "overrides": {
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0"
-  },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged -c package.json",
     "post-checkout": "npx yarnhook",
     "post-merge": "npx yarnhook",
     "post-rewrite": "npx yarnhook",
     "preserveUnused": true
+  },
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "temporal-polyfill": "0.3.0"
   }
 }
