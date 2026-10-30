@@ -8,7 +8,7 @@
   "main": "bin/create-ts-base.js",
   "lint-staged": {},
   "dependencies": {
-    "@clack/prompts": "0.9.1",
+    "@clack/prompts": "0.11.0",
     "picocolors": "1.1.1"
   },
   "scripts": {
